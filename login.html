@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>주차 가능 확인 시스템</title>
+    <link rel="stylesheet" type="text/css" href="/capstone/css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <h2>주차 가능 확인 시스템</h2>
+        <form name="loginForm">
+            <input type="text" id="usr_id" name="usr_id" placeholder="ID"/>
+            <input type="password" id="usr_pw" name="usr_pw" placeholder="Password"/>
+            <input type = "submit" id="loginBtn" value = "로그인">
+        </form>
+        <button id="signUpBtn">회원가입</button>
+    </div>
+
+    <!-- 회원가입 다이얼로그 -->
+    <div id='dialog' style="display: none;">
+        <h1>회원가입</h1>
+        <form name="signUpForm">
+            <input type="text" id="insertId" name="signUp_usr_id" placeholder="ID"/>
+            <input type="password" id="insertPw" name="signUp_usr_pw" placeholder="Password"/>
+            <input type="password" id="insertPwChk" name="signUp_usr_pw_chk" placeholder="Password Check"/>
+            <input type="text" id="insertUsrNm" name="signUp_usr_nm" placeholder="Name"/>
+            <input type="text" id="insertUsrAddr" name="signUp_usr_addr" placeholder="Address"/>
+        </form>
+        <button id="signUp-submit-btn">회원가입</button>
+        <button id="signUp-close-btn">닫기</button>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="/capstone/js/login/login.js"></script>
+</body>
+</html>
