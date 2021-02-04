@@ -117,6 +117,8 @@ function showInformation(){
 function showStudyA_Board(){
     var ContentHtml = "";
 
+    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+    
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
     ContentHtml +=         "<th>제목</th>";
@@ -126,7 +128,7 @@ function showStudyA_Board(){
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+    
     $("#studyA_Content").empty().append(ContentHtml);
 };
 
@@ -134,6 +136,8 @@ function showStudyA_Board(){
 function showStudyB_Board(){
     var ContentHtml = "";
 
+    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
     ContentHtml +=         "<th>제목</th>";
@@ -143,7 +147,7 @@ function showStudyB_Board(){
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+    
     $("#studyB_Content").empty().append(ContentHtml);
 };
 
@@ -151,6 +155,8 @@ function showStudyB_Board(){
 function showStudyC_Board(){
     var ContentHtml = "";
 
+    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
     ContentHtml +=         "<th>제목</th>";
@@ -160,6 +166,6 @@ function showStudyC_Board(){
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
+    
     $("#studyC_Content").empty().append(ContentHtml);
 };
