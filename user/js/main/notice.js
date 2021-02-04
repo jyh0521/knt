@@ -1,8 +1,8 @@
 
-
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function(){
     $("#kntnotice").css("display", "block");
+    $("#kntnotice_Write").css("display", "none");
     $("#kntinformation").css("display", "none");
     $("#kntStudy").css("display", "none");
 
@@ -14,17 +14,10 @@ $("#noticeBtn").off("click").on("click", function(){
 $("#informationBtn").off("click").on("click", function(){
     $("#kntinformation").css("display", "block");
     $("#kntnotice").css("display", "none");
+    $("#kntnotice_Write").css("display", "none");
     $("#kntStudy").css("display", "none");
 
     showInformation();
-});
-
-//관리자가 공지사항 글쓰기 버튼 클릭 시 
-$("#writeNoticeBtn").off("click").on("click", function(){
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "block");
-
-    writeNotice();
 });
 
 //공지사항 글 등록 버튼 클릭 시 
@@ -41,11 +34,22 @@ $("#signupNoticeBtn").off("click").on("click", function(){
 
 //관리자 아이디인지 검사 후 버튼 생성
 function showBtn(){
-    if("세션 아이디" == "관리자 아이디"){//일단 이렇게 쓰자..
-        var btnHtml = "<button id = 'writeNoticeBtn'>글쓰기</button>";
-        $("#notice_Content").empty().append(btnHtml);
-    }
+    /*
+    if("세션 아이디" == "관리자 아이디")
+    일단 이렇게 쓰고 나중에 조건 걸고 버튼 생성해주자~
+    */
+    var btnHtml = "<button id = 'writeNoticeBtn'>글쓰기</button>";
+    $("#writeNoticeBtn_Content").empty().append(btnHtml);
+
 }
+
+//관리자가 공지사항 글쓰기 버튼 클릭 시 
+$("#writeNoticeBtn_Content").off("click").on("click", function(){
+    $("#kntnotice").css("display", "none");
+    $("#kntnotice_Write").css("display", "block");
+
+    writeNotice();
+});
 
 //공지사항 글 작성
 function writeNotice(){

@@ -3,6 +3,7 @@ $("#studyBtn").off("click").on("click", function(){
     $("#kntStudy").css("display", "block");
     $("#kntinformation").css("display", "none");
     $("#kntnotice").css("display", "none");
+    $("#kntnotice_Write").css("display", "none");
 });//그룹 리스트 보여주기
 //study a 클릭 시
 $("#studyA").on("click", function(){
