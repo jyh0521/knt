@@ -80,7 +80,7 @@ function writeNotice(){
 }
 
 //학술국 정보공유 보여주기
-function showinformation(){
+function showInformation(){
     var ContentHtml = "<p>학술국 정보공유";
     ContentHtml += "<button id='writeBtn'>글쓰기</button>";
     $("#information_Content").empty().append(ContentHtml);
