@@ -21,7 +21,7 @@ $("#informationBtn").off("click").on("click", function(){
 });
 
 //공지사항 글 등록 버튼 클릭 시 
-$("#signupNoticeBtn").off("click").on("click", function(){
+$("#signupNoticeBtn_Content").off("click").on("click", function(){
     var NoticeTitle = $("#NoticeTitle").val();
     var NoticeContent = $("#NoticeContent").val();
 
@@ -30,6 +30,14 @@ $("#signupNoticeBtn").off("click").on("click", function(){
     requestData("signupNotice.php", param).done(function(){
 //*****여기서부터 다시 시작하기~~
     });
+});
+
+//관리자가 공지사항 글쓰기 버튼 클릭 시 
+$("#writeNoticeBtn_Content").off("click").on("click", function(){
+    $("#kntnotice").css("display", "none");
+    $("#kntnotice_Write").css("display", "block");
+
+    writeNotice();
 });
 
 //관리자 아이디인지 검사 후 버튼 생성
@@ -43,27 +51,21 @@ function showBtn(){
 
 }
 
-//관리자가 공지사항 글쓰기 버튼 클릭 시 
-$("#writeNoticeBtn_Content").off("click").on("click", function(){
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "block");
-
-    writeNotice();
-});
-
 //공지사항 글 작성
 function writeNotice(){
 
     var ContentHtml = "";
+    var btnHtml = ""
 
     //일단 제목 내용만?
     ContentHtml += "<label for = 'NoticeTitle'>제목</label>";
     ContentHtml += "<input type = 'text' id = 'NoticeTitle'/>";
     ContentHtml += "<label for='NoticeContent'>내용</label>";
     ContentHtml += "<input type = 'text' id = 'NoticeContent'/>";
-    ContentHtml += "<button id = 'signupNoticeBtn'>등록</button>";
+    btnHtml += "<button id = 'signupNoticeBtn_Content'>등록</button>";
 
     $("#writeNotice_Content").empty().append(ContentHtml);
+    $("#signupNoticeBtn_Content").empty().append(btnHtml);
 
 }
 
