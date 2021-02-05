@@ -21,51 +21,53 @@
     <div>
         --------- 개인정보 ---------
     </div>
-    <!-- 좌측 메뉴 -->
-    <div class = 'menu'>
-        <button id= 'introduceBtn'>학술국 소개</button>
-        <button id = 'noticeBtn'>학술국 공지사항</button>
-        <button id = 'informationBtn'>학술국 정보공유</button>
-        <button id = 'studyBtn'>스터디</button>
-    </div>
-    <!-- 메뉴 기능 -->
-    <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
-    <div>
-        <div id="kntnotice" style="display: none;">
-            <p id = 'writeNoticeBtn_Content'></p>
-            <p id = 'notice_Content'></p>
+    <div id="mainFuncDiv">
+        <!-- 좌측 메뉴 -->
+        <div class = 'menu'>
+            <button id= 'introduceBtn'>학술국 소개</button>
+            <button id = 'noticeBtn'>학술국 공지사항</button>
+            <button id = 'informationBtn'>학술국 정보공유</button>
+            <button id = 'studyBtn'>스터디</button>
         </div>
-        <div id="kntnotice_Write" style="display: none;">
-            <p id = 'writeNotice_Content'></p>
-            <p id = 'signupNoticeBtn_Content'></p>
-        </div>
-        <div id="kntinformation" style="display: none;">
-            <p id = 'information_Content'></p>
-        </div>
-        <div id="kntBoard" style="display: none;">
-            <p id = 'menuContent'></p>
-        </div>
-        <div id="kntStudy" style="display: none;" >
-            <table>
-                <tr>
-                    <td>
-                        <a href="#" id="studyA">STUDY A</a>
-                    </td>
-                    <td id="studyA_Content"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#" id="studyB">STUDY B</a>
-                    </td>
-                    <td id="studyB_Content"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#" id="studyC">STUDY C</a>
-                    </td>
-                    <td id="studyC_Content"></td>
-                </tr>
-            </table>
+        <!-- 메뉴 기능 -->
+        <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
+        <div id="menuFuncDiv">
+            <div id="kntnotice" style="display: none;">
+                <p id = 'writeNoticeBtn_Content'></p>
+                <p id = 'notice_Content'></p>
+            </div>
+            <div id="kntnotice_Write" style="display: none;">
+                <p id = 'writeNotice_Content'></p>
+                <p id = 'signupNoticeBtn_Content'></p>
+            </div>
+            <div id="kntinformation" style="display: none;">
+                <p id = 'information_Content'></p>
+            </div>
+            <div id="kntBoard" style="display: none;">
+                <p id = 'menuContent'></p>
+            </div>
+            <div id="kntStudy" style="display: none;" >
+                <table>
+                    <tr>
+                        <td>
+                            <a href="#" id="studyA">STUDY A</a>
+                        </td>
+                        <td id="studyA_Content"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" id="studyB">STUDY B</a>
+                        </td>
+                        <td id="studyB_Content"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" id="studyC">STUDY C</a>
+                        </td>
+                        <td id="studyC_Content"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>

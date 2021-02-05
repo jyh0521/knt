@@ -1,0 +1,9 @@
+/* 메뉴 버튼 & 기능 div */
+#mainFuncDiv { width: 100%; }
+
+/* 메뉴 버튼 */
+.menu { float: left; width: 10%; border: 1px solid black; height: 500px; }
+.menu button { display: block; }
+
+/* 메뉴 기능 */
+#menuFuncDiv { float: left; width: 75%; border: 1px solid black; height: 500px; }
