@@ -12,12 +12,7 @@ $("#noticeBtn").off("click").on("click", function(){
 
 //학술국 정보공유 클릭 시 
 $("#informationBtn").off("click").on("click", function(){
-    $("#kntinformation").css("display", "block");
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "none");
-    $("#kntStudy").css("display", "none");
-
-    showInformation();
+    infoShareInit();
 });
 
 //관리자가 공지사항 글쓰기 버튼 클릭 시 
