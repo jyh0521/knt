@@ -8,14 +8,14 @@
 
 // 정보공유 게시판 초기화 함수
 function infoShareInit(){
-    $("#kntinformation").css("display", "block");
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "none");
+    $("#kntInfoShare").css("display", "block");
+    $("#kntNotice").css("display", "none");
+    $("#kntNoticeWrite").css("display", "none");
     $("#kntStudy").css("display", "none");
 
-    var ContentHtml = "<p>학술국 정보공유";
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
-    $("#information_Content").empty().append(ContentHtml);
+    var contentHtml = "<p>학술국 정보공유";
+    contentHtml += "<button id='writeBtn'>글쓰기</button>";
+    $("#infoShareContent").empty().append(contentHtml);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
