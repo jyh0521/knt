@@ -1,7 +1,9 @@
 <?php
    include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
-    $sql = "SELECT * FROM USR_BRD WHERE BRD_CDE = 'BRD_003'";
+    $sql = "SELECT BRD_ID, BRD_TITLE, BRD_WRITER, BRD_DATE, BRD_HIT, BRD_CDE
+              FROM USR_BRD
+             WHERE BRD_CDE = 'BRD_003' AND BRD_DISABLE = 'Y'";
 
     $result = mysql_query($sql, $connect);
 
@@ -11,7 +13,6 @@
         $tmp = array(
             'BRD_ID' => $row['BRD_ID'],
             'BRD_TITLE' => $row['BRD_TITLE'],
-            'BRD_CONTENT' => $row['BRD_CONTENT'],
             'BRD_WRITER' => $row['BRD_WRITER'],
             'BRD_DATE' => $row['BRD_DATE'],
             'BRD_HIT' => $row['BRD_HIT'],
