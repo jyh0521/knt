@@ -28,24 +28,21 @@
             <button id= 'introduceBtn'>학술국 소개</button>
             <button id = 'noticeBtn'>학술국 공지사항</button>
             <button id = 'infoShareBtn'>학술국 정보공유</button>
-            <button id = 'studyBtn'>스터디</button>
-        </div>
-        <div id="kntStudy" style="display: none;">
             <div>
-                <div>
-                    <a href="#" id="studyA">STUDY A</a>
-                </div>
-                <div>
-                    <a href="#" id="studyB">STUDY B</a>
-                </div>
-                <div>
-                    <a href="#" id="studyC">STUDY C</a>
+                <button id = 'studyBtn'>스터디</button>
+                <div id = 'studyGroup' style = "display: none;">
+                    <div>
+                        <a href="#" id="studyA">STUDY A</a>
+                    </div>
+                    <div>
+                        <a href="#" id="studyB">STUDY B</a>
+                    </div>
+                    <div>
+                        <a href="#" id="studyC">STUDY C</a>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div id="studyA_Content"></div>
-                <div id="studyB_Content"></div>
-                <div id="studyC_Content"></div>
+        </div>
         <!-- 메뉴 기능 -->
         <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
         <div id="menuFuncDiv">
@@ -63,27 +60,11 @@
             <div id="kntBoard" style="display: none;">
                 <p id = 'menuContent'></p>
             </div>
-            <div id="kntStudy" style="display: none;" >
-                <table>
-                    <tr>
-                        <td>
-                            <a href="#" id="studyA">STUDY A</a>
-                        </td>
-                        <td id="studyA_Content"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" id="studyB">STUDY B</a>
-                        </td>
-                        <td id="studyB_Content"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#" id="studyC">STUDY C</a>
-                        </td>
-                        <td id="studyC_Content"></td>
-                    </tr>
-                </table>
+            <!-- 스터디 게시판 -->
+            <div>
+                <p id="studyA_Content" style="display: none;"></p> 
+                <p id="studyB_Content" style="display: none;"></p> 
+                <p id="studyC_Content" style="display: none;"></p>
             </div>
         </div>
     </div>
