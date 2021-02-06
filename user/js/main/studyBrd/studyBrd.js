@@ -1,48 +1,41 @@
 //study a 클릭 시
-$("#studyA").off("click").on("click", function(){
-    $("#studyA_Content").css("display", "block");
-    $("#studyB_Content").css("display", "none");
-    $("#studyC_Content").css("display", "none");
+$("#studyaBtn").off("click").on("click", function(){
+    $("#studyABoard").css("display", "block");
+    $("#studyBBoard").css("display", "none");
+    $("#studyCBoard").css("display", "none");
 
-    showStudyA_Board();
+    initStudyGroupABoard();
 });
+/*
 //study b 클릭 시
-$("#studyB").off("click").on("click", function(){
-    $("#studyB_Content").css("display", "block");
-    $("#studyA_Content").css("display", "none");
-    $("#studyC_Content").css("display", "none");
+$("#studybBtn").off("click").on("click", function(){
+    $("#studybContent").css("display", "block");
+    $("#studyaContent").css("display", "none");
+    $("#studycContent").css("display", "none");
 
-    showStudyB_Board();
+    showStudybBoard();
 });
 //study c 클릭 시
-$("#studyC").off("click").on("click", function(){
-    $("#studyC_Content").css("display", "block");
-    $("#studyB_Content").css("display", "none");
-    $("#studyA_Content").css("display", "none");
+$("#studycBtn").off("click").on("click", function(){
+    $("#studycContent").css("display", "block");
+    $("#studybContent").css("display", "none");
+    $("#studyaContent").css("display", "none");
 
-    showStudyC_Board();
-});
+    showStudycBoard();
+});*/
 
 //스터디A 게시물 목록 보여주기
-function showStudyA_Board(){
-    var ContentHtml = "";
-    
-    ContentHtml += "<table>";
-    ContentHtml +=     "<thead>";
-    ContentHtml +=         "<th>제목</th>";
-    ContentHtml +=         "<th>작성자</th>";
-    ContentHtml +=         "<th>작성일</th>";
-    ContentHtml +=         "<th>조회</th>";
-    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
-    ContentHtml +=     "</thead>";
-    /* 나중에 db에서 받아오기 */
-    ContentHtml += "</table>";
-    
-    $("#studyA_Content").empty().append(ContentHtml);
+function initStudyGroupABoard(){
+    $("#studyATable").css("display", "block");
+    $("#studyAContentOfWriting").css("display", "none");
+    $("#studyAWriting").css("display", "none");
+
+    getStudyAList();
 };
 
+/*
 //스터디B 게시물 목록 보여주기
-function showStudyB_Board(){
+function showStudybBoard(){
     var ContentHtml = "";
 
     ContentHtml += "<table>";
@@ -53,14 +46,14 @@ function showStudyB_Board(){
     ContentHtml +=         "<th>조회</th>";
     ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
-    /* 나중에 db에서 받아오기 */
+    // 나중에 db에서 받아오기
     ContentHtml += "</table>";
     
-    $("#studyB_Content").empty().append(ContentHtml);
+    $("#studybContent").empty().append(ContentHtml);
 };
 
 //스터디C 게시물 목록 보여주기
-function showStudyC_Board(){
+function showStudycBoard(){
     var ContentHtml = "";
 
     ContentHtml += "<table>";
@@ -71,8 +64,36 @@ function showStudyC_Board(){
     ContentHtml +=         "<th>조회</th>";
     ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
-    /* 나중에 db에서 받아오기 */
+    // 나중에 db에서 받아오기
     ContentHtml += "</table>";
     
-    $("#studyC_Content").empty().append(ContentHtml);
-};
+    $("#studycContent").empty().append(ContentHtml);
+};*/
+
+//study a 게시물 불러오기
+function getStudyAList() {
+
+}
+
+//study a 테이블
+function showStudyATable() {
+    var ContentHtml = "";
+    
+    ContentHtml += "<table>";
+    ContentHtml +=     "<thead>";
+    ContentHtml +=         "<th>제목</th>";
+    ContentHtml +=         "<th>작성자</th>";
+    ContentHtml +=         "<th>작성일</th>";
+    ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>작성하기</button></th>";
+    ContentHtml +=     "</thead>";
+    // 나중에 db에서 받아오기
+    ContentHtml += "</table>";
+    
+    $("#studyATable").empty().append(ContentHtml);
+}
+
+//study a 게시물 리스트
+function showStudyAList() {
+    
+}
