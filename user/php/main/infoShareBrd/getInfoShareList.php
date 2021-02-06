@@ -1,4 +1,4 @@
-<?php
+<?
    include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
     $sql = "SELECT BRD_ID, BRD_TITLE, BRD_WRITER, BRD_DATE, BRD_HIT, BRD_CDE

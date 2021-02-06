@@ -4,7 +4,7 @@
 
 var infoShareList = [];
 var infoShareSelectedContent = [];
-
+var infoShareSelectedContentCommentList = [];
 var infoShareSelectedListId = "";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,10 +45,15 @@ function getInfoShareContent() {
 
     // 선택된 글의 id로 데이터 요청
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
-        infoShareSelectedContent = result;
+        infoShareSelectedContent =  result["CONTENT"];
+        infoShareSelectedContentCommentList = result["COMMENT"];
 
         drawInfoShareSelectedContent();
     });
+}
+
+function setInfoShareContent() {
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,16 +105,21 @@ function drawInfoShareList() {
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
     var infoShareSelectedContentHtml = "";
-    var infoShareSelectedContentSize = infoShareSelectedContent.length;
+    var infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
 
-    for(var i = 0; i < infoShareSelectedContentSize; i++) {
-        infoShareSelectedContentHtml += "<p>제목: " + infoShareSelectedContent[0]["BRD_TITLE"] + "</p>";
-        infoShareSelectedContentHtml += "<p>내용: " + infoShareSelectedContent[0]["BRD_CONTENT"]  + "</p>";
-        infoShareSelectedContentHtml += "<p>작성자: " + infoShareSelectedContent[0]["BRD_WRITER"]  + "</p>";
-        infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent[0]["BRD_DATE"]  + "</p>";
-        infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent[0]["BRD_HIT"]  + "</p>";
-        infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
+    infoShareSelectedContentHtml += "<p>제목: " + infoShareSelectedContent["BRD_TITLE"] + "</p>";
+    infoShareSelectedContentHtml += "<p>내용: " + infoShareSelectedContent["BRD_CONTENT"]  + "</p>";
+    infoShareSelectedContentHtml += "<p>작성자: " + infoShareSelectedContent["BRD_WRITER"]  + "</p>";
+    infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent["BRD_DATE"]  + "</p>";
+    infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent["BRD_HIT"]  + "</p>";
+
+    for(var i = 0; i < infoShareSelectedContentCommentListSize; i++) {
+        infoShareSelectedContentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
+        infoShareSelectedContentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
+        infoShareSelectedContentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
     }
+
+    infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
     
     $("#infoShareTableDiv").css("display", "none");
     $("#infoShareContentDiv").css("display", "block");
@@ -118,6 +128,11 @@ function drawInfoShareSelectedContent() {
     $("#infoShareContentDiv").empty().append(infoShareSelectedContentHtml);
 
     initInfoShareSelectedContentEvent();
+}
+
+// 정보공유 선택된 글의 댓글 내용 그리기
+function drawInfoShareSelectedContentComment() {
+
 }
 
 // 정보공유 글 작성 부분 그리기
