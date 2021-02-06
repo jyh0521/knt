@@ -2,6 +2,7 @@ var noticeBrdList = [];
 
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
+    $("#kntNoticeBrdWrite").css("display", "none");
 
     getNoticeBrdList();
 };
@@ -96,13 +97,18 @@ function showNoticeBrdWrite(){
     kntNoticeBrdWriteContentHtml += "<input type = 'text' id = 'noticeBrdWriteTitle'><p>";
     kntNoticeBrdWriteContentHtml += "<label for='noticeBrdWriteContent'>내용</label>";
     kntNoticeBrdWriteContentHtml += "<textarea id = 'noticeBrdWriteContent'></textarea><p>";
-    kntNoticeBrdWriteContentHtml += "<button id = 'noticeBrdSignUpBtn'>등록하기</button><p>";
+    kntNoticeBrdWriteContentHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
+    kntNoticeBrdWriteContentHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
 
     $("#kntNoticeBrdWriteContent").empty().append(kntNoticeBrdWriteContentHtml);
 
-    //등록하기 버튼 클릭 시
+    //등록 버튼 클릭 시
     $("#noticeBrdSignUpBtn").off("click").on("click", function(){
         setNoticeBrdContent();
     });
 
+    //취소 버튼 클릭 시
+    $("#noticeBrdCancleBtn").off("click").on("click", function(){
+        showNoticeBrd();
+    });
 }
