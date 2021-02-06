@@ -10,7 +10,7 @@ $("#noticeBtn").off("click").on("click", function(){
     $("#studyC_Content").css("display", "none");
 
     showBtn();
-    showNotice();
+    getNoticeList();
 });
 
 //학술국 정보공유 클릭 시 
@@ -28,7 +28,7 @@ $("#writeNoticeBtn").off("click").on("click", function(){
 
 //공지사항 등록 버튼 클릭 시
 $("#signUpNoticeBtn").off("click").on("click", function(){
-    setNoticeList();
+    setNoticeContent();
 });
 
 //학술국 스터디 클릭 시
