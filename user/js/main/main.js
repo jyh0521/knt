@@ -4,7 +4,10 @@ $("#noticeBtn").off("click").on("click", function(){
     $("#kntNotice").css("display", "block");
     $("#kntNoticeWrite").css("display", "none");
     $("#kntInfoShare").css("display", "none");
-    $("#kntStudy").css("display", "none");
+    $("#studyGroup").css("display", "none");
+    $("#studyA_Content").css("display", "none");
+    $("#studyC_Content").css("display", "none");
+    $("#studyC_Content").css("display", "none");
 
     showBtn();
     showNotice();
@@ -30,7 +33,7 @@ $("#signUpNoticeBtn").off("click").on("click", function(){
 
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function(){
-    $("#kntStudy").css("display", "block");
+    $("#studyGroup").css("display", "block");
     $("#kntInfoShare").css("display", "none");
     $("#kntNotice").css("display", "none");
     $("#kntNoticeWrite").css("display", "none");
@@ -38,7 +41,7 @@ $("#studyBtn").off("click").on("click", function(){
 });//그룹 리스트 보여주기
 
 //study a 클릭 시
-$("#studyA").on("click", function(){
+$("#studyA").off("click").on("click", function(){
     $("#studyA_Content").css("display", "block");
     $("#studyB_Content").css("display", "none");
     $("#studyC_Content").css("display", "none");
@@ -46,7 +49,7 @@ $("#studyA").on("click", function(){
     showStudyA_Board();
 });
 //study b 클릭 시
-$("#studyB").on("click", function(){
+$("#studyB").off("click").on("click", function(){
     $("#studyB_Content").css("display", "block");
     $("#studyA_Content").css("display", "none");
     $("#studyC_Content").css("display", "none");
@@ -54,7 +57,7 @@ $("#studyB").on("click", function(){
     showStudyB_Board();
 });
 //study c 클릭 시
-$("#studyC").on("click", function(){
+$("#studyC").off("click").on("click", function(){
     $("#studyC_Content").css("display", "block");
     $("#studyB_Content").css("display", "none");
     $("#studyA_Content").css("display", "none");
