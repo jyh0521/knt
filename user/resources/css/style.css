@@ -10,3 +10,9 @@
 
 /* 메뉴 기능 */
 #menuFuncDiv { float: left; width: 75%; border: 1px solid black; height: 100% }
+
+/* 글 작성 */
+#infoShareWriteContentTitleDiv { margin-top: 1%; }
+#infoShareWriteContentDiv { margin-top: 1%; }
+#infoShareWriteContentLabel { top: -108px; position: relative; }
+#infoShareWriteContentBtnDiv { margin-top: 1%; }

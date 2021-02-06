@@ -20,6 +20,7 @@ function initInfoShare(){
 
     $("#infoShareTableDiv").css("display", "block");
     $("#infoShareContentDiv").css("display", "none");
+    $("#infoShareWriteContentFuncDiv").css("display", "none");
 
     getInfoShareList();
 };
@@ -35,7 +36,6 @@ function getInfoShareList() {
 
         drawInfoShareTable();
         drawInfoShareList();
-        initInfoShareListEvent();
     });
 }
 
@@ -48,7 +48,6 @@ function getInfoShareContent() {
         infoShareSelectedContent = result;
 
         drawInfoShareSelectedContent();
-        initInfoShareSelectedContentEvent();
     });
 }
 
@@ -94,8 +93,11 @@ function drawInfoShareList() {
     }
 
     $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
+
+    initInfoShareListEvent();
 }
 
+// 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
     var infoShareSelectedContentHtml = "";
     var infoShareSelectedContentSize = infoShareSelectedContent.length;
@@ -111,8 +113,20 @@ function drawInfoShareSelectedContent() {
     
     $("#infoShareTableDiv").css("display", "none");
     $("#infoShareContentDiv").css("display", "block");
+    $("#infoShareWriteContentFuncDiv").css("display", "none");
 
     $("#infoShareContentDiv").empty().append(infoShareSelectedContentHtml);
+
+    initInfoShareSelectedContentEvent();
+}
+
+// 정보공유 글 작성 부분 그리기
+function drawInfoShareWriteContent() {
+    $("#infoShareTableDiv").css("display", "none");
+    $("#infoShareContentDiv").css("display", "none");
+    $("#infoShareWriteContentFuncDiv").css("display", "block");
+
+    initInfoShareWriteContentEvent();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,9 +143,9 @@ function initInfoShareListEvent() {
         getInfoShareContent();
     });
 
-    // 글 작성 버튼 클릭 시
-    $("#infoShareListWriteBtn").off("click").on("click", function(){
-        
+    // 작성하기 버튼 클릭 시
+    $("#infoShareListWriteBtn").off("click").on("click", function(){        
+        drawInfoShareWriteContent();
     });
 }
 
@@ -141,6 +155,19 @@ function initInfoShareSelectedContentEvent() {
     $("#infoShareSelectedContentBackBtn").off("click").on("click", function(){
         initInfoShare();
     });
+}
+
+function initInfoShareWriteContentEvent() {
+    // 작성하기 버튼 클릭 시
+    $("#infoShareWriteContentWriteBtn").off("click").on("click", function(){
+        
+    });
+
+    // 뒤로 버튼 클릭 시
+    $("#infoShareWriteContentBackBtn").off("click").on("click", function(){
+        initInfoShare();
+    });
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
