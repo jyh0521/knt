@@ -29,7 +29,8 @@ function infoShareInit(){
 function getInfoShareList() {
     requestData("/knt/user/php/main/infoShare/infoShare.php").done(function(result){
         kntInfoShareList = result;
-        
+
+        drawInfoShareTable();
         drawInfoShareList();
     });
 }
@@ -38,17 +39,37 @@ function getInfoShareList() {
 ////////////////////////////////////////////////////////////////////////// 화면에 그리기 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function drawInfoShareTable() {
+    var infoShareTableHtml = "";
+
+    infoShareTableHtml += "<table border='1'>";
+    infoShareTableHtml +=     "<thead>";
+    infoShareTableHtml +=         "<tr>";
+    infoShareTableHtml +=             "<td>번호</td>";
+    infoShareTableHtml +=             "<td>제목</td>";
+    infoShareTableHtml +=             "<td>작성자</td>";
+    infoShareTableHtml +=             "<td>작성일</td>";
+    infoShareTableHtml +=             "<td>조회수</td>";
+    infoShareTableHtml +=         "</tr>";
+    infoShareTableHtml +=     "</thead>";
+    infoShareTableHtml +=     "<tbody id='kntInfoShareListTbody'>";
+    infoShareTableHtml +=     "</tbody>";
+    infoShareTableHtml += "</table>";
+
+    $("#kntInfoShare").empty().append(infoShareTableHtml);
+}
+
 function drawInfoShareList() {
     var kntInfoShareListHtml = "";
     var kntInfoShareListSize = kntInfoShareList.length;
 
     for(var i = 0; i < kntInfoShareListSize; i++) {
         kntInfoShareListHtml += "<tr>";
-        kntInfoShareListHtml    += "<td>" + (i + 1) + "</td>";
-        kntInfoShareListHtml    += "<td>" + kntInfoShareList[i]["BRD_TITLE"] + "</td>";
-        kntInfoShareListHtml    += "<td>" + kntInfoShareList[i]["BRD_WRITER"] + "</td>";
-        kntInfoShareListHtml    += "<td>" + kntInfoShareList[i]["BRD_DATE"] + "</td>";
-        kntInfoShareListHtml    += "<td>" + kntInfoShareList[i]["BRD_HIT"] + "</td>";
+        kntInfoShareListHtml +=     "<td>" + (i + 1) + "</td>";
+        kntInfoShareListHtml +=     "<td>" + kntInfoShareList[i]["BRD_TITLE"] + "</td>";
+        kntInfoShareListHtml +=     "<td>" + kntInfoShareList[i]["BRD_WRITER"] + "</td>";
+        kntInfoShareListHtml +=     "<td>" + kntInfoShareList[i]["BRD_DATE"] + "</td>";
+        kntInfoShareListHtml +=     "<td>" + kntInfoShareList[i]["BRD_HIT"] + "</td>";
         kntInfoShareListHtml += "</tr>";
     }
 
