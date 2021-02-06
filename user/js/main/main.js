@@ -1,6 +1,6 @@
-
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function(){
+    $("#menuFuncDiv").load("noticeBrd/noticeBrd.html");
     $("#kntNotice").css("display", "block");
     $("#kntNoticeWrite").css("display", "none");
     $("#infoShare").css("display", "none");
@@ -15,6 +15,8 @@ $("#noticeBtn").off("click").on("click", function(){
 
 //학술국 정보공유 클릭 시 
 $("#infoShareBtn").off("click").on("click", function(){
+    $("#menuFuncDiv").load("infoShareBrd/infoShareBrd.html");
+  
     initInfoShare();
 });
 

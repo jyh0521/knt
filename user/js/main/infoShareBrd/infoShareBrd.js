@@ -31,7 +31,7 @@ function initInfoShare(){
 
 // 정보공유 글 리스트 불러오기
 function getInfoShareList() {
-    requestData("/knt/user/php/main/infoShare/getInfoShareList.php").done(function(result){
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareList.php").done(function(result){
         infoShareList = result;
 
         drawInfoShareTable();
@@ -44,7 +44,7 @@ function getInfoShareContent() {
     var param = "id=" + infoShareSelectedListId;
 
     // 선택된 글의 id로 데이터 요청
-    requestData("/knt/user/php/main/infoShare/getInfoShareContent.php", param).done(function(result){
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
         infoShareSelectedContent = result;
 
         drawInfoShareSelectedContent();

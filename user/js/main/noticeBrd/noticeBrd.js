@@ -7,7 +7,7 @@ function setNoticeContent(){
     
     var param = "title=" + title + "&content=" + content;
    
-    requestData("/knt/user/php/main/notice/setNoticeContent.php", param).done(function(result){
+    requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
         if(result){
             alert("등록 되었습니다.");
             $("#kntNotice").css("display", "block");
@@ -22,7 +22,7 @@ function setNoticeContent(){
 
 //공지사항 목록 데이터 불러오기
 function getNoticeList(){
-    requestData("/knt/user/php/main/notice/getNoticeList.php").done(function(result){
+    requestData("/knt/user/php/main/noticeBrd/getNoticeList.php").done(function(result){
         kntNoticeList = result;
 
         showNoticeTable();

@@ -46,33 +46,9 @@
         <!-- 메뉴 기능 -->
         <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
         <div id="menuFuncDiv">
-            <div id="kntNotice" style="display: none;">
-                <p id = 'writeNoticeBtn'></p>
-                <p id = 'noticeContent'></p>
-            </div>
-            <div id="kntNoticeWrite" style="display: none;">
-                <p id = 'writeNoticeContent'></p>
-                <p id = 'signUpNoticeBtn'></p>
-            </div>
+            <!-- 공지사항 게시판 -->
             <!-- 정보 공유 게시판 -->
-            <div id="infoShare" style="display: none;">
-                <div id="infoShareTableDiv" style="display: none;"></div>
-                <div id="infoShareContentDiv" style="display: none;"></div>
-                <div id="infoShareWriteContentFuncDiv" style="display: none;">
-                    <div id='infoShareWriteContentTitleDiv'>
-                        <label for='infoShareWriteContentTitle'>제목</label>
-                        <input type='text' id='infoShareWriteContentTitle' name='writeContentTitle'/>
-                    </div>
-                    <div id='infoShareWriteContentDiv'>
-                        <label for='infoShareWriteContentTextArea' id='infoShareWriteContentLabel'>내용</label>
-                        <textarea id='infoShareWriteContentTextArea' name='infoShareWriteContentTextArea' cols='40' rows='8'></textarea>
-                    </div>
-                     <div id='infoShareWriteContentBtnDiv'>
-                        <button id='infoShareWriteContentWriteBtn'>작성하기</button>
-                        <button id='infoShareWriteContentBackBtn'>뒤로</button>
-                    </div>
-                </div>
-            </div>
+        
             <div id="kntBoard" style="display: none;">
                 <p id = 'menuContent'></p>
             </div>
@@ -87,8 +63,9 @@
 </body>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/knt/lib/js/html-package.js"></script>
 <script type="text/javascript" src="/knt/lib/js/lib.js"></script>
 <script type="text/javascript" src="/knt/user/js/main/main.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/notice/notice.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/infoShare/infoShare.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/noticeBrd/noticeBrd.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/infoShareBrd/infoShareBrd.js"></script>
 </html>
