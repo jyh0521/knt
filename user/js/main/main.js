@@ -40,6 +40,7 @@ $("#studyBtn").off("click").on("click", function(){
     $("#kntNotice").css("display", "none");
     $("#kntNoticeWrite").css("display", "none");
 
+    $("#menuFuncDiv").load("studyBrd/studyBrd.html");
 });//그룹 리스트 보여주기
 
 //study a 클릭 시
