@@ -6,23 +6,22 @@ $("#studyaBtn").off("click").on("click", function(){
 
     initStudyGroupABoard();
 });
-/*
 //study b 클릭 시
 $("#studybBtn").off("click").on("click", function(){
-    $("#studybContent").css("display", "block");
-    $("#studyaContent").css("display", "none");
-    $("#studycContent").css("display", "none");
+    $("#studyBBoard").css("display", "block");
+    $("#studyABoard").css("display", "none");
+    $("#studyCBoard").css("display", "none");
 
-    showStudybBoard();
+    initStudyGroupBBoard();
 });
 //study c 클릭 시
 $("#studycBtn").off("click").on("click", function(){
-    $("#studycContent").css("display", "block");
-    $("#studybContent").css("display", "none");
-    $("#studyaContent").css("display", "none");
+    $("#studyCBoard").css("display", "block");
+    $("#studyBBoard").css("display", "none");
+    $("#studyABoard").css("display", "none");
 
-    showStudycBoard();
-});*/
+    initStudyGroupCBoard();
+});
 
 //스터디A 게시물 목록 보여주기
 function initStudyGroupABoard(){
@@ -32,7 +31,22 @@ function initStudyGroupABoard(){
 
     getStudyAList();
 };
+//study b 게시물 목록 보여주기
+function initStudyGroupBBoard(){
+    $("#studyBTable").css("display", "block");
+    $("#studyBContentOfWriting").css("display", "none");
+    $("#studyBWriting").css("display", "none");
 
+    getStudyBList();
+};
+//study c 게시물 목록 보여주기
+function initStudyGroupCBoard(){
+    $("#studyCTable").css("display", "block");
+    $("#studyCContentOfWriting").css("display", "none");
+    $("#studyCWriting").css("display", "none");
+
+    getStudyCList();
+};
 /*
 //스터디B 게시물 목록 보여주기
 function showStudybBoard(){
@@ -72,7 +86,7 @@ function showStudycBoard(){
 
 //study a 게시물 불러오기
 function getStudyAList() {
-
+    
 }
 
 //study a 테이블
@@ -85,10 +99,12 @@ function showStudyATable() {
     ContentHtml +=         "<th>작성자</th>";
     ContentHtml +=         "<th>작성일</th>";
     ContentHtml +=         "<th>조회</th>";
-    ContentHtml +=         "<th><button id='writeBtn'>작성하기</button></th>";
     ContentHtml +=     "</thead>";
     // 나중에 db에서 받아오기
+    ContentHtml +=     "<tbody>"
+    ContentHtml +=     "</tbody>"
     ContentHtml += "</table>";
+    ContentHtml += "<button id='writeBtn'>작성하기</button>";
     
     $("#studyATable").empty().append(ContentHtml);
 }
