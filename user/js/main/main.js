@@ -4,7 +4,10 @@ $("#noticeBtn").off("click").on("click", function(){
     $("#kntNotice").css("display", "block");
     $("#kntNoticeWrite").css("display", "none");
     $("#kntInfoShare").css("display", "none");
-    $("#kntStudy").css("display", "none");
+    $("#studyGroup").css("display", "none");
+    $("#studyA_Content").css("display", "none");
+    $("#studyC_Content").css("display", "none");
+    $("#studyC_Content").css("display", "none");
 
     showBtn();
     showNotice();
@@ -30,7 +33,7 @@ $("#signUpNoticeBtn").off("click").on("click", function(){
 
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function(){
-    $("#kntStudy").css("display", "block");
+    $("#studyGroup").css("display", "block");
     $("#kntInfoShare").css("display", "none");
     $("#kntNotice").css("display", "none");
     $("#kntNoticeWrite").css("display", "none");
@@ -38,7 +41,7 @@ $("#studyBtn").off("click").on("click", function(){
 });//그룹 리스트 보여주기
 
 //study a 클릭 시
-$("#studyA").on("click", function(){
+$("#studyA").off("click").on("click", function(){
     $("#studyA_Content").css("display", "block");
     $("#studyB_Content").css("display", "none");
     $("#studyC_Content").css("display", "none");
@@ -46,7 +49,7 @@ $("#studyA").on("click", function(){
     showStudyA_Board();
 });
 //study b 클릭 시
-$("#studyB").on("click", function(){
+$("#studyB").off("click").on("click", function(){
     $("#studyB_Content").css("display", "block");
     $("#studyA_Content").css("display", "none");
     $("#studyC_Content").css("display", "none");
@@ -54,7 +57,7 @@ $("#studyB").on("click", function(){
     showStudyB_Board();
 });
 //study c 클릭 시
-$("#studyC").on("click", function(){
+$("#studyC").off("click").on("click", function(){
     $("#studyC_Content").css("display", "block");
     $("#studyB_Content").css("display", "none");
     $("#studyA_Content").css("display", "none");
@@ -65,6 +68,24 @@ $("#studyC").on("click", function(){
 //스터디A 게시물 목록 보여주기
 function showStudyA_Board(){
     var ContentHtml = "";
+    
+    ContentHtml += "<table>";
+    ContentHtml +=     "<thead>";
+    ContentHtml +=         "<th>제목</th>";
+    ContentHtml +=         "<th>작성자</th>";
+    ContentHtml +=         "<th>작성일</th>";
+    ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
+    ContentHtml +=     "</thead>";
+    /* 나중에 db에서 받아오기 */
+    ContentHtml += "</table>";
+    
+    $("#studyA_Content").empty().append(ContentHtml);
+};
+
+//스터디B 게시물 목록 보여주기
+function showStudyB_Board(){
+    var ContentHtml = "";
 
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
@@ -72,43 +93,28 @@ function showStudyA_Board(){
     ContentHtml +=         "<th>작성자</th>";
     ContentHtml +=         "<th>작성일</th>";
     ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
-    $("#studyA_Content").empty().append(ContentHtml);
-};
-
-//스터디B 게시물 목록 보여주기
-function showStudyB_Board(){
-    var contentHtml = "";
-
-    contentHtml += "<table>";
-    contentHtml +=     "<thead>";
-    contentHtml +=         "<th>제목</th>";
-    contentHtml +=         "<th>작성자</th>";
-    contentHtml +=         "<th>작성일</th>";
-    contentHtml +=         "<th>조회</th>";
-    contentHtml +=     "</thead>";
-    /* 나중에 db에서 받아오기 */
-    contentHtml += "</table>";
-    contentHtml += "<button id='writeBtn'>글쓰기</button>";
-    $("#studyB_Content").empty().append(contentHtml);
+    
+    $("#studyB_Content").empty().append(ContentHtml);
 };
 
 //스터디C 게시물 목록 보여주기
 function showStudyC_Board(){
-    var contentHtml = "";
+    var ContentHtml = "";
 
-    contentHtml += "<table>";
-    contentHtml +=     "<thead>";
-    contentHtml +=         "<th>제목</th>";
-    contentHtml +=         "<th>작성자</th>";
-    contentHtml +=         "<th>작성일</th>";
-    contentHtml +=         "<th>조회</th>";
-    contentHtml +=     "</thead>";
+    ContentHtml += "<table>";
+    ContentHtml +=     "<thead>";
+    ContentHtml +=         "<th>제목</th>";
+    ContentHtml +=         "<th>작성자</th>";
+    ContentHtml +=         "<th>작성일</th>";
+    ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
+    ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
-    contentHtml += "</table>";
-    contentHtml += "<button id='writeBtn'>글쓰기</button>";
-    $("#studyC_Content").empty().append(contentHtml);
+    ContentHtml += "</table>";
+    
+    $("#studyC_Content").empty().append(ContentHtml);
 };
