@@ -12,14 +12,14 @@ var infoShareSelectedListId = "";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 정보공유 게시판 초기화 함수
-function infoShareInit(){
-    $("#kntInfoShare").css("display", "block");
+function initInfoShare(){
+    $("#infoShare").css("display", "block");
     $("#kntNotice").css("display", "none");
     $("#kntNoticeWrite").css("display", "none");
     $("#kntStudy").css("display", "none");
 
-    $("#kntInfoShareTable").css("display", "block");
-    $("#kntInfoShareContent").css("display", "none");
+    $("#infoShareTableDiv").css("display", "block");
+    $("#infoShareContentDiv").css("display", "none");
 
     getInfoShareList();
 };
@@ -33,11 +33,8 @@ function getInfoShareList() {
     requestData("/knt/user/php/main/infoShare/getInfoShareList.php").done(function(result){
         infoShareList = result;
 
-        // 화면에 그려주기
         drawInfoShareTable();
         drawInfoShareList();
-
-        // 이벤트 등록
         initInfoShareListEvent();
     });
 }
@@ -51,6 +48,7 @@ function getInfoShareContent() {
         infoShareSelectedContent = result;
 
         drawInfoShareSelectedContent();
+        initInfoShareSelectedContentEvent();
     });
 }
 
@@ -62,7 +60,7 @@ function getInfoShareContent() {
 function drawInfoShareTable() {
     var infoShareTableHtml = "";
 
-    infoShareTableHtml += "<table border='1'>";
+    infoShareTableHtml += "<table id='infoShareListTable' border='1'>";
     infoShareTableHtml +=     "<thead>";
     infoShareTableHtml +=         "<tr>";
     infoShareTableHtml +=             "<td>번호</td>";
@@ -72,11 +70,12 @@ function drawInfoShareTable() {
     infoShareTableHtml +=             "<td>조회수</td>";
     infoShareTableHtml +=         "</tr>";
     infoShareTableHtml +=     "</thead>";
-    infoShareTableHtml +=     "<tbody id='kntInfoShareListTbody'>";
+    infoShareTableHtml +=     "<tbody id='infoShareListTbodyDiv'>";
     infoShareTableHtml +=     "</tbody>";
     infoShareTableHtml += "</table>";
+    infoShareTableHtml += "<button id='infoShareListWriteBtn'>작성하기</button>";
 
-    $("#kntInfoShareTable").empty().append(infoShareTableHtml);
+    $("#infoShareTableDiv").empty().append(infoShareTableHtml);
 }
 
 // 정보공유 글 리스트 그리기
@@ -94,7 +93,7 @@ function drawInfoShareList() {
         infoShareListHtml += "</tr>";
     }
 
-    $("#kntInfoShareListTbody").empty().append(infoShareListHtml);
+    $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
 }
 
 function drawInfoShareSelectedContent() {
@@ -107,12 +106,13 @@ function drawInfoShareSelectedContent() {
         infoShareSelectedContentHtml += "<p>작성자: " + infoShareSelectedContent[0]["BRD_WRITER"]  + "</p>";
         infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent[0]["BRD_DATE"]  + "</p>";
         infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent[0]["BRD_HIT"]  + "</p>";
+        infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
     }
     
-    $("#kntInfoShareTable").css("display", "none");
-    $("#kntInfoShareContent").css("display", "block");
+    $("#infoShareTableDiv").css("display", "none");
+    $("#infoShareContentDiv").css("display", "block");
 
-    $("#kntInfoShareContent").empty().append(infoShareSelectedContentHtml);
+    $("#infoShareContentDiv").empty().append(infoShareSelectedContentHtml);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +127,19 @@ function initInfoShareListEvent() {
 
         // 선택된 글 불러오기
         getInfoShareContent();
+    });
+
+    // 글 작성 버튼 클릭 시
+    $("#infoShareListWriteBtn").off("click").on("click", function(){
+        
+    });
+}
+
+// 정보공유 선택된 글 이벤트 초기화
+function initInfoShareSelectedContentEvent() {
+    // 뒤로 버튼 클릭 시
+    $("#infoShareSelectedContentBackBtn").off("click").on("click", function(){
+        initInfoShare();
     });
 }
 

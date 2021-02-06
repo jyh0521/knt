@@ -3,7 +3,7 @@
 $("#noticeBtn").off("click").on("click", function(){
     $("#kntNotice").css("display", "block");
     $("#kntNoticeWrite").css("display", "none");
-    $("#kntInfoShare").css("display", "none");
+    $("#infoShare").css("display", "none");
     $("#studyGroup").css("display", "none");
     $("#studyA_Content").css("display", "none");
     $("#studyC_Content").css("display", "none");
@@ -15,7 +15,7 @@ $("#noticeBtn").off("click").on("click", function(){
 
 //학술국 정보공유 클릭 시 
 $("#infoShareBtn").off("click").on("click", function(){
-    infoShareInit();
+    initInfoShare();
 });
 
 //관리자가 공지사항 글쓰기 버튼 클릭 시 
@@ -34,7 +34,7 @@ $("#signUpNoticeBtn").off("click").on("click", function(){
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function(){
     $("#studyGroup").css("display", "block");
-    $("#kntInfoShare").css("display", "none");
+    $("#infoShare").css("display", "none");
     $("#kntNotice").css("display", "none");
     $("#kntNoticeWrite").css("display", "none");
 
