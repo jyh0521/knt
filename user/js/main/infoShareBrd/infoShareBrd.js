@@ -83,7 +83,7 @@ function drawInfoShareList() {
     var infoShareListSize = infoShareList.length;
 
     for(var i = 0; i < infoShareListSize; i++) {
-        infoShareListHtml += "<tr>";
+        infoShareListHtml += "<tr>";5
         infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
         infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";

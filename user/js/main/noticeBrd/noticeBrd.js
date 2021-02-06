@@ -16,7 +16,7 @@ var NoticeList = [];
 
 function showNoticeBrd(){
     //$("#noticeContent").css("display", "block");
-    $("#noticeContent").empty().append("g");
+    $("#noticeContent").empty().append("<p>g</p>");
     //getNoticeList();
     //관리자 아이디인지 검사 후 버튼 보여주기
     //if("세션 아이디" == "관리자 아이디"){
