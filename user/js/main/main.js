@@ -3,8 +3,7 @@ $("#noticeBtn").off("click").on("click", function(){
     $("#studyGroup").css("display", "none");
     $("#menuFuncDiv").load("noticeBrd/noticeBrd.html");
 
-    showBtn();
-    getNoticeList();
+    showNoticeBrd();
 });
 
 //학술국 정보공유 클릭 시 
