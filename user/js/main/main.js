@@ -18,6 +18,5 @@ $("#infoShareBtn").off("click").on("click", function(){
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function(){
     $("#studyGroup").css("display", "block");
-    
     $("#menuFuncDiv").load("studyBrd/studyBrd.html");
 });//그룹 리스트 보여주기
