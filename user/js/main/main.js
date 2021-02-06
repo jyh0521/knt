@@ -1,9 +1,9 @@
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function(){
-    $("#kntnotice").css("display", "block");
-    $("#kntnotice_Write").css("display", "none");
-    $("#kntinformation").css("display", "none");
+    $("#kntNotice").css("display", "block");
+    $("#kntNoticeWrite").css("display", "none");
+    $("#kntInfoShare").css("display", "none");
     $("#kntStudy").css("display", "none");
 
     showBtn();
@@ -11,24 +11,29 @@ $("#noticeBtn").off("click").on("click", function(){
 });
 
 //학술국 정보공유 클릭 시 
-$("#informationBtn").off("click").on("click", function(){
+$("#infoShareBtn").off("click").on("click", function(){
     infoShareInit();
 });
 
 //관리자가 공지사항 글쓰기 버튼 클릭 시 
-$("#writeNoticeBtn_Content").off("click").on("click", function(){
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "block");
+$("#writeNoticeBtn").off("click").on("click", function(){
+    $("#kntNotice").css("display", "none");
+    $("#kntNoticeWrite").css("display", "block");
 
     writeNotice();
+});
+
+//공지사항 등록 버튼 클릭 시
+$("#signUpNoticeBtn").off("click").on("click", function(){
+    setNoticeList();
 });
 
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function(){
     $("#kntStudy").css("display", "block");
-    $("#kntinformation").css("display", "none");
-    $("#kntnotice").css("display", "none");
-    $("#kntnotice_Write").css("display", "none");
+    $("#kntInfoShare").css("display", "none");
+    $("#kntNotice").css("display", "none");
+    $("#kntNoticeWrite").css("display", "none");
 
 });//그룹 리스트 보여주기
 
@@ -60,8 +65,6 @@ $("#studyC").on("click", function(){
 //스터디A 게시물 목록 보여주기
 function showStudyA_Board(){
     var ContentHtml = "";
-
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
     
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
@@ -69,6 +72,7 @@ function showStudyA_Board(){
     ContentHtml +=         "<th>작성자</th>";
     ContentHtml +=         "<th>작성일</th>";
     ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
@@ -80,14 +84,13 @@ function showStudyA_Board(){
 function showStudyB_Board(){
     var ContentHtml = "";
 
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
-
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
     ContentHtml +=         "<th>제목</th>";
     ContentHtml +=         "<th>작성자</th>";
     ContentHtml +=         "<th>작성일</th>";
     ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
@@ -99,14 +102,13 @@ function showStudyB_Board(){
 function showStudyC_Board(){
     var ContentHtml = "";
 
-    ContentHtml += "<button id='writeBtn'>글쓰기</button>";
-
     ContentHtml += "<table>";
     ContentHtml +=     "<thead>";
     ContentHtml +=         "<th>제목</th>";
     ContentHtml +=         "<th>작성자</th>";
     ContentHtml +=         "<th>작성일</th>";
     ContentHtml +=         "<th>조회</th>";
+    ContentHtml +=         "<th><button id='writeBtn'>글쓰기</button></th>";
     ContentHtml +=     "</thead>";
     /* 나중에 db에서 받아오기 */
     ContentHtml += "</table>";
