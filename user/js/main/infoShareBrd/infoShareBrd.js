@@ -105,27 +105,30 @@ function drawInfoShareList() {
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
     var infoShareSelectedContentHtml = "";
+    var infoShareSelectedContentCommentHtml = "";
     var infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
 
+    // 선택된 글 내용 그리기
     infoShareSelectedContentHtml += "<p>제목: " + infoShareSelectedContent["BRD_TITLE"] + "</p>";
     infoShareSelectedContentHtml += "<p>내용: " + infoShareSelectedContent["BRD_CONTENT"]  + "</p>";
     infoShareSelectedContentHtml += "<p>작성자: " + infoShareSelectedContent["BRD_WRITER"]  + "</p>";
     infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent["BRD_DATE"]  + "</p>";
     infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent["BRD_HIT"]  + "</p>";
-
-    for(var i = 0; i < infoShareSelectedContentCommentListSize; i++) {
-        infoShareSelectedContentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
-        infoShareSelectedContentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
-        infoShareSelectedContentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
-    }
-
     infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
     
+    // 선택된 글의 댓글 목록 그리기
+    for(var i = 0; i < infoShareSelectedContentCommentListSize; i++) {
+        infoShareSelectedContentCommentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
+        infoShareSelectedContentCommentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
+        infoShareSelectedContentCommentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
+    }
+
     $("#infoShareTableDiv").css("display", "none");
     $("#infoShareContentDiv").css("display", "block");
     $("#infoShareWriteContentFuncDiv").css("display", "none");
 
-    $("#infoShareContentDiv").empty().append(infoShareSelectedContentHtml);
+    $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
+    $("#infoShareSelectedContentCommentDiv").empty().append(infoShareSelectedContentCommentHtml);
 
     initInfoShareSelectedContentEvent();
 }
