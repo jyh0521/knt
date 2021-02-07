@@ -55,13 +55,13 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=             "<td>조회수</td>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
     kntNoticeBrdContentDomainHtml +=     "</thead>";
-    kntNoticeBrdContentDomainHtml +=     "<tbody id='NoticeBrdListTbody'>";
+    kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
     //if(세션 아이디 == 관리자 아이디)
     kntNoticeBrdContentDomainHtml += "<button id = 'kntNoticeBrdWriteBtn'>글쓰기</button>"
 
-    $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
+    $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     //관리자가 글쓰기 버튼 클릭 시
     $("#kntNoticeBrdWriteBtn").off("click").on("click", function(){
@@ -76,33 +76,33 @@ function showNoticeBrdTable(){
 //공지사항 목록 보여주기
 function showNoticeBrdList() {
 
-    let NoticeBrdListTbodyHtml = "";
+    let noticeBrdListTbodyHtml = "";
     let noticeBrdListSize = noticeBrdList.length;
 
     for(let i = 0; i < noticeBrdListSize; i++) {
-        NoticeBrdListTbodyHtml += "<tr>";
-        NoticeBrdListTbodyHtml +=     "<td>" + (i + 1) + "</td>";
-        NoticeBrdListTbodyHtml +=     "<td id = '" + noticeBrdList[i]['BRD_TITLE'] + "'>"/*???고민해보기*/ + noticeBrdList[i]["BRD_TITLE"] + "</td>";
-        NoticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
-        NoticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_DATE"] + "</td>";
-        NoticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
-        NoticeBrdListTbodyHtml += "</tr>";
+        noticeBrdListTbodyHtml += "<tr>";
+        noticeBrdListTbodyHtml +=     "<td>" + (i + 1) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_DATE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
+        noticeBrdListTbodyHtml += "</tr>";
     }
 
-    $("#NoticeBrdListTbody").empty().append(NoticeBrdListTbodyHtml);
+    $("#noticeBrdListTbody").empty().append(noticeBrdListTbodyHtml);
 
     //공지사항 목록 중 제목 클릭 시
-    $("#kntNoticeBrdTitle").off("click").on("click", function(){
-        /*공지사항 내용 불러오기 getNoticeContent 제목 저장.......?ㅠㅠ어케ㅏㅁ함*/
+    $(".kntNoticeBrdTitle").off("click").on("click", function(){
+        let noticeBrdListId = this.id.substr(15);//아이디 중복 대비를 위해 추가한 아이디 자르기!
 
-        param = "title=" + kntNoticeBrdTitle;
+        let param = "id=" + noticeBrdListId;
 
         requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
-
             noticeBrdContent = result;
-            $("#kntNoticeBrdContent").css("display", "block");
+
             $("#kntNoticeBrd").css("display", "none");
             $("#kntNoticeBrdWrite").css("display", "none");
+            $("#kntNoticeBrdContent").css("display", "block");
             
             showNoticeBrdContent();//공지사항 내용 보여주기
         });
@@ -112,16 +112,16 @@ function showNoticeBrdList() {
 //공지사항 글 작성 부분 보여주기
 function showNoticeBrdWrite(){
 
-    let kntNoticeBrdWriteContentDomainHtml = "";
+    let kntNoticeBrdWriteDomainHtml = "";
     //일단 제목 내용만?
-    kntNoticeBrdWriteContentDomainHtml += "<label for = 'noticeBrdWriteTitle'>제목</label>";
-    kntNoticeBrdWriteContentDomainHtml += "<input type = 'text' id = 'noticeBrdWriteTitle'><p>";
-    kntNoticeBrdWriteContentDomainHtml += "<label for='noticeBrdWriteContent'>내용</label>";
-    kntNoticeBrdWriteContentDomainHtml += "<textarea id = 'noticeBrdWriteContent'></textarea><p>";
-    kntNoticeBrdWriteContentDomainHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
-    kntNoticeBrdWriteContentDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
+    kntNoticeBrdWriteDomainHtml += "<label for = 'noticeBrdWriteTitle'>제목</label>";
+    kntNoticeBrdWriteDomainHtml += "<input type = 'text' id = 'noticeBrdWriteTitle'><p>";
+    kntNoticeBrdWriteDomainHtml += "<label for='noticeBrdWriteContent'>내용</label>";
+    kntNoticeBrdWriteDomainHtml += "<textarea id = 'noticeBrdWriteContent'></textarea><p>";
+    kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
+    kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
 
-    $("#kntNoticeBrdWriteContentDomain").empty().append(kntNoticeBrdWriteContentDomainHtml);
+    $("#kntNoticeBrdWriteDomain").empty().append(kntNoticeBrdWriteDomainHtml);
 
     //등록 버튼 클릭 시
     $("#noticeBrdSignUpBtn").off("click").on("click", function(){
@@ -136,5 +136,13 @@ function showNoticeBrdWrite(){
 
 //공지사항 내용 보여주기
 function showNoticeBrdContent(){
+    let kntNoticeBrdContentDomainHtml = "";
+    kntNoticeBrdContentDomainHtml += "<p>제목 : " + noticeBrdContent[0]['BRD_TITLE'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+
+    $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
 }

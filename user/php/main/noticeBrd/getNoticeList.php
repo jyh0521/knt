@@ -11,12 +11,9 @@
         $tmp = array(
             'BRD_ID' => $row['BRD_ID'],
             'BRD_TITLE' => $row['BRD_TITLE'],
-            'BRD_CONTENT' => $row['BRD_CONTENT'],
             'BRD_WRITER' => $row['BRD_WRITER'],
             'BRD_DATE' => $row['BRD_DATE'],
-            'BRD_HIT' => $row['BRD_HIT'],
-            'BRD_CDE' => $row['BRD_CDE'],
-            'BRD_DISABLE' => $row['BRD_DISABLE']
+            'BRD_HIT' => $row['BRD_HIT']
         );
 
         array_push($value, $tmp);
