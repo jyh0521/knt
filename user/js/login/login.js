@@ -25,7 +25,7 @@ function inputSuccess(){
 
     var param = "id=" + id + "&pw=" + pw  ;
 
-    requestData("login.php", param).done(function(result) { 
+    requestData("/user/php/login/login.php", param).done(function(result) { 
         if(!result){
             alert("로그인에 실패하였습니다.");
         }
