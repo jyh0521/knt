@@ -96,19 +96,11 @@ function showNoticeBrdList() {
     //공지사항 목록 중 제목 클릭 시
     $(".kntNoticeBrdTitle").off("click").on("click", function(){
         noticeBrdListId = this.id.substr(15);
-        //아이디 중복 대비를 위해 추가한 아이디 자르기!
-        //수정, 삭제에서 아이디 사용 위해 따로 밖에 선언
-
-        let param = "id=" + noticeBrdListId;
-
-        requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
-            noticeBrdContent = result;
-
-            $("#kntNoticeBrd").css("display", "none");
-            $("#kntNoticeBrdContent").css("display", "block");
-            
-            showNoticeBrdContent();//공지사항 내용 보여주기
-        });
+        
+        $("#kntNoticeBrd").css("display", "none");
+        $("#kntNoticeBrdContent").css("display", "block");
+        //공지사항 내용 데이터 불러오기
+        getNoticeBrdContent();
     });
 }
 
@@ -197,7 +189,9 @@ function showUpdateNoticeBrd(){
 
     //취소 버튼 클릭 시
     $("#noticeBrdUpdateCancleBtn").off("click").on("click", function(){
-        //시작!
+        $("#UpdatekntNoticeBrdContent").css("display", "none");
+        $("#kntNoticeBrdContent").css("display", "block");
+        getNoticeBrdContent();//공지사항 내용 데이터 불러오기
     });
 
     //수정 버튼 클릭 시
@@ -212,11 +206,11 @@ function showUpdateNoticeBrd(){
         requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
             if(result){
                 alert("수정 되었습니다.");
-                $("#kntNoticeBrdContent").css("display", "block");
-                $("#UpdatekntNoticeBrdContent").css("display", "none");
 
-                //수정된 공지사항 내용 보여주기 
-                showUpdateNoticeBrdContent();
+                $("#UpdatekntNoticeBrdContent").css("display", "none");
+                $("#kntNoticeBrdContent").css("display", "block");
+                //공지사항 내용 데이터 불러오기
+                getNoticeBrdContent();
             }
             else{
                 alert("수정 실패");
@@ -225,8 +219,8 @@ function showUpdateNoticeBrd(){
     });
 }
 
-//수정된 공지사항 내용 보여주기 
-function showUpdateNoticeBrdContent(){
+//공지사항 내용 데이터 불러오기
+function getNoticeBrdContent(){
     let param = "id=" + noticeBrdListId;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
