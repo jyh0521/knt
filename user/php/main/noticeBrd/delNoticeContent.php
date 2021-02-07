@@ -8,13 +8,7 @@
 
     $result = mysql_query($sql, $connect);
 
-    if($result){
-        $result = "true";
-        echo($result);
-    }else{
-        $result = "false";
-        echo($result);
-    }
+    echo json_encode($result);
 
     mysql_close($connect);
 ?>

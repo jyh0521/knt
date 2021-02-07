@@ -6,6 +6,7 @@ function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
     $("#kntNoticeBrdWrite").css("display", "none");
     $("#kntNoticeBrdContent").css("display", "none");
+    $("#UpdatekntNoticeBrdContent").css("display", "none");
 
     getNoticeBrdList();
 };
@@ -24,17 +25,15 @@ function getNoticeBrdList(){
 function setNoticeBrdContent(){
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
-    let data = getTimeStamp(new Date());//날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
+    let date = getTimeStamp(new Date());//날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
     
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&data=" + data;
+    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
         if(result){
             alert("등록 되었습니다.");
-            $("#kntNoticeBrd").css("display", "block");
-            $("#kntNoticeBrdWrite").css("display", "none");
-            $("#kntNoticeBrdContent").css("display", "none");
-            getNoticeBrdList();//공지사항 목록 불러오기
+
+            showNoticeBrd();
         }
         else{
             alert("등록 실패");
@@ -69,6 +68,8 @@ function showNoticeBrdTable(){
         $("#kntNoticeBrdWrite").css("display", "block");
         $("#kntNoticeBrd").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "none");
+        $("#UpdatekntNoticeBrdContent").css("display", "none");
+
         showNoticeBrdWrite();
     });
 
@@ -104,7 +105,6 @@ function showNoticeBrdList() {
             noticeBrdContent = result;
 
             $("#kntNoticeBrd").css("display", "none");
-            $("#kntNoticeBrdWrite").css("display", "none");
             $("#kntNoticeBrdContent").css("display", "block");
             
             showNoticeBrdContent();//공지사항 내용 보여주기
@@ -159,28 +159,79 @@ function showNoticeBrdContent(){
 
     //수정 버튼 클릭 시
     $("#noticeContentUpdateBtn").off("click").on("click", function(){
-        //시작!
+        $("#kntNoticeBrdContent").css("display", "none");
+        $("#UpdatekntNoticeBrdContent").css("display", "block");
+
+        showUpdateNoticeBrd();//수정하는 화면 보여주기
     });
 
     //삭제 버튼 클릭 시
     $("#noticeContentDelBtn").off("click").on("click", function(){
-
-        param = "id=" + noticeBrdListId;
+        let param = "id=" + noticeBrdListId;
 
         requestData("/knt/user/php/main/noticeBrd/delNoticeContent.php", param).done(function(result){
             if(result){
                 alert("삭제 되었습니다.");
 
-                $("#kntNoticeBrd").css("display", "block");
-                $("#kntNoticeBrdWrite").css("display", "none");
-                $("#kntNoticeBrdContent").css("display", "none");
-
-                getNoticeBrdList();//공지사항 목록 불러오기
+                showNoticeBrd();
             }
             else{
                 alert("삭제 실패");
             }
         });
     });
+}
 
+//수정하는 화면 보여주기
+function showUpdateNoticeBrd(){
+    let UpdatekntNoticeBrdContentDomainHtml = "";
+    //일단 제목 내용만?
+    UpdatekntNoticeBrdContentDomainHtml += "<label for = 'noticeBrdUpdateTitle'>제목</label>";
+    UpdatekntNoticeBrdContentDomainHtml += "<input type = 'text' id = 'noticeBrdUpdateTitle' value = " + noticeBrdContent[0]['BRD_TITLE'] + "><p>";
+    UpdatekntNoticeBrdContentDomainHtml += "<label for='noticeBrdUpdateContent'>내용</label>";
+    UpdatekntNoticeBrdContentDomainHtml += "<textarea id = 'noticeBrdUpdateContent'>" + noticeBrdContent[0]['BRD_CONTENT'] + "</textarea><p>";
+    UpdatekntNoticeBrdContentDomainHtml += "<button id = 'noticeBrdUpdateBtn'>수정</button>";
+    UpdatekntNoticeBrdContentDomainHtml += "<button id = 'noticeBrdUpdateCancleBtn'>취소</button>";
+
+    $("#UpdatekntNoticeBrdContentDomain").empty().append(UpdatekntNoticeBrdContentDomainHtml);
+
+    //취소 버튼 클릭 시
+    $("#noticeBrdUpdateCancleBtn").off("click").on("click", function(){
+        //시작!
+    });
+
+    //수정 버튼 클릭 시
+    $("#noticeBrdUpdateBtn").off("click").on("click", function(){
+        //제목, 내용, 아이디, 날짜
+        let noticeBrdUpdateTitle = $("#noticeBrdUpdateTitle").val();
+        let noticeBrdUpdateContent = $("#noticeBrdUpdateContent").val();
+        let date = getTimeStamp(new Date());
+
+        let param = "title=" + noticeBrdUpdateTitle + "&content=" + noticeBrdUpdateContent + "&id=" + noticeBrdListId + "&date=" + date;
+
+        requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
+            if(result){
+                alert("수정 되었습니다.");
+                $("#kntNoticeBrdContent").css("display", "block");
+                $("#UpdatekntNoticeBrdContent").css("display", "none");
+
+                //수정된 공지사항 내용 보여주기 
+                showUpdateNoticeBrdContent();
+            }
+            else{
+                alert("수정 실패");
+            }
+        });
+    });
+}
+
+//수정된 공지사항 내용 보여주기 
+function showUpdateNoticeBrdContent(){
+    let param = "id=" + noticeBrdListId;
+
+    requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
+        noticeBrdContent = result;
+
+        showNoticeBrdContent();//공지사항 내용 보여주기
+    });
 }
