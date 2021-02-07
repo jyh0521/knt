@@ -2,10 +2,10 @@
 ////////////////////////////////////////////////////////////////////////////// 변수 ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var infoShareList = [];
-var infoShareSelectedContent = [];
-var infoShareSelectedContentCommentList = [];
-var infoShareSelectedListId = "";
+let infoShareList = [];
+let infoShareSelectedContent = [];
+let infoShareSelectedContentCommentList = [];
+let infoShareSelectedListId = "";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////// 함수 ////////////////////////////////////////////////////////////////////////////
@@ -13,11 +13,6 @@ var infoShareSelectedListId = "";
 
 // 정보공유 게시판 초기화 함수
 function initInfoShare(){
-    $("#infoShare").css("display", "block");
-    $("#kntNotice").css("display", "none");
-    $("#kntNoticeWrite").css("display", "none");
-    $("#kntStudy").css("display", "none");
-
     $("#infoShareTableDiv").css("display", "block");
     $("#infoShareContentDiv").css("display", "none");
     $("#infoShareWriteContentFuncDiv").css("display", "none");
@@ -41,18 +36,57 @@ function getInfoShareList() {
 
 // 정보공유 선택된 글 내용 불러오기
 function getInfoShareContent() {
-    var param = "id=" + infoShareSelectedListId;
+    let param = "id=" + infoShareSelectedListId;
 
     // 선택된 글의 id로 데이터 요청
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
         infoShareSelectedContent =  result["CONTENT"];
         infoShareSelectedContentCommentList = result["COMMENT"];
 
+        $("#infoShareTableDiv").css("display", "none");
+        $("#infoShareContentDiv").css("display", "block");
+        $("#infoShareWriteContentFuncDiv").css("display", "none");
+
         drawInfoShareSelectedContent();
+        drawInfoShareSelectedContentComment();
     });
 }
 
-function setInfoShareContent() {
+/******************************************************************************************************************************************/
+// 정보공유 글 작성하기, ADMIN 수정할 것
+function writeInfoShareContent() {
+    let title = $("#infoShareWriteContentTitle").val();
+    let content = $("#infoShareWriteContentTextArea").val();
+    let date = getTimeStamp(new Date());
+    let param = "id=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date; 
+
+    requestData("/knt/user/php/main/infoShareBrd/writeInfoShareContent.php", param).done(function(result){
+        if(result) {
+            alert("작성되었습니다.");
+            initInfoShare();
+        } else {
+            alert("작성 실패하였습니다.");
+        }
+    });
+}
+
+// 정보공유 선택된 글 삭제하기
+function deleteInfoShareContent() {
+    let param ="brdId=" + infoShareSelectedListId;
+
+    requestData("/knt/user/php/main/infoShareBrd/deleteInfoShareContent.php", param).done(function(result){
+        if(result) {
+            alert("삭제되었습니다.");
+            initInfoShare();
+        }
+        else {
+            alert("삭제 실패하였습니다.");
+        }
+    });
+}
+
+// 정보공유 선택된 글 수정하기
+function updateInfoShareContent() {
 
 }
 
@@ -62,7 +96,7 @@ function setInfoShareContent() {
 
 // 정보공유 글 리스트 테이블 그리기
 function drawInfoShareTable() {
-    var infoShareTableHtml = "";
+    let infoShareTableHtml = "";
 
     infoShareTableHtml += "<table id='infoShareListTable' border='1'>";
     infoShareTableHtml +=     "<thead>";
@@ -84,15 +118,15 @@ function drawInfoShareTable() {
 
 // 정보공유 글 리스트 그리기
 function drawInfoShareList() {
-    var infoShareListHtml = "";
-    var infoShareListSize = infoShareList.length;
+    let infoShareListHtml = "";
+    let infoShareListSize = infoShareList.length;
 
-    for(var i = 0; i < infoShareListSize; i++) {
+    for(let i = 0; i < infoShareListSize; i++) {
         infoShareListHtml += "<tr>";
         infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
         infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_DATE"] + "</td>";
+        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
         infoShareListHtml += "</tr>";
     }
@@ -102,37 +136,44 @@ function drawInfoShareList() {
     initInfoShareListEvent();
 }
 
+/******************************************************************************************************************************************/
+// ADMIN 수정할 것
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
-    var infoShareSelectedContentHtml = "";
-    var infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
+    let infoShareSelectedContentHtml = "";
 
+    // 선택된 글 내용 그리기
     infoShareSelectedContentHtml += "<p>제목: " + infoShareSelectedContent["BRD_TITLE"] + "</p>";
     infoShareSelectedContentHtml += "<p>내용: " + infoShareSelectedContent["BRD_CONTENT"]  + "</p>";
     infoShareSelectedContentHtml += "<p>작성자: " + infoShareSelectedContent["BRD_WRITER"]  + "</p>";
     infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent["BRD_DATE"]  + "</p>";
     infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent["BRD_HIT"]  + "</p>";
 
-    for(var i = 0; i < infoShareSelectedContentCommentListSize; i++) {
-        infoShareSelectedContentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
-        infoShareSelectedContentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
-        infoShareSelectedContentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
+    if(infoShareSelectedContent["BRD_WRITER"] === "ADMIN") {
+        infoShareSelectedContentHtml += "<button id='infoShareSelectedContentDelBtn'>삭제</button>";
+        infoShareSelectedContentHtml += "<button id='infoShareSelectedContentUptBtn'>수정</button>";
     }
 
     infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
-    
-    $("#infoShareTableDiv").css("display", "none");
-    $("#infoShareContentDiv").css("display", "block");
-    $("#infoShareWriteContentFuncDiv").css("display", "none");
 
-    $("#infoShareContentDiv").empty().append(infoShareSelectedContentHtml);
+    $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
 
     initInfoShareSelectedContentEvent();
 }
 
 // 정보공유 선택된 글의 댓글 내용 그리기
 function drawInfoShareSelectedContentComment() {
+    let infoShareSelectedContentCommentHtml = "";
+    let infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
 
+    // 선택된 글의 댓글 목록 그리기
+    for(let i = 0; i < infoShareSelectedContentCommentListSize; i++) {
+        infoShareSelectedContentCommentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
+        infoShareSelectedContentCommentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
+        infoShareSelectedContentCommentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
+    }
+
+    $("#infoShareSelectedContentCommentDiv").empty().append(infoShareSelectedContentCommentHtml);
 }
 
 // 정보공유 글 작성 부분 그리기
@@ -166,6 +207,26 @@ function initInfoShareListEvent() {
 
 // 정보공유 선택된 글 이벤트 초기화
 function initInfoShareSelectedContentEvent() {
+    // 삭제 버튼 클릭 시
+    $("#infoShareSelectedContentDelBtn").off("click").on("click", function(){
+        if(confirm("삭제하시겠습니까?")) {
+            deleteInfoShareContent();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
+    });
+
+    // 수정 버튼 클릭 시
+    $("#infoShareSelectedContentUptBtn").off("click").on("click", function(){
+        if(confirm("수정하시겠습니까?")) {
+            updateInfoShareContent();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
+    });
+
     // 뒤로 버튼 클릭 시
     $("#infoShareSelectedContentBackBtn").off("click").on("click", function(){
         initInfoShare();
@@ -175,7 +236,11 @@ function initInfoShareSelectedContentEvent() {
 function initInfoShareWriteContentEvent() {
     // 작성하기 버튼 클릭 시
     $("#infoShareWriteContentWriteBtn").off("click").on("click", function(){
-        
+        if(confirm("작성하시겠습니까?")) {
+            writeInfoShareContent();
+        } else {
+            alert("취소되었습니다.");
+        }
     });
 
     // 뒤로 버튼 클릭 시
@@ -188,3 +253,15 @@ function initInfoShareWriteContentEvent() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////// 기타 함수 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* 
+    TODO
+    1. 글 작성
+    2. 댓글 작성
+    3. 수정
+    4. 삭제
+    5. 페이징
+    6. 조회수
+
+    일단 ID는 ADMIN으로 설정
+*/

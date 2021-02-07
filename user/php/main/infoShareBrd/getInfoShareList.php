@@ -3,7 +3,8 @@
 
     $sql = "SELECT BRD_ID, BRD_TITLE, BRD_WRITER, BRD_DATE, BRD_HIT, BRD_CDE
               FROM USR_BRD
-             WHERE BRD_CDE = 'BRD_003' AND BRD_DISABLE = 'Y'";
+             WHERE BRD_CDE = 'BRD_003' AND BRD_DISABLE = 'Y'
+             ORDER BY BRD_DATE DESC";
 
     $result = mysql_query($sql, $connect);
 
