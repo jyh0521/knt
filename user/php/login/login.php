@@ -5,7 +5,7 @@
     $id = $_POST['id'];
     $pw = $_POST['pw'];
 
-    $sql = "SELECT * FROM USR_INFO WHERE USR_ID = '{$id}' AND USR_PW = '{$pw}'";
+    $sql = "SELECT * FROM USR_INF WHERE USR_ID = '{$id}' AND USR_PW = '{$pw}'";
 
     $result = mysql_query($sql, $connect);
     $row = mysql_fetch_array($result);
@@ -23,4 +23,5 @@
         echo json_encode($row); 
     }
     mysql_close($connect);
+    
 ?>
