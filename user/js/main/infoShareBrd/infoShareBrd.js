@@ -7,6 +7,8 @@ let infoShareSelectedContent = [];
 let infoShareSelectedContentCommentList = [];
 let infoShareSelectedListId = "";
 
+let writeOption = "";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////// 함수 ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,14 +62,31 @@ function writeInfoShareContent() {
     let date = getTimeStamp(new Date());
     let param = "id=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date; 
 
-    requestData("/knt/user/php/main/infoShareBrd/writeInfoShareContent.php", param).done(function(result){
-        if(result) {
-            alert("작성되었습니다.");
-            initInfoShare();
-        } else {
-            alert("작성 실패하였습니다.");
-        }
-    });
+    // 작성하기
+    if(writeOption === "write") {
+        requestData("/knt/user/php/main/infoShareBrd/writeInfoShareContent.php", param).done(function(result){
+            if(result) {
+                alert("작성되었습니다.");
+                initInfoShare();
+            } else {
+                alert("작성 실패하였습니다.");
+            }
+        });
+    }
+    // 수정하기
+    else if(writeOption === "update") {
+        param += "&brdId=" + infoShareSelectedListId;
+
+        requestData("/knt/user/php/main/infoShareBrd/updateInfoShareContent.php", param).done(function(result){
+            if(result) {
+                alert("수정되었습니다.");
+                initInfoShare();
+            }
+            else {
+                alert("수정 실패하였습니다.");
+            }
+        });
+    }
 }
 
 // 정보공유 선택된 글 삭제하기
@@ -83,11 +102,6 @@ function deleteInfoShareContent() {
             alert("삭제 실패하였습니다.");
         }
     });
-}
-
-// 정보공유 선택된 글 수정하기
-function updateInfoShareContent() {
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,7 +214,8 @@ function initInfoShareListEvent() {
     });
 
     // 작성하기 버튼 클릭 시
-    $("#infoShareListWriteBtn").off("click").on("click", function(){        
+    $("#infoShareListWriteBtn").off("click").on("click", function(){ 
+        writeOption = "write";       
         drawInfoShareWriteContent();
     });
 }
@@ -220,7 +235,11 @@ function initInfoShareSelectedContentEvent() {
     // 수정 버튼 클릭 시
     $("#infoShareSelectedContentUptBtn").off("click").on("click", function(){
         if(confirm("수정하시겠습니까?")) {
-            updateInfoShareContent();
+            writeOption = "update";
+            drawInfoShareWriteContent();
+
+            $("#infoShareWriteContentTitle").val(infoShareSelectedContent["BRD_TITLE"]);
+            $("#infoShareWriteContentTextArea").val(infoShareSelectedContent["BRD_CONTENT"]);
         }
         else {
             alert("취소되었습니다.");
@@ -256,10 +275,10 @@ function initInfoShareWriteContentEvent() {
 
 /* 
     TODO
-    1. 글 작성
+    1. 글 작성 o
     2. 댓글 작성
-    3. 수정
-    4. 삭제
+    3. 수정 o
+    4. 삭제 o
     5. 페이징
     6. 조회수
 
