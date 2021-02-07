@@ -36,21 +36,49 @@ function getInfoShareList() {
     });
 }
 
+// 정보공유 선택된 글 조회수 체크
+function hitInfoShareContent() {
+    var deferred = $.Deferred();
+
+    try {
+        //**************************************************** ADMIN 수정 *******************/
+        // 쿠키가 없는 경우 쿠키를 만들고 조회수 1 증가
+        if(!getCookie("infoShareContentHitCookie" + infoShareSelectedListId + "ADMIN")) {
+            setCookie("infoShareContentHitCookie" + infoShareSelectedListId + "ADMIN", "true", 1);
+
+            var param = "brdId=" + infoShareSelectedListId;
+
+            requestData("/knt/user/php/main/infoShareBrd/hitInfoShareContent.php", param).done(function(result){
+                deferred.resolve(result);
+            });
+        }
+        else {
+            deferred.resolve("success");
+        }
+    } catch(e) {
+        deferred.reject(e);
+    }
+
+    return deferred.promise();
+}
+
 // 정보공유 선택된 글 내용 불러오기
 function getInfoShareContent() {
-    let param = "id=" + infoShareSelectedListId;
+    hitInfoShareContent().done(function(){
+        let param = "id=" + infoShareSelectedListId;
 
-    // 선택된 글의 id로 데이터 요청
-    requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
-        infoShareSelectedContent =  result["CONTENT"];
-        infoShareSelectedContentCommentList = result["COMMENT"];
+        // 선택된 글의 id로 데이터 요청
+        requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
+            infoShareSelectedContent =  result["CONTENT"];
+            infoShareSelectedContentCommentList = result["COMMENT"];
 
-        $("#infoShareTableDiv").css("display", "none");
-        $("#infoShareContentDiv").css("display", "block");
-        $("#infoShareWriteContentFuncDiv").css("display", "none");
+            $("#infoShareTableDiv").css("display", "none");
+            $("#infoShareContentDiv").css("display", "block");
+            $("#infoShareWriteContentFuncDiv").css("display", "none");
 
-        drawInfoShareSelectedContent();
-        drawInfoShareSelectedContentComment();
+            drawInfoShareSelectedContent();
+            drawInfoShareSelectedContentComment();
+        });
     });
 }
 
@@ -208,7 +236,7 @@ function initInfoShareListEvent() {
     $(".infoShareListTitle").off("click").on("click", function(){
         // ID 자르기
         infoShareSelectedListId = this.id.substr(15);
-
+        
         // 선택된 글 불러오기
         getInfoShareContent();
     });
