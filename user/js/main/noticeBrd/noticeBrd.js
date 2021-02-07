@@ -1,5 +1,6 @@
 let noticeBrdList = [];
 let noticeBrdContent = [];
+let noticeBrdListId ="";
 
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
@@ -93,7 +94,9 @@ function showNoticeBrdList() {
 
     //공지사항 목록 중 제목 클릭 시
     $(".kntNoticeBrdTitle").off("click").on("click", function(){
-        let noticeBrdListId = this.id.substr(15);//아이디 중복 대비를 위해 추가한 아이디 자르기!
+        noticeBrdListId = this.id.substr(15);
+        //아이디 중복 대비를 위해 추가한 아이디 자르기!
+        //수정, 삭제에서 아이디 사용 위해 따로 밖에 선언
 
         let param = "id=" + noticeBrdListId;
 
@@ -142,7 +145,42 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
     kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
     kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록보기</button><p>";
+    //if(관리자면)
+    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
+    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
 
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
+
+    //목록보기 버튼 클릭 시(뒤로가기)
+    $("#noticeContentBackBtn").off("click").on("click", function(){
+        showNoticeBrd();
+    });
+
+    //수정 버튼 클릭 시
+    $("#noticeContentUpdateBtn").off("click").on("click", function(){
+        //시작!
+    });
+
+    //삭제 버튼 클릭 시
+    $("#noticeContentDelBtn").off("click").on("click", function(){
+
+        param = "id=" + noticeBrdListId;
+
+        requestData("/knt/user/php/main/noticeBrd/delNoticeContent.php", param).done(function(result){
+            if(result){
+                alert("삭제 되었습니다.");
+
+                $("#kntNoticeBrd").css("display", "block");
+                $("#kntNoticeBrdWrite").css("display", "none");
+                $("#kntNoticeBrdContent").css("display", "none");
+
+                getNoticeBrdList();//공지사항 목록 불러오기
+            }
+            else{
+                alert("삭제 실패");
+            }
+        });
+    });
 
 }
