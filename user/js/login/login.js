@@ -23,17 +23,17 @@ function inputSuccess(){
     var id = $("#id").val(); 
     var pw = $("#pw").val();
 
-    var param = "id=" + id + "&pw=" + pw  ;
+    var param = "id=" + id + "&pw=" + pw  ; 
 
-    requestData("/user/php/login/login.php", param).done(function(result) { 
+    requestData("/knt/user/php/login/login.php", param).done(function(result) { 
         if(!result){
             alert("로그인에 실패하였습니다.");
         }
         else{
             alert("로그인에 성공하였습니다.");
-            localStorage.setItem('id_session', result[0].USR_ID);
-            localStorage.setItem('pw_session', result[0].USR_PW);
-            location.replace('main.html');
+            // localStorage.setItem('id_session', result[0].USR_ID);
+            // localStorage.setItem('pw_session', result[0].USR_PW);
+            location.replace('/knt/user/html/main/main.html');
         }
     });
     
