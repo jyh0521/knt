@@ -84,32 +84,45 @@ function showStudycBoard(){
     $("#studycContent").empty().append(ContentHtml);
 };*/
 
+let studyAList = [];
+
 //study a 게시물 불러오기
 function getStudyAList() {
-    
+    requestData("/user/php/main/studyBrd/studyBrdList.php").done(function(result){
+        studyAList = result;
+
+        showStudyATable();
+        showStudyAList();
+    });
 }
 
 //study a 테이블
 function showStudyATable() {
-    var ContentHtml = "";
+    let studyATableHtml = "";
     
-    ContentHtml += "<table>";
-    ContentHtml +=     "<thead>";
-    ContentHtml +=         "<th>제목</th>";
-    ContentHtml +=         "<th>작성자</th>";
-    ContentHtml +=         "<th>작성일</th>";
-    ContentHtml +=         "<th>조회</th>";
-    ContentHtml +=     "</thead>";
+    studyATableHtml += "<table>";
+    studyATableHtml +=     "<thead>";
+    studyATableHtml +=         "<th>제목</th>";
+    studyATableHtml +=         "<th>작성자</th>";
+    studyATableHtml +=         "<th>작성일</th>";
+    studyATableHtml +=         "<th>조회</th>";
+    studyATableHtml +=     "</thead>";
     // 나중에 db에서 받아오기
-    ContentHtml +=     "<tbody>"
-    ContentHtml +=     "</tbody>"
-    ContentHtml += "</table>";
-    ContentHtml += "<button id='writeBtn'>작성하기</button>";
+    studyATableHtml +=     "<tbody>"
+    studyATableHtml +=     "</tbody>"
+    studyATableHtml += "</table>";
+    studyATableHtml += "<button id='writeBtn'>작성하기</button>";
     
-    $("#studyATable").empty().append(ContentHtml);
+    $("#studyATable").empty().append(studyATableHtml);
 }
 
 //study a 게시물 리스트
 function showStudyAList() {
-    
+    let studyAListHtml = "";
+    let studyAListLength = studyAList.length;
+
+    for(let i=0; i<studyAListLength; i++) {
+        studyAListHtml += "<tr>";
+        studyAListHtml += ""
+    }
 }
