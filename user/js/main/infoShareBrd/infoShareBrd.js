@@ -43,12 +43,30 @@ function getInfoShareContent() {
         infoShareSelectedContent =  result["CONTENT"];
         infoShareSelectedContentCommentList = result["COMMENT"];
 
+        $("#infoShareTableDiv").css("display", "none");
+        $("#infoShareContentDiv").css("display", "block");
+        $("#infoShareWriteContentFuncDiv").css("display", "none");
+
         drawInfoShareSelectedContent();
+        drawInfoShareSelectedContentComment();
     });
 }
 
-function setInfoShareContent() {
+// 정보공유 글 작성하기, ADMIN 수정할 것
+function writeInfoShareContent() {
+    var title = $("#infoShareWriteContentTitle").val();
+    var content = $("#infoShareWriteContentTextArea").val();
+    var date = getTimeStamp(new Date());
+    var param = "id=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date; 
 
+    requestData("/knt/user/php/main/infoShareBrd/writeInfoShareContent.php", param).done(function(result){
+        if(result) {
+            alert("작성되었습니다.");
+            initInfoShare();
+        } else {
+            alert("실패하였습니다.");
+        }
+    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +105,7 @@ function drawInfoShareList() {
         infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
         infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_DATE"] + "</td>";
+        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
         infoShareListHtml += "</tr>";
     }
@@ -100,8 +118,6 @@ function drawInfoShareList() {
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
     var infoShareSelectedContentHtml = "";
-    var infoShareSelectedContentCommentHtml = "";
-    var infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
 
     // 선택된 글 내용 그리기
     infoShareSelectedContentHtml += "<p>제목: " + infoShareSelectedContent["BRD_TITLE"] + "</p>";
@@ -110,7 +126,17 @@ function drawInfoShareSelectedContent() {
     infoShareSelectedContentHtml += "<p>작성일: " + infoShareSelectedContent["BRD_DATE"]  + "</p>";
     infoShareSelectedContentHtml += "<p>조회수: " + infoShareSelectedContent["BRD_HIT"]  + "</p>";
     infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
-    
+
+    $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
+
+    initInfoShareSelectedContentEvent();
+}
+
+// 정보공유 선택된 글의 댓글 내용 그리기
+function drawInfoShareSelectedContentComment() {
+    var infoShareSelectedContentCommentHtml = "";
+    var infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
+
     // 선택된 글의 댓글 목록 그리기
     for(var i = 0; i < infoShareSelectedContentCommentListSize; i++) {
         infoShareSelectedContentCommentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
@@ -118,19 +144,7 @@ function drawInfoShareSelectedContent() {
         infoShareSelectedContentCommentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
     }
 
-    $("#infoShareTableDiv").css("display", "none");
-    $("#infoShareContentDiv").css("display", "block");
-    $("#infoShareWriteContentFuncDiv").css("display", "none");
-
-    $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
     $("#infoShareSelectedContentCommentDiv").empty().append(infoShareSelectedContentCommentHtml);
-
-    initInfoShareSelectedContentEvent();
-}
-
-// 정보공유 선택된 글의 댓글 내용 그리기
-function drawInfoShareSelectedContentComment() {
-
 }
 
 // 정보공유 글 작성 부분 그리기
@@ -173,7 +187,11 @@ function initInfoShareSelectedContentEvent() {
 function initInfoShareWriteContentEvent() {
     // 작성하기 버튼 클릭 시
     $("#infoShareWriteContentWriteBtn").off("click").on("click", function(){
-        
+        if(confirm("작성하시겠습니까?")) {
+            writeInfoShareContent();
+        } else {
+            alert("취소되었습니다.");
+        }
     });
 
     // 뒤로 버튼 클릭 시
@@ -194,4 +212,6 @@ function initInfoShareWriteContentEvent() {
     3. 수정
     4. 삭제
     5. 페이징
+
+    일단 ID는 ADMIN으로 설정
 */
