@@ -93,15 +93,22 @@ function showNoticeBrdList() {
 
     $("#noticeBrdListTbody").empty().append(noticeBrdListTbodyHtml);
 
-    //공지사항 목록 중 제목 클릭 시
+    //공지사항 목록 중 제목 클릭 시 - 조회수 증가 후 공지사항 내용 데이터를 불러와야함
     $(".kntNoticeBrdTitle").off("click").on("click", function(){
         noticeBrdListId = this.id.substr(15);
         
         $("#kntNoticeBrd").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "block");
-        //공지사항 내용 데이터 불러오기
-        getNoticeBrdContent();
+
+        let param = "id=" + noticeBrdListId 
+        //클릭한 제목의 아이디를 찾아 조회수를 증가
+        requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
+            if(result){
+                getNoticeBrdContent();//공지사항 내용 데이터 불러오기
+            }
+        });
     });
+
 }
 
 //공지사항 글 작성 부분 보여주기
