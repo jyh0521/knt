@@ -88,7 +88,7 @@ let studyAList = [];
 
 //study a 게시물 불러오기
 function getStudyAList() {
-    requestData("/user/php/main/studyBrd/studyBrdList.php").done(function(result){
+    requestData("/knt/user/php/main/studyBrd/studyBrdList.php").done(function(result){
         studyAList = result;
 
         showStudyATable();
@@ -100,15 +100,17 @@ function getStudyAList() {
 function showStudyATable() {
     let studyATableHtml = "";
     
-    studyATableHtml += "<table>";
+    studyATableHtml += "<table border='1'>";
     studyATableHtml +=     "<thead>";
-    studyATableHtml +=         "<th>제목</th>";
-    studyATableHtml +=         "<th>작성자</th>";
-    studyATableHtml +=         "<th>작성일</th>";
-    studyATableHtml +=         "<th>조회</th>";
+    studyATableHtml +=         "<tr>";
+    studyATableHtml +=            "<th>번호</th>";
+    studyATableHtml +=            "<th>제목</th>";
+    studyATableHtml +=            "<th>작성자</th>";
+    studyATableHtml +=            "<th>작성일</th>";
+    studyATableHtml +=            "<th>조회수</th>";
+    studyATableHtml +=         "</tr>";
     studyATableHtml +=     "</thead>";
-    // 나중에 db에서 받아오기
-    studyATableHtml +=     "<tbody>"
+    studyATableHtml +=     "<tbody id='studyAtbody'>"
     studyATableHtml +=     "</tbody>"
     studyATableHtml += "</table>";
     studyATableHtml += "<button id='writeBtn'>작성하기</button>";
@@ -122,7 +124,14 @@ function showStudyAList() {
     let studyAListLength = studyAList.length;
 
     for(let i=0; i<studyAListLength; i++) {
-        studyAListHtml += "<tr>";
-        studyAListHtml += ""
+        studyAListHtml +=   "<tr>";
+        studyAListHtml +=       "<td>" + (i+1) + "</td>";
+        studyAListHtml +=       "<td>" + studyAList[i]['BRD_TITLE'] + "</td>";
+        studyAListHtml +=       "<td>" + studyAList[i]['BRD_WRITER'] + "</td>";
+        studyAListHtml +=       "<td>" + studyAList[i]['BRD_DATE'] + "</td>";
+        studyAListHtml +=       "<td>" + studyAList[i]['BRD_HIT'] + "</td>";
+        studyAListHtml +=   "</tr>";
     }
+
+    $("#studyAtbody").empty().append(studyAListHtml);
 }
