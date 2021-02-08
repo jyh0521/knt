@@ -2,6 +2,7 @@ let noticeBrdList = [];
 let noticeBrdContent = [];
 let noticeBrdListId ="";
 
+
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
     $("#kntNoticeBrdWrite").css("display", "none");
@@ -93,22 +94,34 @@ function showNoticeBrdList() {
 
     $("#noticeBrdListTbody").empty().append(noticeBrdListTbodyHtml);
 
-    //공지사항 목록 중 제목 클릭 시 - 조회수 증가 후 공지사항 내용 데이터를 불러와야함
+    //공지사항 목록 중 제목 클릭 시 - 쿠키 존재 확인 > 조회수 증가 > 공지사항 내용 데이터를 불러와야함
     $(".kntNoticeBrdTitle").off("click").on("click", function(){
         noticeBrdListId = this.id.substr(15);
         
         $("#kntNoticeBrd").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "block");
-
-        let param = "id=" + noticeBrdListId 
-        //클릭한 제목의 아이디를 찾아 조회수를 증가
-        requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
-            if(result){
-                getNoticeBrdContent();//공지사항 내용 데이터 불러오기
-            }
-        });
+        /* 
+        쿠 키 차 근 차 근 
+        1. 제목을 클릭-> 조회수를 올리기전에 getCookie(이름)를 이용해 이름의 쿠키를 조회
+        2. 널(쿠키가 존재하지 않을 때) - 조회수를 올려준다.
+        3. setCookie(noticeBrdListId , true , 1) 쿠키 생성  ===>  66목록마다99 조회수 최대 1 => 이름을 다르게 설정!!!!!!!!!해야함(noticeBrdListId)
+           --->이름 noticeBrdListId / 값 true / 1일(유효일자)
+        4. 다시 제목을 클릭-> 쿠키가 생성 되어있음 -> 조회수 증가x
+        */
+        if(getCookie(noticeBrdListId) == null){//쿠키 존재x
+            setCookie(noticeBrdListId, "true" , 1);//쿠키 생성
+            let param = "id=" + noticeBrdListId 
+            //클릭한 제목의 아이디를 찾아 조회수를 증가
+            requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
+                if(result){
+                    getNoticeBrdContent();//공지사항 내용 데이터 불러오기
+                }
+            });
+        }
+        else{//쿠키 존재
+            getNoticeBrdContent();//공지사항 내용 데이터 불러오기
+        }
     });
-
 }
 
 //공지사항 글 작성 부분 보여주기
