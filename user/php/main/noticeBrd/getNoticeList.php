@@ -1,7 +1,7 @@
 <?
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
-    $sql = "SELECT * FROM USR_BRD WHERE BRD_CDE = 'BRD_002'AND BRD_DISABLE = 'Y'";
+    $sql = "SELECT * FROM USR_BRD WHERE BRD_CDE = 'BRD_002'AND BRD_DISABLE = 'Y' ORDER BY BRD_DATE DESC"; //ASC는 오름차순
 
     $result = mysql_query($sql, $connect);
 
