@@ -174,12 +174,14 @@ function showNoticeBrdContent(){
     });
 }
 
-//수정하는 화면 보여주기
+//공지사항 수정 화면 보여주기
 function showUpdateNoticeBrd(){
     let UpdatekntNoticeBrdContentDomainHtml = "";
-    //일단 제목 내용만?
     UpdatekntNoticeBrdContentDomainHtml += "<label for = 'noticeBrdUpdateTitle'>제목</label>";
-    UpdatekntNoticeBrdContentDomainHtml += "<input type = 'text' id = 'noticeBrdUpdateTitle' value = " + noticeBrdContent[0]['BRD_TITLE'] + "><p>";
+    UpdatekntNoticeBrdContentDomainHtml += "<input type = 'text' id = 'noticeBrdUpdateTitle' value = " + noticeBrdContent[0]['BRD_TITLE'] + ">";
+    UpdatekntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
+    UpdatekntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
+    UpdatekntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
     UpdatekntNoticeBrdContentDomainHtml += "<label for='noticeBrdUpdateContent'>내용</label>";
     UpdatekntNoticeBrdContentDomainHtml += "<textarea id = 'noticeBrdUpdateContent'>" + noticeBrdContent[0]['BRD_CONTENT'] + "</textarea><p>";
     UpdatekntNoticeBrdContentDomainHtml += "<button id = 'noticeBrdUpdateBtn'>수정</button>";
@@ -229,3 +231,4 @@ function getNoticeBrdContent(){
         showNoticeBrdContent();//공지사항 내용 보여주기
     });
 }
+
