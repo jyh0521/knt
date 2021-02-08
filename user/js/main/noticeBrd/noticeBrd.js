@@ -27,7 +27,7 @@ function setNoticeBrdContent(){
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());//날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
-    
+
     let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
@@ -87,7 +87,7 @@ function showNoticeBrdList() {
         noticeBrdListTbodyHtml +=     "<td>" + (i + 1) + "</td>";
         noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_DATE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
         noticeBrdListTbodyHtml += "</tr>";
     }
