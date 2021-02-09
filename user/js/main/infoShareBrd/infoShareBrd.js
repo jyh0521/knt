@@ -265,6 +265,10 @@ function paging(totalData, dataPerPage, pageCount, currentPage){
         first = 1;
     }
 
+    if(last % 10) {
+        first = last - (last % 10) + 1;
+    }
+
     let next = last+1;
     let prev = first-1;
 
