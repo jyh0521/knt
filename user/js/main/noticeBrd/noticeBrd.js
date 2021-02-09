@@ -111,9 +111,10 @@ function showNoticeBrdList() {
         3. setCookie(noticeBrdListId , true , 1) 쿠키 생성  ===>  66목록마다99 조회수 최대 1 => 이름을 다르게 설정!!!!!!!!!해야함(noticeBrdListId)
            --->이름 noticeBrdListId / 값 true / 1일(유효일자)
         4. 다시 제목을 클릭-> 쿠키가 생성 되어있음 -> 조회수 증가x
+        쿠키 아이디 길게, 값에 아이디 저장
         */
-        if(getCookie(noticeBrdListId) == null){//쿠키 존재x
-            setCookie(noticeBrdListId, "true" , 1);//쿠키 생성
+        if(getCookie("noticeBrdHitCookie" + noticeBrdListId) == null){//쿠키 존재x
+            setCookie("noticeBrdHitCookie" + noticeBrdListId, "ADMIN" , 1);//쿠키 생성
             let param = "id=" + noticeBrdListId 
             //클릭한 제목의 아이디를 찾아 조회수를 증가
             requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
@@ -141,6 +142,7 @@ function showNoticeBrdWrite(){
     kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
 
     $("#kntNoticeBrdWriteDomain").empty().append(kntNoticeBrdWriteDomainHtml);
+
 
     //등록 버튼 클릭 시
     $("#noticeBrdSignUpBtn").off("click").on("click", function(){
@@ -282,7 +284,7 @@ function showUpdateNoticeBrd(){
     });
 }
 
-//댓글 리스트 보여주기
+//댓글 리스트 보여주기 + 댓글 삭제, 수정 버튼 생성
 function showNoticeBrdComment(){
     let noticeBrdCommentListHtml = "";
     let noticeBrdCommentListSize = noticeBrdCommentList.length;
@@ -317,4 +319,3 @@ function getNoticeBrdComment(){
     });
 }
 
-// 자기 계정으로 쓴 댓글이면 댓글 수정,삭제버튼 보이기 -> 내일하자..
