@@ -38,7 +38,7 @@ function getInfoShareList() {
 
 // 정보공유 선택된 글 조회수 체크
 function hitInfoShareContent() {
-    var deferred = $.Deferred();
+    let deferred = $.Deferred();
 
     try {
         //**************************************************** ADMIN 수정 *******************/
@@ -46,7 +46,7 @@ function hitInfoShareContent() {
         if(!getCookie("infoShareContentHitCookie" + infoShareSelectedListId + "ADMIN")) {
             setCookie("infoShareContentHitCookie" + infoShareSelectedListId + "ADMIN", "true", 1);
 
-            var param = "brdId=" + infoShareSelectedListId;
+            let param = "brdId=" + infoShareSelectedListId;
 
             requestData("/knt/user/php/main/infoShareBrd/hitInfoShareContent.php", param).done(function(result){
                 deferred.resolve(result);
@@ -132,6 +132,14 @@ function deleteInfoShareContent() {
     });
 }
 
+function writeInfoShareComment() {
+    let param;
+}
+
+function deleteInfoShareComment() {
+    let param;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////// 화면에 그리기 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,22 +168,25 @@ function drawInfoShareTable() {
 
 // 정보공유 글 리스트 그리기
 function drawInfoShareList() {
-    let infoShareListHtml = "";
-    let infoShareListSize = infoShareList.length;
+    // let infoShareListHtml = "";
+     let infoShareListSize = infoShareList.length;
 
-    for(let i = 0; i < infoShareListSize; i++) {
-        infoShareListHtml += "<tr>";
-        infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
-        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
-        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
-        infoShareListHtml += "</tr>";
-    }
+    // for(let i = 0; i < infoShareListSize; i++) {
+    //     infoShareListHtml += "<tr>";
+    //     infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
+    //     infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
+    //     infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
+    //     infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
+    //     infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
+    //     infoShareListHtml += "</tr>";
+    // }
 
-    $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
+    // $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
 
-    initInfoShareListEvent();
+    //    drawPaging(infoShareListSize);
+    $("document").ready(function(){        
+        paging(infoShareListSize, 10, 10, 1);
+    });
 }
 
 /******************************************************************************************************************************************/
@@ -212,8 +223,17 @@ function drawInfoShareSelectedContentComment() {
     for(let i = 0; i < infoShareSelectedContentCommentListSize; i++) {
         infoShareSelectedContentCommentHtml += "<h4>작성자: " + infoShareSelectedContentCommentList[i]["CMT_WRITER"] + "</h4>";
         infoShareSelectedContentCommentHtml += "<h4>작성일: " + infoShareSelectedContentCommentList[i]["CMT_DATE"] + "</h4>";
-        infoShareSelectedContentCommentHtml += "<h4>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
+        infoShareSelectedContentCommentHtml += "<h4 id='infoShareComment" + infoShareSelectedContentCommentList[i]["CMT_ID"] + "'>내용: " + infoShareSelectedContentCommentList[i]["CMT_CONTENT"] + "</h4>";
+
+        // ************************************************ ADMIN 수정
+        if(infoShareSelectedContentCommentList[i]["CMT_WRITER"] === "ADMIN") {
+			infoShareSelectedContentCommentHtml += "<button class='infoShareCommentDelBtn'>삭제</button>";
+		}
     }
+
+    infoShareSelectedContentCommentHtml += "<h5>댓글 작성하기</h5>";
+	infoShareSelectedContentCommentHtml += "<textarea name='infoShareWriteCommentTextArea' id='infoShareWriteCommentTextArea' cols='40' rows='3'></textarea>";
+	infoShareSelectedContentCommentHtml += "<button id='infoShareCommentWriteBtn'>작성</button>";
 
     $("#infoShareSelectedContentCommentDiv").empty().append(infoShareSelectedContentCommentHtml);
 }
@@ -225,6 +245,82 @@ function drawInfoShareWriteContent() {
     $("#infoShareWriteContentFuncDiv").css("display", "block");
 
     initInfoShareWriteContentEvent();
+}
+
+// 페이징 함수
+function paging(totalData, dataPerPage, pageCount, currentPage){
+    let infoShareListHtml = "";
+    
+    let totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
+    let pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
+    let last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
+
+    if(last > totalPage) {
+        last = totalPage;
+    }
+
+    let first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
+
+    if(first <= 0) {
+        first = 1;
+    }
+
+    let next = last+1;
+    let prev = first-1;
+
+    let html = "";
+    
+    if(prev > 0) {
+        html += "<a href=# id='prev'><</a> ";
+    }
+
+    for(let i=first; i <= last; i++){
+        html += "<a href='#' id=" + i + ">" + i + "</a> ";
+    }
+    
+    if(last < totalPage) {
+        html += "<a href=# id='next'>></a>";
+    }
+    
+    $("#paging").html(html);    // 페이지 목록 생성
+    $("#paging a").css("color", "black");
+    $("#paging a#" + currentPage).css({"text-decoration":"none", 
+                                       "color":"red", 
+                                       "font-weight":"bold"});    // 현재 페이지 표시
+    
+    // 현재 선택된 페이지: currentPage
+    // 현재 선택된 페이지 최대 MAX DATA IDX: currentPage * 10
+    // currentPage * 10 > totalData 이면 totalData = MAX DATA IDX
+    // startDataIndex = 현재 페이지 * 10(최대) - 10;
+    let maxDataIndex = currentPage * 10 < totalData ? currentPage * 10 : totalData;
+    let startDataIndex = currentPage * 10 - 10;
+
+    for(let i = startDataIndex; i < maxDataIndex; i++) {
+        infoShareListHtml += "<tr>";
+        infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
+        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
+        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
+        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
+        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
+        infoShareListHtml += "</tr>";
+    }
+
+    $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
+
+    initInfoShareListEvent();
+
+    $("#paging a").click(function(){
+        
+        let $item = $(this);
+        let $id = $item.attr("id");
+        let selectedPage = $item.text();
+        
+        if($id == "next")    selectedPage = next;
+        if($id == "prev")    selectedPage = prev;
+        
+        paging(totalData, dataPerPage, pageCount, selectedPage);
+    });
+                                       
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -280,8 +376,9 @@ function initInfoShareSelectedContentEvent() {
     });
 }
 
+// 정보공유 글 작성 이벤트 초기화
 function initInfoShareWriteContentEvent() {
-    // 작성하기 버튼 클릭 시
+    // 글 작성하기 버튼 클릭 시
     $("#infoShareWriteContentWriteBtn").off("click").on("click", function(){
         if(confirm("작성하시겠습니까?")) {
             writeInfoShareContent();
@@ -294,7 +391,19 @@ function initInfoShareWriteContentEvent() {
     $("#infoShareWriteContentBackBtn").off("click").on("click", function(){
         initInfoShare();
     });
-    
+}
+
+// 정보공유 글 댓글 작성 이벤트 초기화
+function initInfoShareWriteCommentEvent() {
+    // 댓글 작성 버튼 클릭 시
+    $("#infoShareCommentWriteBtn").off("click").on("click", function(){
+        writeInfoShareComment();
+    });
+
+    // 댓글 삭제 버튼 클릭 시
+    $("#infoShareCommentDelBtn").off("click").on("click", function(){
+        deleteInfoShareComment();
+    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -308,7 +417,7 @@ function initInfoShareWriteContentEvent() {
     3. 수정 o
     4. 삭제 o
     5. 페이징
-    6. 조회수
+    6. 조회수 o
 
     일단 ID는 ADMIN으로 설정
 */
