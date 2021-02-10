@@ -50,6 +50,7 @@ function initStudyGroupCBoard(){
 
 
 let studyAList = [];
+let studyAListId = [];
 
 //study a 게시물 불러오기
 function getStudyAList() {
@@ -58,6 +59,33 @@ function getStudyAList() {
 
         showStudyATable();
         showStudyAList();
+    });
+}
+
+//study a 작성된 글 저장
+function writeStudyAContent() {
+    let title = $("#writeStudyAContentTitle").val();
+    let content = $("#writeStudyAContentText").val();
+
+    let param = "title=" + title + "&content=" + content;
+
+    requestData("/knt/user/php/main/studyBrd/writeStudyAContent.php", param).done(function(result){
+        if(result === true) {
+            alert("작성되었습니다.");
+        }
+        else {
+            alert("오류");
+        }
+    });
+}
+
+function getStudyAContentOfWriting() {
+    let param = "id=" + studyAListId;
+
+    requestData("/knt/user/php/main/studyBrd/getStudyAContent.php", param).done(function(result){
+        studyAListId = result;
+
+        showStudyAContentOfWriting();
     });
 }
 
@@ -109,27 +137,13 @@ function showStudyAList() {
 
     $("#studyAtbody").empty().append(studyAListHtml);
 
+    //study a 리스트 제목 클릭 시
     $("#studyATitleBtn").off("click").on("click", function(){
         $("#studyATable").css("display", "none");
         $("#studyAContentOfWriting").css("display", "block");
         $("#studyAWriting").css("display", "none");
-    })
-}
 
-//study a 작성된 글 저장
-function writeStudyAContent() {
-    let title = $("#writeStudyAContentTitle").val();
-    let content = $("#writeStudyAContentText").val();
-
-    let param = "title=" + title + "&content=" + content;
-
-    requestData("/knt/user/php/main/studyBrd/writeStudyAContent.php", param).done(function(result){
-        if(result === true) {
-            alert("작성되었습니다.");
-        }
-        else {
-            alert("오류");
-        }
+        getStudyAContentOfWriting();
     });
 }
 
@@ -167,4 +181,27 @@ function setStudyAContent() {
         $("#studyAWriting").css("display", "none");
         $("#studyAContentOfWriting").css("display", "none");
     });
+}
+
+//study a 선택한 글 보여주기
+function showStudyAContentOfWriting() {
+    let showStudyAContentOfWritingHtml = "";
+
+    showStudyAContentOfWritingHtml += "<table>";
+    showStudyAContentOfWritingHtml +=   "<tr>";
+    showStudyAContentOfWritingHtml +=       "<td>제목: " + studyAListId[0]['BRD_TITLE'] + "</td>";
+    showStudyAContentOfWritingHtml +=   "<tr>";
+    showStudyAContentOfWritingHtml +=       "<td>작성자: " + studyAListId[0]['BRD_WRITER'] + "</td>";
+    showStudyAContentOfWritingHtml +=       "<td>작성일자: " + studyAListId[0]['BRD_DATE'] + "</td>";
+    showStudyAContentOfWritingHtml +=   "</tr>";
+    showStudyAContentOfWritingHtml +=   "</tr>";
+    showStudyAContentOfWritingHtml +=   "<tr>";
+    showStudyAContentOfWritingHtml +=       "<td>" + studyAListId[0]['BRD_CONTENT'] + "</td>";
+    showStudyAContentOfWritingHtml +=   "</tr>";
+    showStudyAContentOfWritingHtml +=   "<tr>";
+    showStudyAContentOfWritingHtml +=       "<td>조회수: " + studyAListId[0]['BRD_HIT'] + "</td>";
+    showStudyAContentOfWritingHtml +=   "</tr>";
+    showStudyAContentOfWritingHtml += "</table>";
+
+    $("#studyAContentOfWriting").empty().append(showStudyAContentOfWritingHtml);
 }
