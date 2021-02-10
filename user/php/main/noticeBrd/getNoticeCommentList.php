@@ -3,7 +3,7 @@
 
     $id = $_POST['id'];
 
-    $sql = "SELECT * FROM USR_BRD_CMT WHERE BRD_ID = '$id'"; 
+    $sql = "SELECT * FROM USR_BRD_CMT WHERE BRD_ID = '$id' AND CMT_DISABLE = 'Y'"; 
 
     $result = mysql_query($sql, $connect);
 

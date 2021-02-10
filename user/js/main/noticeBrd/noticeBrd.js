@@ -3,6 +3,7 @@ let noticeBrdContent = [];
 let noticeBrdCommentList = [];
 let noticeBrdComment = [];
 let noticeBrdListId ="";
+let noticeBrdCommentListId = "";
 
 
 function showNoticeBrd(){
@@ -10,7 +11,8 @@ function showNoticeBrd(){
     $("#kntNoticeBrdWrite").css("display", "none");
     $("#kntNoticeBrdContent").css("display", "none");
     $("#UpdatekntNoticeBrdContent").css("display", "none");
-    $("#kntNoticeBrdComment").css("display", "none");
+    $("#kntNoticeBrdCommentListDomain").css("display", "none");
+    $("#kntNoticeBrdCommentDomain").css("display", "none");
 
     getNoticeBrdList();
 };
@@ -103,7 +105,8 @@ function showNoticeBrdList() {
         
         $("#kntNoticeBrd").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "block");
-        $("#kntNoticeBrdComment").css("display", "block");
+        $("#kntNoticeBrdCommentListDomain").css("display", "block");
+        $("#kntNoticeBrdCommentDomain").css("display", "block");
         /* 
         쿠 키 차 근 차 근 
         1. 제목을 클릭-> 조회수를 올리기전에 getCookie(이름)를 이용해 이름의 쿠키를 조회
@@ -111,10 +114,11 @@ function showNoticeBrdList() {
         3. setCookie(noticeBrdListId , true , 1) 쿠키 생성  ===>  66목록마다99 조회수 최대 1 => 이름을 다르게 설정!!!!!!!!!해야함(noticeBrdListId)
            --->이름 noticeBrdListId / 값 true / 1일(유효일자)
         4. 다시 제목을 클릭-> 쿠키가 생성 되어있음 -> 조회수 증가x
-        쿠키 아이디 길게, 값에 아이디 저장
+        쿠키 아이디 길게, 아이디 저장 
+        맞ㄴ ㅏ..?
         */
-        if(getCookie("noticeBrdHitCookie" + noticeBrdListId) == null){//쿠키 존재x
-            setCookie("noticeBrdHitCookie" + noticeBrdListId, "ADMIN" , 1);//쿠키 생성
+        if(getCookie("ADMIN"/*로그인한 아이디*/ + "noticeBrdHitCookie"/*길게*/ + noticeBrdListId) == null){//쿠키 존재x
+            setCookie("ADMIN" + "noticeBrdHitCookie" + noticeBrdListId, "true" , 1);//쿠키 생성
             let param = "id=" + noticeBrdListId 
             //클릭한 제목의 아이디를 찾아 조회수를 증가
             requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
@@ -173,7 +177,6 @@ function showNoticeBrdContent(){
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
-    showNoticeBrdCommentDomain();
 
     //목록 버튼 클릭 시(뒤로가기)
     $("#noticeContentBackBtn").off("click").on("click", function(){
@@ -183,7 +186,8 @@ function showNoticeBrdContent(){
     //수정 버튼 클릭 시
     $("#noticeContentUpdateBtn").off("click").on("click", function(){
         $("#kntNoticeBrdContent").css("display", "none");
-        $("#kntNoticeBrdComment").css("display", "none");
+        $("#kntNoticeBrdCommentListDomain").css("display", "none");
+        $("#kntNoticeBrdCommentDomain").css("display", "none");
         $("#UpdatekntNoticeBrdContent").css("display", "block");
 
         showUpdateNoticeBrd();//수정하는 화면 보여주기
@@ -216,7 +220,7 @@ function showNoticeBrdContent(){
             if(result){
                 alert("댓글이 작성되었습니다.");
 
-                getNoticeBrdComment();
+                getNoticeBrdComment();//댓글 데이터 불러오기
             }
             else{
                 alert("댓글이 작성되지 않았습니다.");
@@ -226,14 +230,15 @@ function showNoticeBrdContent(){
     });
 }
 
-//댓글 작성 공간 + 버튼 보여주기
-function showNoticeBrdCommentDomain(){
-    let kntNoticeBrdCommentDomainHtml = "";
+//공지사항 내용 데이터 불러오기
+function getNoticeBrdContent(){
+    let param = "id=" + noticeBrdListId;
 
-    kntNoticeBrdCommentDomainHtml += "<p><textarea id = 'noticeBrdcomment' placeholder='댓글을 작성하세요.'></textarea>";
-    kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdcommentBtn'>댓글 작성</button>";
+    requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
+        noticeBrdContent = result;
 
-    $("#kntNoticeBrdCommentDomain").empty().append(kntNoticeBrdCommentDomainHtml);
+        showNoticeBrdContent();//공지사항 내용 보여주기
+    });
 }
 
 //공지사항 수정 화면 보여주기
@@ -255,7 +260,9 @@ function showUpdateNoticeBrd(){
     $("#noticeBrdUpdateCancleBtn").off("click").on("click", function(){
         $("#UpdatekntNoticeBrdContent").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "block");
-        $("#kntNoticeBrdComment").css("display", "block");
+        $("#kntNoticeBrdCommentListDomain").css("display", "block");
+        $("#kntNoticeBrdCommentDomain").css("display", "block");
+
         getNoticeBrdContent();//공지사항 내용 데이터 불러오기
     });
 
@@ -291,31 +298,107 @@ function showNoticeBrdComment(){
 
     //내용, 작성자, 날짜
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
-        noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+" ";
-        noticeBrdCommentListHtml += "작성일:" + noticeBrdCommentList[i]['CMT_DATE'];
-        noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
+        noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
+        noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
+        noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT']+"</p>";
+        //if(자기 계정이면)
+        noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
+        noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
     }
     $("#kntNoticeBrdCommentListDomain").empty().append(noticeBrdCommentListHtml);
+
+    //댓글 수정 버튼 클릭 시
+    $(".noticeBrdCommentListUpDateBtn").off("click").on("click", function(){
+        noticeBrdCommentListId = this.id.substr(24);
+        $("#kntNoticeBrdCommentListDomain").css("display", "none");//댓글 리스트 감추기
+
+        showNoticeBrdCommentDomain();//댓글 작성 or 수정 공간 + 버튼 보여주기
+    });
+
+    //댓글 삭제 버튼 클릭 시
+    $(".noticeBrdCommentListDeleteBtn").off("click").on("click", function(){
+        noticeBrdCommentListId = this.id.substr(24);
+        let param = "id=" + noticeBrdCommentListId;
+
+        requestData("/knt/user/php/main/noticeBrd/deleteNoticeComment.php", param).done(function(result){
+            if(result){
+                alert("댓글이 삭제 되었습니다.");
+                
+                getNoticeBrdComment();
+            }
+            else{
+                alert("삭제 실패");
+            }
+        });
+    });
+
+    //showNoticeBrdCommentDomain();댓글 작성 부분 보여주기 @@@@@@@@
 }
-//공지사항 내용 데이터 불러오기
-function getNoticeBrdContent(){
-    let param = "id=" + noticeBrdListId;
 
-    requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
-        noticeBrdContent = result;
+//댓글 작성 or 수정 공간 + 버튼 보여주기
+function showNoticeBrdCommentDomain(){
+    let kntNoticeBrdCommentDomainHtml = "";
 
-        showNoticeBrdContent();//공지사항 내용 보여주기
+    kntNoticeBrdCommentDomainHtml += "<p><textarea id = 'noticeBrdCommentContent' placeholder='댓글을 작성하세요.'></textarea>";
+    //if(댓글 작성일 때) @@@@@@@@@
+    //kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdcommentWriteBtn'>댓글 작성</button>";
+    //if(댓글 수정일 때) @@@@@@@@@
+    kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdCommentUpdateBtn'>댓글 수정</button>";
+    kntNoticeBrdCommentDomainHtml += "<button id = 'noticeBrdCommentUpdateBackBtn'>뒤로가기</button>";
+    $("#kntNoticeBrdCommentDomain").empty().append(kntNoticeBrdCommentDomainHtml);
+
+    //댓글 수정 버튼 클릭 시(내용 적은 후)
+    $("#noticeBrdCommentUpdateBtn").off("click").on("click", function(){
+        setNoticeBrdComment();//댓글 수정
+    });
+
+    //뒤로가기 클릭 시
+    $("#noticeBrdCommentUpdateBackBtn").off("click").on("click", function(){
+        $("#kntNoticeBrdCommentListDomain").css("display", "block");//댓글 리스트 감추기
+        getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
     });
 }
 
+//댓글 수정
+function setNoticeBrdComment(){
+
+    //아이디, 내용, 작성일, 작성자
+    let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();
+    let date = getTimeStamp(new Date());
+    let param = "id=" + noticeBrdCommentListId + "&date=" + date + "&content=" + noticeBrdCommentContent;
+
+    requestData("/knt/user/php/main/noticeBrd/updateNoticeComment.php", param).done(function(result){
+        if(result){
+            alert("댓글이 수정 되었습니다.");
+            $("#kntNoticeBrdCommentListDomain").css("display", "block");
+
+            getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
+        }
+        else{
+            alert("댓글 수정 실패");
+        }
+    });
+}
 //공지사항 댓글 데이터 불러오기
 function getNoticeBrdComment(){
     let param = "id=" + noticeBrdListId;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeCommentList.php", param).done(function(result){
         noticeBrdCommentList = result;
-        
+
         showNoticeBrdComment();//공지사항 댓글 리스트 보여주기
     });
 }
+
+/*수정
+각 댓글 목록의 아이디 저장
+댓글 수정 버튼 클릭 시
+리스트 영역 감추기
+작성 or 수정 화면 띄우기
+내용 적은 후 댓글 수정 버튼 클릭 시
+자신이 쓴 댓글 목록의 아이디, 날짜, 내용을 가지고 updateNoticeComment.php 에서 수정
+댓글 데이터 불러와서 댓글 리스트 + 댓글 작성공간 띄우기
+*/
+
+//작성 수정 화면............구분...................내일............찾아보기...............
 
