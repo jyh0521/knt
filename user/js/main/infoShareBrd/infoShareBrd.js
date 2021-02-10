@@ -7,6 +7,8 @@ let infoShareSelectedContent = [];
 let infoShareSelectedContentCommentList = [];
 let infoShareSelectedListId = "";
 
+let infoShareListSize = "";
+
 let writeOption = "";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,10 +18,12 @@ let writeOption = "";
 // 정보공유 게시판 초기화 함수
 function initInfoShare(){
     $("#infoShareTableDiv").css("display", "block");
+    $("#paging").css("display", "block");
+    
     $("#infoShareContentDiv").css("display", "none");
     $("#infoShareWriteContentFuncDiv").css("display", "none");
 
-    getInfoShareList();
+    getInfoShareListSize();
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,12 +31,23 @@ function initInfoShare(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // 정보공유 글 리스트 불러오기
-function getInfoShareList() {
-    requestData("/knt/user/php/main/infoShareBrd/getInfoShareList.php").done(function(result){
+function getInfoShareList(currentPage) {
+    let param = "currentPage=" + currentPage;
+
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareList.php", param).done(function(result){
         infoShareList = result;
 
         drawInfoShareTable();
-        drawInfoShareList();
+        drawInfoShareList(currentPage);
+    });
+}
+
+// 정보공유 글 리스트 전체 데이터 수 불러오기
+function getInfoShareListSize() {
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareListSize.php").done(function(result) {
+        infoShareListSize = result["COUNT"];
+
+        DrawPaging(infoShareListSize, 10, 1, getInfoShareList);
     });
 }
 
@@ -167,32 +182,32 @@ function drawInfoShareTable() {
 }
 
 // 정보공유 글 리스트 그리기
-function drawInfoShareList() {
-    // let infoShareListHtml = "";
-     let infoShareListSize = infoShareList.length;
+function drawInfoShareList(currentPage) {
+    let infoShareListHtml = "";
+    let infoShareListSize = infoShareList.length;
+    let startDataIndex = currentPage * 10 - 10 + 1;
 
-    // for(let i = 0; i < infoShareListSize; i++) {
-    //     infoShareListHtml += "<tr>";
-    //     infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
-    //     infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
-    //     infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
-    //     infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
-    //     infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
-    //     infoShareListHtml += "</tr>";
-    // }
+    for(let i = 0; i < infoShareListSize; i++) {
+        infoShareListHtml += "<tr>";
+        infoShareListHtml +=     "<td>" + (startDataIndex + i) + "</td>";
+        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
+        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
+        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
+        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
+        infoShareListHtml += "</tr>";
+    }
 
-    // $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
+    $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
 
-    //    drawPaging(infoShareListSize);
-    $("document").ready(function(){        
-        paging(infoShareListSize, 10, 10, 1);
-    });
-}
+    initInfoShareListEvent();
+}   
 
 /******************************************************************************************************************************************/
 // ADMIN 수정할 것
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
+    $("#paging").css("display", "none");
+
     let infoShareSelectedContentHtml = "";
 
     // 선택된 글 내용 그리기
@@ -245,86 +260,6 @@ function drawInfoShareWriteContent() {
     $("#infoShareWriteContentFuncDiv").css("display", "block");
 
     initInfoShareWriteContentEvent();
-}
-
-// 페이징 함수
-function paging(totalData, dataPerPage, pageCount, currentPage){
-    let infoShareListHtml = "";
-    
-    let totalPage = Math.ceil(totalData/dataPerPage);    // 총 페이지 수
-    let pageGroup = Math.ceil(currentPage/pageCount);    // 페이지 그룹
-    let last = pageGroup * pageCount;    // 화면에 보여질 마지막 페이지 번호
-
-    if(last > totalPage) {
-        last = totalPage;
-    }
-
-    let first = last - (pageCount-1);    // 화면에 보여질 첫번째 페이지 번호
-
-    if(first <= 0) {
-        first = 1;
-    }
-
-    if(last % 10) {
-        first = last - (last % 10) + 1;
-    }
-
-    let next = last+1;
-    let prev = first-1;
-
-    let html = "";
-    
-    if(prev > 0) {
-        html += "<a href=# id='prev'><</a> ";
-    }
-
-    for(let i=first; i <= last; i++){
-        html += "<a href='#' id=" + i + ">" + i + "</a> ";
-    }
-    
-    if(last < totalPage) {
-        html += "<a href=# id='next'>></a>";
-    }
-    
-    $("#paging").html(html);    // 페이지 목록 생성
-    $("#paging a").css("color", "black");
-    $("#paging a#" + currentPage).css({"text-decoration":"none", 
-                                       "color":"red", 
-                                       "font-weight":"bold"});    // 현재 페이지 표시
-    
-    // 현재 선택된 페이지: currentPage
-    // 현재 선택된 페이지 최대 MAX DATA IDX: currentPage * 10
-    // currentPage * 10 > totalData 이면 totalData = MAX DATA IDX
-    // startDataIndex = 현재 페이지 * 10(최대) - 10;
-    let maxDataIndex = currentPage * 10 < totalData ? currentPage * 10 : totalData;
-    let startDataIndex = currentPage * 10 - 10;
-
-    for(let i = startDataIndex; i < maxDataIndex; i++) {
-        infoShareListHtml += "<tr>";
-        infoShareListHtml +=     "<td>" + (i + 1) + "</td>";
-        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
-        infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
-        infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";
-        infoShareListHtml += "</tr>";
-    }
-
-    $("#infoShareListTbodyDiv").empty().append(infoShareListHtml);
-
-    initInfoShareListEvent();
-
-    $("#paging a").click(function(){
-        
-        let $item = $(this);
-        let $id = $item.attr("id");
-        let selectedPage = $item.text();
-        
-        if($id == "next")    selectedPage = next;
-        if($id == "prev")    selectedPage = prev;
-        
-        paging(totalData, dataPerPage, pageCount, selectedPage);
-    });
-                                       
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -420,7 +355,7 @@ function initInfoShareWriteCommentEvent() {
     2. 댓글 작성
     3. 수정 o
     4. 삭제 o
-    5. 페이징
+    5. 페이징 oooooooooooo
     6. 조회수 o
 
     일단 ID는 ADMIN으로 설정
