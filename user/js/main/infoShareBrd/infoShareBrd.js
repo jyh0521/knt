@@ -47,7 +47,7 @@ function getInfoShareListSize() {
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareListSize.php").done(function(result) {
         infoShareListSize = result["COUNT"];
 
-        DrawPaging(infoShareListSize, 10, 1, getInfoShareList);
+        DrawPaging(infoShareListSize, 10, 1, "infoSharePagingDiv", getInfoShareList);
     });
 }
 
