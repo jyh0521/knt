@@ -51,6 +51,7 @@ function initStudyGroupCBoard(){
 
 let studyAList = [];
 let studyAListId = [];
+let studyAContentOfWriting = [];
 
 //study a 게시물 불러오기
 function getStudyAList() {
@@ -79,11 +80,12 @@ function writeStudyAContent() {
     });
 }
 
+//study a 리스트 제목 클릭 시 해당 내용 불러오기
 function getStudyAContentOfWriting() {
     let param = "id=" + studyAListId;
 
     requestData("/knt/user/php/main/studyBrd/getStudyAContent.php", param).done(function(result){
-        studyAListId = result;
+        studyAContentOfWriting = result;
 
         showStudyAContentOfWriting();
     });
@@ -128,7 +130,7 @@ function showStudyAList() {
     for(let i=0; i<studyAListLength; i++) {
         studyAListHtml +=   "<tr>";
         studyAListHtml +=       "<td>" + (i+1) + "</td>";
-        studyAListHtml +=       "<td id='studyATitleBtn'>" + studyAList[i]['BRD_TITLE'] + "</td>";
+        studyAListHtml +=       "<td class='studyATitleBtn'>" + studyAList[i]['BRD_TITLE'] + "</td>";
         studyAListHtml +=       "<td>" + studyAList[i]['BRD_WRITER'] + "</td>";
         studyAListHtml +=       "<td>" + studyAList[i]['BRD_DATE'] + "</td>";
         studyAListHtml +=       "<td>" + studyAList[i]['BRD_HIT'] + "</td>";
@@ -137,8 +139,8 @@ function showStudyAList() {
 
     $("#studyAtbody").empty().append(studyAListHtml);
 
-    //study a 리스트 제목 클릭 시
-    $("#studyATitleBtn").off("click").on("click", function(){
+    //study a 리스트 제목 클릭
+    $(".studyATitleBtn").off("click").on("click", function(){
         $("#studyATable").css("display", "none");
         $("#studyAContentOfWriting").css("display", "block");
         $("#studyAWriting").css("display", "none");
@@ -189,18 +191,19 @@ function showStudyAContentOfWriting() {
 
     showStudyAContentOfWritingHtml += "<table>";
     showStudyAContentOfWritingHtml +=   "<tr>";
-    showStudyAContentOfWritingHtml +=       "<td>제목: " + studyAListId[0]['BRD_TITLE'] + "</td>";
+    showStudyAContentOfWritingHtml +=       "<td colspan='2'>제목 " + studyAContentOfWriting['BRD_TITLE'] + "</td>";
     showStudyAContentOfWritingHtml +=   "<tr>";
-    showStudyAContentOfWritingHtml +=       "<td>작성자: " + studyAListId[0]['BRD_WRITER'] + "</td>";
-    showStudyAContentOfWritingHtml +=       "<td>작성일자: " + studyAListId[0]['BRD_DATE'] + "</td>";
+    showStudyAContentOfWritingHtml +=       "<td>작성자 " + studyAContentOfWriting['BRD_WRITER'] + "</td>";
+    showStudyAContentOfWritingHtml +=       "<td>작성일자 " + studyAContentOfWriting['BRD_DATE'] + "</td>";
     showStudyAContentOfWritingHtml +=   "</tr>";
-    showStudyAContentOfWritingHtml +=   "</tr>";
-    showStudyAContentOfWritingHtml +=   "<tr>";
-    showStudyAContentOfWritingHtml +=       "<td>" + studyAListId[0]['BRD_CONTENT'] + "</td>";
     showStudyAContentOfWritingHtml +=   "</tr>";
     showStudyAContentOfWritingHtml +=   "<tr>";
-    showStudyAContentOfWritingHtml +=       "<td>조회수: " + studyAListId[0]['BRD_HIT'] + "</td>";
+    showStudyAContentOfWritingHtml +=       "<td colspan='2'>" + studyAContentOfWriting['BRD_CONTENT'] + "</td>";
     showStudyAContentOfWritingHtml +=   "</tr>";
+    showStudyAContentOfWritingHtml +=   "<tr>";
+    showStudyAContentOfWritingHtml +=       "<td>조회수 " + studyAContentOfWriting['BRD_HIT'] + "</td>";
+    showStudyAContentOfWritingHtml +=   "</tr>";
+
     showStudyAContentOfWritingHtml += "</table>";
 
     $("#studyAContentOfWriting").empty().append(showStudyAContentOfWritingHtml);
