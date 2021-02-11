@@ -291,6 +291,8 @@ function showNoticeBrdContent(){
     });
     //수정 버튼 클릭 시
     $("#noticeContentUpdateBtn").off("click").on("click", function(){
+        ContentWriteOrUpdate = "update";
+
         $("#kntNoticeBrdWrite").css("display", "block");
         $("#kntNoticeBrdContent").css("display", "none");
         $("#kntNoticeBrdCommentListDomain").css("display", "none");
