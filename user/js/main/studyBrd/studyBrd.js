@@ -8,8 +8,6 @@ let studyContentOfWriting = [];
 //study a 클릭 시
 $("#studyaBtn").off("click").on("click", function(){
     $("#studyBoard").css("display", "block");
-    //$("#studyBBoard").css("display", "none");
-    //$("#studyCBoard").css("display", "none");
 
     studyGroup = "STD_001";
 
@@ -18,8 +16,6 @@ $("#studyaBtn").off("click").on("click", function(){
 //study b 클릭 시
 $("#studybBtn").off("click").on("click", function(){
     $("#studyBoard").css("display", "block");
-    //$("#studyABoard").css("display", "none");
-    //$("#studyCBoard").css("display", "none");
 
     studyGroup = "STD_002";
 
@@ -28,8 +24,6 @@ $("#studybBtn").off("click").on("click", function(){
 //study c 클릭 시
 $("#studycBtn").off("click").on("click", function(){
     $("#studyBoard").css("display", "block");
-    //$("#studyBBoard").css("display", "none");
-    //$("#studyABoard").css("display", "none");
 
     studyGroup = "STD_003";
 
@@ -77,8 +71,9 @@ function getStudyList() {
 function writeStudyContent() {
     let title = $("#writeStudyContentTitle").val();
     let content = $("#writeStudyContentText").val();
+    let date = getTimeStamp(new Date());
 
-    let param = "brd=" + studyGroup + "&id=" + "ADMIN" + "&title=" + title + "&content=" + content;
+    let param = "brd=" + studyGroup + "&id=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date;
 
     requestData("/knt/user/php/main/studyBrd/writeStudyContent.php", param).done(function(result){
         if(result === true) {
@@ -92,13 +87,33 @@ function writeStudyContent() {
 
 //study 리스트 제목 클릭 시 해당 내용 불러오기
 function getStudyContentOfWriting() {
-    let param = "BrdId=" + studyListId;
+    let param = "brdId=" + studyListId;
 
     requestData("/knt/user/php/main/studyBrd/getStudyContent.php", param).done(function(result){
         studyContentOfWriting = result;
 
         showStudyContentOfWriting();
     });
+}
+
+function deleteStudyContent() {
+    let param = "brdId=" + studyListId;
+
+    requestData("/knt/user/php/main/studyBrd/deleteStudyContent.php", param).done(function(result){
+       if(result === true) {
+           alert("삭제되었습니다.");
+       }
+       else {
+           alert("오류");
+       }
+    });
+}
+
+function updateStudyContent() {
+    let title = $("#writeStudyContentTitle").val();
+    let content = $("#writeStudyContetntText").val();
+
+    ///작성
 }
 
 //study 테이블
@@ -229,10 +244,23 @@ function showStudyContentOfWriting() {
         $("#studyTable").css("display", "block");
         $("#studyContentOfWriting").css("display", "none");
         $("#studyWriting").css("display", "none");
-    })
+    });
 
     //수정 버튼 클릭 시
     $("#studyEditBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
-    })
+        $("studyContentOfWriting").css("display", "none");
+        $("#studyWriting").css("display", "none");
+
+        updateStudyContent();
+    });
+
+    //삭제 버튼 클릭 시
+    $("#studyDeleteBtn").off("click").on("click", function(){
+        $("#studyTable").css("display", "block");
+        $("#studyContentOfWriting").css("display", "none");
+        $("#studyWriting").css("display", "none");
+
+        deleteStudyContent();
+    });
 }
