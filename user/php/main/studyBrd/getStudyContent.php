@@ -1,12 +1,11 @@
 <?php
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
-    $brd = $_POST['brd'];
-    $id = $_POST['id'];
+    $id = $_POST['BrdId'];
 
     $sql = "SELECT BRD_TITLE, BRD_CONTENT, BRD_WRITER, BRD_DATE, BRD_HIT
             FROM USR_BRD
-            WHERE BRD_ID = '$id' AND BRD_CED = '$brd'";
+            WHERE BRD_ID = '$id'";
 
     $result = mysql_query($sql, $connect);
 
