@@ -2,7 +2,7 @@ let noticeBrdList = [];
 let noticeBrdContent = [];
 let noticeBrdCommentList = [];
 let noticeBrdCommentContent =[];
-let noticeBrdListId ="";
+let noticeBrdContentListId ="";
 let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
@@ -51,7 +51,7 @@ function setNoticeBrdUpdate(){
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdListId + "&date=" + date;
+    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
         if(result){
@@ -66,7 +66,7 @@ function setNoticeBrdUpdate(){
 }
 //공지사항 내용 데이터 삭제
 function setNoticeBrdContentDelete(){
-    let param = "id=" + noticeBrdListId;
+    let param = "id=" + noticeBrdContentListId;
 
     requestData("/knt/user/php/main/noticeBrd/delNoticeContent.php", param).done(function(result){
         if(result){
@@ -100,7 +100,7 @@ function setNoticeBrdComment(){
     let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdListId;
+    let param = "comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
     requestData("/knt/user/php/main/noticeBrd/setNoticeComment.php", param).done(function(result){
         if(result){
             alert("댓글이 작성되었습니다.");
@@ -114,9 +114,9 @@ function setNoticeBrdComment(){
 }
 //공지사항 조회수 변경
 function setNoticeBrdHit(){
-    if(getCookie("ADMIN"/*로그인한 아이디*/ + "noticeBrdHitCookie"/*길게*/ + noticeBrdListId) == null){//쿠키 존재x
-        setCookie("ADMIN" + "noticeBrdHitCookie" + noticeBrdListId, "true" , 1);//쿠키 생성
-        let param = "id=" + noticeBrdListId 
+    if(getCookie("ADMIN"/*로그인한 아이디*/ + "noticeBrdHitCookie"/*길게*/ + noticeBrdContentListId) == null){//쿠키 존재x
+        setCookie("ADMIN" + "noticeBrdHitCookie" + noticeBrdContentListId, "true" , 1);//쿠키 생성
+        let param = "id=" + noticeBrdContentListId 
         //클릭한 제목의 아이디를 찾아 조회수를 증가
         requestData("/knt/user/php/main/noticeBrd/setNoticeBrdHit.php", param).done(function(result){
             if(result){
@@ -150,7 +150,7 @@ function setNoticeBrdCommentUpdate(){
 }
 //공지사항 댓글 목록 데이터 불러오기
 function getNoticeBrdComment(){
-    let param = "id=" + noticeBrdListId;
+    let param = "id=" + noticeBrdContentListId;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeCommentList.php", param).done(function(result){
         noticeBrdCommentList = result;
@@ -170,7 +170,7 @@ function getNoticeBrdCommentContent(){
 }
 //공지사항 내용 데이터 불러오기
 function getNoticeBrdContent(){
-    let param = "id=" + noticeBrdListId;
+    let param = "id=" + noticeBrdContentListId;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeContent.php", param).done(function(result){
         $("#kntNoticeBrd").css("display", "none");
@@ -222,7 +222,7 @@ function showNoticeBrdList() {
     for(let i = 0; i < noticeBrdListSize; i++) {
         noticeBrdListTbodyHtml += "<tr>";
         noticeBrdListTbodyHtml +=     "<td>" + (i + 1) + "</td>";
-        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
@@ -233,7 +233,7 @@ function showNoticeBrdList() {
 
     //공지사항 목록 중 제목 클릭 시 - 쿠키 존재 확인 > 조회수 증가 > 공지사항 내용 데이터를 불러와야함
     $(".kntNoticeBrdTitle").off("click").on("click", function(){
-        noticeBrdListId = this.id.substr(15);
+        noticeBrdContentListId = this.id.substr(22);
         
         setNoticeBrdHit();
     });
@@ -255,7 +255,7 @@ function showNoticeBrdWrite(){
         kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
     }
 
-    $("#kntNoticeBrdWriteDomain").empty().append(kntNoticeBrdWriteDomainHtml);
+    $("#kntNoticeBrdWriteBtnDomain").empty().append(kntNoticeBrdWriteDomainHtml);
     //등록 버튼 클릭 시
     $("#noticeBrdSignUpBtn").off("click").on("click", function(){
         setNoticeBrdContent();
