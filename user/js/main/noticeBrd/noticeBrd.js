@@ -1,7 +1,7 @@
 let noticeBrdList = [];
 let noticeBrdContent = [];
 let noticeBrdCommentList = [];
-let noticeBrdComment = [];
+let noticeBrdCommentContent =[];
 let noticeBrdListId ="";
 let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
@@ -12,8 +12,7 @@ function showNoticeBrd(){
     $("#kntNoticeBrdWrite").css("display", "none");
     $("#kntNoticeBrdContent").css("display", "none");
     $("#UpdatekntNoticeBrdContent").css("display", "none");
-    $("#kntNoticeBrdCommentListDomain").css("display", "none");
-    $("#kntNoticeBrdCommentDomain").css("display", "none");
+    $("#kntNoticeBrdComment").css("display", "none");
 
     getNoticeBrdList();
 };
@@ -149,7 +148,7 @@ function setNoticeBrdCommentUpdate(){
         }
     });
 }
-//공지사항 댓글 데이터 불러오기
+//공지사항 댓글 목록 데이터 불러오기
 function getNoticeBrdComment(){
     let param = "id=" + noticeBrdListId;
 
@@ -157,6 +156,16 @@ function getNoticeBrdComment(){
         noticeBrdCommentList = result;
 
         showNoticeBrdComment();//공지사항 댓글 리스트 보여주기
+    });
+}
+//공지사항 댓글 내용 데이터 불러오기
+function getNoticeBrdCommentContent(){
+    let param = "id=" + noticeBrdCommentListId;
+
+    requestData("/knt/user/php/main/noticeBrd/getNoticeBrdCommentContent.php", param).done(function(result){
+        noticeBrdCommentContent = result['CMT_CONTENT'];//내용 저장
+
+        showNoticeBrdCommentDomain();//댓글 작성 or 수정 공간 + 버튼 보여주기
     });
 }
 //공지사항 내용 데이터 불러오기
@@ -167,8 +176,7 @@ function getNoticeBrdContent(){
         $("#kntNoticeBrd").css("display", "none");
         $("#kntNoticeBrdWrite").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "block");
-        $("#kntNoticeBrdCommentListDomain").css("display", "block");
-        $("#kntNoticeBrdCommentDomain").css("display", "block");
+        $("#kntNoticeBrdComment").css("display", "block");
         noticeBrdContent = result;
 
         showNoticeBrdContent();//공지사항 내용 보여주기
@@ -234,20 +242,17 @@ function showNoticeBrdList() {
 function showNoticeBrdWrite(){
     let kntNoticeBrdWriteDomainHtml = "";
 
-    kntNoticeBrdWriteDomainHtml += "<label for = 'noticeBrdWriteTitle'>제목</label>";
-    //kntNoticeBrdWriteDomainHtml += "<input type = 'text' id = 'noticeBrdWriteTitle' value = " + noticeBrdContent[0]['BRD_TITLE'] + "><p>";
-    kntNoticeBrdWriteDomainHtml += "<input type = 'text' id = 'noticeBrdWriteTitle'><p>";
-    kntNoticeBrdWriteDomainHtml += "<label for='noticeBrdWriteContent'>내용</label>";
-    //kntNoticeBrdWriteDomainHtml += "<textarea id = 'noticeBrdWriteContent'>" + noticeBrdContent[0]['BRD_CONTENT'] + "</textarea><p>";
-    kntNoticeBrdWriteDomainHtml += "<textarea id = 'noticeBrdWriteContent'></textarea><p>";
-
-    if(ContentWriteOrUpdate == "write"){
-        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
-        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
-    }
-    else{
+    if(ContentWriteOrUpdate == "update"){
+        document.getElementById("noticeBrdWriteTitle").value = noticeBrdContent[0]['BRD_TITLE'];
+        document.getElementById("noticeBrdWriteContent").value = noticeBrdContent[0]['BRD_CONTENT'];
         kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdUpdateBtn'>수정</button>";
         kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdUpdateCancleBtn'>취소</button>";
+    }
+    else{
+        document.getElementById("noticeBrdWriteTitle").value = null;
+        document.getElementById("noticeBrdWriteContent").value = null;
+        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
+        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
     }
 
     $("#kntNoticeBrdWriteDomain").empty().append(kntNoticeBrdWriteDomainHtml);
@@ -295,8 +300,7 @@ function showNoticeBrdContent(){
 
         $("#kntNoticeBrdWrite").css("display", "block");
         $("#kntNoticeBrdContent").css("display", "none");
-        $("#kntNoticeBrdCommentListDomain").css("display", "none");
-        $("#kntNoticeBrdCommentDomain").css("display", "none");
+        $("#kntNoticeBrdComment").css("display", "none");
         
         showNoticeBrdWrite();
     });
@@ -314,7 +318,7 @@ function showNoticeBrdComment(){
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
         noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
         noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
-        noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT']+"</p>";
+        noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
         //if(자기 계정, 관리자)
         noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
         noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
@@ -327,7 +331,7 @@ function showNoticeBrdComment(){
         CommentWriteOrUpdate ="update"
         noticeBrdCommentListId = this.id.substr(24);
 
-        showNoticeBrdCommentDomain();//댓글 작성 or 수정 공간 + 버튼 보여주기
+        getNoticeBrdCommentContent();//공지사항 댓글 내용 데이터 불러오기
     });
     //댓글 삭제 버튼 클릭 시
     $(".noticeBrdCommentListDeleteBtn").off("click").on("click", function(){
@@ -339,16 +343,17 @@ function showNoticeBrdComment(){
 //댓글 작성 or 수정 공간 + 버튼 보여주기
 function showNoticeBrdCommentDomain(){
     let kntNoticeBrdCommentDomainHtml = "";
-    kntNoticeBrdCommentDomainHtml += "<p><textarea id = 'noticeBrdCommentContent' placeholder='댓글을 작성하세요.'></textarea>";
-
+//여기 다시
     if(CommentWriteOrUpdate == "update"){
+        document.getElementById("noticeBrdCommentContent").value = noticeBrdCommentContent;
         kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdCommentUpdateBtn'>댓글 수정</button>";
         kntNoticeBrdCommentDomainHtml += "<button id = 'noticeBrdCommentUpdateBackBtn'>뒤로가기</button>";
     }
     else{
+        document.getElementById("noticeBrdCommentContent").value = null;
         kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdcommentWriteBtn'>댓글 작성</button>";
     }
-    $("#kntNoticeBrdCommentDomain").empty().append(kntNoticeBrdCommentDomainHtml);
+    $("#kntNoticeBrdCommentBtnDomain").empty().append(kntNoticeBrdCommentDomainHtml);
     //댓글 작성 버튼 클릭 시
     $("#noticeBrdcommentWriteBtn").off("click").on("click", function(){
         setNoticeBrdComment();  
