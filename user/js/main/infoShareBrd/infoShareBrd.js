@@ -9,6 +9,7 @@ let infoShareSelectedListId = "";
 let infoShareSelectedCommentId = "";
 
 let infoShareListSize = "";
+let infoShareCommentListSize = "";
 
 let writeOption = "";
 let commentWriteOption = "";
@@ -20,8 +21,8 @@ let commentWriteOption = "";
 // 정보공유 게시판 초기화 함수
 function initInfoShare(){
     $("#infoShareTableDiv").css("display", "block");
-    $("#paging").css("display", "block");
-    
+    $("#infoShareContentPagingDiv").css("display", "block"); 
+
     $("#infoShareContentDiv").css("display", "none");
     $("#infoShareWriteContentFuncDiv").css("display", "none");
 
@@ -34,7 +35,7 @@ function initInfoShare(){
 
 // 정보공유 글 리스트 불러오기
 function getInfoShareList(currentPage) {
-    let param = "currentPage=" + currentPage;
+    let param = "currentPage=" + currentPage + "&dataPerPage=" + 10;
 
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareList.php", param).done(function(result){
         infoShareList = result;
@@ -49,7 +50,7 @@ function getInfoShareListSize() {
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareListSize.php").done(function(result) {
         infoShareListSize = result["COUNT"];
 
-        DrawPaging(infoShareListSize, 10, 1, "infoSharePagingDiv", getInfoShareList);
+        DrawPaging(infoShareListSize, 10, 1, "infoShareContentPagingDiv", getInfoShareList);
     });
 }
 
@@ -86,16 +87,31 @@ function getInfoShareContent() {
 
         // 선택된 글의 id로 데이터 요청
         requestData("/knt/user/php/main/infoShareBrd/getInfoShareContent.php", param).done(function(result){
-            infoShareSelectedContent =  result["CONTENT"];
-            infoShareSelectedContentCommentList = result["COMMENT"];
-
-            $("#infoShareTableDiv").css("display", "none");
-            $("#infoShareContentDiv").css("display", "block");
-            $("#infoShareWriteContentFuncDiv").css("display", "none");
-
+            infoShareSelectedContent =  result[0];
+            
+            getInfoShareCommentListSize();
             drawInfoShareSelectedContent();
-            drawInfoShareSelectedContentComment();
         });
+    });
+}
+
+// 정보공유 선택된 글의 댓글 리스트 전체 데이터 수 불러오기
+function getInfoShareCommentListSize() {
+    let param = "brdId=" + infoShareSelectedListId;
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareCommentListSize.php", param).done(function(result) {
+        infoShareCommentListSize = result["COUNT"];
+
+        DrawPaging(infoShareCommentListSize, 5, 1, "infoShareCommentPagingDiv", getInfoShareCommentList);
+    });
+}
+
+function getInfoShareCommentList(currentPage) {
+    let param = "brdId=" + infoShareSelectedListId + "&currentPage=" + currentPage + "&dataPerPage=" + 5;
+
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareCommentList.php", param).done(function(result) {
+        infoShareSelectedContentCommentList = result;
+
+        drawInfoShareSelectedContentComment(currentPage);
     });
 }
 
@@ -245,7 +261,10 @@ function drawInfoShareList(currentPage) {
 // ADMIN 수정할 것
 // 정보공유 선택된 글 내용 그리기
 function drawInfoShareSelectedContent() {
-    $("#paging").css("display", "none");
+    $("#infoShareTableDiv").css("display", "none");
+    $("#infoShareContentDiv").css("display", "block");
+    $("#infoShareWriteContentFuncDiv").css("display", "none");
+    $("#infoShareContentPagingDiv").css("display", "none");
 
     let infoShareSelectedContentHtml = "";
 
@@ -269,10 +288,10 @@ function drawInfoShareSelectedContent() {
 }
 
 // 정보공유 선택된 글의 댓글 내용 그리기
-function drawInfoShareSelectedContentComment() {
+function drawInfoShareSelectedContentComment(currentPage) {
     let infoShareSelectedContentCommentHtml = "";
     let infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
-    
+
     commentWriteOption = "write";
 
     // 선택된 글의 댓글 목록 그리기
