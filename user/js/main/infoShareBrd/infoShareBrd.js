@@ -6,10 +6,12 @@ let infoShareList = [];
 let infoShareSelectedContent = [];
 let infoShareSelectedContentCommentList = [];
 let infoShareSelectedListId = "";
+let infoShareSelectedCommentId = "";
 
 let infoShareListSize = "";
 
 let writeOption = "";
+let commentWriteOption = "";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////// 함수 ////////////////////////////////////////////////////////////////////////////
@@ -148,11 +150,48 @@ function deleteInfoShareContent() {
 }
 
 function writeInfoShareComment() {
-    let param;
+    // ADMIN 수정
+    // 내용, 작성자, 작성일, 게시판 아이디
+    let content = $("#infoShareWriteCommentTextArea").val();
+    let date = getTimeStamp(new Date());
+    let brdId = infoShareSelectedListId;
+    let param = "content=" + content + "&writer=" + "ADMIN" + "&date=" + date + "&brdId=" + brdId;
+    
+    if(commentWriteOption === "write") {
+        requestData("/knt/user/php/main/infoShareBrd/writeInfoShareComment.php", param).done(function(result){
+            if(result) {
+                alert("작성되었습니다.");
+                getInfoShareContent();
+            } else {
+                alert("작성 실패하였습니다.");
+            }
+        });
+    }
+    else if(commentWriteOption === "update") {
+        param += "&id=" + infoShareSelectedCommentId;
+
+        requestData("/knt/user/php/main/infoShareBrd/updateInfoShareComment.php", param).done(function(result){
+            if(result) {
+                alert("수정되었습니다.");
+                getInfoShareContent();
+            } else {
+                alert("수정 실패하였습니다.");
+            }
+        });
+    }
 }
 
 function deleteInfoShareComment() {
-    let param;
+    let param = "id=" + infoShareSelectedCommentId;
+
+    requestData("/knt/user/php/main/infoShareBrd/deleteInfoShareComment.php", param).done(function(result){
+        if(result) {
+            alert("삭제되었습니다.");
+            getInfoShareContent();
+        } else {
+            alert("삭제 실패하였습니다.");
+        }
+    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,6 +272,8 @@ function drawInfoShareSelectedContent() {
 function drawInfoShareSelectedContentComment() {
     let infoShareSelectedContentCommentHtml = "";
     let infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
+    
+    commentWriteOption = "write";
 
     // 선택된 글의 댓글 목록 그리기
     for(let i = 0; i < infoShareSelectedContentCommentListSize; i++) {
@@ -242,6 +283,7 @@ function drawInfoShareSelectedContentComment() {
 
         // ************************************************ ADMIN 수정
         if(infoShareSelectedContentCommentList[i]["CMT_WRITER"] === "ADMIN") {
+            infoShareSelectedContentCommentHtml += "<button class='infoShareCommentUptBtn'>수정</button>";
 			infoShareSelectedContentCommentHtml += "<button class='infoShareCommentDelBtn'>삭제</button>";
 		}
     }
@@ -251,6 +293,8 @@ function drawInfoShareSelectedContentComment() {
 	infoShareSelectedContentCommentHtml += "<button id='infoShareCommentWriteBtn'>작성</button>";
 
     $("#infoShareSelectedContentCommentDiv").empty().append(infoShareSelectedContentCommentHtml);
+
+    initInfoShareCommentEvent();
 }
 
 // 정보공유 글 작성 부분 그리기
@@ -333,15 +377,56 @@ function initInfoShareWriteContentEvent() {
 }
 
 // 정보공유 글 댓글 작성 이벤트 초기화
-function initInfoShareWriteCommentEvent() {
+function initInfoShareCommentEvent() {
     // 댓글 작성 버튼 클릭 시
     $("#infoShareCommentWriteBtn").off("click").on("click", function(){
-        writeInfoShareComment();
+        if(commentWriteOption === "write") {
+            if(confirm("작성하시겠습니까?")) {
+                writeInfoShareComment();
+            }
+            else {
+                alert("취소되었습니다.");
+            }
+        }
+        else if(commentWriteOption === "update") {
+            if(confirm("수정하시겠습니까?")) {
+                writeInfoShareComment();
+            }
+            else {
+                alert("취소되었습니다.");
+            }
+        }
+    });
+
+    $(".infoShareCommentUptBtn").off("click").on("click", function(){
+        if(confirm("수정하시겠습니까?")) {
+            commentWriteOption = "update";
+            infoShareSelectedCommentId = this.previousElementSibling.id.substr(16);
+
+            $("#infoShareWriteCommentTextArea").val(this.previousElementSibling.innerText.substr(4));
+            $("#infoShareCommentWriteBtn").after("<button id='infoShareUpdateCancel'>취소</button>");
+            
+            // 수정 취소 버튼 클릭 시
+            $("#infoShareUpdateCancel").off("click").on("click", function(){
+                alert("수정 취소되었습니다.");
+                getInfoShareContent();
+            });
+        }
+        else {
+            alert("취소되었습니다.");
+        }  
     });
 
     // 댓글 삭제 버튼 클릭 시
-    $("#infoShareCommentDelBtn").off("click").on("click", function(){
-        deleteInfoShareComment();
+    $(".infoShareCommentDelBtn").off("click").on("click", function(){
+        if(confirm("삭제하시겠습니까?")) {
+            infoShareSelectedCommentId = this.previousElementSibling.previousElementSibling.id.substr(16);
+
+            deleteInfoShareComment();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 }
 
@@ -351,12 +436,7 @@ function initInfoShareWriteCommentEvent() {
 
 /* 
     TODO
-    1. 글 작성 o
-    2. 댓글 작성
-    3. 수정 o
-    4. 삭제 o
-    5. 페이징 oooooooooooo
-    6. 조회수 o
+ 
 
     일단 ID는 ADMIN으로 설정
 */
