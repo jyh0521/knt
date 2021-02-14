@@ -169,6 +169,13 @@ function writeInfoShareComment() {
     // ADMIN 수정
     // 내용, 작성자, 작성일, 게시판 아이디
     let content = $("#infoShareWriteCommentTextArea").val();
+
+    if(content === "") {
+        alert("댓글을 작성해주세요.");
+
+        return false;
+    }
+
     let date = getTimeStamp(new Date());
     let brdId = infoShareSelectedListId;
     let param = "content=" + content + "&writer=" + "ADMIN" + "&date=" + date + "&brdId=" + brdId;
