@@ -3,16 +3,17 @@
 
     $dataPerPage = $_POST['dataPerPage'];
     $startPage = $_POST['currentPage'] * $dataPerPage - $dataPerPage;
+    $brdId = $_POST['brdId'];
 
     $sql = "SELECT R1.*
               FROM (
-                SELECT BRD_ID, BRD_TITLE, BRD_WRITER, BRD_DATE, BRD_HIT
-                  FROM USR_BRD
-                 WHERE BRD_CDE = 'BRD_003'
-                   AND BRD_DISABLE = 'Y'
-                 ORDER BY BRD_DATE DESC
+                SELECT CMT_ID, CMT_CONTENT, CMT_WRITER, CMT_DATE
+                  FROM USR_BRD_CMT
+                 WHERE BRD_ID = '$brdId'
+                   AND CMT_DISABLE = 'Y'
+                 ORDER BY CMT_DATE DESC
               ) R1
-             LIMIT 10 OFFSET $startPage";
+             LIMIT 5 OFFSET $startPage";
 
     $result = mysql_query($sql, $connect);
 
@@ -20,11 +21,10 @@
 
     while($row = mysql_fetch_array($result)) {
         $tmp = array(
-            'BRD_ID' => $row['BRD_ID'],
-            'BRD_TITLE' => $row['BRD_TITLE'],
-            'BRD_WRITER' => $row['BRD_WRITER'],
-            'BRD_DATE' => $row['BRD_DATE'],
-            'BRD_HIT' => $row['BRD_HIT'],
+            'CMT_ID' => $row['CMT_ID'],
+            'CMT_CONTENT' => $row['CMT_CONTENT'],
+            'CMT_WRITER' => $row['CMT_WRITER'],
+            'CMT_DATE' => $row['CMT_DATE']
         );
 
         array_push($value, $tmp);

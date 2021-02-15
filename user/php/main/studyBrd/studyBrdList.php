@@ -1,8 +1,10 @@
 <?php
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
+    $brd = $_POST['brd'];
+
     $sql = "SELECT * FROM USR_BRD
-            WHERE BRD_CDE = 'STD_002'
+            WHERE BRD_CDE = '$brd'
             AND BRD_DISABLE = 'Y'";
 
     $result = mysql_query($sql, $connect);
