@@ -9,21 +9,10 @@
     $result = mysql_query($sql, $connect);
     $row = mysql_fetch_array($result);
 
-
-
     if($row["USR_CNT"] == 1){
-        // $value = array(
-        //     array(
-        //         'USR_ID'=>$row['USR_ID'],
-        //         'USR_PW'=>$row['USR_PW']
-        //     )
-        // );
-        // echo json_encode($value);
         $value = true;
-
     }
     else{
-        // echo json_encode($row); 
         $value = false;
     }
 
