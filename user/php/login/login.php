@@ -17,6 +17,5 @@
     }
 
     echo json_encode($value);
-
     mysql_close($connect);
 ?>

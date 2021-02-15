@@ -19,8 +19,7 @@ else {
             inputSuccess();
         }
     }
-
-    function inputSuccess() {
+ function inputSuccess() {
         var id = $("#id").val();
         var pw = $("#pw").val();
 
@@ -32,10 +31,12 @@ else {
             }
             else {
                 alert("로그인에 성공하였습니다.");
-                session.setAttribute("signedUser", id);
+                sessionStorage.setItem("signedUser", id);
                 location.replace('/knt/user/html/main/main.html');
             }
         });
 
     }
 }
+
+   

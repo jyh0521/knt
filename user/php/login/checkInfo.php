@@ -4,7 +4,7 @@
     $id = $_POST['id'];
     $pw = $_POST['pw'];
 
-    $sql = "SELECT * FROM USR_INFO WHERE USR_ID = '{$id}'";
+    $sql = "SELECT * FROM USR_INF WHERE USR_ID = '{$id}'";
 
     $result = mysql_query($sql, $connect);
     $row = mysql_fetch_array($result);
