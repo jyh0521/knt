@@ -2,9 +2,10 @@
 let studyGroup = ""; //클릭한 스터디 그룹명 저장
 let studyEdit = "";
 
-let studyList = [];
+let studyContentList = [];
 let studyListId = "";
 let studyContentOfWriting = [];
+let studyCommentList = [];
 
 
 
@@ -33,7 +34,7 @@ $("#studycBtn").off("click").on("click", function(){
 //study a 게시물 목록 보여주기
 function initStudyGroupABoard(){
     $("#studyTable").css("display", "block");
-    $("#studyContentOfWriting").css("display", "none");
+    $("#studyContent").css("display", "none");
     $("#studyWriting").css("display", "none");
 
     getStudyList();
@@ -41,7 +42,7 @@ function initStudyGroupABoard(){
 //study b 게시물 목록 보여주기
 function initStudyGroupBBoard(){
     $("#studyTable").css("display", "block");
-    $("#studyContentOfWriting").css("display", "none");
+    $("#studyContent").css("display", "none");
     $("#studyWriting").css("display", "none");
 
     getStudyList();
@@ -49,7 +50,7 @@ function initStudyGroupBBoard(){
 //study c 게시물 목록 보여주기
 function initStudyGroupCBoard(){
     $("#studyTable").css("display", "block");
-    $("#studyContentOfWriting").css("display", "none");
+    $("#studyContent").css("display", "none");
     $("#studyWriting").css("display", "none");
 
     getStudyList();
@@ -60,7 +61,7 @@ function getStudyList() {
     let param = "brd=" + studyGroup;
 
     requestData("/knt/user/php/main/studyBrd/studyBrdList.php", param).done(function(result){
-        studyList = result;
+        studyContentList = result;
 
         showStudyTable();
         showStudyList();
@@ -128,6 +129,23 @@ function updateStudyContent() {
     });
 }
 
+//댓글 리스트 불러오기
+function getStudyCommentList() {
+    let param = "brdId=" + studyListId;
+
+    requestData("/knt/user/php/main/studyBrd/getStudyCommentList.php", param).done(function(result){
+        studyCommentList = result;
+
+        showStudyComment();
+        setStudyComment();
+    });
+}
+
+//댓글 작성
+function writeStudyComment() {
+    //let param = 
+}
+
 //study 테이블
 function showStudyTable() {
     let studyTableHtml = "";
@@ -152,7 +170,7 @@ function showStudyTable() {
     //study 글쓰기 버튼 클릭
     $("#studyWriteBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "none");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "block");
 
         studyEdit = "off";
@@ -162,27 +180,27 @@ function showStudyTable() {
 
 //study 게시물 리스트
 function showStudyList() {
-    let studyListHtml = "";
-    let studyListLength = studyList.length;
+    let studyContentListHtml = "";
+    let studyContentListLength = studyContentList.length;
 
-    for(let i=0; i<studyListLength; i++) {
-        studyListHtml +=   "<tr>";
-        studyListHtml +=       "<td>" + (i+1) + "</td>";
-        studyListHtml +=       "<td class='studyTitleBtn' id='studyListId" + studyList[i]['BRD_ID'] + "'>" + studyList[i]['BRD_TITLE'] + "</td>";
-        studyListHtml +=       "<td>" + studyList[i]['BRD_WRITER'] + "</td>";
-        studyListHtml +=       "<td>" + studyList[i]['BRD_DATE'] + "</td>";
-        studyListHtml +=       "<td>" + studyList[i]['BRD_HIT'] + "</td>";
-        studyListHtml +=   "</tr>";
+    for(let i=0; i<studyContentListLength; i++) {
+        studyContentListHtml +=   "<tr>";
+        studyContentListHtml +=       "<td>" + (i+1) + "</td>";
+        studyContentListHtml +=       "<td class='studyTitleBtn' id='studyListId" + studyContentList[i]['BRD_ID'] + "'>" + studyContentList[i]['BRD_TITLE'] + "</td>";
+        studyContentListHtml +=       "<td>" + studyContentList[i]['BRD_WRITER'] + "</td>";
+        studyContentListHtml +=       "<td>" + studyContentList[i]['BRD_DATE'] + "</td>";
+        studyContentListHtml +=       "<td>" + studyContentList[i]['BRD_HIT'] + "</td>";
+        studyContentListHtml +=   "</tr>";
     }
 
-    $("#studytbody").empty().append(studyListHtml);
+    $("#studytbody").empty().append(studyContentListHtml);
 
     //study 리스트 제목 클릭
     $(".studyTitleBtn").off("click").on("click", function(){
         studyListId = this.id.substr(11);
 
         $("#studyTable").css("display", "none");
-        $("#studyContentOfWriting").css("display", "block");
+        $("#studyContent").css("display", "block");
         $("#studyWriting").css("display", "none");
 
         getStudyContentOfWriting();
@@ -215,14 +233,13 @@ function setStudyContent() {
         setStudyContentHtml += "</p>";
     }
     
-
     $("#studyWriting").empty().append(setStudyContentHtml);
 
     //작성 버튼 클릭 시
     $("#writeStudyContentBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
         $("#studyWriting").css("display", "none");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
 
         writeStudyContent();
         getStudyList();
@@ -232,20 +249,21 @@ function setStudyContent() {
     $("#cancelStudyContentBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
         $("#studyWriting").css("display", "none");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
 
         getStudyList();
     });
 
     //수정 버튼 클릭 시
     $("#editStudyContentBtn").off("click").on("click", function(){
+        updateStudyContent();
+
         $("#studyTable").css("display", "none");
         $("#studyWriting").css("display", "none");
-        $("#studyContentOfWriting").css("display", "block");
-
-        updateStudyContent();
+        $("#studyContent").css("display", "block");
+        
         getStudyContentOfWriting();
-    })
+    });
 }
 
 //study a 선택한 글 보여주기
@@ -273,12 +291,14 @@ function showStudyContentOfWriting() {
     showStudyContentOfWritingHtml +=   "<button id='studyDeleteBtn'>삭제</button>";
     showStudyContentOfWritingHtml += "</p>";
 
-    $("#studyContentOfWriting").empty().append(showStudyContentOfWritingHtml);
+    $("#studyBrdContent").empty().append(showStudyContentOfWritingHtml);
+
+    getStudyCommentList();
 
     //목록 버튼 클릭 시
     $("#showStudyTableBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "none");
 
         getStudyList();
@@ -287,7 +307,7 @@ function showStudyContentOfWriting() {
     //수정 버튼 클릭 시
     $("#studyEditBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "none");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "block");
 
         studyEdit = "on";
@@ -300,10 +320,52 @@ function showStudyContentOfWriting() {
     //삭제 버튼 클릭 시
     $("#studyDeleteBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
-        $("#studyContentOfWriting").css("display", "none");
+        $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "none");
 
         deleteStudyContent();
         getStudyList();
+    });
+}
+
+//댓글 리스트 보여주기
+function showStudyComment() {
+    let showStudyCommentHtml = "";
+    let showStudyCommentLength = studyCommentList.length;
+
+    for(let i=0; i<showStudyCommentLength; i++) {
+        showStudyCommentHtml += "<table>";
+        showStudyCommentHtml +=     "<tr>";
+        showStudyCommentHtml +=         "<td>작성자 " + studyCommentList[i]['CMT_WRITER'] + "</td>";
+        showStudyCommentHtml +=         "<td>작성일자 " + studyCommentList[i]['CMT_DATE'] + "</td>";
+        showStudyCommentHtml +=     "</tr>";
+        showStudyCommentHtml +=     "<tr>";
+        showStudyCommentHtml +=         "<td colspan='2'>" + studyCommentList[i]['CMT_CONTENT'] + "</td>";
+        showStudyCommentHtml +=         "<button id='studyCommentEditBtn'>수정</button>";
+        showStudyCommentHtml +=         "<button id='studyCommentDeleteBtn'>삭제</button>";
+        showStudyCommentHtml +=     "</tr>";
+    }
+
+    $("#studyBrdComment").empty().append(setStudyCommentHtml);
+
+    //댓글 작성
+    setStudyComment();
+}
+
+//댓글 작성
+function setStudyComment() {
+    let setStudyCommentHtml = "";
+
+    setStudyCommentHtml += "<p>";
+    setStudyCommentHtml +=     "<label for='writeStudyComment'>댓글</label>";
+    setStudyCommentHtml +=     "<textarea id='writeStudyComment' cols='10' rows='2'></textarea>";
+    setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
+    setStudyCommentHtml += "</p>";
+
+    $("#studyBrdComment").empty().append(setStudyCommentHtml);
+
+    //댓글 작성 버튼 클릭 시
+    $("#writeStudyCommentBtn").off("click").on("click", function(){
+        writeStudyComment();
     });
 }
