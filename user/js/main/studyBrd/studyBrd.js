@@ -1,5 +1,6 @@
 
 let studyGroup = ""; //클릭한 스터디 그룹명 저장
+let studyEdit = "";
 
 let studyList = [];
 let studyListId = "";
@@ -72,7 +73,7 @@ function writeStudyContent() {
     let content = $("#writeStudyContentText").val();
     let date = getTimeStamp(new Date());
 
-    let param = "brd=" + studyGroup + "&id=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date;
+    let param = "brd=" + studyGroup + "&writer=" + "ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date;
 
     requestData("/knt/user/php/main/studyBrd/writeStudyContent.php", param).done(function(result){
         if(result === true) {
@@ -109,10 +110,10 @@ function deleteStudyContent() {
     });
 }
 
-//수정 내용 저장
+//게시물 수정 내용 저장
 function updateStudyContent() {
     let title = $("#writeStudyContentTitle").val();
-    let content = $("#writeStudyContetntText").val();
+    let content = $("#writeStudyContentText").val();
     let date = getTimeStamp(new Date());
     
     let param = "brdId=" + studyListId + "&title=" + title + "&content=" + content + "&date=" + date;
@@ -154,6 +155,7 @@ function showStudyTable() {
         $("#studyContentOfWriting").css("display", "none");
         $("#studyWriting").css("display", "block");
 
+        studyEdit = "off";
         setStudyContent();
     });
 }
@@ -199,10 +201,20 @@ function setStudyContent() {
     setStudyContentHtml +=   "<label for='wirteStudyContentText'>내용</label>";
     setStudyContentHtml +=   "<textarea id='writeStudyContentText' cols='50' rows='10'></textarea>";
     setStudyContentHtml += "</p>";
-    setStudyContentHtml += "<p>";
-    setStudyContentHtml +=    "<button id='writeStudyContentBtn'>작성</button>";
-    setStudyContentHtml +=    "<button id='cancelStudyContentBtn'>취소</button>";
-    setStudyContentHtml += "</p>";
+    
+    if(studyEdit === "on") {
+        setStudyContentHtml += "<p>";
+        setStudyContentHtml +=    "<button id='editStudyContentBtn'>수정</button>";
+        setStudyContentHtml +=    "<button id='cancelStudyContentBtn'>취소</button>";
+        setStudyContentHtml += "</p>";
+    }
+    else {
+        setStudyContentHtml += "<p>";
+        setStudyContentHtml +=    "<button id='writeStudyContentBtn'>작성</button>";
+        setStudyContentHtml +=    "<button id='cancelStudyContentBtn'>취소</button>";
+        setStudyContentHtml += "</p>";
+    }
+    
 
     $("#studyWriting").empty().append(setStudyContentHtml);
 
@@ -213,6 +225,7 @@ function setStudyContent() {
         $("#studyContentOfWriting").css("display", "none");
 
         writeStudyContent();
+        getStudyList();
     });
 
     //취소 버튼 클릭 시
@@ -220,7 +233,19 @@ function setStudyContent() {
         $("#studyTable").css("display", "block");
         $("#studyWriting").css("display", "none");
         $("#studyContentOfWriting").css("display", "none");
+
+        getStudyList();
     });
+
+    //수정 버튼 클릭 시
+    $("#editStudyContentBtn").off("click").on("click", function(){
+        $("#studyTable").css("display", "none");
+        $("#studyWriting").css("display", "none");
+        $("#studyContentOfWriting").css("display", "block");
+
+        updateStudyContent();
+        getStudyContentOfWriting();
+    })
 }
 
 //study a 선택한 글 보여주기
@@ -255,15 +280,21 @@ function showStudyContentOfWriting() {
         $("#studyTable").css("display", "block");
         $("#studyContentOfWriting").css("display", "none");
         $("#studyWriting").css("display", "none");
+
+        getStudyList();
     });
 
     //수정 버튼 클릭 시
     $("#studyEditBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "none");
-        $("studyContentOfWriting").css("display", "block");
-        $("#studyWriting").css("display", "none");
+        $("#studyContentOfWriting").css("display", "none");
+        $("#studyWriting").css("display", "block");
 
-        updateStudyContent();
+        studyEdit = "on";
+        setStudyContent();
+
+        $("#writeStudyContentTitle").val(studyContentOfWriting[0]['BRD_TITLE']);
+        $("#writeStudyContentText").val(studyContentOfWriting[0]['BRD_CONTENT']);
     });
 
     //삭제 버튼 클릭 시
