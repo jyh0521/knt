@@ -6,6 +6,7 @@ let studyContentList = [];
 let studyListId = "";
 let studyContentOfWriting = [];
 let studyCommentList = [];
+let studyCommentListId = "";
 
 
 
@@ -153,7 +154,21 @@ function writeStudyComment() {
         else {
             alert("오류");
         }
-    })
+    });
+}
+
+//댓글 삭제
+function deleteStudyComment() {
+    let param = "cmtId=" + studyCommentListId;
+
+    requestData("/knt/user/php/main/studyBrd/deleteStudyComment.php", param).done(function(result){
+        if(result === true) {
+            alert("댓글이 삭제되었습니다.");
+        }
+        else {
+            alert("오류");
+        }
+    });
 }
 
 //study 테이블
@@ -354,23 +369,34 @@ function showStudyCommentList() {
         showStudyCommentListHtml +=         "<td colspan='2'>" + studyCommentList[i]['CMT_CONTENT'] + "</td>";
         showStudyCommentListHtml +=     "</tr>";
         showStudyCommentListHtml += "</table>";
-        showStudyCommentListHtml += "<button id='studyCommentEditBtn'>수정</button>";
-        showStudyCommentListHtml += "<button id='studyCommentDeleteBtn'>삭제</button>";
+        showStudyCommentListHtml += "<button class='studyCommentEditBtn' id='studyCommentEdit" + studyCommentList[i]['CMT_ID'] + "'>수정</button>";
+        showStudyCommentListHtml += "<button class='studyCommentDeleteBtn' id='studyCommentDelete" + studyCommentList[i]['CMT_ID'] + "'>삭제</button>";
     }
 
     $("#studyBrdComment").empty().append(showStudyCommentListHtml);
 
     //댓글 작성
     setStudyComment();
+
+    //댓글 수정버튼 클릭 시
+
+
+    //댓글 삭제버튼 클릭 시
+    $(".studyCommentDeleteBtn").off("click").on("click", function(){
+        studyCommentListId = this.id.substr(18);
+
+        deleteStudyComment();
+        getStudyCommentList();
+    })
 }
 
 //댓글 작성
 function setStudyComment() {
     let setStudyCommentHtml = "";
 
+    setStudyCommentHtml += "<p>" + "<label for='writeStudyComment'>댓글▽</label>" + "</p>";
     setStudyCommentHtml += "<p>";
-    setStudyCommentHtml +=     "<label for='writeStudyComment'>댓글</label>";
-    setStudyCommentHtml +=     "<textarea id='writeStudyComment' cols='30' rows='2'></textarea>";
+    setStudyCommentHtml +=     "<textarea id='writeStudyComment' cols='35' rows='2'></textarea>";
     setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
     setStudyCommentHtml += "</p>";
 
