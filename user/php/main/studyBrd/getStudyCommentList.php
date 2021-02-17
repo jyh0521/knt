@@ -13,7 +13,7 @@
     while($row = mysql_fetch_array($result)) {
         $tmp = array(
             'CMT_ID' => $row['CMT_ID'],
-            'CMT_COMMENT' => $row['CMT_COMMENT'],
+            'CMT_CONTENT' => $row['CMT_CONTENT'],
             'CMT_WRITER' => $row['CMT_WRITER'],
             'CMT_DATE' => $row['CMT_DATE']
         );
