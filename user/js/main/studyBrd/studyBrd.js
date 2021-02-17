@@ -1,6 +1,7 @@
 
 let studyGroup = ""; //클릭한 스터디 그룹명 저장
-let studyEdit = "";
+let studyEdit = ""; //게시물 수정 여부
+let studyCmtEdit = ""; //댓글 수정 여부
 
 let studyContentList = [];
 let studyListId = "";
@@ -164,6 +165,23 @@ function deleteStudyComment() {
     requestData("/knt/user/php/main/studyBrd/deleteStudyComment.php", param).done(function(result){
         if(result === true) {
             alert("댓글이 삭제되었습니다.");
+        }
+        else {
+            alert("오류");
+        }
+    });
+}
+
+//댓글 수정
+function updateStudyComment() {
+    let comment = $("#writestudyComment").val();
+    let date = getTimeStamp(new Date());
+
+    let param = "cmtId=" + studyCommentListId + "&comment=" + comment + "&date=" + date;
+
+    requestData("/knt/user/php/main/studyBrd/updateStudyComment.php", param).done(function(result){
+        if(result === true) {
+            alert("댓글이 수정되었습니다.");
         }
         else {
             alert("오류");
@@ -379,7 +397,14 @@ function showStudyCommentList() {
     setStudyComment();
 
     //댓글 수정버튼 클릭 시
+    $(".studyCommentEditBtn").off("click").on("click", function(){
+        studyCommentListId = this.id.substr(16);
 
+        studyCmtEdit = "on";
+        setStudyComment();
+
+        $("#writeStudyComment").val(studyCommentList[i]['CMT_CONTENT']);
+    })
 
     //댓글 삭제버튼 클릭 시
     $(".studyCommentDeleteBtn").off("click").on("click", function(){
@@ -394,11 +419,18 @@ function showStudyCommentList() {
 function setStudyComment() {
     let setStudyCommentHtml = "";
 
-    setStudyCommentHtml += "<p>" + "<label for='writeStudyComment'>댓글▽</label>" + "</p>";
+    setStudyCommentHtml += "<p>" + "<label for='writeStudyComment'>댓글작성▽</label>" + "</p>";
     setStudyCommentHtml += "<p>";
     setStudyCommentHtml +=     "<textarea id='writeStudyComment' cols='35' rows='2'></textarea>";
-    setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
-    setStudyCommentHtml += "</p>";
+    
+    if(studyCmtEdit === "on") {
+        setStudyCommentHtml +=     "<button id='editStudyCommentBtn'>수정</button>";
+        setStudyCommentHtml += "</p>";
+    }
+    else {
+        setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
+        setStudyCommentHtml += "</p>";
+    }
 
     $("#studyBrdWriteComment").empty().append(setStudyCommentHtml);
 
@@ -411,4 +443,14 @@ function setStudyComment() {
         writeStudyComment();
         getStudyCommentList();
     });
+
+    //댓글 수정 버튼 클릭 시
+    $("#editStudyCommentBtn").off("click").on("click", function(){
+        $("#studyTable").css("display", "none");
+        $("#studyWriting").css("display", "none");
+        $("#studyContent").css("display", "block");
+
+        updateStudyComment();
+        getStudyCommentList();
+    })
 }
