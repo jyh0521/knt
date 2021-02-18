@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER["DOCUMENT_ROOT"]."knt/lib/php/connectDB.php";
+    include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
     $cmtId = $_POST['cmtId'];
     $comment = $_POST['comment'];
