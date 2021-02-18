@@ -6,7 +6,17 @@ let noticeBrdContentListId ="";
 let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
-
+/*
+페이징 차 근 차 근
+전체 데이터 수를 불러온다.
+DrawPaging totalData에 넘김
+divId -> kntNoticeBrdPagingArea
+callback -> 페이지 목록 생성 후, 현재 페이지를 받고 실행할 함수
+현재 페이지를 받는 이유? -> 쿼리로 현재 페이지에 해당하는 데이터를 불러와야함
+목록 데이터를 불러오는데 필요한 파라미터 변수 -> startrow와 endrow가 필요(endrow는 10)
+쿼리문 작성(구글링 해보기)
+10개의 목록을 들고온다.
+*/
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
     $("#kntNoticeBrdWrite").css("display", "none");
@@ -14,11 +24,22 @@ function showNoticeBrd(){
     $("#UpdatekntNoticeBrdContent").css("display", "none");
     $("#kntNoticeBrdComment").css("display", "none");
 
-    getNoticeBrdList();
+    getNoticeBrdListCount();
 };
+//목록 전체 데이터 수 불러오기 
+function getNoticeBrdListCount(){
+    requestData("/knt/user/php/main/noticeBrd/getNoticeBrdListCount.php").done(function(result){
+        let noticeBrdListCount = String(result);//공지사항 목록 총 데이터 수
+        DrawPaging(noticeBrdListCount, 10, 1, "kntNoticeBrdPagingArea",  getNoticeBrdList);
+        //페이징 함수 호출 후 getNoticeBrdList로 현재 페이지를 들고 호출
+    });
+}
 //공지사항 목록 데이터 불러오기
-function getNoticeBrdList(){
-    requestData("/knt/user/php/main/noticeBrd/getNoticeList.php").done(function(result){
+function getNoticeBrdList(currentPage){
+    let startrow = (currentPage - 1) * 10;
+    //let endrow = "";
+    let param = "startrow=" + startrow;
+    requestData("/knt/user/php/main/noticeBrd/getNoticeList.php", param).done(function(result){
         noticeBrdList = result;
 
         showNoticeBrdTable();
@@ -368,6 +389,7 @@ function showNoticeBrdCommentDomain(){
         getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
     });
 }
+
 
 
 
