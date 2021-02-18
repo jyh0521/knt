@@ -8,6 +8,7 @@ let studyListId = "";
 let studyContentOfWriting = [];
 let studyCommentList = [];
 let studyCommentListId = "";
+let studyComment = [];
 
 
 
@@ -158,6 +159,18 @@ function writeStudyComment() {
     });
 }
 
+//댓글 내용 불러오기
+function getStudyComment() {
+    let param = "cmtId=" + studyCommentListId;
+
+    requestData("/knt/user/php/main/studyBrd/getStudyComment.php", param).done(function(result){
+        studyComment = result;
+
+        setStudyComment();
+        $("#writeStudyComment").val(studyComment['CMT_CONTENT']);
+    });
+}
+
 //댓글 삭제
 function deleteStudyComment() {
     let param = "cmtId=" + studyCommentListId;
@@ -172,9 +185,9 @@ function deleteStudyComment() {
     });
 }
 
-//댓글 수정
+//댓글 수정내용 저장
 function updateStudyComment() {
-    let comment = $("#writestudyComment").val();
+    let comment = $("#writeStudyComment").val();
     let date = getTimeStamp(new Date());
 
     let param = "cmtId=" + studyCommentListId + "&comment=" + comment + "&date=" + date;
@@ -290,14 +303,14 @@ function setStudyContent() {
 
     //취소 버튼 클릭 시
     $("#cancelStudyContentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "block");
+        $("#studyTable").css("display", "none");
         $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "none");
+        $("#studyContent").css("display", "block");
 
-        getStudyList();
+        showStudyContentOfWriting();
     });
 
-    //수정 버튼 클릭 시
+    //수정완료 버튼 클릭 시
     $("#editStudyContentBtn").off("click").on("click", function(){
         updateStudyContent();
 
@@ -377,7 +390,8 @@ function showStudyCommentList() {
     let showStudyCommentListHtml = "";
     let showStudyCommentListLength = studyCommentList.length;
 
-    for(let i=0; i<showStudyCommentListLength; i++) {
+    let i;
+    for(i=0; i<showStudyCommentListLength; i++) {
         showStudyCommentListHtml += "<table>";
         showStudyCommentListHtml +=     "<tr>";
         showStudyCommentListHtml +=         "<td>작성자 " + studyCommentList[i]['CMT_WRITER'] + "</td>";
@@ -401,10 +415,8 @@ function showStudyCommentList() {
         studyCommentListId = this.id.substr(16);
 
         studyCmtEdit = "on";
-        setStudyComment();
-
-        $("#writeStudyComment").val(studyCommentList[i]['CMT_CONTENT']);
-    })
+        getStudyComment();
+    });
 
     //댓글 삭제버튼 클릭 시
     $(".studyCommentDeleteBtn").off("click").on("click", function(){
@@ -412,7 +424,7 @@ function showStudyCommentList() {
 
         deleteStudyComment();
         getStudyCommentList();
-    })
+    });
 }
 
 //댓글 작성
@@ -425,32 +437,38 @@ function setStudyComment() {
     
     if(studyCmtEdit === "on") {
         setStudyCommentHtml +=     "<button id='editStudyCommentBtn'>수정</button>";
+        setStudyCommentHtml +=     "<button id='cancelStudyCommentBtn'>취소</button>";
         setStudyCommentHtml += "</p>";
     }
     else {
         setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
         setStudyCommentHtml += "</p>";
     }
-
+    
     $("#studyBrdWriteComment").empty().append(setStudyCommentHtml);
 
     //댓글 작성 버튼 클릭 시
     $("#writeStudyCommentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "block");
+        studyCmtEdit = "off";
 
         writeStudyComment();
         getStudyCommentList();
+        getStudyContentOfWriting();
     });
 
-    //댓글 수정 버튼 클릭 시
+    //수정 완료 버튼 클릭 시
     $("#editStudyCommentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "block");
+        studyCmtEdit = "off";
 
         updateStudyComment();
         getStudyCommentList();
-    })
+        getStudyContentOfWriting();
+    });
+
+    //댓글 수정 취소 버튼 클릭 시
+    $("#cancelStudyCommentBtn").off("click").on("click", function(){
+        studyCmtEdit = "off";
+
+        getStudyCommentList();
+    });
 }
