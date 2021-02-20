@@ -2,8 +2,9 @@
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
     $id = $_POST['id'];
+    $startrow = $_POST['startrow'];
 
-    $sql = "SELECT * FROM USR_BRD_CMT WHERE BRD_ID = '$id' AND CMT_DISABLE = 'Y'"; 
+    $sql = "SELECT * FROM USR_BRD_CMT WHERE BRD_ID = '$id' AND CMT_DISABLE = 'Y' ORDER BY CMT_DATE ASC LIMIT $startrow,5"; 
 
     $result = mysql_query($sql, $connect);
 

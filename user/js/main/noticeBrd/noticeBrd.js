@@ -37,7 +37,6 @@ function getNoticeBrdListCount(){
 //공지사항 목록 데이터 불러오기
 function getNoticeBrdList(currentPage){
     let startrow = (currentPage - 1) * 10;
-    //let endrow = "";
     let param = "startrow=" + startrow;
     requestData("/knt/user/php/main/noticeBrd/getNoticeList.php", param).done(function(result){
         noticeBrdList = result;
@@ -108,7 +107,7 @@ function setNoticeBrdCommentDelete(){
         if(result){
             alert("댓글이 삭제 되었습니다.");
                 
-            getNoticeBrdComment();
+            getNoticeBrdCommentListCount();
         }
         else{
             alert("삭제 실패");
@@ -126,7 +125,7 @@ function setNoticeBrdComment(){
         if(result){
             alert("댓글이 작성되었습니다.");
 
-            getNoticeBrdComment();//댓글 데이터 불러오기
+            getNoticeBrdCommentListCount();//댓글 데이터 불러오기
         }
         else{
             alert("댓글이 작성되지 않았습니다.");
@@ -162,21 +161,11 @@ function setNoticeBrdCommentUpdate(){
             CommentWriteOrUpdate = "write"
             $("#kntNoticeBrdCommentListDomain").css("display", "block");
 
-            getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
+            getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
         }
         else{
             alert("댓글 수정 실패");
         }
-    });
-}
-//공지사항 댓글 목록 데이터 불러오기
-function getNoticeBrdComment(){
-    let param = "id=" + noticeBrdContentListId;
-
-    requestData("/knt/user/php/main/noticeBrd/getNoticeCommentList.php", param).done(function(result){
-        noticeBrdCommentList = result;
-
-        showNoticeBrdComment();//공지사항 댓글 리스트 보여주기
     });
 }
 //공지사항 댓글 내용 데이터 불러오기
@@ -201,6 +190,29 @@ function getNoticeBrdContent(){
         noticeBrdContent = result;
 
         showNoticeBrdContent();//공지사항 내용 보여주기
+    });
+}
+
+//공지사항 댓글 총 데이터 수 불러오기
+function getNoticeBrdCommentListCount(){
+    let param = "id=" + noticeBrdContentListId;
+
+    requestData("/knt/user/php/main/noticeBrd/getNoticeBrdCommentListCount.php",param).done(function(result){
+        let noticeBrdCommentListCount = String(result);//공지사항 댓글 총 데이터 수
+        DrawPaging(noticeBrdCommentListCount, 5, 1, "kntNoticeBrdCommentPagingArea",  getNoticeBrdComment);
+        //페이징 함수 호출 후 getNoticeBrdComment로 현재 페이지를 들고 호출
+    });
+}
+
+//공지사항 댓글 목록 데이터 불러오기
+function getNoticeBrdComment(currentPage){
+    let startrow = (currentPage - 1) * 5;
+    let param = "id=" + noticeBrdContentListId + "&startrow=" + startrow;
+
+    requestData("/knt/user/php/main/noticeBrd/getNoticeCommentList.php", param).done(function(result){
+        noticeBrdCommentList = result;
+
+        showNoticeBrdComment();//공지사항 댓글 리스트 보여주기
     });
 }
 function showNoticeBrdTable(){
@@ -310,7 +322,9 @@ function showNoticeBrdContent(){
     //}
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
-    getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
+    getNoticeBrdCommentListCount();//공지사항 댓글 총 데이터 수 불러오기
+    //getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
+    
     //목록 버튼 클릭 시(뒤로가기)
     $("#noticeContentBackBtn").off("click").on("click", function(){
         showNoticeBrd();
@@ -386,7 +400,7 @@ function showNoticeBrdCommentDomain(){
     //뒤로가기 버튼 클릭 시
     $("#noticeBrdCommentUpdateBackBtn").off("click").on("click", function(){
         CommentWriteOrUpdate ="write";
-        getNoticeBrdComment();//공지사항 댓글 데이터 불러오기
+        getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
 
