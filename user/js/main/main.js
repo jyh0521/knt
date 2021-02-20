@@ -1,7 +1,7 @@
 //세션값 확인 후 인증 세션이 없으면, 해당페이지 확인 불가. LOGIN.HTML로 이동
-if (session.getAttribute("signedUser") == null) {
-    response.sendRedirect("login.html");
-}
+//if (session.getAttribute("signedUser") == null) {
+//    response.sendRedirect("login.html");
+//}
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
