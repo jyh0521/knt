@@ -1,6 +1,8 @@
 <?
     include $_SERVER["DOCUMENT_ROOT"]."/lib/php/connectDB.php";
 
+    
+
     $id = $_POST['id'];
     $pw = $_POST['pw'];
 

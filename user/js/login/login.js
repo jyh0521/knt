@@ -19,6 +19,7 @@ else {
             inputSuccess();
         }
     }
+
  function inputSuccess() {
         var id = $("#id").val();
         var pw = $("#pw").val();

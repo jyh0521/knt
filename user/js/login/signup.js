@@ -3,6 +3,7 @@ var idcheck_btn = false;
 $("#idcheck").off("click").on("click", function () {
     idCheck();
 });
+
 $("#signupBtn").off("click").on("click", function () {
     signUpCheck();
 });
@@ -11,7 +12,7 @@ function idCheck() {
     var id = $("#id").val();
     var param = "id=" + id;
     $.ajax({
-        url: "idcheck.php",
+        url: "/knt/user/php/login/idcheck.php",
         type: "post",
         data: param,
     }).done(function (result) {
@@ -22,10 +23,10 @@ function idCheck() {
         else {
             alert("중복된 아이디입니다. 다시 입력");
             id.value = "";
-            id.focus();
         }
     });
 }
+
 
 function signUpCheck() {
     var id = $("#id").val();
@@ -65,4 +66,3 @@ function inputSuccess() {
         location.replace('/knt/user/html/login/login.html');
     });
 }
-
