@@ -55,10 +55,15 @@ function signUpCheck() {
 
 function inputSuccess() {
     var id = $("#id").val();
+    var sid = $("#sid").val();
+    var name = $("#name").val();
+    var phone = $("#phone").val();
+    var date = getTodayDate();
     var pw = $("#pw").val();
-    var param = "id=" + id + "&pw=" + pw;
+    
+    var param = "id=" + id + "sid=" + sid + "name=" + name + "phone=" + phone + "&pw=" + pw + "date=" + date;
     $.ajax({
-        url: "signup.php",
+        url: "/knt/user/php/login/signup.php",
         type: "post",
         data: param,
     }).done(function () {
