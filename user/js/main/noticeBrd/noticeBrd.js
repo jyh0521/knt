@@ -91,7 +91,6 @@ function setNoticeBrdContentDelete(){
             alert("삭제 되었습니다.");
 
             deleteNoticeBrdAllComment(); //공지사항 내용 관련 댓글 데이터 모두 삭제
-            showNoticeBrd();
         }
         else{
             alert("삭제 실패");
