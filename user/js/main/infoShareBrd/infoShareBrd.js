@@ -33,6 +33,15 @@ function initInfoShare(){
 ////////////////////////////////////////////////////////////////////////// 데이터 불러오기 //////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// 정보공유 글 리스트 전체 데이터 수 불러오기
+function getInfoShareListSize() {
+    requestData("/knt/user/php/main/infoShareBrd/getInfoShareListSize.php").done(function(result) {
+        infoShareListSize = result["COUNT"];
+
+        DrawPaging(infoShareListSize, 10, 1, "infoShareContentPagingDiv", getInfoShareList);
+    });
+}
+
 // 정보공유 글 리스트 불러오기
 function getInfoShareList(currentPage) {
     let param = "currentPage=" + currentPage + "&dataPerPage=" + 10;
@@ -42,15 +51,6 @@ function getInfoShareList(currentPage) {
 
         drawInfoShareTable();
         drawInfoShareList(currentPage);
-    });
-}
-
-// 정보공유 글 리스트 전체 데이터 수 불러오기
-function getInfoShareListSize() {
-    requestData("/knt/user/php/main/infoShareBrd/getInfoShareListSize.php").done(function(result) {
-        infoShareListSize = result["COUNT"];
-
-        DrawPaging(infoShareListSize, 10, 1, "infoShareContentPagingDiv", getInfoShareList);
     });
 }
 
@@ -105,13 +105,14 @@ function getInfoShareCommentListSize() {
     });
 }
 
+// 정보공유 선택된 글의 댓글 리스트 불러오기
 function getInfoShareCommentList(currentPage) {
     let param = "brdId=" + infoShareSelectedListId + "&currentPage=" + currentPage + "&dataPerPage=" + 5;
 
     requestData("/knt/user/php/main/infoShareBrd/getInfoShareCommentList.php", param).done(function(result) {
         infoShareSelectedContentCommentList = result;
 
-        drawInfoShareSelectedContentComment(currentPage);
+        drawInfoShareSelectedContentComment();
     });
 }
 
@@ -295,7 +296,7 @@ function drawInfoShareSelectedContent() {
 }
 
 // 정보공유 선택된 글의 댓글 내용 그리기
-function drawInfoShareSelectedContentComment(currentPage) {
+function drawInfoShareSelectedContentComment() {
     let infoShareSelectedContentCommentHtml = "";
     let infoShareSelectedContentCommentListSize = infoShareSelectedContentCommentList.length;
 
@@ -462,7 +463,7 @@ function initInfoShareCommentEvent() {
 
 /* 
     TODO
- 
+    글을 지울 때 해당 글의 댓글들도 삭제하게 구현
 
     일단 ID는 ADMIN으로 설정
 */

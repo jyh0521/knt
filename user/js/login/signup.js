@@ -27,7 +27,6 @@ function idCheck() {
     });
 }
 
-
 function signUpCheck() {
     var id = $("#id").val();
     var pw = $("#pw").val();
