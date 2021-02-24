@@ -1,14 +1,15 @@
-var id = localStorage.getItem('id_session');
+var id = sessionStorage.getItem('loginUser');
 
 if (id != null) {
-    location.replace('main.html');
+    location.replace('/knt/user/html/main/main.html');
 }
+
 else {
     $("#loginBtn").off("click").on("click", function () {
-        logincheck();
+        loginCheck();
     });
 
-    function logincheck() {
+    function loginCheck() {
         var id = $("#id").val();
         var pw = $("#pw").val();
 
@@ -20,7 +21,7 @@ else {
         }
     }
 
- function inputSuccess() {
+    function inputSuccess() {
         var id = $("#id").val();
         var pw = $("#pw").val();
 
@@ -32,7 +33,7 @@ else {
             }
             else {
                 alert("로그인에 성공하였습니다.");
-                sessionStorage.setItem("LoginUser", id);
+                sessionStorage.setItem("loginUser", id);
                 location.replace('/knt/user/html/main/main.html');
             }
         });
