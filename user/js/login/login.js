@@ -31,7 +31,7 @@ else {
                 alert("로그인에 실패하였습니다.");
             }
             else {
-                alert("로그인에 성공하였습니다.");,
+                alert("로그인에 성공하였습니다.");
                 sessionStorage.setItem("LoginUser", id);
                 location.replace('/knt/user/html/main/main.html');
             }
