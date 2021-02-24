@@ -7,8 +7,6 @@ let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
 
-//게시판 번호 수정
-
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
     $("#kntNoticeBrdWrite").css("display", "none");
@@ -37,7 +35,7 @@ function getNoticeBrdList(currentPage){
         noticeBrdList = result;
 
         showNoticeBrdTable();
-        showNoticeBrdList();
+        showNoticeBrdList(currentPage);
     });
 }
 
@@ -265,14 +263,15 @@ function showNoticeBrdTable(){
 };
 
 //공지사항 목록 보여주기
-function showNoticeBrdList() {
+function showNoticeBrdList(currentPage) {
 
     let noticeBrdListTbodyHtml = "";
     let noticeBrdListSize = noticeBrdList.length;
+    let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
 
     for(let i = 0; i < noticeBrdListSize; i++) {
         noticeBrdListTbodyHtml += "<tr>";
-        noticeBrdListTbodyHtml +=     "<td>" + (i + 1) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + (i + noticeBrdStartNum) + "</td>";
         noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
@@ -368,6 +367,7 @@ function showNoticeBrdContent(){
 function showNoticeBrdComment(){
     let noticeBrdCommentListHtml = "";
     let noticeBrdCommentListSize = noticeBrdCommentList.length;
+    CommentWriteOrUpdate ="write";
 
     //내용, 작성자, 날짜
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
@@ -420,7 +420,6 @@ function showNoticeBrdCommentDomain(){
     });
     //뒤로가기 버튼 클릭 시
     $("#noticeBrdCommentUpdateBackBtn").off("click").on("click", function(){
-        CommentWriteOrUpdate ="write";
         getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
