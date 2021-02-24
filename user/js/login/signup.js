@@ -8,6 +8,10 @@ $("#signupBtn").off("click").on("click", function () {
     signUpCheck();
 });
 
+$("#gobackBtn").off("click").on("click", function () {
+    location.replace('/knt/user/html/login/login.html');
+});
+
 function idCheck() {
     var id = $("#id").val();
     var param = "id=" + id;
@@ -58,10 +62,10 @@ function inputSuccess() {
     var sid = $("#sid").val();
     var name = $("#name").val();
     var phone = $("#phone").val();
-    var date = getTodayDate();
+    var date = getTimeStamp(new Date());
     var pw = $("#pw").val();
     
-    var param = "id=" + id + "sid=" + sid + "name=" + name + "phone=" + phone + "&pw=" + pw + "date=" + date;
+    var param = "id=" + id + "&sid=" + sid + "&name=" + name + "&phone=" + phone + "&pw=" + pw + "&date=" + date;
     $.ajax({
         url: "/knt/user/php/login/signup.php",
         type: "post",
