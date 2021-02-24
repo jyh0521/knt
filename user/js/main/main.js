@@ -1,5 +1,7 @@
 //세션값 확인 후 인증 세션이 없으면, 해당페이지 확인 불가. LOGIN.HTML로 이동
-if (sessionStorage.getItem("loginUser") == null) {
+let loginUser = sessionStorage.getItem("loginUser")
+
+if (loginUser == null) {
     alert("세션이 존재하지 않습니다. 로그인 페이지로 돌아갑니다.")
     location.replace('/knt/user/html/login/login.html');
 }

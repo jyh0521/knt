@@ -70,7 +70,7 @@ function inputSuccess() {
         type: "post",
         data: param,
     }).done(function () {
-        alert("회원가입 완료");
+        alert("회원가입이 완료되었습니다.");
         location.replace('/knt/user/html/login/login.html');
     });
 }
