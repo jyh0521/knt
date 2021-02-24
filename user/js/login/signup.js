@@ -8,7 +8,7 @@ $("#signupBtn").off("click").on("click", function () {
     signUpCheck();
 });
 
-$("#gobackBtn").off("click").on("click", function () {
+$("#goBackBtn").off("click").on("click", function () {
     location.replace('/knt/user/html/login/login.html');
 });
 
