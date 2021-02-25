@@ -59,6 +59,24 @@ function initStudyGroupCBoard(){
     getStudyList();
 };
 
+//게시물 조회수
+function setStudyBrdHit() {
+    if(getCookie("studyBrdHitCookie" + studyListId + "ADMIN") == null) {
+        setCookie("studyBrdHitCookie" + studyListId + "ADMIN", "true", 1)
+
+        let param = "brdId=" + studyListId;
+
+        requestData("/knt/user/php/main/studyBrd/setStudyBrdHit.php", param).done(function(result){
+            if(result) {
+                getStudyContentOfWriting();
+            }
+        });
+    }
+    else {
+        getStudyContentOfWriting();
+    }
+}
+
 //study 게시물 리스트 불러오기
 function getStudyList() {
     let param = "brd=" + studyGroup;
@@ -140,6 +158,20 @@ function getStudyCommentList() {
         studyCommentList = result;
 
         showStudyCommentList();
+    });
+}
+
+//게시물 삭제 시 댓글 삭제
+function deleteStudyCommentList() {
+    let param = "brdId=" + studyListId;
+
+    requestData("/knt/user/php/main/studyBrd/deleteStudyCommentList.php", param).done(function(result){
+        if(result) {
+            getStudyList();
+        }
+        else {
+            alert("오류");
+        }
     });
 }
 
@@ -259,7 +291,7 @@ function showStudyList() {
         $("#studyContent").css("display", "block");
         $("#studyWriting").css("display", "none");
 
-        getStudyContentOfWriting();
+        setStudyBrdHit();
     });
 }
 
@@ -322,7 +354,7 @@ function setStudyContent() {
     });
 }
 
-//study a 선택한 글 보여주기
+//study 선택한 글 보여주기
 function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
@@ -381,7 +413,7 @@ function showStudyContentOfWriting() {
         $("#studyWriting").css("display", "none");
 
         deleteStudyContent();
-        getStudyList();
+        deleteStudyCommentList();
     });
 }
 
