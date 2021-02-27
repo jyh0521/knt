@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>main</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">
+</head>
+
+<body>
+    <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
+    <div id = 'menuBar'>
+        <button id='homeBtn'>홈</button>
+        <button id='myGroup'>내 그룹</button>
+        <button id='myInfo'>마이페이지</button>
+        <button id='logout'>로그아웃</button>
+    </div>
+    <!-- 로고 -->
+    <div id="kntLogoDiv">
+        --------- 로고 ---------
+    </div>
+    <!-- 개인정보 간단 출력 -->
+    <div>
+        --------- 개인정보 ---------
+    </div>
+    <div id="mainFuncDiv">
+        <!-- 좌측 메뉴 -->
+        <div class='menu'>
+            <button id='memberMngBtn'>회원 관리</button>
+            <button id='noticeBrdMngBtn'>게시판 관리</button>
+        </div>
+        <!-- 메뉴 기능 -->
+        <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
+        <div id="menuFuncDiv">
+            <!-- 회원 관리 -->
+            <!-- 게시판 관리 -->
+        </div>
+    </div>
+</body>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/knt/lib/js/lib.js"></script>
+<script type="text/javascript" src="/knt/mngr/js/main/main.js"></script>
+<script type="text/javascript" src="/knt/mngr/js/main/memberMng/memberMng.js"></script>
+<script type="text/javascript" src="/knt/mngr/js/main/noticeBrdMng/noticeBrdMng.js"></script>
+
+</html>

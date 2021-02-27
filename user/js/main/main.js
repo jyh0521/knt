@@ -5,6 +5,18 @@ if (sessionStorage.getItem("loginUser") == null) {
 }
 
 //상단 버튼 제어
+
+//관리자인지 확인 후, 관리자 페이지 버튼 생성
+if (sessionStorage.getItem("loginUser") == 'ADMIN') {
+    let mngrBtnDivHtml = "<button id = 'mngrBtn'>관리자 페이지</button>";
+
+    $("#mngrBtnDiv").empty().append(mngrBtnDivHtml);
+
+    //관리자 페이지 버튼 클릭 시 관리자 main.html로 이동
+    $("#mngrBtn").off("click").on("click", function () {
+        location.replace('/knt/mngr/html/main/main.html');
+    });
+}
 //1. 홈버튼 클릭
 //$("#homeBtn").off("click").on("click", function () {
 //
