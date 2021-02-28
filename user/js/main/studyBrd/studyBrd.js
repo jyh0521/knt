@@ -434,6 +434,7 @@ function showStudyContentOfWriting() {
     //목록 버튼 클릭 시
     $("#showStudyTableBtn").off("click").on("click", function(){
         $("#studyTable").css("display", "block");
+        $("#studyBrdListPaging").css("display", "block");
         $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "none");
 
