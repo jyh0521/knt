@@ -2,10 +2,13 @@
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
     $brd = $_POST['brd'];
+    $startBrdId = ($_POST['currentPage'] - 1) * $_POST['dataPerPage'];
 
     $sql = "SELECT * FROM USR_BRD
             WHERE BRD_CDE = '$brd'
-            AND BRD_DISABLE = 'Y'";
+            AND BRD_DISABLE = 'Y'
+            ORDER BY BRD_DATE DESC
+            LIMIT $startBrdId, 10";
 
     $result = mysql_query($sql, $connect);
    
