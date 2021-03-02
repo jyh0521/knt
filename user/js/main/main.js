@@ -1,6 +1,6 @@
 //ui 드롭다운 안먹힐때
 window.onload = function() {
-    $('.ui.dropdown').dropdown();
+    $('.ui .dropdown').dropdown();
  };
 
 //세션값 확인 후 인증 세션이 없으면, 해당페이지 확인 불가. LOGIN.HTML로 이동
@@ -58,6 +58,7 @@ $("#infoShareBtn").off("click").on("click", function () {
 $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
     $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+    
     });
 });
 

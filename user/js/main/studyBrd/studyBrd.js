@@ -12,7 +12,14 @@ let studyCommentList = [];
 let studyCommentListId = "";
 let studyComment = [];
 
+/*
+    예준이 수정사항
+    1. 스터디 버튼을 만들고 그 아래 셀렉트 박스가 오게 배치
+    2. 스터디 버튼을 클릭시, 디폴트로 맨 처음 스터디가 클릭되고 해당 스터디 게시판이 보이게 한다.
+    3. 클릭 시 해당 스터디 코드만 전달 해서 게시판만 바꿔 그리게 하기
 
+    css 관련해서 중복되는 코드가 많아 보임, 함수로 묶거나 해서 중복되지 않게 줄여보자.
+*/
 
 //study a 클릭 시
 $("#studyaBtn").off("click").on("click", function(){
