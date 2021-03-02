@@ -18,10 +18,14 @@
     padding: 5em 0em;
 } 
 
-.homeBtn {color: #FFFFFF;}
-.myGroup {color: #FFFFFF;}
-.myInfo {color: #FFFFFF;}
-.logout {color: #FFFFFF;}
+/*home 버튼*/
+#homeBtn { color: #FFFFFF; }
+/*myGroup 버튼*/
+#myGroup { color: #FFFFFF; }
+/*myInfo 버튼*/
+#myInfo { color: #FFFFFF; }
+/*logout 버튼*/
+#logout { color: #FFFFFF; }
 
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }
