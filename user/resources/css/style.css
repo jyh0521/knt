@@ -17,6 +17,12 @@
     margin: 5em 0em 0em;
     padding: 5em 0em;
 } 
+
+.homeBtn {color: #FFFFFF;}
+.myGroup {color: #FFFFFF;}
+.myInfo {color: #FFFFFF;}
+.logout {color: #FFFFFF;}
+
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }
 #infoShareWriteContentDiv { margin-top: 1%; }
