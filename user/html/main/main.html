@@ -5,29 +5,111 @@
     <meta charset="utf-8">
     <title>main</title>
     <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">  
 </head>
 
 <body>
-    <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
-    <div id = 'menuBar'>
-        <div id = 'mngrBtnDiv'></div>
-        <button id = 'homeBtn'>홈</button>
-        <button id = 'myGroup'>내 그룹</button>
-        <button id = 'myInfo'>마이페이지</button>
-        <button id = 'logout'>로그아웃</button>
+     <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
+    <div class="ui borderless main menu" style="height: 30px; padding-left: 1200px; background-color: #404040;">
+            <a href="#" type="button" id = 'homeBtn' style="color: #FFFFFF;" class="item">Home</a>
+            <a href="#" type="button" id = 'myGroup' style="color: #FFFFFF;" class="item">Mygroup</a>
+            <a href="#" type="button" id = 'myInfo' style="color: #FFFFFF;" class="item">Mypage</a>
+            <a href="#" type="button" id = 'logout' style="color: #FFFFFF;" class="item">Logout</a>
+    </div>
+    <!-- 로고 및 메뉴 -->
+    <div class="ui borderless main menu" style=" margin-top: 20px; margin-bottom: 20px; height: 100px; padding-bottom: 20px;">
+        <div class="ui text container">
+            <!-- <div id = 'mngrBtnDiv'></div> -->
+            <img src="/knt/user/resources/css/image/학술국 로고2.png" style="width: 370px; height: 80px; padding-right: 50px;">
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='introduceBtn' class="item"><h3>학술국 소개</h3></a>
+            </div>
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='noticeBtn' class="item"><h3>학술국 공지사항</h3></a>
+            </div>
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='infoShareBtn' class="item"><h3>학술국 정보공유</h3></a>
+            </div>
+            <div class="item">
+                <div class="ui dropdown">
+                    <div class="text" id = "studyBtn"><h3>스터디</h3></div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu" id = "studyGroupList">
+                        <div class="item">
+                            <a href="#" id="studyaBtn">STUDY A</a>
+                        </div>
+                        <div class="item">
+                            <a href="#" id="studybBtn">STUDY B</a>
+                        </div>
+                        <div class="item">
+                            <a href="#" id="studycBtn">STUDY C</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+    <!-- 메인콘텐츠 -->
+    <div class="container">
+        <div class="content">
+            <div style="width:100%; height: 400px;">
+            <div class= "ui center aligned middle aligned grid" id="menuFuncDiv" style=" margin-top: 100px;">
+            <!-- 학술국 소개 -->
+            <!-- 공지사항 게시판 -->
+            <!-- 정보 공유 게시판 -->
+            <!-- 스터디 게시판 -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+            <div class="ui stackable inverted divided grid">
+              <div class="four wide column">
+                <h4 class="ui inverted header">Design</h4>
+                <div class="ui inverted link list">
+                  <a href="#" class="item">전용후</a>
+                  <a href="#" class="item">이슬</a>
+                  <a href="#" class="item">황예준</a>
+                  <a href="#" class="item">문창집</a>
+                </div>
+              </div>
+              <div class="four wide column">
+                <h4 class="ui inverted header">Developers</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">전용후</a>
+                    <a href="#" class="item">이슬</a>
+                    <a href="#" class="item">황예준</a>
+                    <a href="#" class="item">문창집</a>
+                </div>
+              </div>
+              <div class="eight wide column">
+                <h4 class="ui inverted header">고려대학교 세종캠퍼스 학술국</h4>
+                <p>학술국 짱짱</p>
+              </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <div class="ui horizontal inverted small divided link list">
+              <a class="item" href="#">Site Map</a>
+              <a class="item" href="#">Contact Us</a>
+              <a class="item" href="#">Terms and Conditions</a>
+              <a class="item" href="#">Privacy Policy</a>
+            </div>
+        </div>
     </div>
     <!-- 로고 -->
-    <div id="kntLogoDiv">
+    <!-- <div id="kntLogoDiv">
         --------- 로고 ---------
-    </div>
+    </div> -->
     <!-- 개인정보 간단 출력 -->
-    <div>
+    <!-- <div>
         --------- 개인정보 ---------
-    </div>
-    <div id="mainFuncDiv">
+    </div> -->
+    <!-- <div id="mainFuncDiv"> -->
         <!-- 좌측 메뉴 -->
-        <div class='menu'>
+        <!-- <div class='menu'>
             <button id='introduceBtn'>학술국 소개</button>
             <button id='noticeBtn'>학술국 공지사항</button>
             <button id='infoShareBtn'>학술국 정보공유</button>
@@ -45,19 +127,21 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- 메뉴 기능 -->
         <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
-        <div id="menuFuncDiv">
+        <!-- <div id="menuFuncDiv"> -->
             <!-- 학술국 소개 -->
             <!-- 공지사항 게시판 -->
             <!-- 정보 공유 게시판 -->
             <!-- 스터디 게시판 -->
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
 </body>
+
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/knt/user/resources/css/semantic.min.js"></script>
 <script type="text/javascript" src="/knt/lib/js/lib.js"></script>
 <script type="text/javascript" src="/knt/user/js/main/main.js"></script>
 <script type="text/javascript" src="/knt/user/js/main/noticeBrd/noticeBrd.js"></script>
