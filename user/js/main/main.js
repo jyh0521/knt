@@ -58,7 +58,11 @@ $("#infoShareBtn").off("click").on("click", function () {
 $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
     $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-    
+        /*
+            비동기식
+            이 안에 함수를 작성하면, studyBrd.html 로드가 다 끝난 후 어떤 동작을 한다.
+            initsty();
+        */
     });
 });
 
