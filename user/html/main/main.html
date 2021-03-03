@@ -10,7 +10,7 @@
 </head>
 
 <body>
-     <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
+    <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
     <div class="ui borderless main menu" style="height: 30px; padding-left: 1200px; background-color: #404040;">
             <a href="#" type="button" id = 'homeBtn' class="item">Home</a>
             <a href="#" type="button" id = 'myGroup' class="item">Mygroup</a>
@@ -37,13 +37,13 @@
                     <i class="dropdown icon"></i>
                     <div class="menu" id = "studyGroupList">
                         <div class="item">
-                            <a href="#" class="studyGroup" id="STD_001">STUDY A</a>
+                            <a href="#" id="studyaBtn">STUDY A</a>
                         </div>
                         <div class="item">
-                            <a href="#" class="studyGroup" id="STD_002">STUDY B</a>
+                            <a href="#" id="studybBtn">STUDY B</a>
                         </div>
                         <div class="item">
-                            <a href="#" class="studyGroup" id="STD_003">STUDY C</a>
+                            <a href="#" id="studycBtn">STUDY C</a>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
          </div>
     </div>
     <!-- 메인콘텐츠 -->
-        <div class="content" style="width:100%; height: 600px; margin-top: 100px; margin-bottom: 100px">
-            <div class= "ui center aligned middle aligned grid" id="menuFuncDiv">
+        <div class="content" style="position: relative; margin-top: 300px; ">
+            <div id="menuFuncDiv" style = "width: 100px; height: 100px;">
             <!-- 학술국 소개 -->
             <!-- 공지사항 게시판 -->
             <!-- 정보 공유 게시판 -->

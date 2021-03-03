@@ -1,7 +1,6 @@
-let loginUser = sessionStorage.getItem("loginUser")
+var id = sessionStorage.getItem('loginUser');
 
-if (loginUser != null) {
-    alert("이미 로그인된 사용자입니다.")
+if (id != null) {
     location.replace('/knt/user/html/main/main.html');
 }
 

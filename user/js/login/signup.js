@@ -35,7 +35,7 @@ function signUpCheck() {
     var id = $("#id").val();
     var pw = $("#pw").val();
     var pwc = $("#pwc").val();
-    var f_id = /^[0-9a-z]{4,12}$/;
+    var f_id = /^[0-9A-Za-z]{4,12}$/;
 
     if (id == "" || pw == "" || pwc == "") {
         alert("모든 정보를 입력해주세요");
@@ -70,7 +70,7 @@ function inputSuccess() {
         type: "post",
         data: param,
     }).done(function () {
-        alert("회원가입이 완료되었습니다.");
+        alert("회원가입 완료");
         location.replace('/knt/user/html/login/login.html');
     });
 }
