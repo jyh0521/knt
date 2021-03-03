@@ -59,24 +59,10 @@ $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
 });
 
-//study a 클릭 시
-$("#studyaBtn").off("click").on("click", function(){
-    studyGroup = "STD_001";
+$(".studyGroup").off("click").on("click", function() {
+    studyGroup = this.id;
+
     $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-        initStudyGroupBoard();
+        initStudyGroupBoard(studyGroup);
     });
-});
-//study b 클릭 시
-$("#studybBtn").off("click").on("click", function(){
-    studyGroup = "STD_002";
-    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-        initStudyGroupBoard();
-    });
-});
-//study c 클릭 시
-$("#studycBtn").off("click").on("click", function(){
-    studyGroup = "STD_003";
-    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-        initStudyGroupBoard();
-    });
-});
+})

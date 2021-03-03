@@ -22,14 +22,14 @@ let studyComment = [];
 */
 
 //study 게시물 목록 보여주기
-function initStudyGroupBoard() {
+function initStudyGroupBoard(studyGroup) {
     $("#studyBoard").css("display", "block");
     $("#studyTable").css("display", "block");
     $("#studyBrdListPaging").css("display", "block");
     $("#studyContent").css("display", "none");
     $("#studyWriting").css("display", "none");
 
-    getStudyBrdCnt();
+    getStudyBrdCnt(studyGroup);
 }
 
 /*
@@ -77,7 +77,7 @@ function getStudyList(currentPage) {
 }
 
 //study 작성된 글 수
-function getStudyBrdCnt(){
+function getStudyBrdCnt(studyGroup){
     let param = "brd=" + studyGroup;
 
     requestData("/knt/user/php/main/studyBrd/getStudyBrdCount.php", param).done(function(result){
