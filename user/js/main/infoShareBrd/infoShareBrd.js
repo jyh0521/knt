@@ -226,11 +226,11 @@ function deleteInfoShareComment() {
 function drawInfoShareTable() {
     let infoShareTableHtml = "";
 
-    infoShareTableHtml += "<table id='infoShareListTable' border='1'>";
+    infoShareTableHtml += "<table class = 'ui single line table' id='infoShareListTable'>";
     infoShareTableHtml +=     "<thead>";
     infoShareTableHtml +=         "<tr>";
     infoShareTableHtml +=             "<td>번호</td>";
-    infoShareTableHtml +=             "<td>제목</td>";
+    infoShareTableHtml +=             "<td style = 'width:200%;'>제목</td>";
     infoShareTableHtml +=             "<td>작성자</td>";
     infoShareTableHtml +=             "<td>작성일</td>";
     infoShareTableHtml +=             "<td>조회수</td>";
