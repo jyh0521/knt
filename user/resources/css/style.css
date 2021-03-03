@@ -2,14 +2,30 @@
 /* #kntLogoDiv {  } */
 
 /* 메뉴 버튼 & 기능 div */
-#mainFuncDiv { width: 100%; height: 500px; }
+/* #mainFuncDiv { width: 100%; height: 500px; } */
 
 /* 메뉴 버튼 */
-.menu { float: left; width: 10%; border: 1px solid black; height: 100% }
-.menu button { display: block; }
+/* .menu { float: left; width: 10%; border: 1px solid black; height: 100% }
+.menu button { display: block; } */
 
 /* 메뉴 기능 */
-#menuFuncDiv { float: left; width: 75%; border: 1px solid black; height: 100% }
+/* #menuFuncDiv { float: left; width: 75%; border: 1px solid black; height: 100% } */
+
+.ui.main.menu { border: none; }
+
+.ui.footer.segment {
+    margin: 5em 0em 0em;
+    padding: 5em 0em;
+} 
+
+/*home 버튼*/
+#homeBtn { color: #FFFFFF; }
+/*myGroup 버튼*/
+#myGroup { color: #FFFFFF; }
+/*myInfo 버튼*/
+#myInfo { color: #FFFFFF; }
+/*logout 버튼*/
+#logout { color: #FFFFFF; }
 
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }
