@@ -57,13 +57,26 @@ $("#infoShareBtn").off("click").on("click", function () {
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
-    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-        /*
-            비동기식
-            이 안에 함수를 작성하면, studyBrd.html 로드가 다 끝난 후 어떤 동작을 한다.
-            initsty();
-        */
-    });
 });
 
-//그룹 리스트 보여주기
+//study a 클릭 시
+$("#studyaBtn").off("click").on("click", function(){
+    studyGroup = "STD_001";
+    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+        initStudyGroupBoard();
+    });
+});
+//study b 클릭 시
+$("#studybBtn").off("click").on("click", function(){
+    studyGroup = "STD_002";
+    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+        initStudyGroupBoard();
+    });
+});
+//study c 클릭 시
+$("#studycBtn").off("click").on("click", function(){
+    studyGroup = "STD_003";
+    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+        initStudyGroupBoard();
+    });
+});

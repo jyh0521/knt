@@ -21,55 +21,16 @@ let studyComment = [];
     css 관련해서 중복되는 코드가 많아 보임, 함수로 묶거나 해서 중복되지 않게 줄여보자.
 */
 
-//study a 클릭 시
-$("#studyaBtn").off("click").on("click", function(){
+//study 게시물 목록 보여주기
+function initStudyGroupBoard() {
     $("#studyBoard").css("display", "block");
-
-    studyGroup = "STD_001";
-    initStudyGroupABoard();
-});
-//study b 클릭 시
-$("#studybBtn").off("click").on("click", function(){
-    $("#studyBoard").css("display", "block");
-
-    studyGroup = "STD_002";
-    initStudyGroupBBoard();
-});
-//study c 클릭 시
-$("#studycBtn").off("click").on("click", function(){
-    $("#studyBoard").css("display", "block");
-
-    studyGroup = "STD_003";
-    initStudyGroupCBoard();
-});
-
-//study a 게시물 목록 보여주기
-function initStudyGroupABoard(){
     $("#studyTable").css("display", "block");
     $("#studyBrdListPaging").css("display", "block");
     $("#studyContent").css("display", "none");
     $("#studyWriting").css("display", "none");
 
     getStudyBrdCnt();
-};
-//study b 게시물 목록 보여주기
-function initStudyGroupBBoard(){
-    $("#studyTable").css("display", "block");
-    $("#studyBrdListPaging").css("display", "block");
-    $("#studyContent").css("display", "none");
-    $("#studyWriting").css("display", "none");
-
-    getStudyBrdCnt();
-};
-//study c 게시물 목록 보여주기
-function initStudyGroupCBoard(){
-    $("#studyTable").css("display", "block");
-    $("#studyBrdListPaging").css("display", "block");
-    $("#studyContent").css("display", "none");
-    $("#studyWriting").css("display", "none");
-
-    getStudyBrdCnt();
-};
+}
 
 /*
     a();
