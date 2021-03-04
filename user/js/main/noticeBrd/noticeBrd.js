@@ -233,8 +233,7 @@ function getNoticeBrdComment(currentPage){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<div><h2 style = 'margin-bottom: 44px; font-size: 40px;'>공지사항</h2></div>";
-    kntNoticeBrdContentDomainHtml += "<table class= 'ui striped table'>";
+    kntNoticeBrdContentDomainHtml += "<table class= 'ui very basic table' style='padding-top: 0px; margin-top: 30px;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<td>번호</td>";
@@ -424,7 +423,6 @@ function showNoticeBrdCommentDomain(){
         getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
-
 
 
 
