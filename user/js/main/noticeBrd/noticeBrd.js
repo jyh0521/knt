@@ -233,13 +233,12 @@ function getNoticeBrdComment(currentPage){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<h2>학술국 공지사항</h2>";
-    kntNoticeBrdContentDomainHtml += "<hr size='5' noshade>";
-    kntNoticeBrdContentDomainHtml += "<table class= 'ui very basic table'>";
+    kntNoticeBrdContentDomainHtml += "<div><h2 style = 'margin-bottom: 44px; font-size: 40px;'>공지사항</h2></div>";
+    kntNoticeBrdContentDomainHtml += "<table class= 'ui striped table'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<td>번호</td>";
-    kntNoticeBrdContentDomainHtml +=             "<td style = 'width:800px;'>제목</td>";
+    kntNoticeBrdContentDomainHtml +=             "<td style = 'width:600px;'>제목</td>";
     kntNoticeBrdContentDomainHtml +=             "<td>작성자</td>";
     kntNoticeBrdContentDomainHtml +=             "<td>작성일</td>";
     kntNoticeBrdContentDomainHtml +=             "<td>조회수</td>";
