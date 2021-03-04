@@ -94,8 +94,12 @@ $("#infoShareBtn").off("click").on("click", function () {
 //학술국 스터디 클릭 시
 $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
-    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-    });
 });
 
-//그룹 리스트 보여주기
+$(".studyGroup").off("click").on("click", function() {
+    studyGroup = this.id;
+
+    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+        initStudyGroupBoard(studyGroup);
+    });
+})
