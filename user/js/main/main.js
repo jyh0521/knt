@@ -14,7 +14,7 @@ if (sessionStorage.getItem("loginUser") == null) {
 
 //관리자인지 확인 후, 관리자 페이지 버튼 생성
 if (sessionStorage.getItem("loginUser") == 'ADMIN') {
-    let mngrBtnDivHtml = "<button id = 'mngrBtn'>관리자 페이지</button>";
+    let mngrBtnDivHtml = "<a href='#' type='button' id = 'mngrBtn' class='item'>ManagerPage</a>";
     $("#mngrBtnDiv").empty().append(mngrBtnDivHtml);
     //관리자 페이지 버튼 클릭 시 관리자 main.html로 이동
     $("#mngrBtn").off("click").on("click", function () {
