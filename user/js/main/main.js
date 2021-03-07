@@ -35,9 +35,11 @@ $("#myGroup").off("click").on("click", function() {
     alert("그룹", myGroup, "회원입니다.");
 });
 
-//3. 마이페이지 클릭
+//3-1. 마이페이지 메뉴 클릭 시
 $("#myInfo").off("click").on("click", function() {
-    location.replace('/knt/user/html/main/mypage/myPage.html');
+    $("#mngrBtnDiv").load("myPage/myPage.html", function() {
+        showmyInfo();
+    })
 });
 
 //4. 로그아웃 클릭
