@@ -270,7 +270,7 @@ function setNoticeSearchList(currentPage){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class= 'ui fixed single line celled table'>";
+    kntNoticeBrdContentDomainHtml += "<table class= 'ui fixed single line celled table' style = 'text-align:center;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th>번호</th>";

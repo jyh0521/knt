@@ -250,7 +250,7 @@ function updateStudyComment() {
 function showStudyTable() {
     let studyTableHtml = "";
     
-    studyTableHtml += "<table border='1'>";
+    studyTableHtml += "<table class='ui selectable celled table'>";
     studyTableHtml +=     "<thead>";
     studyTableHtml +=         "<tr>";
     studyTableHtml +=            "<th>번호</th>";
@@ -263,13 +263,13 @@ function showStudyTable() {
     studyTableHtml +=     "<tbody id='studytbody'>";
     studyTableHtml +=     "</tbody>";
     studyTableHtml += "</table>";
-    studyTableHtml += "<button id='studyWriteBtn'>글쓰기</button>";
+    studyTableHtml += "<button id='studyWriteBtn' class='tiny ui button'>글쓰기</button>";
     
     $("#studyTable").empty().append(studyTableHtml);
 
     //study 글쓰기 버튼 클릭
     $("#studyWriteBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none");
+        $("#studyTable").css("display", "none")
         $("#studyBrdListPaging").css("display", "none");
         $("#studyContent").css("display", "none");
         $("#studyWriting").css("display", "block");
@@ -325,14 +325,14 @@ function setStudyContent() {
     
     if(studyEdit === "on") {
         setStudyContentHtml += "<p>";
-        setStudyContentHtml +=    "<button id='editStudyContentBtn'>수정</button>";
-        setStudyContentHtml +=    "<button id='cancelEditStudyContentBtn'>취소</button>";
+        setStudyContentHtml +=    "<button id='editStudyContentBtn' class='mini ui button'>수정</button>";
+        setStudyContentHtml +=    "<button id='cancelEditStudyContentBtn' class='mini ui button'>취소</button>";
         setStudyContentHtml += "</p>";
     }
     else {
         setStudyContentHtml += "<p>";
-        setStudyContentHtml +=    "<button id='writeStudyContentBtn'>작성</button>";
-        setStudyContentHtml +=    "<button id='cancelWriteStudyContentBtn'>취소</button>";
+        setStudyContentHtml +=    "<button id='writeStudyContentBtn' class='mini ui button'>작성</button>";
+        setStudyContentHtml +=    "<button id='cancelWriteStudyContentBtn' class='mini ui button'>취소</button>";
         setStudyContentHtml += "</p>";
     }
     
@@ -340,23 +340,13 @@ function setStudyContent() {
 
     //작성 버튼 클릭 시
     $("#writeStudyContentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "block");
-        $("#studyBrdListPaging").css("display", "block");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "none");
-
+        initStudyGroupBoard(studyGroup);
         writeStudyContent();
-        getStudyBrdCnt();
     });
 
     //글쓰기 취소 버튼 클릭 시
     $("#cancelWriteStudyContentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "block");
-        $("#studyBrdListPaging").css("display", "block");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "none");
-
-        getStudyBrdCnt();
+        initStudyGroupBoard(studyGroup);
     });
 
     //수정 완료 버튼 클릭 시
@@ -400,9 +390,9 @@ function showStudyContentOfWriting() {
     showStudyContentOfWritingHtml +=   "</tr>";
     showStudyContentOfWritingHtml += "</table>";
     showStudyContentOfWritingHtml += "<p>";
-    showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn'>목록</button>";
-    showStudyContentOfWritingHtml +=   "<button id='studyEditBtn'>수정</button>";
-    showStudyContentOfWritingHtml +=   "<button id='studyDeleteBtn'>삭제</button>";
+    showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn' class='mini ui button'>목록</button>";
+    showStudyContentOfWritingHtml +=   "<button id='studyEditBtn' class='mini ui button'>수정</button>";
+    showStudyContentOfWritingHtml +=   "<button id='studyDeleteBtn' class='mini ui button'>삭제</button>";
     showStudyContentOfWritingHtml += "</p>";
 
     $("#studyBrdContent").empty().append(showStudyContentOfWritingHtml);
@@ -412,12 +402,7 @@ function showStudyContentOfWriting() {
 
     //목록 버튼 클릭 시
     $("#showStudyTableBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "block");
-        $("#studyBrdListPaging").css("display", "block");
-        $("#studyContent").css("display", "none");
-        $("#studyWriting").css("display", "none");
-
-        getStudyBrdCnt();
+        initStudyGroupBoard(studyGroup);
     });
 
     //수정 버튼 클릭 시
@@ -494,12 +479,12 @@ function setStudyComment() {
     setStudyCommentHtml +=     "<textarea id='writeStudyComment' cols='35' rows='2'></textarea>";
     
     if(studyCmtEdit === "on") {
-        setStudyCommentHtml +=     "<button id='editStudyCommentBtn'>수정</button>";
-        setStudyCommentHtml +=     "<button id='cancelStudyCommentBtn'>취소</button>";
+        setStudyCommentHtml +=     "<button id='editStudyCommentBtn' class='mini ui button'>수정</button>";
+        setStudyCommentHtml +=     "<button id='cancelStudyCommentBtn' class='mini ui button'>취소</button>";
         setStudyCommentHtml += "</p>";
     }
     else {
-        setStudyCommentHtml +=     "<button id='writeStudyCommentBtn'>작성</button>";
+        setStudyCommentHtml +=     "<button id='writeStudyCommentBtn' class='mini ui button'>작성</button>";
         setStudyCommentHtml += "</p>";
     }
     
