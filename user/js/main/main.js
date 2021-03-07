@@ -38,7 +38,7 @@ $("#myGroup").off("click").on("click", function() {
 //3-1. 마이페이지 메뉴 클릭 시
 $("#myInfo").off("click").on("click", function() {
     $("#mngrBtnDiv").load("myPage/myPage.html", function() {
-        showmyInfo();
+        getmyInfo();
     })
 });
 
