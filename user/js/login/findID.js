@@ -11,7 +11,7 @@ function inputSuccess() {
             alert("아이디를 찾을 수 없습니다. 다시 시도해주세요.");
         }
         else {
-            alert(name,"님의 아이디는", id, "입니다.");
+            alert(name, "님의 아이디는", id, "입니다.");
             alert("다시 로그인해주세요.");
             location.replace('/knt/user/html/login/login.html');
         }

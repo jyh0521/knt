@@ -63,7 +63,7 @@ function inputSuccess() {
     var phone = $("#phone").val();
     var date = getTimeStamp(new Date());
     var pw = $("#pw").val();
-    
+
     var param = "id=" + id + "&sid=" + sid + "&name=" + name + "&phone=" + phone + "&pw=" + pw + "&date=" + date;
     $.ajax({
         url: "/knt/user/php/login/signup.php",

@@ -1,12 +1,12 @@
 //ui 드롭다운 안먹힐때
-window.onload = function() {
+window.onload = function () {
     $('.ui .dropdown').dropdown();
- };
+};
 
 //세션값 확인 후 인증 세션이 없으면, 해당페이지 확인 불가. LOGIN.HTML로 이동
 if (sessionStorage.getItem("loginUser") == null) {
     alert("세션이 존재하지 않습니다. 로그인 페이지로 돌아갑니다.")
-   location.replace('/knt/user/html/login/login.html');
+    location.replace('/knt/user/html/login/login.html');
 }
 
 
@@ -29,15 +29,15 @@ $("#homeBtn").off("click").on("click", function () {
 
 //2. 그룹명 클릭 >> 로그인 시 세션에 그룹값도 myGroup이라는 키에 넣어주고, 
 //상단의 myGroup 버튼 클릭 시 "~어떤 그룹입니다."라는 메세지와 함께 해당 그룹 페이지로 이동.
-$("#myGroup").off("click").on("click", function() {
+$("#myGroup").off("click").on("click", function () {
     let myGroup;
     myGroup = sessionStorage.getItem("myGroup");
     alert("그룹", myGroup, "회원입니다.");
 });
 
 //3-1. 마이페이지 메뉴 클릭 시
-$("#myInfo").off("click").on("click", function() {
-    $("#mngrBtnDiv").load("myPage/myPage.html", function() {
+$("#myInfo").off("click").on("click", function () {
+    $("#mngrBtnDiv").load("myPage/myPage.html", function () {
         getmyInfo();
     })
 });
@@ -46,29 +46,29 @@ $("#myInfo").off("click").on("click", function() {
 $("#logout").off("click").on("click", function () {
     let OK;
     OK = confirm("로그아웃 하시겠습니까?");
-    if(OK){
+    if (OK) {
         alert("로그아웃합니다.");
         sessionStorage.removeItem("loginUser");
         location.replace('/knt/user/html/login/login.html');
     }
-    else{
+    else {
         location.replace('/knt/user/html/main/main.html');
     }
 });
 
 //마이페이지 회원 탈퇴 버튼 클릭 시
-$("#withdrawalBtn").off("click").on("click", function() {
+$("#withdrawalBtn").off("click").on("click", function () {
     let OK;
     OK = confirm("회원 탈퇴 하시겠습니까?");
     id = sessionStorage.getItem("loginUser");
-    if(OK){
+    if (OK) {
         alert("회원탈퇴를 진행합니다.");
         var param = "id=" + id;
         $.ajax({
-            url : '/knt/user/php/login/withdrawal.php',
-            type : 'post',
-            data : param,
-        }).done(function(){
+            url: '/knt/user/php/login/withdrawal.php',
+            type: 'post',
+            data: param,
+        }).done(function () {
             sessionStorage.clear();
             alert("회원탈퇴가 완료되었습니다.");
             location.replace('/knt/user/html/login/login.html');
@@ -98,7 +98,7 @@ $("#studyBtn").off("click").on("click", function () {
     $("#studyGroupList").css("display", "block");
 });
 
-$(".studyGroup").off("click").on("click", function() {
+$(".studyGroup").off("click").on("click", function () {
     studyGroup = this.id;
 
     $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
