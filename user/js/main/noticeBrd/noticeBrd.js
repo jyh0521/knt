@@ -7,7 +7,6 @@ let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
 
-let noticeBrdSearchList = [];//공지사항 검색한 리스트 저장
 let searchOrAll = "";//검색한 리스트 or 전체 리스트
 
 function showNoticeBrd(){
@@ -247,8 +246,8 @@ function getNoticeSearchListCount(){
     let param = "text=" + noticeSearchText + "&option=" + SelectNoticeSearchOption;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeSearchListCount.php",param).done(function(result){
-        let noticeBrdSearchListCount =  String(result);
-        DrawPaging(noticeBrdSearchListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);
+        let noticeBrdSearchListCount =  String(result);//////////////
+        DrawPaging(noticeBrdSearchListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);////////////
     });
 }
 
@@ -260,7 +259,7 @@ function setNoticeSearchList(currentPage){
     let param = "text=" + noticeSearchText + "&option=" + SelectNoticeSearchOption + "&startrow=" + startrow;
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeSearchList.php", param).done(function(result){
-        noticeBrdSearchList = result;
+        noticeBrdList = result;//////////////
         
         showNoticeBrdTable();
         showNoticeBrdList(currentPage);
@@ -310,34 +309,17 @@ function showNoticeBrdTable(){
 function showNoticeBrdList(currentPage) {
 
     let noticeBrdListTbodyHtml = "";
+    let noticeBrdListSize = noticeBrdList.length;
+    let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
 
-    if(searchOrAll == "search"){ //검색 관련 리스트
-        let noticeBrdSearchListSize = noticeBrdSearchList.length;
-        let noticeBrdSearchStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
-    
-        for(let i = 0; i < noticeBrdSearchListSize; i++) {
-            noticeBrdListTbodyHtml += "<tr>";
-            noticeBrdListTbodyHtml +=     "<td>" + (i + noticeBrdSearchStartNum) + "</td>";
-            noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdSearchList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdSearchList[i]["BRD_TITLE"] + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + noticeBrdSearchList[i]["BRD_WRITER"] + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdSearchList[i]["BRD_DATE"]) + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + noticeBrdSearchList[i]["BRD_HIT"] + "</td>";
-            noticeBrdListTbodyHtml += "</tr>";
-        }
-    }
-    else{ //공지사항 전체 목록
-        let noticeBrdListSize = noticeBrdList.length;
-        let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
-
-        for(let i = 0; i < noticeBrdListSize; i++) {
-            noticeBrdListTbodyHtml += "<tr>";
-            noticeBrdListTbodyHtml +=     "<td>" + (i + noticeBrdStartNum) + "</td>";
-            noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
-            noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
-            noticeBrdListTbodyHtml += "</tr>";
-        }
+     for(let i = 0; i < noticeBrdListSize; i++) {
+        noticeBrdListTbodyHtml += "<tr>";
+        noticeBrdListTbodyHtml +=     "<td>" + (i + noticeBrdStartNum) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
+        noticeBrdListTbodyHtml += "</tr>";
     }
 
     $("#noticeBrdListTbody").empty().append(noticeBrdListTbodyHtml);
