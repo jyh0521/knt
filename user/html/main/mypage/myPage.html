@@ -1,97 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
-
-<head>
-    <title>마이페이지</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">  
-</head>
+<html>
 
 <body>
-    <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
-    <div class="ui borderless main menu" style="height: 30px; padding-left: 1200px; background-color: #404040;">
-        <a href="#" type="button" id='homeBtn' class="item">Home</a>
-        <a href="#" type="button" id='myGroup' class="item">Mygroup</a>
-        <a href="#" type="button" id='myInfo' class="item">Mypage</a>
-        <a href="#" type="button" id='logout' class="item">Logout</a>
-    </div>
-    <!-- 로고 및 메뉴 -->
-    <div class="ui borderless main menu"
-        style="margin-top: 20px; margin-bottom: 20px; height: 100px; padding-bottom: 20px;">
-        <div class="ui text container">
-            <!-- <div id = 'mngrBtnDiv'></div> -->
-            <img src="/knt/user/resources/css/image/학술국 로고2.png"
-                style="width: 370px; height: 80px; padding-right: 50px;">
-            <div class="item" id="mainFuncDiv">
-                <a href="#" type="button" id='introduceBtn' class="item">
-                    <h3>학술국 소개</h3>
-                </a>
-            </div>
-            <div class="item" id="mainFuncDiv">
-                <a href="#" type="button" id='noticeBtn' class="item">
-                    <h3>학술국 공지사항</h3>
-                </a>
-            </div>
-            <div class="item" id="mainFuncDiv">
-                <a href="#" type="button" id='infoShareBtn' class="item">
-                    <h3>학술국 정보공유</h3>
-                </a>
-            </div>
-            <div class="item">
-                <div class="ui dropdown">
-                    <div class="text" id="studyBtn">
-                        <h3>스터디</h3>
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu" id="studyGroupList">
-                        <div class="item">
-                            <a href="#" id="studyaBtn">STUDY A</a>
-                        </div>
-                        <div class="item">
-                            <a href="#" id="studybBtn">STUDY B</a>
-                        </div>
-                        <div class="item">
-                            <a href="#" id="studycBtn">STUDY C</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div id="myPage">
+        <div>
+            <h2 class="ui center aligned middle aligned grid" style="padding-top: 50px; padding-bottom: 30px;">마이페이지</h2>
+        </div>
+        <div id="myPageBrdHtmlDomain" style="padding-top: 30px;"></div>
+        <div>
+            <a href="#" type="button" id='withdrawalBtn'>회원탈퇴</a>
+            <a href="#" type="button" id='closemypageBtn'>닫기</a>
         </div>
     </div>
-    <!-- 정보 메세지 출력 -->
-    <div class="container">
-        <h1>마이페이지</h1>
-        <br>
-        <!-- 프로필 사진 부분 -->
-        <div class="media">
-            <div>
-                <img id="myimage" src="https://www.w3schools.com/bootstrap/img_avatar3.png" class="media-object"
-                    style="width:60px">
-            </div>
-            <div>
-                <script>
-                    var name = sessionStorage.getItem('loginUser');
-                </script>
-                <!-- 세션에서 아이디를 불러와서 표시 해버리려면 어떻게 해야할까요..? -->
-                <h4 id="name">님 환영합니다.</h4>
-                <a href="#" type="button" id='withdrawalBtn'>회원탈퇴</a>
-            </div>
-        </div>
 </body>
-
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/knt/user/resources/css/semantic.min.js"></script>
-<script type="text/javascript" src="/knt/lib/js/lib.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/main.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/noticeBrd/noticeBrd.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/infoShareBrd/infoShareBrd.js"></script>
-<script type="text/javascript" src="/knt/user/js/main/studyBrd/studyBrd.js"></script>
 
 </html>
