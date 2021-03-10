@@ -57,12 +57,10 @@ function setNoticeBrdContent(){
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
         if(result){
-            alert("등록 되었습니다.");
-
             showNoticeBrd();
         }
         else{
-            alert("등록 실패");
+            alert("등록을 실패하였습니다.");
         }
     });
 }
@@ -77,14 +75,7 @@ function setNoticeBrdUpdate(){
     let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
-        if(result){
-            alert("수정 되었습니다.");
-            //공지사항 내용 데이터 불러오기
-            getNoticeBrdContent();
-        }
-        else{
-            alert("수정 실패");
-        }
+        getNoticeBrdContent();
     });
 }
 
@@ -94,12 +85,10 @@ function setNoticeBrdContentDelete(){
 
     requestData("/knt/user/php/main/noticeBrd/delNoticeContent.php", param).done(function(result){
         if(result){
-            alert("삭제 되었습니다.");
-
             deleteNoticeBrdAllComment(); //공지사항 내용 관련 댓글 데이터 모두 삭제
         }
         else{
-            alert("삭제 실패");
+            alert("삭제를 실패하였습니다.");
         }
     });
 }
@@ -117,18 +106,17 @@ function deleteNoticeBrdAllComment(){
         }
     });
 }
+
 //공지사항 댓글 데이터 삭제
 function setNoticeBrdCommentDelete(){
     let param = "id=" + noticeBrdCommentListId;
 
     requestData("/knt/user/php/main/noticeBrd/deleteNoticeComment.php", param).done(function(result){
         if(result){
-            alert("댓글이 삭제 되었습니다.");
-
             getNoticeBrdCommentListCount();
         }
         else{
-            alert("삭제 실패");
+            alert("삭제를 실패하였습니다.");
         }
     });
 }
@@ -142,12 +130,10 @@ function setNoticeBrdComment(){
     let param = "comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
     requestData("/knt/user/php/main/noticeBrd/setNoticeComment.php", param).done(function(result){
         if(result){
-            alert("댓글이 작성되었습니다.");
-
             getNoticeBrdCommentListCount();//댓글 데이터 불러오기
         }
         else{
-            alert("댓글이 작성되지 않았습니다.");
+            alert("작성을 실패하였습니다.");
         }
     });
 }
@@ -178,14 +164,13 @@ function setNoticeBrdCommentUpdate(){
 
     requestData("/knt/user/php/main/noticeBrd/updateNoticeComment.php", param).done(function(result){
         if(result){
-            alert("댓글이 수정 되었습니다.");
             CommentWriteOrUpdate = "write"
             $("#kntNoticeBrdCommentListDomain").css("display", "block");
 
             getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
         }
         else{
-            alert("댓글 수정 실패");
+            alert("수정을 실패하였습니다.");
         }
     });
 }
@@ -352,7 +337,12 @@ function showNoticeBrdWrite(){
     $("#kntNoticeBrdWriteBtnDomain").empty().append(kntNoticeBrdWriteDomainHtml);
     //등록 버튼 클릭 시
     $("#noticeBrdSignUpBtn").off("click").on("click", function(){
-        setNoticeBrdContent();
+        if(confirm("등록하시겠습니까?")){
+            setNoticeBrdContent();
+        }
+        else{
+            alert("취소되었습니다.");
+        }
     });
     //등록 취소 버튼 클릭 시
     $("#noticeBrdCancleBtn").off("click").on("click", function(){
@@ -392,17 +382,22 @@ function showNoticeBrdContent(){
     });
     //수정 버튼 클릭 시
     $("#noticeContentUpdateBtn").off("click").on("click", function(){
-        ContentWriteOrUpdate = "update";
+        if(confirm("수정하시겠습니까?")){
+            ContentWriteOrUpdate = "update";
 
-        $("#kntNoticeBrdWrite").css("display", "block");
-        $("#kntNoticeBrdContent").css("display", "none");
-        $("#kntNoticeBrdComment").css("display", "none");
+            $("#kntNoticeBrdWrite").css("display", "block");
+            $("#kntNoticeBrdContent").css("display", "none");
+            $("#kntNoticeBrdComment").css("display", "none");
         
-        showNoticeBrdWrite();
+            showNoticeBrdWrite();
+        }
+        
     });
     //삭제 버튼 클릭 시
     $("#noticeContentDelBtn").off("click").on("click", function(){
-        setNoticeBrdContentDelete();
+        if(confirm("삭제하시겠습니까?")){
+            setNoticeBrdContentDelete();
+        }
     });
 }
 
@@ -426,16 +421,20 @@ function showNoticeBrdComment(){
     showNoticeBrdCommentDomain();
     //댓글 수정 버튼 클릭 시
     $(".noticeBrdCommentListUpDateBtn").off("click").on("click", function(){
-        CommentWriteOrUpdate ="update"
-        noticeBrdCommentListId = this.id.substr(24);
+        if(confirm("댓글을 수정하시겠습니까?")){
+            CommentWriteOrUpdate ="update"
+            noticeBrdCommentListId = this.id.substr(24);
 
-        getNoticeBrdCommentContent();//공지사항 댓글 내용 데이터 불러오기
+            getNoticeBrdCommentContent();//공지사항 댓글 내용 데이터 불러오기
+        }
     });
     //댓글 삭제 버튼 클릭 시
     $(".noticeBrdCommentListDeleteBtn").off("click").on("click", function(){
-        noticeBrdCommentListId = this.id.substr(24);
+        if(confirm("댓글을 삭제하시겠습니까?")){
+            noticeBrdCommentListId = this.id.substr(24);
 
-        setNoticeBrdCommentDelete();
+            setNoticeBrdCommentDelete();
+        }
     });
 }
 
@@ -455,7 +454,9 @@ function showNoticeBrdCommentDomain(){
     $("#kntNoticeBrdCommentBtnDomain").empty().append(kntNoticeBrdCommentDomainHtml);
     //댓글 작성 버튼 클릭 시
     $("#noticeBrdcommentWriteBtn").off("click").on("click", function(){
-        setNoticeBrdComment();  
+        if(confirm("댓글을 작성하시겠습니까?")){
+            setNoticeBrdComment();
+        }
     });
     //댓글 수정 버튼 클릭 시(내용 적은 후)
     $("#noticeBrdCommentUpdateBtn").off("click").on("click", function(){
