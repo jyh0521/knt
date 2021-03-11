@@ -231,8 +231,15 @@ function getNoticeSearchListCount(){
     let param = "text=" + noticeSearchText + "&option=" + SelectNoticeSearchOption;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeSearchListCount.php",param).done(function(result){
-        let noticeBrdSearchListCount =  String(result);//////////////
-        DrawPaging(noticeBrdSearchListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);////////////
+        if(!result){
+            alert("등록된 게시글이 없습니다.");
+
+            getNoticeBrdListCount();
+        }
+        else{
+            let noticeBrdSearchListCount =  String(result);//////////////
+            DrawPaging(noticeBrdSearchListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);////////////
+        }
     });
 }
 
