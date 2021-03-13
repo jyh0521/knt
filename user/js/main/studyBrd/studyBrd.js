@@ -336,20 +336,35 @@ function setStudyContent() {
 
     //작성 버튼 클릭 시
     $("#writeStudyContentBtn").off("click").on("click", function(){
-        initStudyGroupBoard(studyGroup);
-        writeStudyContent();
+        if(confirm("작성하시겠습니까?")) {
+            initStudyGroupBoard(studyGroup);
+            writeStudyContent();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //글쓰기 취소 버튼 클릭 시
     $("#cancelWriteStudyContentBtn").off("click").on("click", function(){
-        initStudyGroupBoard(studyGroup);
+        if(confirm("작성을 취소하시겠습니까?")) {
+            initStudyGroupBoard(studyGroup);
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //수정 완료 버튼 클릭 시
     $("#editStudyContentBtn").off("click").on("click", function(){
-        updateStudyContent();
-        initStudyContent();        
-        getStudyContentOfWriting();
+        if(confirm("작성하시겠습니까?")) {
+            updateStudyContent();
+            initStudyContent();        
+            getStudyContentOfWriting();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //수정 취소 버튼 클릭 시
@@ -396,19 +411,29 @@ function showStudyContentOfWriting() {
 
     //수정 버튼 클릭 시
     $("#studyEditBtn").off("click").on("click", function(){
-        initStudyWriting();
-        studyEdit = "on";
-        setStudyContent();
+        if(confirm("수정하시겠습니까?")) {
+            initStudyWriting();
+            studyEdit = "on";
+            setStudyContent();
 
-        $("#writeStudyContentTitle").val(studyContentOfWriting[0]['BRD_TITLE']);
-        $("#writeStudyContentText").val(studyContentOfWriting[0]['BRD_CONTENT']);
+            $("#writeStudyContentTitle").val(studyContentOfWriting[0]['BRD_TITLE']);
+            $("#writeStudyContentText").val(studyContentOfWriting[0]['BRD_CONTENT']);
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //삭제 버튼 클릭 시
     $("#studyDeleteBtn").off("click").on("click", function(){
-        initStudyTable();
-        deleteStudyContent();
-        deleteStudyCommentList();
+        if(confirm("삭제하시겠습니까?")) {
+            initStudyTable();
+            deleteStudyContent();
+            deleteStudyCommentList();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 }
 
@@ -438,18 +463,28 @@ function showStudyCommentList() {
 
     //댓글 수정버튼 클릭 시
     $(".studyCommentEditBtn").off("click").on("click", function(){
-        studyCommentListId = this.id.substr(16);
+        if(confirm("댓글을 수정하시겠습니까?")) {
+            studyCommentListId = this.id.substr(16);
 
-        studyCmtEdit = "on";
-        getStudyComment();
+            studyCmtEdit = "on";
+            getStudyComment();
+        }
+        else {
+            alert("취소되었습니다");
+        }
     });
 
     //댓글 삭제버튼 클릭 시
     $(".studyCommentDeleteBtn").off("click").on("click", function(){
-        studyCommentListId = this.id.substr(18);
+        if(confirm("댓글을 삭제하시겠습니까?")) {
+            studyCommentListId = this.id.substr(18);
 
-        deleteStudyComment();
-        getStudyCommentListCnt();
+            deleteStudyComment();
+            getStudyCommentListCnt();
+        }
+        else {
+            alert("취소되었습니다");
+        }
     });
 }
 
@@ -475,20 +510,30 @@ function setStudyComment() {
 
     //댓글 작성 버튼 클릭 시
     $("#writeStudyCommentBtn").off("click").on("click", function(){
-        studyCmtEdit = "off";
+        if(confirm("댓글을 작성하시겠습니까?")) {
+            studyCmtEdit = "off";
 
-        writeStudyComment();
-        getStudyCommentListCnt();
-        getStudyContentOfWriting();
+            writeStudyComment();
+            getStudyCommentListCnt();
+            getStudyContentOfWriting();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //수정 완료 버튼 클릭 시
     $("#editStudyCommentBtn").off("click").on("click", function(){
-        studyCmtEdit = "off";
+        if(confirm("댓글을 수정하시겠습니까?")) {
+            studyCmtEdit = "off";
 
-        updateStudyComment();
-        getStudyCommentListCnt();
-        getStudyContentOfWriting();
+            updateStudyComment();
+            getStudyCommentListCnt();
+            getStudyContentOfWriting();
+        }
+        else {
+            alert("취소되었습니다.");
+        }
     });
 
     //댓글 수정 취소 버튼 클릭 시
