@@ -276,8 +276,10 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
     //if(세션 아이디 == 관리자 아이디)
-    kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
-
+    // kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
+    kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style = 'background-color: #585c5f;'>"
+    kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
+    kntNoticeBrdContentDomainHtml += "</div>"
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     //검색 버튼 클릭 시
