@@ -18,12 +18,15 @@
             <div id = "kntNoticeBrdDomain" style="padding-top: 30px;"></div>
             <div id = "kntNoticeBrdPagingArea"></div>
         </div>
-        <div id="kntNoticeBrdWrite" style="display: none;">
-            <label for = 'noticeBrdWriteTitle'>제목</label>
-            <input type = 'text' id = 'noticeBrdWriteTitle'>
-            <label for='noticeBrdWriteContent'>내용</label>
-            <textarea id = 'noticeBrdWriteContent'></textarea>
-            <div id ='kntNoticeBrdWriteBtnDomain'></div>
+        <div class = 'noticeTextArea' id="kntNoticeBrdWrite" style="display: none;">
+            <div class="WritingHeader" style = 'position: relative; margin-top: 20px; border-bottom: 1px solid #323232;'>
+                <h2 class="title" style= 'margin-bottom: 16px; font-size: 22px; color: var(--skinTextColor);'>
+                공지사항 글쓰기
+                </h2>
+            </div>
+            <textarea placeholder="제목을 입력해 주세요." class="titleTextareaInput"  id = 'noticeBrdWriteTitle' style="height: 40px;"></textarea>
+            <textarea placeholder="내용을 입력하세요." class="contentTextareaInput"  id = 'noticeBrdWriteContent' style="height: 40px;"></textarea>
+            <div class = 'kntNoticeBrdWriteBtnDomain' id ='kntNoticeBrdWriteBtnDomain'></div>
         </div>
         <div id="kntNoticeBrdContent" style="display: none;">
             <div id ='kntNoticeBrdContentDomain'></div>

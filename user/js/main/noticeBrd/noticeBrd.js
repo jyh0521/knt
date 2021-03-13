@@ -339,8 +339,8 @@ function showNoticeBrdWrite(){
     else{
         document.getElementById("noticeBrdWriteTitle").value = null;
         document.getElementById("noticeBrdWriteContent").value = null;
-        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdSignUpBtn'>등록</button>";
-        kntNoticeBrdWriteDomainHtml += "<button id = 'noticeBrdCancleBtn'>취소</button>";
+        kntNoticeBrdWriteDomainHtml += "<button class = 'ui button'id = 'noticeBrdSignUpBtn'>등록</button>";
+        kntNoticeBrdWriteDomainHtml += "<button class = 'ui button' id = 'noticeBrdCancleBtn'>취소</button>";
     }
 
     $("#kntNoticeBrdWriteBtnDomain").empty().append(kntNoticeBrdWriteDomainHtml);
