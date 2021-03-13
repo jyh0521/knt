@@ -415,13 +415,13 @@ function showNoticeBrdComment(){
     CommentWriteOrUpdate ="write";
     //내용, 작성자, 날짜
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
-        noticeBrdCommentListHtml += "<a class='author'>"+ noticeBrdCommentList[i]['CMT_WRITER']+"</a>";
-        noticeBrdCommentListHtml += "<div class='metadata'>"
-        noticeBrdCommentListHtml += "<div class='date'>1 day ago</div>"
-        noticeBrdCommentListHtml += "</div>"
+        noticeBrdCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 12px 23px 10px 0;'>";
+        noticeBrdCommentListHtml += "<a class='author' style = 'font-weight: 700; color: #404040;'>"+ noticeBrdCommentList[i]['CMT_WRITER']+"</a>";
+        noticeBrdCommentListHtml += "<p style='margin-bottom: 0px;'>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
+        noticeBrdCommentListHtml += "<div style='margin-top: 7px; font-size: 12px; color: #979797;'>"+noticeBrdCommentList[i]['CMT_DATE']+"</div>"
+        noticeBrdCommentListHtml += "</div>";
         // noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
         // noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
-        noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
         //if(자기 계정, 관리자)
         // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
         // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
