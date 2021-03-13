@@ -7,6 +7,7 @@ let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
 
+let noticeBrdListCount="";//전체 데이터 수
 let searchOrAll = "";//검색한 리스트 or 전체 리스트
 
 function showNoticeBrd(){
@@ -28,7 +29,7 @@ function showNoticeBrd(){
 //목록 전체 데이터 수 불러오기 
 function getNoticeBrdListCount(){
     requestData("/knt/user/php/main/noticeBrd/getNoticeBrdListCount.php").done(function(result){
-        let noticeBrdListCount = String(result);//공지사항 목록 총 데이터 수
+        noticeBrdListCount = String(result);//공지사항 목록 총 데이터 수
         DrawPaging(noticeBrdListCount, 10, 1, "kntNoticeBrdPagingArea",  getNoticeBrdList);
         //페이징 함수 호출 후 getNoticeBrdList로 현재 페이지를 들고 호출
     });
@@ -42,6 +43,7 @@ function getNoticeBrdList(currentPage){
     requestData("/knt/user/php/main/noticeBrd/getNoticeList.php", param).done(function(result){
         noticeBrdList = result;
 
+        showNoticeHeader();
         showNoticeBrdTable();
         showNoticeBrdList(currentPage);
     });
@@ -237,8 +239,8 @@ function getNoticeSearchListCount(){
             getNoticeBrdListCount();
         }
         else{
-            let noticeBrdSearchListCount =  String(result);//////////////
-            DrawPaging(noticeBrdSearchListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);////////////
+            noticeBrdListCount =  String(result);//////////////
+            DrawPaging(noticeBrdListCount, 10, 1, "kntNoticeBrdPagingArea", setNoticeSearchList);////////////
         }
     });
 }
@@ -253,10 +255,19 @@ function setNoticeSearchList(currentPage){
     requestData("/knt/user/php/main/noticeBrd/setNoticeSearchList.php", param).done(function(result){
         noticeBrdList = result;//////////////
         
+        showNoticeHeader();
         showNoticeBrdTable();
         showNoticeBrdList(currentPage);
     });
 
+}
+
+function showNoticeHeader(){
+    let noticeHeaderHtml = "";
+    noticeHeaderHtml+="<h1 style='margin-bottom: 0px;margin-top: 30px;'>공지사항</h1>";
+    noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 95%;'>총 "+noticeBrdListCount+"건</h4>";
+
+    $("#noticeHeader").empty().append(noticeHeaderHtml);
 }
 
 function showNoticeBrdTable(){
