@@ -262,14 +262,14 @@ function setNoticeSearchList(currentPage){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class='ui selectable celled table' style = 'text-align:center;'>";
+    kntNoticeBrdContentDomainHtml += "<table class='ui large table' style = 'text-align:center;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
-    kntNoticeBrdContentDomainHtml +=             "<th>번호</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px;'>제목</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th>작성자</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th>작성일</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th>조회수</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>번호</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px; background: #79021f; color: rgb(255 255 255);'>제목</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>작성자</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>작성일</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>조회수</th>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
     kntNoticeBrdContentDomainHtml +=     "</thead>";
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
