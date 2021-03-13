@@ -3,9 +3,13 @@
 <body>
     <div id = "kntNotice">
         <div id = "kntNoticeBrd" style = "display: none;">
-            <div>
-                <h1 style="width: 150px;height: 100px;margin-bottom: 0px;padding-top: 100px;">공지사항</h1>
-                <div class="ui action input" style="padding-left: 700px;width: 1100px;height: 50px;">
+            <div style = 'position: relative; margin-top: 20px; border-bottom: 1px solid #cccccc;'>
+                <h1 style='margin-bottom: 20px; margin-top: 40px; text-align:center;'>공지사항</h1>
+            </div>
+            <div id = "kntNoticeBrdDomain" style="padding-top: 30px;"></div>
+            <div id = "kntNoticeBrdPagingArea" style="text-align:center;padding-top: 20px;padding-bottom: 20px;"></div>
+            <div style = 'text-align:center;'>
+                <div class="ui action input" style="width: 50%;">
                     <input type="text" id = "noticeSearchText">
                     <select class="ui compact selection dropdown" id = "SelectNoticeSearchOption" style="padding-top: 8px;padding-bottom: 8px;height: 50px;width: 94px;padding-right: 10px;">
                         <option value="BRD_TITLE">제목</option>
@@ -15,8 +19,6 @@
                     <div class="ui button" id = "noticeSearchBtn">검색</div>
                 </div>
             </div>
-            <div id = "kntNoticeBrdDomain" style="padding-top: 30px;"></div>
-            <div id = "kntNoticeBrdPagingArea"></div>
         </div>
         <div class = 'noticeTextArea' id="kntNoticeBrdWrite" style="display: none;">
             <div class="WritingHeader" style = 'position: relative; margin-top: 20px; border-bottom: 1px solid #323232;'>
