@@ -269,10 +269,8 @@ function showStudyTable() {
 
     //study 글쓰기 버튼 클릭
     $("#studyWriteBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none")
+        initStudyWriting();
         $("#studyBrdListPaging").css("display", "none");
-        $("#studyContent").css("display", "none");
-        $("#studyWriting").css("display", "block");
 
         studyEdit = "off";
         setStudyContent();
@@ -301,10 +299,8 @@ function showStudyList(currentPage) {
     $(".studyTitleBtn").off("click").on("click", function(){
         studyListId = this.id.substr(11);
 
-        $("#studyTable").css("display", "none");
+        initStudyContent();
         $("#studyBrdListPaging").css("display", "none");
-        $("#studyContent").css("display", "block");
-        $("#studyWriting").css("display", "none");
 
         setStudyBrdHit();
     });
@@ -352,20 +348,13 @@ function setStudyContent() {
     //수정 완료 버튼 클릭 시
     $("#editStudyContentBtn").off("click").on("click", function(){
         updateStudyContent();
-
-        $("#studyTable").css("display", "none");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "block");
-        
+        initStudyContent();        
         getStudyContentOfWriting();
     });
 
     //수정 취소 버튼 클릭 시
     $("#cancelEditStudyContentBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none");
-        $("#studyWriting").css("display", "none");
-        $("#studyContent").css("display", "block");
-
+        initStudyContent();
         showStudyContentOfWriting();
     });
 }
@@ -407,10 +396,7 @@ function showStudyContentOfWriting() {
 
     //수정 버튼 클릭 시
     $("#studyEditBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "none");
-        $("#studyContent").css("display", "none");
-        $("#studyWriting").css("display", "block");
-
+        initStudyWriting();
         studyEdit = "on";
         setStudyContent();
 
@@ -420,10 +406,7 @@ function showStudyContentOfWriting() {
 
     //삭제 버튼 클릭 시
     $("#studyDeleteBtn").off("click").on("click", function(){
-        $("#studyTable").css("display", "block");
-        $("#studyContent").css("display", "none");
-        $("#studyWriting").css("display", "none");
-
+        initStudyTable();
         deleteStudyContent();
         deleteStudyCommentList();
     });
@@ -514,4 +497,26 @@ function setStudyComment() {
 
         getStudyCommentListCnt();
     });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//css
+function initStudyWriting() {
+    $("#studyTable").css("display", "none");
+    $("#studyContent").css("display", "none");
+    $("#studyWriting").css("display", "block");
+}
+
+function initStudyContent() {
+    $("#studyTable").css("display", "none");
+    $("#studyWriting").css("display", "none");
+    $("#studyContent").css("display", "block");
+}
+
+function initStudyTable() {
+    $("#studyTable").css("display", "block");
+    $("#studyContent").css("display", "none");
+    $("#studyWriting").css("display", "none");
 }
