@@ -61,15 +61,15 @@
 }
 
 /*mngrBtn 버튼*/
-#mngrBtn { color: #FFFFFF; }
+#mngrBtn { color: #ffffff;}
 /*home 버튼*/
-#homeBtn { color: #FFFFFF; }
+#homeBtn { color: #ffffff; }
 /*myGroup 버튼*/
-#myGroup { color: #FFFFFF; }
+#myGroup { color: #ffffff; }
 /*myInfo 버튼*/
-#myInfo { color: #FFFFFF; }
+#myInfo { color: #ffffff; }
 /*logout 버튼*/
-#logout { color: #FFFFFF; }
+#logout { color: #ffffff; }
 
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }

@@ -273,14 +273,14 @@ function showNoticeHeader(){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class='ui large table' style = 'text-align:center;'>";
+    kntNoticeBrdContentDomainHtml += "<table class='ui large table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>번호</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px; background: #79021f; color: rgb(255 255 255);'>제목</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>작성자</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>작성일</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #79021f; color: rgb(255 255 255);'>조회수</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
     kntNoticeBrdContentDomainHtml +=     "</thead>";
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
@@ -288,7 +288,7 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml += "</table>";
     //if(세션 아이디 == 관리자 아이디)
     // kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
-    kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #585c5f;margin-left: 974px;'>"
+    kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
     kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
     kntNoticeBrdContentDomainHtml += "</div>"
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
