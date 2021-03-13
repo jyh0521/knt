@@ -262,7 +262,7 @@ function setNoticeSearchList(currentPage){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class= 'ui fixed single line celled table' style = 'text-align:center;'>";
+    kntNoticeBrdContentDomainHtml += "<table class='ui grey table' style = 'text-align:center;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th>번호</th>";
@@ -276,7 +276,7 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
     //if(세션 아이디 == 관리자 아이디)
-    kntNoticeBrdContentDomainHtml += "<button id = 'kntNoticeBrdWriteBtn'>작성</button>"
+    kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
 
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
@@ -413,15 +413,18 @@ function showNoticeBrdComment(){
     let noticeBrdCommentListHtml = "";
     let noticeBrdCommentListSize = noticeBrdCommentList.length;
     CommentWriteOrUpdate ="write";
-
     //내용, 작성자, 날짜
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
-        noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
-        noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
+        noticeBrdCommentListHtml += "<a class='author'>"+ noticeBrdCommentList[i]['CMT_WRITER']+"</a>";
+        noticeBrdCommentListHtml += "<div class='metadata'>"
+        noticeBrdCommentListHtml += "<div class='date'>1 day ago</div>"
+        noticeBrdCommentListHtml += "</div>"
+        // noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
+        // noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
         noticeBrdCommentListHtml += "<p>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
         //if(자기 계정, 관리자)
-        noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
-        noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
+        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
+        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
     }
     $("#kntNoticeBrdCommentListDomain").empty().append(noticeBrdCommentListHtml);
 
@@ -456,7 +459,9 @@ function showNoticeBrdCommentDomain(){
     }
     else{
         document.getElementById("noticeBrdCommentContent").value = null;
-        kntNoticeBrdCommentDomainHtml += "<p><button id = 'noticeBrdcommentWriteBtn'>댓글 작성</button>";
+        kntNoticeBrdCommentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'noticeBrdcommentWriteBtn' style = 'background-color: #585c5f;'>"
+        kntNoticeBrdCommentDomainHtml += "<i class='icon edit'></i> Add Comment"
+        kntNoticeBrdCommentDomainHtml += "</div>"
     }
     $("#kntNoticeBrdCommentBtnDomain").empty().append(kntNoticeBrdCommentDomainHtml);
     //댓글 작성 버튼 클릭 시
@@ -475,8 +480,7 @@ function showNoticeBrdCommentDomain(){
     });
 }
 
-
-
-
-
-
+//ui 드롭다운 안먹힐때
+window.onload = function() {
+    $('.ui .dropdown').dropdown();
+ };
