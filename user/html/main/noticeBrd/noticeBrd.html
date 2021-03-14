@@ -3,10 +3,12 @@
 <body>
     <div id = "kntNotice">
         <div id = "kntNoticeBrd" style = "display: none;">
-                <div>
-                    <h2 class= "ui center aligned middle aligned grid" style="padding-top: 50px; padding-bottom: 30px;">공지사항</h2>
-                </div>
-                <div class="ui action input" style="padding-left: 700px;width: 1100px;height: 50px;">
+            <div id = 'noticeHeader' style = 'position: relative; margin-top: 20px; border-bottom: 1px solid #cccccc;'>
+            </div>
+            <div id = "kntNoticeBrdDomain" style="padding-top: 30px;"></div>
+            <div id = "kntNoticeBrdPagingArea" style="text-align:center;padding-top: 20px;padding-bottom: 20px;"></div>
+            <div style = 'text-align:center;'>
+                <div class="ui action input" style="width: 50%;">
                     <input type="text" id = "noticeSearchText">
                     <select class="ui compact selection dropdown" id = "SelectNoticeSearchOption" style="padding-top: 8px;padding-bottom: 8px;height: 50px;width: 94px;padding-right: 10px;">
                         <option value="BRD_TITLE">제목</option>
@@ -15,22 +17,28 @@
                     </select>
                     <div class="ui button" id = "noticeSearchBtn">검색</div>
                 </div>
-            <div id = "kntNoticeBrdDomain" style="padding-top: 30px;"></div>
-            <div id = "kntNoticeBrdPagingArea"></div>
+            </div>
         </div>
-        <div id="kntNoticeBrdWrite" style="display: none;">
-            <label for = 'noticeBrdWriteTitle'>제목</label>
-            <input type = 'text' id = 'noticeBrdWriteTitle'>
-            <label for='noticeBrdWriteContent'>내용</label>
-            <textarea id = 'noticeBrdWriteContent'></textarea>
-            <div id ='kntNoticeBrdWriteBtnDomain'></div>
+        <div class = 'noticeTextArea' id="kntNoticeBrdWrite" style="display: none;">
+            <div class="WritingHeader" style = 'position: relative; margin-top: 20px; border-bottom: 1px solid #323232;'>
+                <h2 class="title" style= 'margin-bottom: 16px; font-size: 22px; color: var(--skinTextColor);'>
+                공지사항 글쓰기
+                </h2>
+            </div>
+            <textarea placeholder="제목을 입력해 주세요." class="titleTextareaInput"  id = 'noticeBrdWriteTitle' style="height: 40px;"></textarea>
+            <textarea placeholder="내용을 입력하세요." class="contentTextareaInput"  id = 'noticeBrdWriteContent' style="height: 40px;"></textarea>
+            <div class = 'kntNoticeBrdWriteBtnDomain' id ='kntNoticeBrdWriteBtnDomain'></div>
         </div>
         <div id="kntNoticeBrdContent" style="display: none;">
             <div id ='kntNoticeBrdContentDomain'></div>
         </div>
-        <div id="kntNoticeBrdComment" style="display: none;">
+        <div id="kntNoticeBrdComment" style="display: block;padding-top: 50px;">
+            <h3 class="ui dividing header">Comments</h3>
             <div id = 'kntNoticeBrdCommentListDomain'></div>
-            <textarea id = 'noticeBrdCommentContent' placeholder='댓글을 작성하세요.'></textarea>
+            <div class="ui input" style="width: 99%; height: 130px; padding-top: 1%; padding-bottom: 1%;">
+                <input type="text" id = 'noticeBrdCommentContent' placeholder="댓글을 작성하세요.">
+            </div>
+            <!-- <textarea id = 'noticeBrdCommentContent' cols='150' rows='5' placeholder='댓글을 작성하세요.'></textarea> -->
             <div id ='kntNoticeBrdCommentBtnDomain'></div>
             <div id = "kntNoticeBrdCommentPagingArea"></div>
         </div>
