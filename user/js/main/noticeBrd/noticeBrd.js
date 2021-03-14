@@ -295,8 +295,14 @@ function showNoticeBrdTable(){
 
     //검색 버튼 클릭 시
     $("#noticeSearchBtn").off("click").on("click", function(){
-        searchOrAll = "search"
-        showNoticeBrd();
+        let noticeSearchText = $("#noticeSearchText").val();//검색 input text값
+        if(!noticeSearchText){
+            alert("검색어를 입력하세요.");
+        }
+        else{
+            searchOrAll = "search"
+            showNoticeBrd();
+        }
     });
 
     //관리자가 글쓰기 버튼 클릭 시
@@ -497,8 +503,3 @@ function showNoticeBrdCommentDomain(){
         getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
-
-//ui 드롭다운 안먹힐때
-window.onload = function() {
-    $('.ui .dropdown').dropdown();
- };
