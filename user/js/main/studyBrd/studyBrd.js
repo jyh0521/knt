@@ -378,21 +378,16 @@ function setStudyContent() {
 function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
-    showStudyContentOfWritingHtml += "<table>";
-    showStudyContentOfWritingHtml +=   "<tr>";
-    showStudyContentOfWritingHtml +=       "<td colspan='2'>제목 " + studyContentOfWriting[0]['BRD_TITLE'] + "</td>";
-    showStudyContentOfWritingHtml +=   "<tr>";
-    showStudyContentOfWritingHtml +=       "<td>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</td>";
-    showStudyContentOfWritingHtml +=       "<td>작성일자 " + studyContentOfWriting[0]['BRD_DATE'] + "</td>";
-    showStudyContentOfWritingHtml +=   "</tr>";
-    showStudyContentOfWritingHtml +=   "</tr>";
-    showStudyContentOfWritingHtml +=   "<tr>";
-    showStudyContentOfWritingHtml +=       "<td colspan='2'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</td>";
-    showStudyContentOfWritingHtml +=   "</tr>";
-    showStudyContentOfWritingHtml +=   "<tr>";
-    showStudyContentOfWritingHtml +=       "<td>조회수 " + studyContentOfWriting[0]['BRD_HIT'] + "</td>";
-    showStudyContentOfWritingHtml +=   "</tr>";
-    showStudyContentOfWritingHtml += "</table>";
+    showStudyContentOfWritingHtml += "<p>" + "<h2>" + studyContentOfWriting[0]['BRD_TITLE'] + "</h2>" + "</p>";
+    showStudyContentOfWritingHtml += "<div>";
+    showStudyContentOfWritingHtml +=       "<p sytle='height: 100px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'];
+    showStudyContentOfWritingHtml +=       "작성일자 " + studyContentOfWriting[0]['BRD_DATE'] + "</p>";
+    showStudyContentOfWritingHtml += "</div>";
+    showStudyContentOfWritingHtml += "<div class='ui divider'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</div>";
+    showStudyContentOfWritingHtml += "<br>";
+    showStudyContentOfWritingHtml += "<div>";
+    showStudyContentOfWritingHtml +=       "조회수 " + studyContentOfWriting[0]['BRD_HIT'];
+    showStudyContentOfWritingHtml += "</div>";
     showStudyContentOfWritingHtml += "<p>";
     showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn' class='mini ui button'>목록</button>";
     showStudyContentOfWritingHtml +=   "<button id='studyEditBtn' class='mini ui button'>수정</button>";
