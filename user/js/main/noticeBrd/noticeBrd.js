@@ -51,11 +51,12 @@ function getNoticeBrdList(currentPage){
 
 //공지사항 내용 데이터 저장 
 function setNoticeBrdContent(){
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());//날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
 
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
+    let param = "writer=" + writer +"&title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
         if(result){
@@ -70,11 +71,12 @@ function setNoticeBrdContent(){
 //공지사항 내용 데이터 수정
 function setNoticeBrdUpdate(){
     //제목, 내용, 아이디, 날짜
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
+    let param = "writer=" + writer+"&title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
         getNoticeBrdContent();
@@ -126,10 +128,11 @@ function setNoticeBrdCommentDelete(){
 //공지사항 댓글 데이터 저장
 function setNoticeBrdComment(){
     //댓글 내용, 작성자, 날짜, 클릭한 제목 아이디
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
+    let param = "writer=" + writer + "&comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
     requestData("/knt/user/php/main/noticeBrd/setNoticeComment.php", param).done(function(result){
         if(result){
             getNoticeBrdCommentListCount();//댓글 데이터 불러오기
@@ -286,11 +289,11 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
-    //if(세션 아이디 == 관리자 아이디)
-    // kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
-    kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
-    kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
-    kntNoticeBrdContentDomainHtml += "</div>"
+    if(sessionStorage.getItem("loginUser")=='ADMIN'){
+        kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
+        kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
+        kntNoticeBrdContentDomainHtml += "</div>"
+    }
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     //검색 버튼 클릭 시
@@ -394,10 +397,10 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
     kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
     kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록</button>";
-    //if(관리자면){
-    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
-    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
-    //}
+    if(sessionStorage.getItem("loginUser")=='ADMIN'){
+        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
+        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
+    }
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     getNoticeBrdCommentListCount();//공지사항 댓글 총 데이터 수 불러오기
@@ -439,16 +442,13 @@ function showNoticeBrdComment(){
         noticeBrdCommentListHtml +=     "<p style='margin-bottom: 0px;'>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
         noticeBrdCommentListHtml +=     "<div style='margin-top: 7px; font-size: 12px; color: #979797;'>";
         noticeBrdCommentListHtml +=         "<div>"+noticeBrdCommentList[i]['CMT_DATE'];
-        noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>수정</a>";
-        noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>삭제</a>";
+        if(noticeBrdCommentList[i]['CMT_WRITER']==sessionStorage.getItem("loginUser")){
+            noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>수정</a>";
+            noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>삭제</a>";
+        }
         noticeBrdCommentListHtml +=         "</div>";
         noticeBrdCommentListHtml +=     "</div>";
         noticeBrdCommentListHtml += "</div>"
-        // noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
-        // noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
-        //if(자기 계정, 관리자)
-        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
-        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
     }
     $("#kntNoticeBrdCommentListDomain").empty().append(noticeBrdCommentListHtml);
 
