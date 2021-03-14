@@ -38,5 +38,6 @@ function showmyInfo() {
     myPageBrdHtml += "<p>학번 : " + sid + "</p>"
     myPageBrdHtml += "<p>전화번호 : " + phone + "</p>"
     myPageBrdHtml += "<p>권한 : " + usrAuth + "</p>"
+    //가입일시
     $("#myPageBrdHtmlDomain").empty().append(myPageBrdHtml);
 }
