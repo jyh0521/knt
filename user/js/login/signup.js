@@ -14,21 +14,27 @@ $("#gobackBtn").off("click").on("click", function () {
 
 function idCheck() {
     var id = $("#id").val();
-    var param = "id=" + id;
-    $.ajax({
-        url: "/knt/user/php/login/idcheck.php",
-        type: "post",
-        data: param,
-    }).done(function (result) {
-        if (result == "0") {
-            alert("사용 가능한 아이디입니다.");
-            idcheck_btn = true;
-        }
-        else {
-            alert("중복된 아이디입니다. 다시 입력");
-            id.value = "";
-        }
-    });
+    var f_id = /^[0-9A-Za-z]{4,12}$/;
+    if (!f_id.test(id)) {
+        alert("아이디는 4~12자리의 영문과 숫자로 입력해주세요.");
+    }
+    else {
+        var param = "id=" + id;
+        $.ajax({
+            url: "/knt/user/php/login/idcheck.php",
+            type: "post",
+            data: param,
+        }).done(function (result) {
+            if (result == "0") {
+                alert("사용 가능한 아이디입니다.");
+                idcheck_btn = true;
+            }
+            else {
+                alert("중복된 아이디입니다. 다시 입력");
+                id.value = "";
+            }
+        });
+    }
 }
 
 function signUpCheck() {

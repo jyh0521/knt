@@ -30,6 +30,9 @@ function getmyInfo() {
         if (auth === "User") {
             usrAuth = "학술국원";
         }
+        if (stdGroup === ""){
+            stdGroup = "아직 스터디 그룹이 배정되지 않았습니다."
+        }
         showmyInfo();
     });
 }

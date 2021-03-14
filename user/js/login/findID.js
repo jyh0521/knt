@@ -1,19 +1,24 @@
 // 이름과 연락처 입력 후 아이디값 반환
+$("#findID").off("click").on("click", function () {
+    findmyID();
+});
 
-function inputSuccess() {
-    var name = $("#name").val();
-    var phone = $("#phone").val();
-
-    var param = "name=" + name + "&phone=" + phone;
-
+function findmyID() {
+    let name = $("#name").val();
+    let phone = $("#phone").val();
+    let usrId="";
+    let param = "name=" + name + "&phone=" + phone;
     requestData("/knt/user/php/login/findID.php", param).done(function (result) {
-        if (!result) {
-            alert("아이디를 찾을 수 없습니다. 다시 시도해주세요.");
+        if(result){
+            usrId = result[USR_ID]
+            alert("회원님의 아이디는 "+usrId+" 입니다.\n다시 로그인해주세요.")
+            location.replace('/knt/user/html/login/login.html');
+            
         }
         else {
-            alert(name, "님의 아이디는", id, "입니다.");
-            alert("다시 로그인해주세요.");
-            location.replace('/knt/user/html/login/login.html');
+            alert("회원정보가 존재하지 않습니다.");
+            name.value = "";
+            phone.value = "";
         }
     });
 }

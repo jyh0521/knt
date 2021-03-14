@@ -1,4 +1,5 @@
-var id = sessionStorage.getItem('loginUser');
+let id = sessionStorage.getItem('loginUser');
+let myGroup="";
 
 if (id != null) {
     location.replace('/knt/user/html/main/main.html');
@@ -24,7 +25,7 @@ else {
     function inputSuccess() {
         var id = $("#id").val();
         var pw = $("#pw").val();
-
+        let myGroup = "";
         var param = "id=" + id + "&pw=" + pw;
 
         requestData("/knt/user/php/login/login.php", param).done(function (result) {
