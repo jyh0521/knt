@@ -3,7 +3,6 @@
 
     $id = $_POST['id'];
 
-    // 정보공유 선택된 글의 내용 불러오기
     $sql = "SELECT USR_NAME, USR_PHONE, USR_SID, USR_AUTH, USR_DATE, USR_STD
               FROM USR_INF
              WHERE USR_ID = '$id'";
