@@ -37,7 +37,7 @@ $("#myGroup").off("click").on("click", function () {
 
 //3-1. 마이페이지 메뉴 클릭 시
 $("#myInfo").off("click").on("click", function () {
-    $("#mngrBtnDiv").load("myPage/myPage.html", function () {
+    $("#menuFuncDiv").load("myPage/myPage.html", function () {
         getmyInfo();
     })
 });
@@ -57,7 +57,7 @@ $("#logout").off("click").on("click", function () {
 });
 
 //마이페이지 회원 탈퇴 버튼 클릭 시
-$("#withdrawalBtn").off("click").on("click", function () {
+/* $("#withdrawalBtn").off("click").on("click", function () {
     let OK;
     OK = confirm("회원 탈퇴 하시겠습니까?");
     id = sessionStorage.getItem("loginUser");
@@ -75,7 +75,7 @@ $("#withdrawalBtn").off("click").on("click", function () {
         })
     }
 })
-
+ */
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
