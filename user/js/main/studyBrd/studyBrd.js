@@ -442,8 +442,8 @@ function showStudyCommentList() {
     let showStudyCommentListHtml = "";
     let showStudyCommentListLength = studyCommentList.length;
 
+    showStudyCommentListHtml += "<p>" + "<h3 class='ui dividing header'>Comments</h3>" + "</p>";
     for(let i=0; i<showStudyCommentListLength; i++) {
-        showStudyCommentListHtml += "<p>" + "<h3 class='ui dividing header'>Comments</h3>" + "</p>";
         showStudyCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 12px 23px 10px 0;'>";
         showStudyCommentListHtml +=      "<a class='author' style = 'font-weight: 700; color: #404040;'>"+ studyCommentList[i]['CMT_WRITER']+"</a>";
         showStudyCommentListHtml +=      "<p style='margin-bottom: 0px;'>" + studyCommentList[i]['CMT_CONTENT'] + "</p>";
