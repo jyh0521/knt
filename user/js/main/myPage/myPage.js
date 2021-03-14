@@ -6,6 +6,8 @@ let phone = "";
 let sid = "";
 let auth = "";
 let usrAuth = "";
+let date = "";
+let stdGroup = "";
 ///////////////////////////////////////
 
 //정보 불러오는 함수
@@ -17,6 +19,8 @@ function getmyInfo() {
         phone = result[0]["USR_PHONE"]
         sid = result[0]["USR_SID"]
         auth = result[0]["USR_AUTH"]
+        date = result[0]["USR_DATE"]
+        stdGroup = result[0]["USR_STD"]
         if (auth === "Undefined") {
             usrAuth = "권한 설정이 필요합니다.";
         }
@@ -38,6 +42,9 @@ function showmyInfo() {
     myPageBrdHtml += "<p>학번 : " + sid + "</p>"
     myPageBrdHtml += "<p>전화번호 : " + phone + "</p>"
     myPageBrdHtml += "<p>권한 : " + usrAuth + "</p>"
+    myPageBrdHtml += "<p>가입일시 : " + date + "</p>"
+    myPageBrdHtml += "<p>스터디그룹 : " + stdGroup + "</p>"
+    myPageBrdHtml += "<p>" + "</p>"
     //가입일시
     $("#myPageBrdHtmlDomain").empty().append(myPageBrdHtml);
 }
