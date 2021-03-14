@@ -30,9 +30,11 @@ $("#homeBtn").off("click").on("click", function () {
 //2. 그룹명 클릭 >> 로그인 시 세션에 그룹값도 myGroup이라는 키에 넣어주고, 
 //상단의 myGroup 버튼 클릭 시 "~어떤 그룹입니다."라는 메세지와 함께 해당 그룹 페이지로 이동.
 $("#myGroup").off("click").on("click", function () {
-    let myGroup;
-    myGroup = sessionStorage.getItem("myGroup");
-    alert("그룹", myGroup, "회원입니다.");
+    let param = "id=" + id;
+    requestData("/knt/user/php/login/getmyInfo.php", param).done(function (result) {
+        stdGroup = result[0]["USR_STD"]
+    });       
+    alert("회원님께서 속한 그룹은 "+ stdGroup +"입니다.");
 });
 
 //3-1. 마이페이지 메뉴 클릭 시
@@ -55,27 +57,6 @@ $("#logout").off("click").on("click", function () {
         location.replace('/knt/user/html/main/main.html');
     }
 });
-
-//마이페이지 회원 탈퇴 버튼 클릭 시
-/* $("#withdrawalBtn").off("click").on("click", function () {
-    let OK;
-    OK = confirm("회원 탈퇴 하시겠습니까?");
-    id = sessionStorage.getItem("loginUser");
-    if (OK) {
-        alert("회원탈퇴를 진행합니다.");
-        var param = "id=" + id;
-        $.ajax({
-            url: '/knt/user/php/login/withdrawal.php',
-            type: 'post',
-            data: param,
-        }).done(function () {
-            sessionStorage.clear();
-            alert("회원탈퇴가 완료되었습니다.");
-            location.replace('/knt/user/html/login/login.html');
-        })
-    }
-})
- */
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
