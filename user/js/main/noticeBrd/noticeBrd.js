@@ -280,10 +280,10 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:50%; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:14%; background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:16%; background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:10%; background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
     kntNoticeBrdContentDomainHtml +=     "</thead>";
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
