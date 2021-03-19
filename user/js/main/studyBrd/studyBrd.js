@@ -378,15 +378,14 @@ function setStudyContent() {
 function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
-    showStudyContentOfWritingHtml += "<p>" + "<h2>" + studyContentOfWriting[0]['BRD_TITLE'] + "</h2>" + "</p>";
-    showStudyContentOfWritingHtml += "<div>";
-    showStudyContentOfWritingHtml +=       "<p sytle='height: 100px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'];
-    showStudyContentOfWritingHtml +=       "작성일자 " + studyContentOfWriting[0]['BRD_DATE'] + "</p>";
-    showStudyContentOfWritingHtml += "</div>";
-    showStudyContentOfWritingHtml += "<div class='ui divider'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</div>";
-    showStudyContentOfWritingHtml += "<br>";
-    showStudyContentOfWritingHtml += "<div>";
-    showStudyContentOfWritingHtml +=       "조회수 " + studyContentOfWriting[0]['BRD_HIT'];
+    showStudyContentOfWritingHtml += "<div class='ui divider'></div>";
+    showStudyContentOfWritingHtml += "<div class='ui segment'>";
+    showStudyContentOfWritingHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + studyContentOfWriting[0]['BRD_TITLE'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + studyContentOfWriting[0]['BRD_DATE'];
+    showStudyContentOfWritingHtml +=    " 조회수 " + studyContentOfWriting[0]['BRD_HIT'] + "</p>";
+    showStudyContentOfWritingHtml +=        "<div class='ui fitted divider'></div>"
+    showStudyContentOfWritingHtml +=    "<p style='font-size: 20px; padding-top: 20px;'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
     showStudyContentOfWritingHtml += "</div>";
     showStudyContentOfWritingHtml += "<p>";
     showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn' class='mini ui button'>목록</button>";
