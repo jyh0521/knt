@@ -490,8 +490,14 @@ function showNoticeBrdCommentDomain(){
     $("#kntNoticeBrdCommentBtnDomain").empty().append(kntNoticeBrdCommentDomainHtml);
     //댓글 작성 버튼 클릭 시
     $("#noticeBrdcommentWriteBtn").off("click").on("click", function(){
-        if(confirm("댓글을 작성하시겠습니까?")){
-            setNoticeBrdComment();
+        let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();//검색 input text값
+        if(!noticeBrdCommentContent){
+            alert("내용을 입력해주세요.");
+        }
+        else{
+            if(confirm("댓글을 작성하시겠습니까?")){
+                setNoticeBrdComment();
+            }
         }
     });
     //댓글 수정 버튼 클릭 시(내용 적은 후)
