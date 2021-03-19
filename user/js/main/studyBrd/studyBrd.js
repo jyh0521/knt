@@ -250,6 +250,7 @@ function updateStudyComment() {
 function showStudyTable() {
     let studyTableHtml = "";
     
+    studyTableHtml += "<div class='ui divider'></div>";
     studyTableHtml += "<table class='ui large table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     studyTableHtml +=     "<thead>";
     studyTableHtml +=         "<tr>";
@@ -379,13 +380,13 @@ function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
     showStudyContentOfWritingHtml += "<div class='ui divider'></div>";
-    showStudyContentOfWritingHtml += "<div class='ui segment'>";
+    showStudyContentOfWritingHtml += "<div class='ui segment' style='height: 72.917%'>";
     showStudyContentOfWritingHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + studyContentOfWriting[0]['BRD_TITLE'] + "</p>";
     showStudyContentOfWritingHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</p>";
     showStudyContentOfWritingHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + studyContentOfWriting[0]['BRD_DATE'];
     showStudyContentOfWritingHtml +=    " 조회수 " + studyContentOfWriting[0]['BRD_HIT'] + "</p>";
     showStudyContentOfWritingHtml +=        "<div class='ui fitted divider'></div>"
-    showStudyContentOfWritingHtml +=    "<p style='font-size: 20px; padding-top: 20px;'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 550px'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
     showStudyContentOfWritingHtml += "</div>";
     showStudyContentOfWritingHtml += "<p>";
     showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn' class='mini ui button'>목록</button>";
