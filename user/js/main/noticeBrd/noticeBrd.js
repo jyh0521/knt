@@ -276,7 +276,7 @@ function showNoticeHeader(){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class='ui large table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
+    kntNoticeBrdContentDomainHtml += "<table class='ui celled table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
@@ -390,13 +390,22 @@ function showNoticeBrdWrite(){
 //공지사항 내용 보여주기
 function showNoticeBrdContent(){
     let kntNoticeBrdContentDomainHtml = "";
-
-    kntNoticeBrdContentDomainHtml += "<p>제목 : " + noticeBrdContent[0]['BRD_TITLE'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%'>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + noticeBrdContent[0]['BRD_WRITER'] + "</p>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
+    kntNoticeBrdContentDomainHtml +=    " 조회수 " + noticeBrdContent[0]['BRD_HIT']+ "</p>";
+    kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
+    kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
+    kntNoticeBrdContentDomainHtml += "</div>";
     kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록</button>";
+
+    // kntNoticeBrdContentDomainHtml += "<p>제목 : " + noticeBrdContent[0]['BRD_TITLE'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+   //kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록</button>";
     if(sessionStorage.getItem("loginUser")=='ADMIN'){
         kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
         kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
