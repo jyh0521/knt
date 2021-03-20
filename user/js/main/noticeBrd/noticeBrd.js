@@ -267,7 +267,7 @@ function setNoticeSearchList(currentPage){
 
 function showNoticeHeader(){
     let noticeHeaderHtml = "";
-    noticeHeaderHtml+="<h1 style='margin-bottom: 0px;margin-top: 30px;'>공지사항</h1>";
+    noticeHeaderHtml+="<h3 style=' font-size: 30px; margin-bottom: 0px;margin-top: 30px;'>공지사항</h3>";
     noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 95%;'>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
 
     $("#noticeHeader").empty().append(noticeHeaderHtml);
