@@ -327,12 +327,12 @@ function showNoticeBrdList(currentPage) {
     let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
 
      for(let i = 0; i < noticeBrdListSize; i++) {
-        noticeBrdListTbodyHtml += "<tr>";
-        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + (i + noticeBrdStartNum) + "</td>";
-        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px;'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
-        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
+        noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px; cursor: pointer;'>";
+        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + (i + noticeBrdStartNum) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
         noticeBrdListTbodyHtml += "</tr>";
     }
 

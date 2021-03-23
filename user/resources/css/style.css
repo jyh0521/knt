@@ -60,6 +60,11 @@
     margin-left: 950px;
 }
 
+/* 공지사항 목록부분 */
+.noticeBrdList{
+    height: 60px; cursor: pointer;
+}
+
 /*mngrBtn 버튼*/
 #mngrBtn { color: #ffffff;}
 /*home 버튼*/
