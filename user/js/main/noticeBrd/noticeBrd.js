@@ -51,11 +51,12 @@ function getNoticeBrdList(currentPage){
 
 //공지사항 내용 데이터 저장 
 function setNoticeBrdContent(){
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());//날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
 
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
+    let param = "writer=" + writer +"&title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/setNoticeContent.php", param).done(function(result){
         if(result){
@@ -70,11 +71,12 @@ function setNoticeBrdContent(){
 //공지사항 내용 데이터 수정
 function setNoticeBrdUpdate(){
     //제목, 내용, 아이디, 날짜
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdWriteTitle = $("#noticeBrdWriteTitle").val();
     let noticeBrdWriteContent = $("#noticeBrdWriteContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
+    let param = "writer=" + writer+"&title=" + noticeBrdWriteTitle + "&content=" + noticeBrdWriteContent + "&id=" + noticeBrdContentListId + "&date=" + date;
 
     requestData("/knt/user/php/main/noticeBrd/updateNoticeContent.php", param).done(function(result){
         getNoticeBrdContent();
@@ -126,10 +128,11 @@ function setNoticeBrdCommentDelete(){
 //공지사항 댓글 데이터 저장
 function setNoticeBrdComment(){
     //댓글 내용, 작성자, 날짜, 클릭한 제목 아이디
+    let writer = sessionStorage.getItem("loginUser");
     let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();
     let date = getTimeStamp(new Date());
 
-    let param = "comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
+    let param = "writer=" + writer + "&comment=" + noticeBrdCommentContent + "&date=" + date + "&id=" + noticeBrdContentListId;
     requestData("/knt/user/php/main/noticeBrd/setNoticeComment.php", param).done(function(result){
         if(result){
             getNoticeBrdCommentListCount();//댓글 데이터 불러오기
@@ -264,8 +267,8 @@ function setNoticeSearchList(currentPage){
 
 function showNoticeHeader(){
     let noticeHeaderHtml = "";
-    noticeHeaderHtml+="<h1 style='margin-bottom: 0px;margin-top: 30px;'>공지사항</h1>";
-    noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 95%;'>총 "+noticeBrdListCount+"건</h4>";
+    noticeHeaderHtml+="<h3 style=' font-size: 30px; margin-bottom: 0px;margin-top: 30px;'>공지사항</h3>";
+    noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 95%;'>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
 
     $("#noticeHeader").empty().append(noticeHeaderHtml);
 }
@@ -273,30 +276,36 @@ function showNoticeHeader(){
 function showNoticeBrdTable(){
     let kntNoticeBrdContentDomainHtml= "";
     
-    kntNoticeBrdContentDomainHtml += "<table class='ui large table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
+    kntNoticeBrdContentDomainHtml += "<table class='ui celled table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     kntNoticeBrdContentDomainHtml +=     "<thead>";
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:350px; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style = 'width:50%; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:14%; background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:16%; background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
+    kntNoticeBrdContentDomainHtml +=             "<th style='width:10%; background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
     kntNoticeBrdContentDomainHtml +=     "</thead>";
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
-    //if(세션 아이디 == 관리자 아이디)
-    // kntNoticeBrdContentDomainHtml += "<button class='ui button' id  = 'kntNoticeBrdWriteBtn'>작성</button>"
-    kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
-    kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
-    kntNoticeBrdContentDomainHtml += "</div>"
+    if(sessionStorage.getItem("loginUser")=='ADMIN'){
+        kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
+        kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
+        kntNoticeBrdContentDomainHtml += "</div>"
+    }
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     //검색 버튼 클릭 시
     $("#noticeSearchBtn").off("click").on("click", function(){
-        searchOrAll = "search"
-        showNoticeBrd();
+        let noticeSearchText = $("#noticeSearchText").val();//검색 input text값
+        if(!noticeSearchText){
+            alert("검색어를 입력하세요.");
+        }
+        else{
+            searchOrAll = "search"
+            showNoticeBrd();
+        }
     });
 
     //관리자가 글쓰기 버튼 클릭 시
@@ -381,17 +390,26 @@ function showNoticeBrdWrite(){
 //공지사항 내용 보여주기
 function showNoticeBrdContent(){
     let kntNoticeBrdContentDomainHtml = "";
-
-    kntNoticeBrdContentDomainHtml += "<p>제목 : " + noticeBrdContent[0]['BRD_TITLE'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
-    kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+    kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%'>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + noticeBrdContent[0]['BRD_WRITER'] + "</p>";
+    kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
+    kntNoticeBrdContentDomainHtml +=    " 조회수 " + noticeBrdContent[0]['BRD_HIT']+ "</p>";
+    kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
+    kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
+    kntNoticeBrdContentDomainHtml += "</div>";
     kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록</button>";
-    //if(관리자면){
-    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
-    kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
-    //}
+
+    // kntNoticeBrdContentDomainHtml += "<p>제목 : " + noticeBrdContent[0]['BRD_TITLE'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>작성자 : " + noticeBrdContent[0]['BRD_WRITER'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>작성일 : " + noticeBrdContent[0]['BRD_DATE'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>조회수 : " + noticeBrdContent[0]['BRD_HIT'] + "</p>"
+    // kntNoticeBrdContentDomainHtml += "<p>내용 : " + noticeBrdContent[0]['BRD_CONTENT'] + "</p>"
+   //kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentBackBtn'>목록</button>";
+    if(sessionStorage.getItem("loginUser")=='ADMIN'){
+        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
+        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
+    }
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     getNoticeBrdCommentListCount();//공지사항 댓글 총 데이터 수 불러오기
@@ -433,16 +451,13 @@ function showNoticeBrdComment(){
         noticeBrdCommentListHtml +=     "<p style='margin-bottom: 0px;'>" + noticeBrdCommentList[i]['CMT_CONTENT'] + "</p>";
         noticeBrdCommentListHtml +=     "<div style='margin-top: 7px; font-size: 12px; color: #979797;'>";
         noticeBrdCommentListHtml +=         "<div>"+noticeBrdCommentList[i]['CMT_DATE'];
-        noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>수정</a>";
-        noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>삭제</a>";
+        if(noticeBrdCommentList[i]['CMT_WRITER']==sessionStorage.getItem("loginUser")){
+            noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>수정</a>";
+            noticeBrdCommentListHtml +=             "<a href='#' type='button' class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>삭제</a>";
+        }
         noticeBrdCommentListHtml +=         "</div>";
         noticeBrdCommentListHtml +=     "</div>";
         noticeBrdCommentListHtml += "</div>"
-        // noticeBrdCommentListHtml += "<p>작성자:" + noticeBrdCommentList[i]['CMT_WRITER']+"</p>";
-        // noticeBrdCommentListHtml += "<p>작성일:" + noticeBrdCommentList[i]['CMT_DATE']+"</p>";
-        //if(자기 계정, 관리자)
-        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListUpDateBtn' id = 'noticeBrdCommentUpdateId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 수정</button>";
-        // noticeBrdCommentListHtml += "<button class = 'noticeBrdCommentListDeleteBtn' id = 'noticeBrdCommentDeleteId" + noticeBrdCommentList[i]['CMT_ID'] + "'>댓글 삭제</button>";
     }
     $("#kntNoticeBrdCommentListDomain").empty().append(noticeBrdCommentListHtml);
 
@@ -484,8 +499,14 @@ function showNoticeBrdCommentDomain(){
     $("#kntNoticeBrdCommentBtnDomain").empty().append(kntNoticeBrdCommentDomainHtml);
     //댓글 작성 버튼 클릭 시
     $("#noticeBrdcommentWriteBtn").off("click").on("click", function(){
-        if(confirm("댓글을 작성하시겠습니까?")){
-            setNoticeBrdComment();
+        let noticeBrdCommentContent = $("#noticeBrdCommentContent").val();//검색 input text값
+        if(!noticeBrdCommentContent){
+            alert("내용을 입력해주세요.");
+        }
+        else{
+            if(confirm("댓글을 작성하시겠습니까?")){
+                setNoticeBrdComment();
+            }
         }
     });
     //댓글 수정 버튼 클릭 시(내용 적은 후)
@@ -497,8 +518,3 @@ function showNoticeBrdCommentDomain(){
         getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
-
-//ui 드롭다운 안먹힐때
-window.onload = function() {
-    $('.ui .dropdown').dropdown();
- };
