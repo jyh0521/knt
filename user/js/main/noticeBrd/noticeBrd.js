@@ -328,11 +328,11 @@ function showNoticeBrdList(currentPage) {
 
      for(let i = 0; i < noticeBrdListSize; i++) {
         noticeBrdListTbodyHtml += "<tr>";
-        noticeBrdListTbodyHtml +=     "<td>" + (i + noticeBrdStartNum) + "</td>";
-        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
-        noticeBrdListTbodyHtml +=     "<td>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + (i + noticeBrdStartNum) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px;'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
+        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
+        noticeBrdListTbodyHtml +=     "<td style='height: 60px;'>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
         noticeBrdListTbodyHtml += "</tr>";
     }
 
