@@ -9,6 +9,7 @@ let ContentWriteOrUpdate = "";
 
 let noticeBrdListCount="";//전체 데이터 수
 let searchOrAll = "";//검색한 리스트 or 전체 리스트
+let noticeBrdCommentListCount = "";
 
 function showNoticeBrd(){
     $("#kntNoticeBrd").css("display", "block");
@@ -211,7 +212,8 @@ function getNoticeBrdCommentListCount(){
     let param = "id=" + noticeBrdContentListId;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeBrdCommentListCount.php",param).done(function(result){
-        let noticeBrdCommentListCount = String(result);//공지사항 댓글 총 데이터 수
+        noticeBrdCommentListCount = String(result);//공지사항 댓글 총 데이터 수
+
         DrawPaging(noticeBrdCommentListCount, 10, 1, "kntNoticeBrdCommentPagingArea",  getNoticeBrdComment);
         //페이징 함수 호출 후 getNoticeBrdComment로 현재 페이지를 들고 호출
     });
@@ -438,6 +440,11 @@ function showNoticeBrdComment(){
     let noticeBrdCommentListSize = noticeBrdCommentList.length;
     CommentWriteOrUpdate ="write";
     //내용, 작성자, 날짜
+    noticeBrdCommentListHtml += "<p>";
+    noticeBrdCommentListHtml +=     "<h3 class='ui dividing header'>";
+    noticeBrdCommentListHtml +=     "<i class='comments outline icon' style='color: #79021f;'></i>";
+    noticeBrdCommentListHtml +=     " 댓글  " + noticeBrdCommentListCount + "</h3>";
+    noticeBrdCommentListHtml += "</p>";
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
         noticeBrdCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 12px 23px 10px 0;'>";
         noticeBrdCommentListHtml +=     "<a class='author' style = 'font-weight: 700; color: #404040;'>"+ noticeBrdCommentList[i]['CMT_WRITER']+"</a>";
