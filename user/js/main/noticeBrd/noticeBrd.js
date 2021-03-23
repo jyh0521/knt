@@ -390,7 +390,7 @@ function showNoticeBrdWrite(){
 //공지사항 내용 보여주기
 function showNoticeBrdContent(){
     let kntNoticeBrdContentDomainHtml = "";
-    kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%'>";
+    kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%; margin-top: 14px;'>";
     kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
     kntNoticeBrdContentDomainHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + noticeBrdContent[0]['BRD_WRITER'] + "</p>";
     kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
