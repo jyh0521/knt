@@ -24,6 +24,11 @@ function initStudyGroupBoard(studyGroup) {
     getStudyBrdCnt(studyGroup);
 }
 
+//study 헤더 보여주기
+function initStudyBoardTableHeader() {
+    $("#studyBoardHeader").css("display", "block");
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -52,6 +57,7 @@ function getStudyList(currentPage) {
     requestData("/knt/user/php/main/studyBrd/studyBrdList.php", param).done(function(result){
         studyContentList = result;
 
+        showStudyTableHeader();
         showStudyTable();
         showStudyList(currentPage);
     });
@@ -227,11 +233,20 @@ function updateStudyComment() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//study 헤더 추가
+function showStudyTableHeader() {
+    let studyHeaderHtml = "";
+
+    studyHeaderHtml += "<h3 style='font-size: 30px; margin-bottom: 0px;margin-top: 30px;'>STUDY</h3>";
+    studyHeaderHtml += "<h4 style='margin-top: 0px; margin-left: 95%;'>총 " + "<a style = 'color:#79021f;'>" + studyBrdCnt + "</a>" + "건</h4>";
+
+    $("#studyBoardHeader").empty().append(studyHeaderHtml);
+}
+
 //study 테이블
 function showStudyTable() {
     let studyTableHtml = "";
     
-    studyTableHtml += "<div class='ui divider'></div>";
     studyTableHtml += "<table class='ui selectable celled table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     studyTableHtml +=     "<thead>";
     studyTableHtml +=         "<tr>";
@@ -247,7 +262,7 @@ function showStudyTable() {
     studyTableHtml += "</table>";
     studyTableHtml += "<button id='studyWriteBtn' class='ui primary submit labeled icon button' style='background-color: #79021f;margin-left: 89%;'><i class='icon edit'></i>글쓰기</button>";
     
-    $("#studyTable").empty().append(studyTableHtml);
+    $("#studyBoardTable").empty().append(studyTableHtml);
 
     //study 글쓰기 버튼 클릭
     $("#studyWriteBtn").off("click").on("click", function(){
@@ -266,12 +281,12 @@ function showStudyList(currentPage) {
     let startBrdId = (currentPage - 1) * 10 + 1;
 
     for(let i=0; i<studyContentListLength; i++) {
-        studyContentListHtml +=   "<tr>";
-        studyContentListHtml +=       "<td>" + (i+startBrdId) + "</td>";
+        studyContentListHtml +=   "<tr class='studyListTitle' style='cursor: pointer;'>";
+        studyContentListHtml +=       "<td class='studyListTitle'>" + (i+startBrdId) + "</td>";
         studyContentListHtml +=       "<td class='studyTitleBtn' id='studyListId" + studyContentList[i]['BRD_ID'] + "'>" + studyContentList[i]['BRD_TITLE'] + "</td>";
-        studyContentListHtml +=       "<td>" + studyContentList[i]['BRD_WRITER'] + "</td>";
-        studyContentListHtml +=       "<td>" + cmpTimeStamp(studyContentList[i]['BRD_DATE']) + "</td>";
-        studyContentListHtml +=       "<td>" + studyContentList[i]['BRD_HIT'] + "</td>";
+        studyContentListHtml +=       "<td class='studyTitleBtn'>" + studyContentList[i]['BRD_WRITER'] + "</td>";
+        studyContentListHtml +=       "<td class='studyTitleBtn'>" + cmpTimeStamp(studyContentList[i]['BRD_DATE']) + "</td>";
+        studyContentListHtml +=       "<td class='studyTitleBtn'>" + studyContentList[i]['BRD_HIT'] + "</td>";
         studyContentListHtml +=   "</tr>";
     }
 
@@ -360,7 +375,6 @@ function setStudyContent() {
 function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
-    showStudyContentOfWritingHtml += "<div class='ui divider'></div>";
     showStudyContentOfWritingHtml += "<div class='ui segment' style='height: 72.917%'>";
     showStudyContentOfWritingHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + studyContentOfWriting[0]['BRD_TITLE'] + "</p>";
     showStudyContentOfWritingHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</p>";
@@ -370,7 +384,6 @@ function showStudyContentOfWriting() {
     showStudyContentOfWritingHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 550px'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
     showStudyContentOfWritingHtml += "</div>";
     showStudyContentOfWritingHtml += "<p>";
-    showStudyContentOfWritingHtml +=   "<button id='showStudyTableBtn' class='mini ui button'>목록</button>";
     showStudyContentOfWritingHtml +=   "<button id='studyEditBtn' class='mini ui button'>수정</button>";
     showStudyContentOfWritingHtml +=   "<button id='studyDeleteBtn' class='mini ui button'>삭제</button>";
     showStudyContentOfWritingHtml += "</p>";
@@ -420,7 +433,7 @@ function showStudyCommentList() {
 
     showStudyCommentListHtml += "<p>";
     showStudyCommentListHtml +=     "<h3 class='ui dividing header'>";
-    showStudyCommentListHtml +=     "<i class='comments outline icon' style='color: #79021f;'></i>";
+    showStudyCommentListHtml +=     "<i class='comments icon' style='color: #79021f;'></i>";
     showStudyCommentListHtml +=     " 댓글  " + studyCommentListCnt + "</h3>";
     showStudyCommentListHtml += "</p>";
     for(let i=0; i<showStudyCommentListLength; i++) {
