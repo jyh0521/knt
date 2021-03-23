@@ -442,7 +442,7 @@ function showNoticeBrdComment(){
     //내용, 작성자, 날짜
     noticeBrdCommentListHtml += "<p>";
     noticeBrdCommentListHtml +=     "<h3 class='ui dividing header'>";
-    noticeBrdCommentListHtml +=     "<i class='comments outline icon' style='color: #79021f;'></i>";
+    noticeBrdCommentListHtml +=     "<i class='comments icon' style='color: #79021f;'></i>";
     noticeBrdCommentListHtml +=     " 댓글  " + noticeBrdCommentListCount + "</h3>";
     noticeBrdCommentListHtml += "</p>";
     for(let i = 0; i < noticeBrdCommentListSize; i++) {
