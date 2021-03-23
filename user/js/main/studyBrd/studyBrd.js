@@ -251,7 +251,7 @@ function showStudyTable() {
     let studyTableHtml = "";
     
     studyTableHtml += "<div class='ui divider'></div>";
-    studyTableHtml += "<table class='ui large table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
+    studyTableHtml += "<table class='ui selectable celled table' style = 'text-align:center; border-top: 3px solid #79021f;'>";
     studyTableHtml +=     "<thead>";
     studyTableHtml +=         "<tr>";
     studyTableHtml +=            "<th>번호</th>";
