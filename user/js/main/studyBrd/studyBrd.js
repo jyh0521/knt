@@ -3,7 +3,7 @@ let studyGroup = ""; //클릭한 스터디 그룹명 저장
 let studyEdit = ""; //게시물 수정 여부
 let studyCmtEdit = ""; //댓글 수정 여부
 let studyBrdCnt = ""; //게시물 수
-let studyCommentListCnt = "";
+let studyCommentListCnt = ""; //댓글 수
 
 let studyContentList = [];
 let studyListId = "";
@@ -12,14 +12,6 @@ let studyCommentList = [];
 let studyCommentListId = "";
 let studyComment = [];
 
-/*
-    예준이 수정사항
-    1. 스터디 버튼을 만들고 그 아래 셀렉트 박스가 오게 배치
-    2. 스터디 버튼 클릭 시에는 아무런 변화가 없고 스터디 종류 클릭 시 게시판 불러오게 하기
-    3. 클릭 시 해당 스터디 코드만 전달 해서 게시판만 바꿔 그리게 하기
-
-    css 관련해서 중복되는 코드가 많아 보임, 함수로 묶거나 해서 중복되지 않게 줄여보자.
-*/
 
 //study 게시물 목록 보여주기
 function initStudyGroupBoard(studyGroup) {
@@ -31,17 +23,6 @@ function initStudyGroupBoard(studyGroup) {
 
     getStudyBrdCnt(studyGroup);
 }
-
-/*
-    a();
-    b();
-    -> a실행이 끝나고 b 실행
-
-    비동기식에서는
-    a를 실행시키고 끝나기 전에 b를 실행시킴 그래서 어떤문제가 있냐
-    a의 반환끝나기 전에 a의 반환값을 가지고 b에서 사용하려고 하면 아직 반환이 끝나지 않았기 때문에 b에서 오류가 발생.
-    .done, .load 등 사용해서 a의 동작이 끝나고 b가 실행될 수 있게 인위적으로 동기식으로 바꿔줌
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -437,7 +418,11 @@ function showStudyCommentList() {
     let showStudyCommentListHtml = "";
     let showStudyCommentListLength = studyCommentList.length;
 
-    showStudyCommentListHtml += "<p>" + "<h3 class='ui dividing header'>Comments</h3>" + "</p>";
+    showStudyCommentListHtml += "<p>";
+    showStudyCommentListHtml +=     "<h3 class='ui dividing header'>";
+    showStudyCommentListHtml +=     "<i class='comments outline icon' style='color: #79021f;'></i>";
+    showStudyCommentListHtml +=     " 댓글  " + studyCommentListCnt + "</h3>";
+    showStudyCommentListHtml += "</p>";
     for(let i=0; i<showStudyCommentListLength; i++) {
         showStudyCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 12px 23px 10px 0;'>";
         showStudyCommentListHtml +=      "<a class='author' style = 'font-weight: 700; color: #404040;'>"+ studyCommentList[i]['CMT_WRITER']+"</a>";
