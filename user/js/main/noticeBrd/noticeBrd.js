@@ -400,8 +400,8 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml += "</div>";
 
     if(sessionStorage.getItem("loginUser")=='ADMIN'){
-        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentUpdateBtn'>수정</button>";
-        kntNoticeBrdContentDomainHtml += "<button id = 'noticeContentDelBtn'>삭제</button>";
+        kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentUpdateBtn'>수정</button>";
+        kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentDelBtn'>삭제</button>";
     }
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 

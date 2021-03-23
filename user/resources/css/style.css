@@ -65,6 +65,11 @@
     height: 60px; cursor: pointer;
 }
 
+/* 공지사항 목록으로 이동 */
+.noticeContentBackBtn{
+    color: #79021f; font-size: 20px; cursor: pointer;
+}
+
 /*mngrBtn 버튼*/
 #mngrBtn { color: #ffffff;}
 /*home 버튼*/
