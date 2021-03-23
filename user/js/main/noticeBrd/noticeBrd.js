@@ -212,14 +212,14 @@ function getNoticeBrdCommentListCount(){
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeBrdCommentListCount.php",param).done(function(result){
         let noticeBrdCommentListCount = String(result);//공지사항 댓글 총 데이터 수
-        DrawPaging(noticeBrdCommentListCount, 5, 1, "kntNoticeBrdCommentPagingArea",  getNoticeBrdComment);
+        DrawPaging(noticeBrdCommentListCount, 10, 1, "kntNoticeBrdCommentPagingArea",  getNoticeBrdComment);
         //페이징 함수 호출 후 getNoticeBrdComment로 현재 페이지를 들고 호출
     });
 }
 
 //공지사항 댓글 목록 데이터 불러오기
 function getNoticeBrdComment(currentPage){
-    let startrow = (currentPage - 1) * 5;
+    let startrow = (currentPage - 1) * 10;
     let param = "id=" + noticeBrdContentListId + "&startrow=" + startrow;
 
     requestData("/knt/user/php/main/noticeBrd/getNoticeCommentList.php", param).done(function(result){
