@@ -281,9 +281,9 @@ function showStudyList(currentPage) {
     let startBrdId = (currentPage - 1) * 10 + 1;
 
     for(let i=0; i<studyContentListLength; i++) {
-        studyContentListHtml +=   "<tr class='studyListTitle' style='cursor: pointer;'>";
-        studyContentListHtml +=       "<td class='studyListTitle'>" + (i+startBrdId) + "</td>";
-        studyContentListHtml +=       "<td class='studyTitleBtn' id='studyListId" + studyContentList[i]['BRD_ID'] + "'>" + studyContentList[i]['BRD_TITLE'] + "</td>";
+        studyContentListHtml +=   "<tr class='studyListTitle' id='studyListId" + studyContentList[i]['BRD_ID'] + "' style='cursor: pointer;'>";
+        studyContentListHtml +=       "<td class='studyTitleBtn'>" + (i+startBrdId) + "</td>";
+        studyContentListHtml +=       "<td class='studyTitleBtn'>" + studyContentList[i]['BRD_TITLE'] + "</td>";
         studyContentListHtml +=       "<td class='studyTitleBtn'>" + studyContentList[i]['BRD_WRITER'] + "</td>";
         studyContentListHtml +=       "<td class='studyTitleBtn'>" + cmpTimeStamp(studyContentList[i]['BRD_DATE']) + "</td>";
         studyContentListHtml +=       "<td class='studyTitleBtn'>" + studyContentList[i]['BRD_HIT'] + "</td>";
@@ -293,7 +293,7 @@ function showStudyList(currentPage) {
     $("#studytbody").empty().append(studyContentListHtml);
 
     //study 리스트 제목 클릭
-    $(".studyTitleBtn").off("click").on("click", function(){
+    $(".studyListTitle").off("click").on("click", function(){
         studyListId = this.id.substr(11);
 
         initStudyContent();
