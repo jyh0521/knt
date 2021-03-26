@@ -237,8 +237,8 @@ function updateStudyComment() {
 function showStudyTableHeader() {
     let studyHeaderHtml = "";
 
-    studyHeaderHtml += "<h3 style='font-size: 30px; margin-bottom: 0px;margin-top: 30px;'>STUDY</h3>";
-    studyHeaderHtml += "<h4 style='margin-top: 0px; margin-left: 95%;'>총 " + "<a style = 'color:#79021f;'>" + studyBrdCnt + "</a>" + "건</h4>";
+    studyHeaderHtml += "<h3 style='font-size: 250%; margin-bottom: 0.1%;margin-top: 3%;'>STUDY</h3>";
+    studyHeaderHtml += "<h4 style='margin-top: 0.1%; margin-left: 95%;'>총 " + "<a style = 'color:#79021f;'>" + studyBrdCnt + "</a>" + "건</h4>";
 
     $("#studyBoardHeader").empty().append(studyHeaderHtml);
 }
@@ -375,13 +375,13 @@ function setStudyContent() {
 function showStudyContentOfWriting() {
     let showStudyContentOfWritingHtml = "";
 
-    showStudyContentOfWritingHtml += "<div class='ui segment' style='height: 72.917%'>";
-    showStudyContentOfWritingHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + studyContentOfWriting[0]['BRD_TITLE'] + "</p>";
-    showStudyContentOfWritingHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</p>";
-    showStudyContentOfWritingHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + studyContentOfWriting[0]['BRD_DATE'];
+    showStudyContentOfWritingHtml += "<div class='ui segment' style='height: 70%'>";
+    showStudyContentOfWritingHtml +=    "<p style='font-size: 270%; margin-bottom: 0.5%;'>" + studyContentOfWriting[0]['BRD_TITLE'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='height: 0; color: #979797; font-size: 95%;'>작성자 " + studyContentOfWriting[0]['BRD_WRITER'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='color: #979797; font-size: 95%; padding-top: 5px; word-spacing: 5px;'>" + studyContentOfWriting[0]['BRD_DATE'];
     showStudyContentOfWritingHtml +=    " 조회수 " + studyContentOfWriting[0]['BRD_HIT'] + "</p>";
     showStudyContentOfWritingHtml +=        "<div class='ui fitted divider'></div>"
-    showStudyContentOfWritingHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 550px'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
+    showStudyContentOfWritingHtml +=    "<p style='font-size: 150%; padding-top: 1.5%; height: 500px'>" + studyContentOfWriting[0]['BRD_CONTENT'] + "</p>";
     showStudyContentOfWritingHtml += "</div>";
     showStudyContentOfWritingHtml += "<p>";
     showStudyContentOfWritingHtml +=   "<button id='studyEditBtn' class='mini ui button'>수정</button>";
@@ -437,13 +437,13 @@ function showStudyCommentList() {
     showStudyCommentListHtml +=     " 댓글  " + studyCommentListCnt + "</h3>";
     showStudyCommentListHtml += "</p>";
     for(let i=0; i<showStudyCommentListLength; i++) {
-        showStudyCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 12px 23px 10px 0;'>";
+        showStudyCommentListHtml += "<div class = 'commentArea' style = 'position: relative; padding: 1% 2% 1% 0;'>";
         showStudyCommentListHtml +=      "<a class='author' style = 'font-weight: 700; color: #404040;'>"+ studyCommentList[i]['CMT_WRITER']+"</a>";
-        showStudyCommentListHtml +=      "<p style='margin-bottom: 0px;'>" + studyCommentList[i]['CMT_CONTENT'] + "</p>";
-        showStudyCommentListHtml +=      "<div style='margin-top: 7px; font-size: 12px; color: #979797;'>";
+        showStudyCommentListHtml +=      "<p style='margin-bottom: 0%;'>" + studyCommentList[i]['CMT_CONTENT'] + "</p>";
+        showStudyCommentListHtml +=      "<div style='margin-top: 0.5%; font-size: 87%; color: #979797;'>";
         showStudyCommentListHtml +=         "<div>"+ studyCommentList[i]['CMT_DATE'];
-        showStudyCommentListHtml +=             "<a href='#' type='button' class = 'studyCommentEditBtn' id = 'studyCommentEdit" + studyCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>수정</a>";
-        showStudyCommentListHtml +=             "<a href='#' type='button' class = 'studyCommentDeleteBtn' id = 'studyCommentDelete" + studyCommentList[i]['CMT_ID'] + "' style='padding-left: 10px;'>삭제</a>";
+        showStudyCommentListHtml +=             "<a href='#' type='button' class = 'studyCommentEditBtn' id = 'studyCommentEdit" + studyCommentList[i]['CMT_ID'] + "' style='padding-left: 1%;'>수정</a>";
+        showStudyCommentListHtml +=             "<a href='#' type='button' class = 'studyCommentDeleteBtn' id = 'studyCommentDelete" + studyCommentList[i]['CMT_ID'] + "' style='padding-left: 1%;'>삭제</a>";
         showStudyCommentListHtml +=         "</div>"
         showStudyCommentListHtml +=      "</div>"
         showStudyCommentListHtml += "</div>"
