@@ -4,9 +4,22 @@ window.onload = function () {
 };
 
 //세션값 확인 후 인증 세션이 없으면, 해당페이지 확인 불가. LOGIN.HTML로 이동
+// -> 메인에서 로그인 할 수 있게 수정, 로그인 안되있으면 login 버튼 출력, 로그인 되있으면 logout 버튼 출력
 if (sessionStorage.getItem("loginUser") == null) {
-    alert("세션이 존재하지 않습니다. 로그인 페이지로 돌아갑니다.")
-    location.replace('/knt/user/html/login/login.html');
+    // alert("세션이 존재하지 않습니다. 로그인 페이지로 돌아갑니다.")
+    // location.replace('/knt/user/html/login/login.html');
+    let beforeLoginHtm = "";
+    beforeLoginHtm += '<a href="#" type="button" id="loginBtn" class="item" onclick="location.href=\'/knt/user/html/login/login.html\'">Login</a>';
+    beforeLoginHtm += "<a href='#' type='button' id = 'joinBtn' class='item'>Join</a>"; 
+
+    $("#usrMenu").empty().append(beforeLoginHtm);
+} else {
+    let afterLoginHtml = "";
+    afterLoginHtml += '<a href="#" type="button" id="logoutBtn" class="item">Logout</a>';
+    afterLoginHtml += '<a href="#" type="button" id="myGroup" class="item">MyGroup</a>';
+    afterLoginHtml += '<a href="#" type="button" id="myInfo" class="item">MyPage</a>';
+    
+    $("#usrMenu").empty().append(afterLoginHtml);
 }
 
 
@@ -45,7 +58,7 @@ $("#myInfo").off("click").on("click", function () {
 });
 
 //4. 로그아웃 클릭
-$("#logout").off("click").on("click", function () {
+$("#logoutBtn").off("click").on("click", function () {
     let OK;
     OK = confirm("로그아웃 하시겠습니까?");
     if (OK) {

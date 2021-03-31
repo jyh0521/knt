@@ -71,6 +71,12 @@
     color: #79021f; font-size: 20px; cursor: pointer;
 }
 
+/*login 버튼*/
+#loginBtn { color: #ffffff;}
+/*logout 버튼*/
+#logoutBtn { color: #ffffff;}
+/*joinBtn 버튼*/
+#joinBtn { color: #ffffff;}
 /*mngrBtn 버튼*/
 #mngrBtn { color: #ffffff;}
 /*home 버튼*/
@@ -79,8 +85,6 @@
 #myGroup { color: #ffffff; }
 /*myInfo 버튼*/
 #myInfo { color: #ffffff; }
-/*logout 버튼*/
-#logout { color: #ffffff; }
 
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }
