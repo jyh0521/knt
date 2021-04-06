@@ -3,6 +3,7 @@
 
 /* 메뉴 버튼 & 기능 div */
 /* #mainFuncDiv { width: 100%; height: 500px; } */
+.mainFuncDiv {display: inline-block !important; } 
 
 /* 메뉴 버튼 */
 /* .menu { float: left; width: 10%; border: 1px solid black; height: 100% }
@@ -60,6 +61,22 @@
     margin-left: 950px;
 }
 
+/* 공지사항 목록부분 */
+.noticeBrdList{
+    height: 60px; cursor: pointer;
+}
+
+/* 공지사항 목록으로 이동 */
+.noticeContentBackBtn{
+    color: #79021f; font-size: 20px; cursor: pointer;
+}
+
+/*login 버튼*/
+#loginBtn { color: #ffffff;}
+/*logout 버튼*/
+#logoutBtn { color: #ffffff;}
+/*joinBtn 버튼*/
+#joinBtn { color: #ffffff;}
 /*mngrBtn 버튼*/
 #mngrBtn { color: #ffffff;}
 /*home 버튼*/
@@ -68,8 +85,6 @@
 #myGroup { color: #ffffff; }
 /*myInfo 버튼*/
 #myInfo { color: #ffffff; }
-/*logout 버튼*/
-#logout { color: #ffffff; }
 
 /* 글 작성 */
 #infoShareWriteContentTitleDiv { margin-top: 1%; }
