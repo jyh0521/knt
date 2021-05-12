@@ -10,7 +10,7 @@ if (sessionStorage.getItem("loginUser") == null) {
     // location.replace('/knt/user/html/login/login.html');
     let beforeLoginHtm = "";
     beforeLoginHtm += '<a href="#" type="button" id="loginBtn" class="item" onclick="location.href=\'/knt/user/html/login/login.html\'">Login</a>';
-    beforeLoginHtm += "<a href='#' type='button' id = 'joinBtn' class='item'>Join</a>"; 
+    beforeLoginHtm += '<a href="#" type="button" id="joinBtn" class="item" onclick="location.href=\'/knt/user/html/login/signup.html\'">Join</a>'; 
 
     $("#usrMenu").empty().append(beforeLoginHtm);
 } else {
@@ -64,9 +64,6 @@ $("#logoutBtn").off("click").on("click", function () {
     if (OK) {
         alert("로그아웃합니다.");
         sessionStorage.removeItem("loginUser");
-        location.replace('/knt/user/html/login/login.html');
-    }
-    else {
         location.replace('/knt/user/html/main/main.html');
     }
 });
