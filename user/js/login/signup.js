@@ -14,9 +14,9 @@ $("#gobackBtn").off("click").on("click", function () {
 
 function idCheck() {
     var id = $("#id").val();
-    var f_id = /^[0-9A-Za-z]{4,12}$/;
+    var f_id = /^[0-9a-z]{4,12}$/;
     if (!f_id.test(id)) {
-        alert("아이디는 4~12자리의 영문과 숫자로 입력해주세요.");
+        alert("아이디는 4~12자리의 영문 소문자, 숫자로 입력해주세요.");
     }
     else {
         var param = "id=" + id;
@@ -41,24 +41,21 @@ function signUpCheck() {
     var id = $("#id").val();
     var pw = $("#pw").val();
     var pwc = $("#pwc").val();
-    var f_id = /^[0-9A-Za-z]{4,12}$/;
+    var name = $("#name").val();
+    var sid = $("#sid").val();
+    var phone = $("#phone").val();
 
-    if (id == "" || pw == "" || pwc == "") {
-        alert("모든 정보를 입력해주세요");
-    }
-    else if (idcheck_btn == false) {
+    if (idcheck_btn == false) {
         alert("아이디 중복 검사를 완료해주세요");
     }
-    else if (!f_id.test(id)) {
-        alert("아이디는 4~12자리의 영문과 숫자로 입력해주세요.");
+    else if(pw!=pwc){
+        alert("비밀번호를 다시 확인해주세요");
     }
-    else {
-        if (pw != pwc) {
-            alert("비밀번호를 다시 확인해주세요");
-        }
-        else {
-            inputSuccess();
-        }
+    else if(id == "" || pw == "" || pwc == "" || name == "" || sid == "" || phone == ""){
+        alert("모든 정보를 입력해주세요");
+    }
+    else{
+        inputSuccess();
     }
 };
 
@@ -80,3 +77,10 @@ function inputSuccess() {
         location.replace('/knt/user/html/login/login.html');
     });
 }
+
+/*
+    TODO
+    1. 대소문자 구분
+    2. 비밀번호 정규식 적용
+    3. 성별 , 생년월일 추가? 
+*/
