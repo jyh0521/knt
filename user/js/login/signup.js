@@ -55,7 +55,9 @@ function signUpCheck() {
         alert("모든 정보를 입력해주세요");
     }
     else{
-        inputSuccess();
+        if(confirm('회원가입 하시겠습니까?')){
+            inputSuccess();
+        }
     }
 };
 
@@ -67,15 +69,19 @@ function inputSuccess() {
     var date = getTimeStamp(new Date());
     var pw = $("#pw").val();
 
+    
     var param = "id=" + id + "&sid=" + sid + "&name=" + name + "&phone=" + phone + "&pw=" + pw + "&date=" + date;
-    $.ajax({
-        url: "/knt/user/php/login/signup.php",
-        type: "post",
-        data: param,
-    }).done(function () {
-        confirm("회원가입 하시겠습니까?");
+    requestData("/knt/user/php/login/signup.php", param).done(function(result){
         location.replace('/knt/user/html/login/login.html');
     });
+    // $.ajax({
+    //     url: "/knt/user/php/login/signup.php",
+    //     type: "post",
+    //     data: param,
+    // }).done(function () {
+    //     confirm("회원가입 하시겠습니까?");
+    //     location.replace('/knt/user/html/login/login.html');
+    // });
 }
 
 /*
@@ -83,4 +89,5 @@ function inputSuccess() {
     1. 대소문자 구분
     2. 비밀번호 정규식 적용
     3. 성별 , 생년월일 추가? 
+    4. signup.php 수정 -> 리턴 값이 없
 */
