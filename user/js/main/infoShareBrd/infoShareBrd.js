@@ -253,7 +253,7 @@ function drawInfoShareList(currentPage) {
     for(let i = 0; i < infoShareListSize; i++) {
         infoShareListHtml += "<tr>";
         infoShareListHtml +=     "<td>" + (startDataIndex + i) + "</td>";
-        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'>" + infoShareList[i]["BRD_TITLE"] + "</td>";
+        infoShareListHtml +=     "<td class='infoShareListTitle' id='infoShareListID"+ infoShareList[i]["BRD_ID"] +"'><a href='/detail/" + (startDataIndex + i) + "'>" + infoShareList[i]["BRD_TITLE"] + "</a></td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_WRITER"] + "</td>";
         infoShareListHtml +=     "<td>" + cmpTimeStamp(infoShareList[i]["BRD_DATE"]) + "</td>";
         infoShareListHtml +=     "<td>" + infoShareList[i]["BRD_HIT"] + "</td>";

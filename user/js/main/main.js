@@ -16,25 +16,23 @@ if (sessionStorage.getItem("loginUser") == null) {
 } else {
     let afterLoginHtml = "";
     afterLoginHtml += '<a href="#" type="button" id="logoutBtn" class="item">Logout</a>';
-    afterLoginHtml += '<a href="#" type="button" id="myGroup" class="item">MyGroup</a>';
-    afterLoginHtml += '<a href="#" type="button" id="myInfo" class="item">MyPage</a>';
+    afterLoginHtml += '<a href="#" type="button" id="myGroup" class="item">My Group</a>';
+    afterLoginHtml += '<a href="#" type="button" id="myInfo" class="item">My Page</a>';
     
+    // 관리자가 접속했다면, 관리자 페이지 버튼 생성
+    /*
+        TODO
+        1. ID가 ADMIN일 경우가 아니라 사용자 권한이 Admin 일 경우로 수정(현재는 id가 ADMIN인 경우)
+    */
+    if(sessionStorage.getItem("loginUser") == 'ADMIN') {
+        afterLoginHtml += '<a href="#" type="button" id="mngrPage" class="item">Manager Page</a>'
+    }
+
     $("#usrMenu").empty().append(afterLoginHtml);
 }
 
 
 //상단 버튼 제어
-
-//관리자인지 확인 후, 관리자 페이지 버튼 생성
-if (sessionStorage.getItem("loginUser") == 'ADMIN') {
-    let mngrBtnDivHtml = "<a href='#' type='button' id = 'mngrBtn' class='item'>ManagerPage</a>";
-    $("#mngrBtnDiv").empty().append(mngrBtnDivHtml);
-    //관리자 페이지 버튼 클릭 시 관리자 main.html로 이동
-    $("#mngrBtn").off("click").on("click", function () {
-        location.replace('/knt/mngr/html/main/main.html');
-    });
-}
-
 //Join 버튼 클릭 시
 $("#joinBtn").off("click").on("click", function () {
     location.replace("/knt/user/html/login/signup.html");
@@ -71,6 +69,11 @@ $("#logoutBtn").off("click").on("click", function () {
         sessionStorage.removeItem("loginUser");
         location.replace('/knt/user/html/main/main.html');
     }
+});
+
+//5. 관리자 페이지 클릭 시
+$("#mngrPage").off("click").on("click", function () {
+    location.replace('/knt/mngr/html/main/main.html');
 });
 
 //학술국 공지사항 클릭 시
