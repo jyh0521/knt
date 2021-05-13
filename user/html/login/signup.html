@@ -2,44 +2,122 @@
 <html>
 
 <head>
-    <title>signup page</title>
     <meta charset="utf-8">
+    <title>main</title>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 </head>
-
 <body>
-    <p>
-        <label for="id">이름</label>
-        <input type="text" id="name" name="name" />
-    </p>
-    <p>
-        <label for="id">학번</label>
-        <input type="text" id="sid" name="sid" />
-    </p>
-    <p>
-        <label for="id">휴대전화번호</label>
-        <input type="text" id="phone" name="phone" />
-    </p>
-    <p>
-        <label for="id">아이디</label>
-        <input type="text" id="id" name="id" />
-        <button id="idcheck">중복</button>
-    </p>
-    <p>
-        <label for="pw">비밀번호</label>
-        <input type="password" id="pw" name="pw" />
-    </p>
-    <p>
-        <label for="pw">비밀번호 확인</label>
-        <input type="password" id="pwc" name="pwc" />
-    </p>
-
-    <button id="signupBtn">회원가입</button>
-    <button id="gobackBtn">뒤로가기</button>
+    <!-- 상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
+    <div id='usrMenu' class="ui borderless main menu" style="border-radius: 0;height: 3%; padding-left: 63%; background-color: #3f3f40;">
+    </div>
+    <!-- 로고 및 메뉴 -->
+    <div class="ui borderless main menu" style = 'padding-bottom: 0.4%; border-bottom: 1px solid #313031;'>
+        <div class="text container" style="margin-left: 20%; margin-right: 20%; width: 100%;">
+            <img src="/knt/user/resources/css/image/KNTLogo.png" style="width: 35%;height: 85%;padding-right: 5%;margin-right: 12%;">
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='introduceBtn' class="item"><h3>학술국 소개</h3></a>
+            </div>
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='noticeBtn' class="item"><h3>학술국 공지사항</h3></a>
+            </div>
+            <div class="item" id="mainFuncDiv">
+                <a href="#" type="button" id='infoShareBtn' class="item"><h3>학술국 정보공유</h3></a>
+            </div>
+            <div class="item">
+                <div class="ui dropdown">
+                    <div class="text" id="studyBtn"><h3>스터디</h3></div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu" id="studyGroupList">
+                            <a href="#" class="item studyGroup" id="STD_001">STUDY A</a>
+                            <a href="#" class="item studyGroup" id="STD_002">STUDY B</a>
+                            <a href="#" class="item studyGroup" id="STD_003">STUDY C</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 메인콘텐츠 -->
+        <div class="container" style="margin-left: 20%; margin-right: 20%;">
+            <div class="content" id="menuFuncDiv">
+                <h1>회원가입</h1>
+                <p>
+                    <label for="id">아이디</label>
+                    <input type="text" id="id" name="id" />
+                    <button id="idcheck">중복</button>
+                </p>
+                <p>
+                    <label for="pw">비밀번호</label>
+                    <input type="password" id="pw" name="pw" />
+                </p>
+                <p>
+                    <label for="pw">비밀번호 확인</label>
+                    <input type="password" id="pwc" name="pwc" />
+                </p>
+                <p>
+                    <label for="id">이름</label>
+                    <input type="text" id="name" name="name" />
+                </p>
+                <p>
+                    <label for="id">학번</label>
+                    <input type="text" id="sid" name="sid" />
+                </p>
+                <p>
+                    <label for="id">휴대전화번호</label>
+                    <input type="text" id="phone" name="phone" />
+                </p>
+            
+                <button id="signupBtn">회원가입</button>
+            </div>
+        </div>
+    <!-- footer -->
+    <div class="ui inverted vertical footer segment" style='margin-top: 10%;'>
+        <div class="ui center aligned container">
+            <div class="ui stackable inverted divided grid">
+              <div class="four wide column">
+                <h4 class="ui inverted header">Design</h4>
+                <div class="ui inverted link list">
+                  <a href="#" class="item">전용후</a>
+                  <a href="#" class="item">이슬</a>
+                  <a href="#" class="item">황예준</a>
+                  <a href="#" class="item">문창집</a>
+                </div>
+              </div>
+              <div class="four wide column">
+                <h4 class="ui inverted header">Developers</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">전용후</a>
+                    <a href="#" class="item">이슬</a>
+                    <a href="#" class="item">황예준</a>
+                    <a href="#" class="item">문창집</a>
+                </div>
+              </div>
+              <div class="eight wide column">
+                <h4 class="ui inverted header">고려대학교 세종캠퍼스 학술국</h4>
+                <p>학술국장 짱짱</p>
+              </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <div class="ui horizontal inverted small divided link list">
+              <a class="item" href="#">Site Map</a>
+              <a class="item" href="#">Contact Us</a>
+              <a class="item" href="#">Terms and Conditions</a>
+              <a class="item" href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
 </body>
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/knt/user/js/login/signup.js"></script>
+<script src="/knt/user/resources/css/semantic.min.js"></script>
 <script type="text/javascript" src="/knt/lib/js/lib.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/main.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/noticeBrd/noticeBrd.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/infoShareBrd/infoShareBrd.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/studyBrd/studyBrd.js"></script>
+<script type="text/javascript" src="/knt/user/js/main/myPage/myPage.js"></script>
 
 </html>

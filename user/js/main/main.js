@@ -35,6 +35,11 @@ if (sessionStorage.getItem("loginUser") == 'ADMIN') {
     });
 }
 
+//Join 버튼 클릭 시
+$("#joinBtn").off("click").on("click", function () {
+    location.replace("/knt/user/html/login/signup.html");
+});
+
 //1. 홈버튼 클릭
 $("#homeBtn").off("click").on("click", function () {
     location.replace('/knt/user/html/main/main.html');
