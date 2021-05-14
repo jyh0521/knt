@@ -88,5 +88,4 @@ function inputSuccess() {
     TODO
     2. 비밀번호 정규식 적용
     3. 성별 , 생년월일 추가? 
-    4. signup.php 수정 -> 리턴 값이 없
 */
