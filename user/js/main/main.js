@@ -25,7 +25,7 @@ if (sessionStorage.getItem("loginUser") == null) {
         1. ID가 ADMIN일 경우가 아니라 사용자 권한이 Admin 일 경우로 수정(현재는 id가 ADMIN인 경우)
     */
     if(sessionStorage.getItem("loginUser") == 'ADMIN') {
-        afterLoginHtml += '<a href="#" type="button" id="mngrPage" class="item">Manager Page</a>'
+        afterLoginHtml += '<a href="#" type="button" id="mngrPageBtn" class="item">Manager Page</a>'
     }
 
     $("#usrMenu").empty().append(afterLoginHtml);
@@ -72,7 +72,7 @@ $("#logoutBtn").off("click").on("click", function () {
 });
 
 //5. 관리자 페이지 클릭 시
-$("#mngrPage").off("click").on("click", function () {
+$("#mngrPageBtn").off("click").on("click", function () {
     location.replace('/knt/mngr/html/main/main.html');
 });
 
