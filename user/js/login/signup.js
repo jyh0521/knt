@@ -20,11 +20,7 @@ function idCheck() {
     }
     else {
         var param = "id=" + id;
-        $.ajax({
-            url: "/knt/user/php/login/idcheck.php",
-            type: "post",
-            data: param,
-        }).done(function (result) {
+        requestData("/knt/user/php/login/idcheck.php", param).done(function(result){
             if (result == "0") {
                 alert("사용 가능한 아이디입니다.");
                 idcheck_btn = true;
@@ -77,22 +73,14 @@ function inputSuccess() {
     var date = getTimeStamp(new Date());
     var pw = $("#pw").val();
 
-    
+
     var param = "id=" + id + "&sid=" + sid + "&name=" + name + "&phone=" + phone + "&pw=" + pw + "&date=" + date;
     requestData("/knt/user/php/login/signup.php", param).done(function(result){
         location.replace('/knt/user/html/login/login.html');
     });
-    // $.ajax({
-    //     url: "/knt/user/php/login/signup.php",
-    //     type: "post",
-    //     data: param,
-    // }).done(function () {
-    //     confirm("회원가입 하시겠습니까?");
-    //     location.replace('/knt/user/html/login/login.html');
-    // });
 }
 
 /*
     TODO
-    3. 성별 , 생년월일 추가? 
+    3. 성별 , 생년월일 추가?
 */
