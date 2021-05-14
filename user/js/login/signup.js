@@ -14,7 +14,7 @@ $("#gobackBtn").off("click").on("click", function () {
 
 function idCheck() {
     var id = $("#id").val();
-    var f_id = /^[0-9a-z]{4,12}$/;
+    var f_id = /^[0-9A-Za-z]{4,12}$/;
     if (!f_id.test(id)) {
         alert("아이디는 4~12자리의 영문 소문자, 숫자로 입력해주세요.");
     }
@@ -86,7 +86,6 @@ function inputSuccess() {
 
 /*
     TODO
-    1. 대소문자 구분
     2. 비밀번호 정규식 적용
     3. 성별 , 생년월일 추가? 
     4. signup.php 수정 -> 리턴 값이 없
