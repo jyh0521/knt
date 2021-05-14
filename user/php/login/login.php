@@ -4,8 +4,8 @@
     $id = $_POST['id'];
     $pw = $_POST['pw'];
 
-    $sql = "SELECT COUNT(*) AS USR_CNT FROM USR_INF WHERE USR_ID = '{$id}' AND USR_PW = MD5('{$pw}')";
-    $sql_2 = "SELECT USR_DISABLE FROM USR_INF WHERE USR_ID = '{$id}'";
+    $sql = "SELECT COUNT(*) AS USR_CNT FROM USR_INF WHERE USR_ID = BINARY('{$id}') AND USR_PW = MD5('{$pw}')";
+    $sql_2 = "SELECT USR_DISABLE FROM USR_INF WHERE USR_ID = BINARY('{$id}')";
     $result = mysql_query($sql, $connect);
     $result_2 = mysql_query($sql_2, $connect);
     $row = mysql_fetch_array($result);
