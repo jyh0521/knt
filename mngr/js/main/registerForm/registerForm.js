@@ -104,6 +104,7 @@ function insertFormContent(param) {
     requestData("/knt/mngr/php/main/registerForm/insertFormContent.php", param).done(function(result){
         if(result) {
             alert("지원서 등록이 완료되었습니다.");
+            location.replace('/knt/mngr/html/main/main.html');
         }
         else {
             alert("지원서 등록이 실패하였습니다.");
