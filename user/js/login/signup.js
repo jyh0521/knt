@@ -30,7 +30,7 @@ function idCheck() {
                 idcheck_btn = true;
             }
             else {
-                alert("중복된 아이디입니다. 다시 입력");
+                alert("중복된 아이디입니다. 다시 입력해주세요.");
                 id.value = "";
             }
         });
@@ -45,8 +45,16 @@ function signUpCheck() {
     var sid = $("#sid").val();
     var phone = $("#phone").val();
 
+    var f_pw = /^[0-9A-Za-z]{8,}$/;
+    var num = pw.search(/[0-9]/g);
+    var eng = pw.search(/[a-z]/ig);
+    //var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); 특수문자
+
     if (idcheck_btn == false) {
         alert("아이디 중복 검사를 완료해주세요");
+    }
+    else if(!f_pw.test(pw) || num < 0 || eng < 0 ){
+        alert("비밀번호는 8자 이상이며, 영어, 숫자가 들어가야 합니다.");
     }
     else if(pw!=pwc){
         alert("비밀번호를 다시 확인해주세요");
@@ -86,6 +94,5 @@ function inputSuccess() {
 
 /*
     TODO
-    2. 비밀번호 정규식 적용
     3. 성별 , 생년월일 추가? 
 */
