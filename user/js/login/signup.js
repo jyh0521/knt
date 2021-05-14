@@ -14,23 +14,19 @@ $("#gobackBtn").off("click").on("click", function () {
 
 function idCheck() {
     var id = $("#id").val();
-    var f_id = /^[0-9a-z]{4,12}$/;
+    var f_id = /^[0-9A-Za-z]{4,12}$/;
     if (!f_id.test(id)) {
         alert("아이디는 4~12자리의 영문 소문자, 숫자로 입력해주세요.");
     }
     else {
         var param = "id=" + id;
-        $.ajax({
-            url: "/knt/user/php/login/idcheck.php",
-            type: "post",
-            data: param,
-        }).done(function (result) {
+        requestData("/knt/user/php/login/idcheck.php", param).done(function(result){
             if (result == "0") {
                 alert("사용 가능한 아이디입니다.");
                 idcheck_btn = true;
             }
             else {
-                alert("중복된 아이디입니다. 다시 입력");
+                alert("중복된 아이디입니다. 다시 입력해주세요.");
                 id.value = "";
             }
         });
@@ -45,8 +41,16 @@ function signUpCheck() {
     var sid = $("#sid").val();
     var phone = $("#phone").val();
 
+    var f_pw = /^[0-9A-Za-z]{8,}$/;
+    var num = pw.search(/[0-9]/g);
+    var eng = pw.search(/[a-z]/ig);
+    //var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); 특수문자
+
     if (idcheck_btn == false) {
         alert("아이디 중복 검사를 완료해주세요");
+    }
+    else if(!f_pw.test(pw) || num < 0 || eng < 0 ){
+        alert("비밀번호는 8자 이상이며, 영어, 숫자가 들어가야 합니다.");
     }
     else if(pw!=pwc){
         alert("비밀번호를 다시 확인해주세요");
@@ -69,25 +73,14 @@ function inputSuccess() {
     var date = getTimeStamp(new Date());
     var pw = $("#pw").val();
 
-    
+
     var param = "id=" + id + "&sid=" + sid + "&name=" + name + "&phone=" + phone + "&pw=" + pw + "&date=" + date;
     requestData("/knt/user/php/login/signup.php", param).done(function(result){
         location.replace('/knt/user/html/login/login.html');
     });
-    // $.ajax({
-    //     url: "/knt/user/php/login/signup.php",
-    //     type: "post",
-    //     data: param,
-    // }).done(function () {
-    //     confirm("회원가입 하시겠습니까?");
-    //     location.replace('/knt/user/html/login/login.html');
-    // });
 }
 
 /*
     TODO
-    1. 대소문자 구분
-    2. 비밀번호 정규식 적용
-    3. 성별 , 생년월일 추가? 
-    4. signup.php 수정 -> 리턴 값이 없
+    3. 성별 , 생년월일 추가?
 */

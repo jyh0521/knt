@@ -12,6 +12,9 @@
             INTO USR_INF(USR_ID, USR_SID, USR_PW, USR_NAME, USR_PHONE, USR_AUTH, USR_DATE, USR_DISABLE) 
             VALUES('$id','$sid',MD5('{$pw}'),'$name','$phone','Undefined','$date','Y')";
 
-    mysql_query($sql, $connect);
+    $result = mysql_query($sql, $connect);
+
+    echo json_encode($result);
+
     mysql_close($connect);
 ?>
