@@ -82,5 +82,7 @@ function inputSuccess() {
 
 /*
     TODO
+    1. 비밀번호 대소문자랑 특수문자 들어가게 하기
+    2. signup.html main.html에 붙여주기
     3. 성별 , 생년월일 추가?
 */

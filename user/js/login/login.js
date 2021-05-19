@@ -40,3 +40,15 @@ else {
         });
     }
 }
+
+/*
+    TODO
+    1. 아이디, 비밀번호 입력 후 아이디 혹은 비밀번호에 포커스 되있는 상태에서 엔터쳐도 동작하게 하기.
+    
+    예제 코드
+    $("#USER_SEARCH").off("keyup").keyup(function(e) { // 사용자명 검색 엔터
+        if (e.which == 13 || e.keycode == 13) {
+            doSearch();
+        }
+	});
+*/
