@@ -14,9 +14,9 @@ $("#gobackBtn").off("click").on("click", function () {
 
 function idCheck() {
     var id = $("#id").val();
-    var f_id = /^[0-9A-Za-z]{4,12}$/;
-    if (!f_id.test(id)) {
-        alert("아이디는 4~12자리의 영문 소문자, 숫자로 입력해주세요.");
+    var regId = /^[0-9A-Za-z]{4,12}$/;
+    if (!regId.test(id)) {
+        alert("아이디는 4~12자리의 영문자, 숫자로 입력해주세요.");
     }
     else {
         var param = "id=" + id;
@@ -40,17 +40,13 @@ function signUpCheck() {
     var name = $("#name").val();
     var sid = $("#sid").val();
     var phone = $("#phone").val();
-
-    var f_pw = /^[0-9A-Za-z]{8,}$/;
-    var num = pw.search(/[0-9]/g);
-    var eng = pw.search(/[a-z]/ig);
-    //var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); 특수문자
+    var regPwd = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
 
     if (idcheck_btn == false) {
         alert("아이디 중복 검사를 완료해주세요");
     }
-    else if(!f_pw.test(pw) || num < 0 || eng < 0 ){
-        alert("비밀번호는 8자 이상이며, 영어, 숫자가 들어가야 합니다.");
+    else if(!regPwd.test(pw)){
+        alert("비밀번호는 대소문자, 특수문자, 숫자를 사용해 8자 이상 입력해주세요.");
     }
     else if(pw!=pwc){
         alert("비밀번호를 다시 확인해주세요");
@@ -82,7 +78,7 @@ function inputSuccess() {
 
 /*
     TODO
-    1. 비밀번호 대소문자랑 특수문자 들어가게 하기
+    1. 비밀번호 대소문자랑 특수문자 들어가게 하기 o
     2. signup.html main.html에 붙여주기
     3. 성별 , 생년월일 추가?
 */
