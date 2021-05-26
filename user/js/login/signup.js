@@ -1,16 +1,22 @@
 var idcheck_btn = false;
 
-$("#idcheck").off("click").on("click", function () {
-    idCheck();
-});
+function getSignUp(){
+    signUpEvent();
+}
 
-$("#signupBtn").off("click").on("click", function () {
-    signUpCheck();
-});
-
-$("#gobackBtn").off("click").on("click", function () {
-    location.replace('/knt/user/html/login/login.html');
-});
+function signUpEvent(){
+    $("#idcheck").off("click").on("click", function () {
+        idCheck();
+    });
+    
+    $("#signupBtn").off("click").on("click", function () {
+        signUpCheck();
+    });
+    
+    $("#gobackBtn").off("click").on("click", function () {
+        location.replace('/knt/user/html/login/login.html');
+    });
+}
 
 function idCheck() {
     var id = $("#id").val();
@@ -79,6 +85,6 @@ function inputSuccess() {
 /*
     TODO
     1. 비밀번호 대소문자랑 특수문자 들어가게 하기 o
-    2. signup.html main.html에 붙여주기
+    2. signup.html main.html에 붙여주기 o
     3. 성별 , 생년월일 추가?
 */

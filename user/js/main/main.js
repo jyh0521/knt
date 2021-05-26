@@ -10,7 +10,7 @@ if (sessionStorage.getItem("loginUser") == null) {
     // location.replace('/knt/user/html/login/login.html');
     let beforeLoginHtm = "";
     beforeLoginHtm += '<a href="#" type="button" id="loginBtn" class="item" onclick="location.href=\'/knt/user/html/login/login.html\'">Login</a>';
-    beforeLoginHtm += '<a href="#" type="button" id="joinBtn" class="item" onclick="location.href=\'/knt/user/html/login/signup.html\'">Join</a>'; 
+    beforeLoginHtm += '<a href="#" type="button" id="joinBtn" class="item">Join</a>'; 
 
     $("#usrMenu").empty().append(beforeLoginHtm);
 } else {
@@ -35,7 +35,9 @@ if (sessionStorage.getItem("loginUser") == null) {
 //상단 버튼 제어
 //Join 버튼 클릭 시
 $("#joinBtn").off("click").on("click", function () {
-    location.replace("/knt/user/html/login/signup.html");
+    $("#menuFuncDiv").load("/knt/user/html/login/signup.html", function () {
+        getSignUp();
+    });
 });
 
 //1. 홈버튼 클릭
