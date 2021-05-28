@@ -10,14 +10,14 @@ let memberMngList = [];
 
 let memberMngContent = []; 
 
-//게시판 보여주기
+//회원 정보 게시판 보여주기
 function showMemberMng(){
     $("#memberMngList").css("display", "block");
     
     getMemberMngListCount();
 }
 
-//목록 전체 데이터 수 불러오기 
+//회원 정보 목록 전체 데이터 수 불러오기 
 function getMemberMngListCount(){
     requestData("/knt/mngr/php/main/memberMng/getMemberMngListCount.php").done(function(result){
         let memberListCount = String(result);//총 데이터 수
@@ -26,7 +26,7 @@ function getMemberMngListCount(){
     });
 }
 
-//게시판 목록 불러오기(id, 제목, 작성자, 작성일, 삭제여부)
+//게시판 목록 불러오기(아이디, 학번, 이름, 연락처, 권한, 가입 날짜, 스터디 그룹)
 function getmemberdMngList(currentPage){
     let startrow = (currentPage - 1) * 10;
     let param = "startrow=" + startrow;
