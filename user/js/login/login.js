@@ -26,30 +26,25 @@ function loginCheck() {
     var id = $("#id").val();
     var pw = $("#pw").val();
 
-    if (id == "" || pw == "") {
-        alert("입력하지 않은 정보가 있습니다.");
+    if (id == "") {
+        alert("아이디를 입력하셔야 합니다.");
+    }
+    else if(pw == ""){
+        alert("비밀번호를 입력하셔야 합니다.");
     }
     else {
-        inputSuccess();
+        var param = "id=" + id + "&pw=" + pw;
+        requestData("/knt/user/php/login/login.php", param).done(function (result) {
+            if (result) {
+                alert("로그인에 성공하였습니다.");
+                sessionStorage.setItem("loginUser", id);
+                location.replace('/knt/user/html/main/main.html');
+            }
+            else {
+                alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+            }
+        });
     }
-}
-
-function inputSuccess() {
-    var id = $("#id").val();
-    var pw = $("#pw").val();
-    let myGroup = "";
-    var param = "id=" + id + "&pw=" + pw;
-
-    requestData("/knt/user/php/login/login.php", param).done(function (result) {
-        if (!result) {
-            alert("로그인에 실패하였습니다.");
-        }
-        else {
-            alert("로그인에 성공하였습니다.");
-            sessionStorage.setItem("loginUser", id);
-            location.replace('/knt/user/html/main/main.html');
-        }
-    });
 }
 
 /*
@@ -64,5 +59,5 @@ function inputSuccess() {
 	});
 
     2. 회원가입 버튼 누르면 회원가입 창으로 이동
-    3. loginCheck 수정
+    3. loginCheck 수정 o
 */
