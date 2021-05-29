@@ -1,14 +1,10 @@
-/*
-    TODO
-    관리자 회원 관리 페이지 만들기
-    기능
-    1. 회원 정보 전체 띄우기(관리자 빼고 전부 다) - 아이디, 학번, 이름, 연락처, 권한, 가입 날짜, 스터디 그룹 o
-    2. 권한이 Admin인 경우에만 회원 권한 설정할 수 있게 만들기 (셀렉트 박스 이용해서 - 일단 Undefine, Student, Leader, Admin)
-    3. 스터디 그룹도 바꿀 수 있게(셀렉트 박스 사용 - STD001, STD002, STD003)
-*/
+
 let memberMngList = []; 
 
 let memberMngContent = []; 
+
+let selectMemberAuthId = ""; //권한이 변경되는 아이디
+let selectMemberAuthOption = ""; //선택된 권한 옵션
 
 //회원 정보 게시판 보여주기
 function showMemberMng(){
@@ -36,6 +32,16 @@ function getmemberdMngList(currentPage){
 
         showMemberMngTable();
         showMemberMngList();
+    });
+}
+
+//권한 변경(수정) 하기
+function updateMemberAuth(){
+    let param = "selectMemberAuthId=" + selectMemberAuthId + "&selectMemberAuthOption=" + selectMemberAuthOption;
+
+    requestData("/knt/mngr/php/main/memberMng/updateMemberAuth.php", param).done(function(result){
+
+        showMemberMng()
     });
 }
 
@@ -72,12 +78,57 @@ function showMemberMngList(){
         memberMngListTbodyHtml +=     "<td>" + memberMngList[i]["USR_SID"] + "</td>";
         memberMngListTbodyHtml +=     "<td>" + memberMngList[i]["USR_NAME"] + "</td>";
         memberMngListTbodyHtml +=     "<td>" + memberMngList[i]["USR_PHONE"] + "</td>";
-        memberMngListTbodyHtml +=     "<td>" + memberMngList[i]["USR_AUTH"] + "</td>";
+        //관리자만 권한 변경할 수 있도록 수정하기!
+        //관리자로 변경 시 목록에서 사라지나..?
+        memberMngListTbodyHtml +=     "<td><select class = 'selectMemberAuth' id = 'selectMemberAuthId"+ memberMngList[i]["USR_ID"]+"'>";
+        if(memberMngList[i]["USR_AUTH"] == "Undefined"){ 
+            memberMngListTbodyHtml +=           "<option value='Undefined' selected>Undefine</option>";
+            memberMngListTbodyHtml +=           "<option value='Student'>Student</option>";
+            memberMngListTbodyHtml +=           "<option value='Leader'>Leader</option>";
+            memberMngListTbodyHtml +=           "<option value='Admin'>Admin</option>";
+        }
+        else if(memberMngList[i]["USR_AUTH"] == "Student"){
+            memberMngListTbodyHtml +=           "<option value='Undefined'>Undefined</option>";
+            memberMngListTbodyHtml +=           "<option value='Student' selected>Student</option>";
+            memberMngListTbodyHtml +=           "<option value='Leader'>Leader</option>";
+            memberMngListTbodyHtml +=           "<option value='Admin'>Admin</option>";
+        }
+        else if(memberMngList[i]["USR_AUTH"] == "Leader"){
+            memberMngListTbodyHtml +=           "<option value='Undefined'>Undefined</option>";
+            memberMngListTbodyHtml +=           "<option value='Student'>Student</option>";
+            memberMngListTbodyHtml +=           "<option value='Leader' selected>Leader</option>";
+            memberMngListTbodyHtml +=           "<option value='Admin'>Admin</option>";
+        }
+        else{
+            memberMngListTbodyHtml +=           "<option value='Undefined'>Undefined</option>";
+            memberMngListTbodyHtml +=           "<option value='Student'>Student</option>";
+            memberMngListTbodyHtml +=           "<option value='Leader'>Leader</option>";
+            memberMngListTbodyHtml +=           "<option value='Admin' selected>Admin</option>";
+        }
+        memberMngListTbodyHtml +=     "</select></td>"
         memberMngListTbodyHtml +=     "<td>" + cmpTimeStamp(memberMngList[i]["USR_DATE"]) + "</td>";
         memberMngListTbodyHtml +=     "<td>" + memberMngList[i]["USR_STD"] + "</td>";
         memberMngListTbodyHtml += "</tr>";
     }
 
     $("#memberMngListTbody").empty().append(memberMngListTbodyHtml);
+
+    //셀렉트 박스 특정 옵션 선택 시
+    $(document).ready(function() {
+        $('.selectMemberAuth').change(function() {
+            selectMemberAuthId = this.id.substr(18); //아이디
+            selectMemberAuthOption = this.value; //선택된 옵션
+
+            updateMemberAuth(); //권한 변경
+        }); 
+    }); 
 }
 
+/*
+    TODO
+    관리자 회원 관리 페이지 만들기
+    기능
+    1. 회원 정보 전체 띄우기(관리자 빼고 전부 다) - 아이디, 학번, 이름, 연락처, 권한, 가입 날짜, 스터디 그룹 o
+    2. 권한이 Admin인 경우에만 회원 권한 설정할 수 있게 만들기 (셀렉트 박스 이용해서 - 일단 Undefine, Student, Leader, Admin) -> 하는 즁
+    3. 스터디 그룹도 바꿀 수 있게(셀렉트 박스 사용 - STD001, STD002, STD003)
+*/

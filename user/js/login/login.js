@@ -20,6 +20,14 @@ function loginEvent(){
     $("#loginBtn").off("click").on("click", function () {
         loginCheck();
     });
+
+    //Sign Up 버튼 클릭 시
+    $("#signupBtn").off("click").on("click", function () {
+        
+        //로그인 화면 main으로 바꾸기 ? 선배한테 말해보기
+    });
+
+    //Find ID버튼 클릭 시
 }
 
 function loginCheck() {
