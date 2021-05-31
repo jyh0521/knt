@@ -24,13 +24,8 @@ $("#noticeBrdMngBtn").off("click").on("click", function () {
 });
 
 // 지원서 등록 버튼 클릭 시
-/*
-    TODO
-    1. Jquery로 바꾸기
-*/
-let registerFormBtn = document.getElementById('registerFormBtn');
-registerFormBtn.addEventListener('click', function(){
-    $("#menuFuncDiv").load("registerForm/registerForm.html", function() {
-        initRegisterForm(); 
+$('#formMngBtn').off('click').on('click', function(){
+    $('#menuFuncDiv').load('formMng/formMng.html', function(){
+        initFormMng();
     });
 });
