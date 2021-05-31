@@ -165,4 +165,6 @@ function showMemberMngList(){
     1. 회원 정보 전체 띄우기(관리자 빼고 전부 다) - 아이디, 학번, 이름, 연락처, 권한, 가입 날짜, 스터디 그룹 o
     2. 권한이 Admin인 경우에만 회원 권한 설정할 수 있게 만들기 (셀렉트 박스 이용해서 - 일단 Undefine, Student, Leader, Admin) o
     3. 스터디 그룹도 바꿀 수 있게(셀렉트 박스 사용 - STD001, STD002, STD003) o
+    4. thead와 tbody를 써서 memberMng.html에 showMemberMngTable 부분 미리 작성하기 -> formMng.js와 formMng.html 참고
+    다한 내용은 지워도됌~
 */
