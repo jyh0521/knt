@@ -5,6 +5,7 @@ let maxQueSize = 5;
 
 // 초기화
 function initFormMng() {
+    initFormMngBtnEvent();
     getFormListSize();
 }
 
@@ -36,6 +37,7 @@ function getFormContent(id) {
 function drawFormList(result, currentPage) {
     $('#formMngTableDiv').css('display', 'block');
     $('#formMngContentDiv').css('display', 'none');
+    $('#formMngAddDiv').css('display', 'none');
 
     let formListHtml = '';
     let formListSize = result.length;
@@ -56,6 +58,7 @@ function drawFormList(result, currentPage) {
 function drawFormContent(result) {
     $('#formMngTableDiv').css('display', 'none');
     $('#formMngContentDiv').css('display', 'block');
+    $('#formMngAddDiv').css('display', 'none');
 
     let formContentHtml = '';
 
@@ -79,6 +82,25 @@ function drawFormContent(result) {
     // $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
 
     // initInfoShareSelectedContentEvent();
+}
+
+// 지원서 관리의 버튼 이벤트 등록
+function initFormMngBtnEvent() {
+    // 지원서 추가
+    $('#formMngAddBtn').off('click').on('click', function(){
+        $('#formMngTableDiv').css('display', 'none');
+        $('#formMngContentDiv').css('display', 'none');
+        $('#formMngAddDiv').css('display', 'block');
+
+        $('#formMngAddDiv').load('formMng/registerForm/registerForm.html', function(){
+            initRegisterForm();
+        });
+    });
+
+    // 지원서 삭제
+    $('#formMngDelBtn').off('click').on('click', function(){
+        
+    });
 }
 
 function initFormListEvent() {

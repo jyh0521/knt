@@ -1,10 +1,7 @@
 let formContentCnt = 1;
 
 function initRegisterForm() {
-    let registerFormHtml = "";
-
     initRegisterFormEvent();
-   // document.getElementById('menuFuncDiv').innerHTML = registerFormHtml;
 }
 
 function initRegisterFormEvent() {
@@ -104,7 +101,7 @@ function insertFormContent(param) {
     requestData("/knt/mngr/php/main/formMng/registerForm/insertFormContent.php", param).done(function(result){
         if(result) {
             alert("지원서 등록이 완료되었습니다.");
-            location.replace('/knt/mngr/html/main/main.html');
+            initFormMng();
         }
         else {
             alert("지원서 등록이 실패하였습니다.");
