@@ -119,6 +119,10 @@ function initFormContentBtnEvent(id, result) {
             }
         }
 
+        /*
+            TODO
+            1. 수정할때도 질문 +, - 할 수 있게 하기
+        */
         // 수정 사항이 있는 경우
         if(flag) {
             if(confirm('수정 하시겠습니까?')) {
@@ -126,9 +130,11 @@ function initFormContentBtnEvent(id, result) {
 
                 for(let i = 1; i <= maxQueSize; i++) {
                     if(result['FORM_QUE' + i] != 'empty') {
+                        // 수정 사항이 빈칸인 경우
                         if($('#formContQue' + i).val().trim() == '') {
                             result['FORM_QUE' + i] = 'empty';
                         }
+                        // 수정 사항이 빈칸이 아닌 경우
                         else {
                             result['FORM_QUE' + i] = $('#formContQue' + i).val();
                         }
@@ -139,7 +145,7 @@ function initFormContentBtnEvent(id, result) {
                             '&que1=' + result['FORM_QUE1'] + '&que2=' + result['FORM_QUE2'] +
                             '&que3=' + result['FORM_QUE3'] + '&que4=' + result['FORM_QUE4'] + '&que5=' + result['FORM_QUE5'];
                 
-                requestData("/knt/mngr/php/main/formMng/updateFormCont.php", param).done(function(result){
+                requestData('/knt/mngr/php/main/formMng/updateFormCont.php', param).done(function(result){
                     if(result) {
                         alert("수정이 완료되었습니다.");
                         initFormMng();
@@ -161,7 +167,22 @@ function initFormContentBtnEvent(id, result) {
 
     // 삭제 버튼 클릭 시
     $('#formContDelBtn').off('click').on('click', function(){
-
+        if(confirm('삭제 하시겠습니까?')) {
+            let param = 'id=' + id;
+            
+            requestData('/knt/mngr/php/main/formMng/deleteFormCont.php', param).done(function(result){
+                if(result) {
+                    alert("삭제가 완료되었습니다.");
+                    initFormMng();
+                }
+                else {
+                    alert("삭제 실패하였습니다.");
+                }
+            });
+        }
+        else {
+            alert('취소되었습니다.');
+        }
     });
 
     // 뒤로 버튼 클릭 시
