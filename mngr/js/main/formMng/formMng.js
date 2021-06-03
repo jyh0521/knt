@@ -126,7 +126,12 @@ function initFormContentBtnEvent(id, result) {
 
                 for(let i = 1; i <= maxQueSize; i++) {
                     if(result['FORM_QUE' + i] != 'empty') {
-                        result['FORM_QUE' + i] = $('#formContQue' + i).val();
+                        if($('#formContQue' + i).val().trim() == '') {
+                            result['FORM_QUE' + i] = 'empty';
+                        }
+                        else {
+                            result['FORM_QUE' + i] = $('#formContQue' + i).val();
+                        }
                     }
                 }
 
@@ -134,11 +139,6 @@ function initFormContentBtnEvent(id, result) {
                             '&que1=' + result['FORM_QUE1'] + '&que2=' + result['FORM_QUE2'] +
                             '&que3=' + result['FORM_QUE3'] + '&que4=' + result['FORM_QUE4'] + '&que5=' + result['FORM_QUE5'];
                 
-                /*
-                    TODO
-                    1. param에 널 포함 시 처리
-                    아예 질문을 지울 것인지, 널을 못 넣게 할 것인지
-                */
                 requestData("/knt/mngr/php/main/formMng/updateFormCont.php", param).done(function(result){
                     if(result) {
                         alert("수정이 완료되었습니다.");
@@ -166,6 +166,6 @@ function initFormContentBtnEvent(id, result) {
 
     // 뒤로 버튼 클릭 시
     $('#formContBackBtn').off('click').on('click', function(){
-
+        initFormMng();
     });
 }
