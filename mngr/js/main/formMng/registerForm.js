@@ -77,7 +77,6 @@ function initRegisterFormEvent() {
                     }
 
                     let param = "title=" + title;
-                    //let param = "content=" + content + "&writer=" + "ADMIN" + "&date=" + date + "&brdId=" + brdId;
                     for(let i = 0; i < 5; i++) {
                         if(formContent[i]) {
                             param += "&content" + (i + 1) + "=" + formContent[i];

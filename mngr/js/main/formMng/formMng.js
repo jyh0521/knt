@@ -2,10 +2,8 @@
 let maxQueSize = 5;
 
 // 함수
-
 // 초기화
 function initFormMng() {
-    initFormMngBtnEvent();
     getFormListSize();
 }
 
@@ -29,7 +27,7 @@ function getFormMngList(currentPage) {
 function getFormContent(id) {
     let param = 'id=' + id;
     requestData('/knt/mngr/php/main/formMng/getFormContent.php', param).done(function(result){
-        drawFormContent(result[0]);
+        drawFormContent(id, result[0]);
     });
 }
 
@@ -54,39 +52,42 @@ function drawFormList(result, currentPage) {
 
     initFormListEvent();
 }
-
-function drawFormContent(result) {
+/*
+    TODO
+    1. 제목, 질문 label 태그로 묶기
+*/
+function drawFormContent(id, result) {
     $('#formMngTableDiv').css('display', 'none');
     $('#formMngContentDiv').css('display', 'block');
     $('#formMngAddDiv').css('display', 'none');
 
     let formContentHtml = '';
 
-    formContentHtml += '<p>제목: ' + result['FORM_TITLE'] + '</p>';
+    formContentHtml += '<input id="formContTitle" value="' + result['FORM_TITLE'] + '"/>';
 
     for(let i = 1; i <= maxQueSize; i++) {
         if(result['FORM_QUE' + i] != 'empty') {
-            formContentHtml += '<p>질문' + i + ': ' + result['FORM_QUE' + i] + '</p>'
+            formContentHtml += '<input id="formContQue'+ i +'" value="' + result['FORM_QUE' + i] + '"/>';
         }
     }
 
+    formContentHtml += '<button id="formContUpdateBtn">확인</button>';
+    formContentHtml += '<button id="formContDelBtn">삭제</button>';
+    formContentHtml += '<button id="formContBackBtn">뒤로</button>';
+
     $('#formMngContentDiv').empty().append(formContentHtml);
 
-    // if(infoShareSelectedContent["BRD_WRITER"] === "ADMIN") {
-    //     infoShareSelectedContentHtml += "<button id='infoShareSelectedContentDelBtn'>삭제</button>";
-    //     infoShareSelectedContentHtml += "<button id='infoShareSelectedContentUptBtn'>수정</button>";
-    // }
-
-    // infoShareSelectedContentHtml += "<button id='infoShareSelectedContentBackBtn'>뒤로</button>";
-
-    // $("#infoShareSelectedContentDiv").empty().append(infoShareSelectedContentHtml);
-
-    // initInfoShareSelectedContentEvent();
+    initFormContentBtnEvent(id, result);
 }
 
-// 지원서 관리의 버튼 이벤트 등록
-function initFormMngBtnEvent() {
-    // 지원서 추가
+function initFormListEvent() {
+    // 지원서 양식 클릭 시
+    $('.formListTitle').off('click').on('click', function(){
+        let id = this.id.substr(8);
+        getFormContent(id);
+    });
+
+    // 지원서 양식 추가 버튼 클릭 시
     $('#formMngAddBtn').off('click').on('click', function(){
         $('#formMngTableDiv').css('display', 'none');
         $('#formMngContentDiv').css('display', 'none');
@@ -96,24 +97,75 @@ function initFormMngBtnEvent() {
             initRegisterForm();
         });
     });
-
-    // 지원서 삭제
-    $('#formMngDelBtn').off('click').on('click', function(){
-        
-    });
 }
 
-function initFormListEvent() {
-    // 지원서 클릭 시
-    $('.formListTitle').off('click').on('click', function(){
-        let id = this.id.substr(8);
-        getFormContent(id);
+// 지원서 양식 내용 확인 시 이벤트
+function initFormContentBtnEvent(id, result) {
+    // 확인 버튼 클릭 시
+    $('#formContUpdateBtn').off('click').on('click', function(){
+        let flag = false;
+        
+        // 각 내용을 비교해서 수정된 사항이 있으면 수정, 아니면 그냥 냅두기
+        if(result['FORM_TITLE'] != $('#formContTitle').val()) {
+            flag = true;    
+        }
+
+        for(let i = 1; i <= maxQueSize; i++) {
+            if(result['FORM_QUE' + i] != 'empty') {
+                // 수정된 사항이 있으면
+                if(result['FORM_QUE' + i] != $('#formContQue' + i).val()) {
+                    flag = true;
+                }
+            }
+        }
+
+        // 수정 사항이 있는 경우
+        if(flag) {
+            if(confirm('수정 하시겠습니까?')) {
+                result['FORM_TITLE'] = $('#formContTitle').val();
+
+                for(let i = 1; i <= maxQueSize; i++) {
+                    if(result['FORM_QUE' + i] != 'empty') {
+                        result['FORM_QUE' + i] = $('#formContQue' + i).val();
+                    }
+                }
+
+                let param = 'id=' + id + '&title=' + result['FORM_TITLE'] +
+                            '&que1=' + result['FORM_QUE1'] + '&que2=' + result['FORM_QUE2'] +
+                            '&que3=' + result['FORM_QUE3'] + '&que4=' + result['FORM_QUE4'] + '&que5=' + result['FORM_QUE5'];
+                
+                /*
+                    TODO
+                    1. param에 널 포함 시 처리
+                    아예 질문을 지울 것인지, 널을 못 넣게 할 것인지
+                */
+                requestData("/knt/mngr/php/main/formMng/updateFormCont.php", param).done(function(result){
+                    if(result) {
+                        alert("수정이 완료되었습니다.");
+                        initFormMng();
+                    }
+                    else {
+                        alert("수정 실패하였습니다.");
+                    }
+                });
+            }
+            else {
+                alert('취소되었습니다.');
+            }
+        }
+        // 수정 사항이 없는 경우
+        else {
+            initFormMng();
+        }
     });
 
+    // 삭제 버튼 클릭 시
+    $('#formContDelBtn').off('click').on('click', function(){
 
-    // // 작성하기 버튼 클릭 시
-    // $("#infoShareListWriteBtn").off("click").on("click", function(){ 
-    //     writeOption = "write";       
-    //     drawInfoShareWriteContent();
-    // });
+    });
+
+    // 뒤로 버튼 클릭 시
+    $('#formContBackBtn').off('click').on('click', function(){
+
+    });
 }
