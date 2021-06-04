@@ -80,32 +80,38 @@ $("#mngrPageBtn").off("click").on("click", function () {
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
-    $("#studyGroupList").css("display", "none");
     $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
         showNoticeBrd();
     });
 });
 
-//학술국 정보공유 클릭 시 
-$("#infoShareBtn").off("click").on("click", function () {
-    $("#studyGroupList").css("display", "none");
-    $("#menuFuncDiv").load("infoShareBrd/infoShareBrd.html", function () {
-        initInfoShare();
+// 지원서 작성하기 클릭 시
+$('#formWriteBtn').off('click').on('click', function(){
+    $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
+        initFormWrite();
     });
 });
 
-//학술국 스터디 클릭 시
-$("#studyBtn").off("click").on("click", function () {
-    $("#studyGroupList").css("display", "block");
-});
+// //학술국 정보공유 클릭 시 
+// $("#infoShareBtn").off("click").on("click", function () {
+//     $("#studyGroupList").css("display", "none");
+//     $("#menuFuncDiv").load("infoShareBrd/infoShareBrd.html", function () {
+//         initInfoShare();
+//     });
+// });
 
-$(".studyGroup").off("click").on("click", function () {
-    studyGroup = this.id;
+// //학술국 스터디 클릭 시
+// $("#studyBtn").off("click").on("click", function () {
+//     $("#studyGroupList").css("display", "block");
+// });
 
-    $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
-        initStudyGroupBoard(studyGroup);
-    });
-})
+// $(".studyGroup").off("click").on("click", function () {
+//     studyGroup = this.id;
+
+//     $("#menuFuncDiv").load("studyBrd/studyBrd.html", function () {
+//         initStudyGroupBoard(studyGroup);
+//     });
+// })
 
 /*
     TODO
