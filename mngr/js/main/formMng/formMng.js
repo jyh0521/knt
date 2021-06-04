@@ -62,15 +62,20 @@ function drawFormContent(id, result) {
     $('#formMngAddDiv').css('display', 'none');
 
     let formContentHtml = '';
-
+    formContentHtml += '<label for="formContTitle">제목 </label>';
     formContentHtml += '<input id="formContTitle" value="' + result['FORM_TITLE'] + '"/>';
-
+    formContentHtml += '<ul>';
+    
     for(let i = 1; i <= maxQueSize; i++) {
         if(result['FORM_QUE' + i] != 'empty') {
+            formContentHtml += '<li>';
+            formContentHtml += '<label for="formContQue'+ i +'">질문' + i + ' </label>';
             formContentHtml += '<input id="formContQue'+ i +'" value="' + result['FORM_QUE' + i] + '"/>';
+            formContentHtml += '</li>';
         }
     }
 
+    formContentHtml += '</ul>';
     formContentHtml += '<button id="formContUpdateBtn">확인</button>';
     formContentHtml += '<button id="formContDelBtn">삭제</button>';
     formContentHtml += '<button id="formContBackBtn">뒤로</button>';
