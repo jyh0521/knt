@@ -31,6 +31,10 @@ function getFormContent(id) {
     });
 }
 
+/*
+    TODO
+    1. 활성화 여부 체크박스 만들기
+*/
 // 지원서 리스트 그리기
 function drawFormList(result, currentPage) {
     $('#formMngTableDiv').css('display', 'block');
@@ -42,9 +46,18 @@ function drawFormList(result, currentPage) {
     let startDataIndex = currentPage * 10 - 10 + 1;
 
     for(let i = 0; i < formListSize; i++) {
-        formListHtml += '<tr id="formList' + result[i]['FORM_ID'] + '" class="formListTitle">';
-        formListHtml +=     '<td>' + (startDataIndex + i) + '</td>';
-        formListHtml +=     '<td>' + result[i]['FORM_TITLE'] + '</td>';
+        formListHtml += '<tr id="formList' + result[i]['FORM_ID'] + '">';
+        formListHtml +=     '<td class="formListNum">' + (startDataIndex + i) + '</td>';
+        formListHtml +=     '<td class="formListTitle">' + result[i]['FORM_TITLE'] + '</td>';
+        
+        // 활성화 여부
+        if(result[i]['FORM_ACT'] === 'Y') {
+            formListHtml +=     '<td><input type="checkbox" id="formActBox' + i + '" class="formActBox" checked/></td>';
+        }
+        else {
+            formListHtml +=     '<td><input type="checkbox" id="formActBox' + i + '" class="formActBox" /></td>';
+        }
+
         formListHtml += '</tr>';
     }
 
@@ -52,10 +65,7 @@ function drawFormList(result, currentPage) {
 
     initFormListEvent();
 }
-/*
-    TODO
-    1. 제목, 질문 label 태그로 묶기
-*/
+
 function drawFormContent(id, result) {
     $('#formMngTableDiv').css('display', 'none');
     $('#formMngContentDiv').css('display', 'block');
@@ -86,10 +96,34 @@ function drawFormContent(id, result) {
 }
 
 function initFormListEvent() {
+    // 지원서 번호 클릭 시
+    $('.formListNum').off('click').on('click', function(){
+        let id = this.parentElement.id.substr(8);
+        getFormContent(id);
+    });
+
     // 지원서 양식 클릭 시
     $('.formListTitle').off('click').on('click', function(){
-        let id = this.id.substr(8);
+        let id = this.parentElement.id.substr(8);
         getFormContent(id);
+    });
+
+    // 지원서 활성화 체크박스 클릭 시
+    $('.formActBox').change(function(){
+        let id = this.parentElement.parentElement.id.substr(8);
+        let param = 'id=' + id;
+        // 체크 o
+        if($('#' + this.id).is(':checked')) {
+            param += '&check=true';
+        }
+        // 체크 x
+        else {
+           param += '&check=false'; 
+        }
+        
+        requestData('/knt/mngr/php/main/formMng/updateFormAct.php', param).done(function(result){
+            
+        });
     });
 
     // 지원서 양식 추가 버튼 클릭 시
