@@ -4,7 +4,7 @@
     $id = $_POST['id'];
 
     // 지원서 질문 내용 불러오기
-    $sql = "SELECT FORM_TITLE, FORM_QUE1, FORM_QUE2, FORM_QUE3, FORM_QUE4, FORM_QUE5
+    $sql = "SELECT FORM_TITLE, FORM_QUE1, FORM_QUE2, FORM_QUE3, FORM_QUE4, FORM_QUE5, FORM_ACT
               FROM USR_FORM
              WHERE FORM_ID = '$id'";
     
@@ -19,6 +19,7 @@
             'FORM_QUE3' => $row['FORM_QUE3'],
             'FORM_QUE4' => $row['FORM_QUE4'],
             'FORM_QUE5' => $row['FORM_QUE5'],
+            'FORM_ACT' => $row['FORM_ACT']
         )
     );
 

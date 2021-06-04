@@ -31,10 +31,6 @@ function getFormContent(id) {
     });
 }
 
-/*
-    TODO
-    1. 활성화 여부 체크박스 만들기
-*/
 // 지원서 리스트 그리기
 function drawFormList(result, currentPage) {
     $('#formMngTableDiv').css('display', 'block');
@@ -66,6 +62,7 @@ function drawFormList(result, currentPage) {
     initFormListEvent();
 }
 
+// 지원서 양식 내용 그리기
 function drawFormContent(id, result) {
     $('#formMngTableDiv').css('display', 'none');
     $('#formMngContentDiv').css('display', 'block');
@@ -74,8 +71,18 @@ function drawFormContent(id, result) {
     let formContentHtml = '';
     formContentHtml += '<label for="formContTitle">제목 </label>';
     formContentHtml += '<input id="formContTitle" value="' + result['FORM_TITLE'] + '"/>';
-    formContentHtml += '<ul>';
     
+    // 활성화 여부
+    formContentHtml += '<label for="formContAct">활성화 </label>';
+    if(result['FORM_ACT'] === 'Y') {
+        formContentHtml +=     '<td><input type="checkbox" id="formContActBox" checked/></td>';
+    }
+    else {
+        formContentHtml +=     '<td><input type="checkbox" id="formContActBox" /></td>';
+    }
+
+    formContentHtml += '<ul>';
+
     for(let i = 1; i <= maxQueSize; i++) {
         if(result['FORM_QUE' + i] != 'empty') {
             formContentHtml += '<li>';
@@ -112,6 +119,7 @@ function initFormListEvent() {
     $('.formActBox').change(function(){
         let id = this.parentElement.parentElement.id.substr(8);
         let param = 'id=' + id;
+
         // 체크 o
         if($('#' + this.id).is(':checked')) {
             param += '&check=true';
@@ -122,7 +130,9 @@ function initFormListEvent() {
         }
         
         requestData('/knt/mngr/php/main/formMng/updateFormAct.php', param).done(function(result){
-            
+            if(!result) {
+                alert('활성화를 실패했습니다.');
+            }
         });
     });
 
@@ -140,6 +150,26 @@ function initFormListEvent() {
 
 // 지원서 양식 내용 확인 시 이벤트
 function initFormContentBtnEvent(id, result) {
+    // 활성화 체크박스 클릭 시
+    $('#formContActBox').change(function(){
+        let param = 'id=' + id;
+
+        // 체크 o
+        if($('#formContActBox').is(':checked')) {
+            param += '&check=true';
+        }
+        // 체크 x
+        else {
+            param += '&check=false';
+        }
+
+        requestData('/knt/mngr/php/main/formMng/updateFormAct.php', param).done(function(result){
+            if(!result) {
+                alert('활성화를 실패했습니다.');
+            }
+        });
+    });
+
     // 확인 버튼 클릭 시
     $('#formContUpdateBtn').off('click').on('click', function(){
         let flag = false;
