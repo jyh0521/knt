@@ -86,11 +86,11 @@ $("#noticeBtn").off("click").on("click", function () {
 });
 
 // 지원서 작성하기 클릭 시
-$('#formWriteBtn').off('click').on('click', function(){
-    $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
-        initFormWrite();
-    });
-});
+// $('#formWriteBtn').off('click').on('click', function(){
+//     $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
+//         initFormWrite();
+//     });
+// });
 
 // //학술국 정보공유 클릭 시 
 // $("#infoShareBtn").off("click").on("click", function () {
