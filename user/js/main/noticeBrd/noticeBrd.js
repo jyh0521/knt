@@ -291,11 +291,12 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
     kntNoticeBrdContentDomainHtml +=     "</tbody>";
     kntNoticeBrdContentDomainHtml += "</table>";
-    if(sessionStorage.getItem("loginUser")=='ADMIN'){
-        kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
-        kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
-        kntNoticeBrdContentDomainHtml += "</div>"
-    }
+    // 글작성은 관리자 페이지에서만 가능
+    // if(sessionStorage.getItem("loginUser")=='ADMIN'){
+    //     kntNoticeBrdContentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'kntNoticeBrdWriteBtn' style='background-color: #79021f;margin-left: 89%;'>"
+    //     kntNoticeBrdContentDomainHtml += "<i class='icon edit'></i>글쓰기"
+    //     kntNoticeBrdContentDomainHtml += "</div>"
+    // }
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     //검색 버튼 클릭 시
@@ -401,10 +402,11 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
     kntNoticeBrdContentDomainHtml += "</div>";
 
-    if(sessionStorage.getItem("loginUser")=='ADMIN'){
-        kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentUpdateBtn'>수정</button>";
-        kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentDelBtn'>삭제</button>";
-    }
+    // 수정, 삭제는 관리자 페이지에서만 가능
+    // if(sessionStorage.getItem("loginUser")=='ADMIN'){
+    //     kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentUpdateBtn'>수정</button>";
+    //     kntNoticeBrdContentDomainHtml += "<button class = 'ui button' id = 'noticeContentDelBtn'>삭제</button>";
+    // }
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
     getNoticeBrdCommentListCount();//공지사항 댓글 총 데이터 수 불러오기

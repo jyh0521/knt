@@ -2,7 +2,7 @@ let noticeBrdMngList = [];
 
 let noticeBrdMngContent = []; 
 
-//게시판 보여주기
+// 게시판 보여주기
 function showNoticeBrdMng(){
     $("#noticeBrdMngList").css("display", "block");
     $("#noticeBrdMngContent").css("display", "none");
@@ -10,27 +10,25 @@ function showNoticeBrdMng(){
     getNoticeBrdMngListCount();
 }
 
-//목록 전체 데이터 수 불러오기 
+// 목록 전체 데이터 수 불러오기 
 function getNoticeBrdMngListCount(){
     requestData("/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngListCount.php").done(function(result){
         DrawPaging(result['COUNT'], 10, 1, "noticeBrdMngPagingDiv",  getNoticeBrdMngList);
     });
 }
 
-//게시판 목록 불러오기(id, 제목, 작성자, 작성일, 삭제여부)
+// 게시판 목록 불러오기(id, 제목, 작성자, 작성일, 삭제여부)
 function getNoticeBrdMngList(currentPage){
     let startrow = (currentPage - 1) * 10;
     let param = "startrow=" + startrow;
 
     requestData("/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngList.php", param).done(function(result){
         noticeBrdMngList = result;
-
-        showNoticeBrdMngTable();
         showNoticeBrdMngList(currentPage);
     });
 }
 
-//게시판 내용 데이터 불러오기
+// 게시판 내용 데이터 불러오기
 function getNoticeBrdMngContent(id){
     let param = "id=" + id; 
 
@@ -42,27 +40,13 @@ function getNoticeBrdMngContent(id){
         showNoticeBrdMngContent();//내용 보여주기
     });
 }
-//게시판 테이블
-function showNoticeBrdMngTable(){
-    let noticeBrdMngDivHtml= "";
-
-    noticeBrdMngDivHtml += "<table border='1'>";
-    noticeBrdMngDivHtml +=     "<thead>";
-    noticeBrdMngDivHtml +=         "<tr>";
-    noticeBrdMngDivHtml +=             "<td>번호</td>";
-    noticeBrdMngDivHtml +=             "<td>제목</td>";
-    noticeBrdMngDivHtml +=             "<td>작성일</td>";
-    noticeBrdMngDivHtml +=         "</tr>";
-    noticeBrdMngDivHtml +=     "</thead>";
-    noticeBrdMngDivHtml +=     "<tbody id='noticeBrdMngListTbody'>";
-    noticeBrdMngDivHtml +=     "</tbody>";
-    noticeBrdMngDivHtml += "</table>";
-
-    $("#noticeBrdMngDiv").empty().append(noticeBrdMngDivHtml);
-}
 
 // 공지사항 리스트 보여주기
 function showNoticeBrdMngList(currentPage){
+    $('#noticeBrdMngTableDiv').css('display', 'block');
+    $('#noticeBrdMngContentDiv').css('display', 'none');
+    $('#noticeBrdMngWriteDiv').css('display', 'none');
+
     let noticeBrdMngListTbodyHtml = "";
     let noticeBrdMngListSize = noticeBrdMngList.length;
     let startDataIndex = currentPage * 10 - 10 + 1;
@@ -80,8 +64,12 @@ function showNoticeBrdMngList(currentPage){
     initNoticeBrdMngListEvent();
 }
 
-//게시판 내용 보여주기
+// 게시판 내용 보여주기
 function showNoticeBrdMngContent(){
+    $('#noticeBrdMngTableDiv').css('display', 'none');
+    $('#noticeBrdMngContentDiv').css('display', 'block');
+    $('#noticeBrdMngWriteDiv').css('display', 'none');
+
     let noticeBrdMngContentDivHtml = "";
 
     noticeBrdMngContentDivHtml += "<p>제목 : " + noticeBrdMngContent['BRD_TITLE'] + "</p>"
@@ -92,7 +80,7 @@ function showNoticeBrdMngContent(){
     
     $("#noticeBrdMngContentDiv").empty().append(noticeBrdMngContentDivHtml);
     
-    //목록 버튼 클릭 시(뒤로가기)
+    // 목록 버튼 클릭 시(뒤로가기)
     $("#noticeBrdMngContentBackBtn").off("click").on("click", function(){
         showNoticeBrdMng();
     });

@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <div id = "noticeBrdMngList" style = "display: none;">
-        <div id = "noticeBrdMngDiv"></div>
-        <div id = "noticeBrdMngPagingDiv"></div>
-    </div>
-    <div id = "noticeBrdMngContent" style = "display: none;">
-        <div id = "noticeBrdMngContentDiv"></div>
-        <button id = "noticeBrdMngContentBackBtn">목록</button>
+<body> 
+    <div id="noticeBrdMngDiv">
+        <div id="noticeBrdMngTableDiv" style="display: block;">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td>번호</td>
+                        <td>제목</td>
+                        <td>작성일</td>
+                    </tr>
+                </thead>
+                <tbody id="noticeBrdMngListTbody"></tbody>
+            </table>
+            <div id='noticeBrdMngPagingDiv' style="display: none;"></div>
+            <div id='noticeBrdMngBtnDiv'>
+                <button id="noticeBrdMngWriteBtn">글 쓰기</button>
+            </div>
+        </div>
+        <div id='noticeBrdMngContentDiv' style="display: none;"></div>
+        <div id='noticeBrdMngWriteDiv' style="display: none;"></div>
     </div>
 </body>
 </html>
