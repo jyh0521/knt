@@ -3,8 +3,11 @@
 
     $startrow = $_POST['startrow'];
 
-    $sql = "SELECT BRD_ID, BRD_TITLE, BRD_WRITER, BRD_DATE, BRD_DISABLE FROM USR_BRD ORDER BY BRD_DATE DESC LIMIT $startrow,10";
-       
+    $sql = "SELECT BRD_ID, BRD_TITLE, BRD_DATE
+              FROM USR_BRD
+             WHERE BRD_DISABLE = 'Y'
+             ORDER BY BRD_DATE DESC LIMIT $startrow,10";
+        
     $result = mysql_query($sql, $connect);
 
     $value = array();

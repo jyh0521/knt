@@ -14,9 +14,7 @@ function showNoticeBrdMng(){
 //목록 전체 데이터 수 불러오기 
 function getNoticeBrdMngListCount(){
     requestData("/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngListCount.php").done(function(result){
-        let noticeBrdMngListCount = String(result);//총 데이터 수
-
-        DrawPaging(noticeBrdMngListCount, 10, 1, "noticeBrdMngPagingDiv",  getNoticeBrdMngList);
+        DrawPaging(result['COUNT'], 10, 1, "noticeBrdMngPagingDiv",  getNoticeBrdMngList);
     });
 }
 
@@ -29,7 +27,7 @@ function getNoticeBrdMngList(currentPage){
         noticeBrdMngList = result;
 
         showNoticeBrdMngTable();
-        showNoticeBrdMngList();
+        showNoticeBrdMngList(currentPage);
     });
 }
 
@@ -52,12 +50,9 @@ function showNoticeBrdMngTable(){
     noticeBrdMngDivHtml += "<table border='1'>";
     noticeBrdMngDivHtml +=     "<thead>";
     noticeBrdMngDivHtml +=         "<tr>";
-    noticeBrdMngDivHtml +=             "<td>ID</td>";
+    noticeBrdMngDivHtml +=             "<td>번호</td>";
     noticeBrdMngDivHtml +=             "<td>제목</td>";
-    noticeBrdMngDivHtml +=             "<td>작성자</td>";
     noticeBrdMngDivHtml +=             "<td>작성일</td>";
-    noticeBrdMngDivHtml +=             "<td>내용확인</td>";
-    noticeBrdMngDivHtml +=             "<td>삭제여부</td>";
     noticeBrdMngDivHtml +=         "</tr>";
     noticeBrdMngDivHtml +=     "</thead>";
     noticeBrdMngDivHtml +=     "<tbody id='noticeBrdMngListTbody'>";
@@ -67,18 +62,16 @@ function showNoticeBrdMngTable(){
     $("#noticeBrdMngDiv").empty().append(noticeBrdMngDivHtml);
 }
 
-function showNoticeBrdMngList(){
+function showNoticeBrdMngList(currentPage){
     let noticeBrdMngListTbodyHtml = "";
     let noticeBrdMngListSize = noticeBrdMngList.length;
+    let startDataIndex = currentPage * 10 - 10 + 1;
 
     for(let i = 0; i < noticeBrdMngListSize; i++) {
         noticeBrdMngListTbodyHtml += "<tr>";
-        noticeBrdMngListTbodyHtml +=     "<td>" + noticeBrdMngList[i]["BRD_ID"] + "</td>";
+        noticeBrdMngListTbodyHtml +=     '<td class="noticeBrdListNum">' + (startDataIndex + i) + '</td>';
         noticeBrdMngListTbodyHtml +=     "<td>" + noticeBrdMngList[i]["BRD_TITLE"] + "</td>";
-        noticeBrdMngListTbodyHtml +=     "<td>" + noticeBrdMngList[i]["BRD_WRITER"] + "</td>";
         noticeBrdMngListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdMngList[i]["BRD_DATE"]) + "</td>";
-        noticeBrdMngListTbodyHtml +=     "<td><button class = 'noticeBrdMngContentBtn' id = 'noticeBrdMngContentListId" +  noticeBrdMngList[i]['BRD_ID'] + "'>내용</button></td>";
-        noticeBrdMngListTbodyHtml +=     "<td>" + noticeBrdMngList[i]["BRD_DISABLE"] + "</td>";
         noticeBrdMngListTbodyHtml += "</tr>";
     }
 
@@ -109,3 +102,9 @@ function showNoticeBrdMngContent(){
         showNoticeBrdMng();
     });
 }
+
+/*
+    TODO
+    1. 코드 리펙토링(전역변수 줄이고 파라미터 사용하기)
+    2. 테이블은 html로 그리기  
+*/
