@@ -12,4 +12,9 @@
     echo json_encode($row);
 
     mysql_close($connect);
+
+    /*
+        TODO
+        1. COUNT 함수 사용해서 만들기
+    */
 ?>
