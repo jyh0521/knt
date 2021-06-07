@@ -109,7 +109,7 @@ function initFormListEvent() {
         getFormContent(id);
     });
 
-    // 지원서 양식 클릭 시
+    // 지원서 제목 클릭 시
     $('.formListTitle').off('click').on('click', function(){
         let id = this.parentElement.id.substr(8);
         getFormContent(id);

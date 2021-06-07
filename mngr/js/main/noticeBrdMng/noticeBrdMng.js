@@ -1,6 +1,5 @@
 let noticeBrdMngList = []; 
 
-let noticeBrdMngContentListId = "";
 let noticeBrdMngContent = []; 
 
 //게시판 보여주기
@@ -32,8 +31,8 @@ function getNoticeBrdMngList(currentPage){
 }
 
 //게시판 내용 데이터 불러오기
-function getNoticeBrdMngContent(){
-    let param = "id=" + noticeBrdMngContentListId; 
+function getNoticeBrdMngContent(id){
+    let param = "id=" + id; 
 
     requestData("/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngContent.php",param).done(function(result){
         $("#noticeBrdMngContent").css("display", "block");
@@ -62,27 +61,23 @@ function showNoticeBrdMngTable(){
     $("#noticeBrdMngDiv").empty().append(noticeBrdMngDivHtml);
 }
 
+// 공지사항 리스트 보여주기
 function showNoticeBrdMngList(currentPage){
     let noticeBrdMngListTbodyHtml = "";
     let noticeBrdMngListSize = noticeBrdMngList.length;
     let startDataIndex = currentPage * 10 - 10 + 1;
 
     for(let i = 0; i < noticeBrdMngListSize; i++) {
-        noticeBrdMngListTbodyHtml += "<tr>";
+        noticeBrdMngListTbodyHtml += '<tr class="noticeBrdListTr" id="noticeBrdListId' + noticeBrdMngList[i]['BRD_ID'] + '">';
         noticeBrdMngListTbodyHtml +=     '<td class="noticeBrdListNum">' + (startDataIndex + i) + '</td>';
-        noticeBrdMngListTbodyHtml +=     "<td>" + noticeBrdMngList[i]["BRD_TITLE"] + "</td>";
+        noticeBrdMngListTbodyHtml +=     '<td class="noticeBrdListTitle">' + noticeBrdMngList[i]['BRD_TITLE'] + '</td>';
         noticeBrdMngListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdMngList[i]["BRD_DATE"]) + "</td>";
         noticeBrdMngListTbodyHtml += "</tr>";
     }
 
     $("#noticeBrdMngListTbody").empty().append(noticeBrdMngListTbodyHtml);
 
-    //내용 버튼 클릭 시
-    $(".noticeBrdMngContentBtn").off("click").on("click", function(){
-        noticeBrdMngContentListId = this.id.substr(25);
-        
-        getNoticeBrdMngContent(); //게시판 내용 데이터 불러오기
-    });
+    initNoticeBrdMngListEvent();
 }
 
 //게시판 내용 보여주기
@@ -103,8 +98,17 @@ function showNoticeBrdMngContent(){
     });
 }
 
+// 공지사항 리스트 이벤트
+function initNoticeBrdMngListEvent() {
+    $('.noticeBrdListTr').off('click').on('click', function(){
+        let id = this.id.substr(15);
+        getNoticeBrdMngContent(id);
+    });
+}
+
 /*
     TODO
     1. 코드 리펙토링(전역변수 줄이고 파라미터 사용하기)
-    2. 테이블은 html로 그리기  
+    2. 테이블은 html로 그리기
+    3. "" -> ''로 수정  
 */
