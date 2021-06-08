@@ -1,5 +1,10 @@
 let formContentCnt = 1;
 
+/*
+    TODO
+    1. 질문 개수 버그 수정할 것
+*/
+
 function initRegisterForm() {
     initRegisterFormEvent();
 }
