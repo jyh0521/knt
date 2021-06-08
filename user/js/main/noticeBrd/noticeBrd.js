@@ -401,6 +401,9 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
     kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
     kntNoticeBrdContentDomainHtml += "</div>";
+    kntNoticeBrdContentDomainHtml += '<div>';
+    kntNoticeBrdContentDomainHtml +=    '<button class="writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '">지원서 작성하기</button>';
+    kntNoticeBrdContentDomainHtml += '</div>';
 
     // 수정, 삭제는 관리자 페이지에서만 가능
     // if(sessionStorage.getItem("loginUser")=='ADMIN'){
@@ -432,6 +435,19 @@ function showNoticeBrdContent(){
     $("#noticeContentDelBtn").off("click").on("click", function(){
         if(confirm("삭제하시겠습니까?")){
             setNoticeBrdContentDelete();
+        }
+    });
+
+    // 지원서 작성하기 버튼 클릭 시
+    $('.writeRegistedFormBtn').off('click').on('click', function(){
+        let id = this.id.substr(18);
+
+        if(confirm('지원서를 작성하시겠습니까?')) {
+            // 함수경로: /knt/user/js/main/noticeBrd/formWrite.js
+            getFormWriteContent(id);
+        }
+        else {
+            alert('취소되었습니다.');
         }
     });
 }

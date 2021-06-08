@@ -9,7 +9,7 @@ function initFormWrite() {
 
 // 지원서 전체 수 불러오기
 function getFormListSize() {
-    requestData('/knt/user/php/main/formWrite/getFormListSize.php').done(function(result) {
+    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormListSize.php').done(function(result) {
         DrawPaging(result['COUNT'], 10, 1, 'formWritePagingDiv', getFormWriteList);
     });
 }
@@ -18,7 +18,7 @@ function getFormListSize() {
 function getFormWriteList(currentPage) {
     let param = 'currentPage=' + currentPage + '&dataPerPage=' + 10;
 
-    requestData('/knt/user/php/main/formWrite/getFormWriteList.php', param).done(function(result){
+    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormWriteList.php', param).done(function(result){
         drawFormList(result, currentPage);
     });
 }
@@ -26,7 +26,7 @@ function getFormWriteList(currentPage) {
 // 지원서 양식 불러오기
 function getFormWriteContent(id) {
     let param = 'id=' + id;
-    requestData('/knt/user/php/main/formWrite/getFormWriteContent.php', param).done(function(result){
+    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormWriteContent.php', param).done(function(result){
         drawFormWriteContent(id, result[0]);
     });
 }
@@ -62,11 +62,11 @@ function drawFormWriteContent(id, result) {
     
     // 인적사항
     formWriteContentHtml += '<ul>';
-    formWriteContentHtml += '<li><input placeholder="이름"/></li>';
-    formWriteContentHtml += '<li><input placeholder="학번"/></li>';
-    formWriteContentHtml += '<li><input placeholder="생년월일"/></li>';
-    formWriteContentHtml += '<li><input placeholder="성별"/></li>';
-    formWriteContentHtml += '<li><input placeholder="연락처"/></li>';
+    formWriteContentHtml +=     '<li><input placeholder="이름"/></li>';
+    formWriteContentHtml +=     '<li><input placeholder="학번"/></li>';
+    formWriteContentHtml +=     '<li><input placeholder="생년월일"/></li>';
+    formWriteContentHtml +=     '<li><input placeholder="성별"/></li>';
+    formWriteContentHtml +=     '<li><input placeholder="연락처"/></li>';
     formWriteContentHtml += '</ul>';
 
     // 지원서 질문
