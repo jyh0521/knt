@@ -443,8 +443,10 @@ function showNoticeBrdContent(){
         let id = this.id.substr(18);
 
         if(confirm('지원서를 작성하시겠습니까?')) {
-            // 함수경로: /knt/user/js/main/noticeBrd/formWrite.js
-            getFormWriteContent(id);
+            $("#menuFuncDiv").load("formWrite/formInfoWrite.html", function () {
+                // 함수경로: /knt/user/js/main/formWrite/formInfoWrite.js
+                initFormInfoWrite(id);
+            });
         }
         else {
             alert('취소되었습니다.');

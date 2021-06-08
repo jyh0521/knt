@@ -3,30 +3,30 @@ maxQueSize = 5;
 
 // 함수
 // 지원서 작성하기 초기화 함수
-function initFormWrite() {
-    getFormListSize();
+function initFormWrite(id) {
+    getFormWriteContent(id);
 }
 
 // 지원서 전체 수 불러오기
-function getFormListSize() {
-    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormListSize.php').done(function(result) {
-        DrawPaging(result['COUNT'], 10, 1, 'formWritePagingDiv', getFormWriteList);
-    });
-}
+// function getFormListSize() {
+//     requestData('/knt/user/php/main/noticeBrd/formWrite/getFormListSize.php').done(function(result) {
+//         DrawPaging(result['COUNT'], 10, 1, 'formWritePagingDiv', getFormWriteList);
+//     });
+// }
 
 // 지원서 리스트 불러오기
-function getFormWriteList(currentPage) {
-    let param = 'currentPage=' + currentPage + '&dataPerPage=' + 10;
+// function getFormWriteList(currentPage) {
+//     let param = 'currentPage=' + currentPage + '&dataPerPage=' + 10;
 
-    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormWriteList.php', param).done(function(result){
-        drawFormList(result, currentPage);
-    });
-}
+//     requestData('/knt/user/php/main/noticeBrd/formWrite/getFormWriteList.php', param).done(function(result){
+//         drawFormList(result, currentPage);
+//     });
+// }
 
 // 지원서 양식 불러오기
 function getFormWriteContent(id) {
     let param = 'id=' + id;
-    requestData('/knt/user/php/main/noticeBrd/formWrite/getFormWriteContent.php', param).done(function(result){
+    requestData('/knt/user/php/main/formWrite/getFormWriteContent.php', param).done(function(result){
         drawFormWriteContent(id, result[0]);
     });
 }
