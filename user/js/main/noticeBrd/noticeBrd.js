@@ -520,3 +520,8 @@ function showNoticeBrdCommentDomain(){
         getNoticeBrdCommentListCount();//공지사항 댓글 데이터 불러오기
     });
 }
+
+/*
+    TODO
+    1. 이벤트 따로 함수로 분리하면 좋을듯
+*/
