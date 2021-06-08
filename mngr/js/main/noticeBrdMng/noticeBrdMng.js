@@ -109,11 +109,19 @@ function showNoticeBrdMngContent(){
 
     let noticeBrdMngContentDivHtml = "";
 
-    noticeBrdMngContentDivHtml += "<p>제목 : " + noticeBrdMngContent['BRD_TITLE'] + "</p>"
-    noticeBrdMngContentDivHtml += "<p>작성자 : " + noticeBrdMngContent['BRD_WRITER'] + "</p>"
-    noticeBrdMngContentDivHtml += "<p>작성일 : " + noticeBrdMngContent['BRD_DATE'] + "</p>"
-    noticeBrdMngContentDivHtml += "<p>조회수 : " + noticeBrdMngContent['BRD_HIT'] + "</p>"
-    noticeBrdMngContentDivHtml += "<p>내용 : " + noticeBrdMngContent['BRD_CONTENT'] + "</p>"
+    noticeBrdMngContentDivHtml += "<p>제목 : " + noticeBrdMngContent['BRD_TITLE'] + "</p>";
+    noticeBrdMngContentDivHtml += "<p>작성자 : " + noticeBrdMngContent['BRD_WRITER'] + "</p>";
+    noticeBrdMngContentDivHtml += "<p>작성일 : " + noticeBrdMngContent['BRD_DATE'] + "</p>";
+    noticeBrdMngContentDivHtml += "<p>조회수 : " + noticeBrdMngContent['BRD_HIT'] + "</p>";
+   
+    if(noticeBrdMngContent['BRD_FORM'] === 'empty') {
+        noticeBrdMngContentDivHtml += "<p>등록된 지원서 : 없음</p>";
+    }
+    else {
+        noticeBrdMngContentDivHtml += "<p>등록된 지원서 : " + noticeBrdMngContent['BRD_FORM'] + "</p>";
+    }
+
+    noticeBrdMngContentDivHtml += "<p>내용 : " + noticeBrdMngContent['BRD_CONTENT'] + "</p>";
     
     $("#noticeBrdMngContentDiv").empty().append(noticeBrdMngContentDivHtml);
 
@@ -126,24 +134,47 @@ function showNoticeBrdMngWrite(param, mode) {
     $('#noticeBrdMngShowContentDiv').css('display', 'none');
     $('#noticeBrdMngWriteDiv').css('display', 'block');
 
-    let noticeBrdMngWriteHtml = '';
-
-    // 글 작성 시
-    if(mode === 'write') {
-        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteContentBtn">작성</button>';
-    }
-    // 글 수정 시
-    else {
-        $('#noticeBrdMngWriteTitle').val(param['title']);
-        $('#noticeBrdMngWriteContent').val(param['content']);
-        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn">수정</button>';
-    }
-
-    noticeBrdMngWriteHtml += '<button class="noticeBrdMngWriteBackBtn">뒤로</button>';
+    // 지원서 제목 불러온 후 그리기
+    requestData('/knt/mngr/php/main/noticeBrdMng/getActFormList.php').done(function(result){
+        // select box 추가
+        let formSelectBoxHtml = '';
+        formSelectBoxHtml += '<option value="empty" selected="selected">없음</option>'
     
-    $('#noticeBrdMngWriteBtnDiv').empty().append(noticeBrdMngWriteHtml);
+        for(let i = 0; i < result.length; i++) {
+            formSelectBoxHtml += '<option value="formSelect' + result[i]['FORM_ID'] + '">' + result[i]['FORM_TITLE']+ '</option>'
+        }
 
-    initNoticeBrdMngWriteEvent();
+        $('#formName').empty().append(formSelectBoxHtml);
+
+        let noticeBrdMngWriteHtml = '';
+
+        // 글 작성 시
+        if(mode === 'write') {
+            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteContentBtn">작성</button>';
+        }
+        // 글 수정 시
+        else {
+            $('#noticeBrdMngWriteTitle').val(param['title']);
+            $('#noticeBrdMngWriteContent').val(param['content']);
+
+            // 지원서가 등록되있지 않은 경우
+            if(param['form'] === 'empty') {
+                $('#formName').val('empty');
+            }
+            // 지원서가 등록되있는 경우
+            else {
+                $('#formName').val('formSelect' + param['form']);
+            }
+
+            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn">수정</button>';
+        }
+
+        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteBackBtn">뒤로</button>';
+        
+        $('#noticeBrdMngWriteBtnDiv').empty().append(noticeBrdMngWriteHtml);
+
+        initNoticeBrdMngWriteEvent();
+    });
 }
 
 // 공지사항 리스트 이벤트
@@ -157,7 +188,7 @@ function initNoticeBrdMngListEvent() {
 
     // 글 쓰기 클릭 시
     $('#noticeBrdMngWriteBtn').off('click').on('click', function(){
-        showNoticeBrdMngWrite('write');
+        showNoticeBrdMngWrite(null, 'write');
     });
 }
 
@@ -168,9 +199,14 @@ function initNoticeBrdMngWriteEvent() {
         let title = $('#noticeBrdMngWriteTitle').val();
         let content = $('#noticeBrdMngWriteContent').val();
         let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
+        let form = $('#formName').val()
+
+        if(form != 'empty') {
+            form = form.substr(10);
+        }
 
         if(confirm('작성 하시겠습니까?')) {
-            let param = "writer=ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date;
+            let param = 'writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date + '&form=' + form;
             setNoticeBrdMngContent(param);
         }
         else {
@@ -183,9 +219,14 @@ function initNoticeBrdMngWriteEvent() {
         let title = $('#noticeBrdMngWriteTitle').val();
         let content = $('#noticeBrdMngWriteContent').val();
         let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
+        let form = $('#formName').val();
+
+        if(form != 'empty') {
+            form = form.substr(10);
+        }
 
         if(confirm('수정 하시겠습니까?')) {
-            let param = 'id=' + selectedId + '&writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date;
+            let param = 'id=' + selectedId + '&writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date + '&form=' + form;
             updateNoticeBrdMngContent(param);
         }
         else {
@@ -206,6 +247,7 @@ function initNoticeBrdMngContentBtnEvent() {
         let param = [];
         param['title'] = noticeBrdMngContent['BRD_TITLE'];
         param['content'] = noticeBrdMngContent['BRD_CONTENT'];
+        param['form'] = noticeBrdMngContent['BRD_FORM'];
         showNoticeBrdMngWrite(param, 'update');
     });
 
@@ -229,5 +271,6 @@ function initNoticeBrdMngContentBtnEvent() {
 /*
     TODO
     1. 코드 리펙토링(전역변수 줄이고 파라미터 사용하기)
-    2. "" -> ''로 수정  
+    2. "" -> ''로 수정
+    3. 공지사항 내용 보여줄 때 지원서 아이디 말고 지원서 이름으로 나오게 쿼리 수정하기
 */
