@@ -2,6 +2,7 @@
 <html>
 <body> 
     <div id="noticeBrdMngDiv">
+        <!-- 공지사항 목록 -->
         <div id="noticeBrdMngTableDiv" style="display: block;">
             <table border="1">
                 <thead>
@@ -13,13 +14,31 @@
                 </thead>
                 <tbody id="noticeBrdMngListTbody"></tbody>
             </table>
-            <div id='noticeBrdMngPagingDiv' style="display: none;"></div>
-            <div id='noticeBrdMngBtnDiv'>
+            <div id="noticeBrdMngPagingDiv"></div>
+            <div id="noticeBrdMngBtnDiv">
                 <button id="noticeBrdMngWriteBtn">글 쓰기</button>
             </div>
         </div>
-        <div id='noticeBrdMngContentDiv' style="display: none;"></div>
-        <div id='noticeBrdMngWriteDiv' style="display: none;"></div>
+        <!-- 공지사항 내용 -->
+        <div id="noticeBrdMngShowContentDiv" style="display: none;">
+            <div id="noticeBrdMngContentDiv"></div>
+            <div id="noticeBrdMngContentBtnDiv">
+                <button id="noticeBrdMngContentUpdateBtn">수정</button>
+                <button id="noticeBrdMngContentDeleteBtn">삭제</button>
+                <button id="noticeBrdMngContentBackBtn">뒤로</button>
+            </div>
+        </div>
+        <!-- 공지사항 작성 -->
+        <div id="noticeBrdMngWriteDiv" style="display: none;">
+            <div class="WritingHeader" style ="position: relative; margin-top: 20px; border-bottom: 1px solid #323232;">
+                <h2 class="title" style="margin-bottom: 16px; font-size: 22px; color: var(--skinTextColor);">
+                공지사항 작성
+                </h2>
+            </div>
+            <textarea placeholder="제목을 입력해 주세요." class="titleTextareaInput"  id="noticeBrdMngWriteTitle" style="height: 40px;"></textarea>
+            <textarea placeholder="내용을 입력하세요." class="contentTextareaInput"  id="noticeBrdMngWriteContent" style="height: 40px;"></textarea>
+            <div class="noticeBrdMngWriteBtnDiv" id="noticeBrdMngWriteBtnDiv"></div>
+        </div>
     </div>
 </body>
 </html>

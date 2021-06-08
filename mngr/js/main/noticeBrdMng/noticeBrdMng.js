@@ -1,12 +1,10 @@
 let noticeBrdMngList = []; 
 
-let noticeBrdMngContent = []; 
+let noticeBrdMngContent = [];
+let selectedId = ''; 
 
 // 게시판 보여주기
 function showNoticeBrdMng(){
-    $("#noticeBrdMngList").css("display", "block");
-    $("#noticeBrdMngContent").css("display", "none");
-    
     getNoticeBrdMngListCount();
 }
 
@@ -41,10 +39,49 @@ function getNoticeBrdMngContent(id){
     });
 }
 
+// 게시판 내용 작성하기
+function setNoticeBrdMngContent(param) {
+    requestData('/knt/mngr/php/main/noticeBrdMng/setNoticeBrdMngContent.php', param).done(function(result){
+        if(result){
+            alert('작성 되었습니다.');
+            showNoticeBrdMng();
+        }
+        else{
+            alert('작성 실패하였습니다.');
+        }
+    });
+}
+
+// 게시판 내용 수정하기
+function updateNoticeBrdMngContent(param) {
+    requestData('/knt/mngr/php/main/noticeBrdMng/updateNoticeBrdMngContent.php', param).done(function(result){
+        if(result){
+            alert('수정 되었습니다.');
+            showNoticeBrdMng();
+        }
+        else{
+            alert('수정 실패하였습니다.');
+        }
+    });
+}
+
+// 게시판 내용 삭제하기
+function delNoticeBrdMngContent(param) {
+    requestData('/knt/mngr/php/main/noticeBrdMng/delNoticeBrdMngContent.php', param).done(function(result){
+        if(result){
+            alert('삭제 되었습니다.');
+            showNoticeBrdMng();
+        }
+        else{
+            alert('삭제 실패하였습니다.');
+        }
+    });
+}
+
 // 공지사항 리스트 보여주기
 function showNoticeBrdMngList(currentPage){
     $('#noticeBrdMngTableDiv').css('display', 'block');
-    $('#noticeBrdMngContentDiv').css('display', 'none');
+    $('#noticeBrdMngShowContentDiv').css('display', 'none');
     $('#noticeBrdMngWriteDiv').css('display', 'none');
 
     let noticeBrdMngListTbodyHtml = "";
@@ -67,7 +104,7 @@ function showNoticeBrdMngList(currentPage){
 // 게시판 내용 보여주기
 function showNoticeBrdMngContent(){
     $('#noticeBrdMngTableDiv').css('display', 'none');
-    $('#noticeBrdMngContentDiv').css('display', 'block');
+    $('#noticeBrdMngShowContentDiv').css('display', 'block');
     $('#noticeBrdMngWriteDiv').css('display', 'none');
 
     let noticeBrdMngContentDivHtml = "";
@@ -79,24 +116,118 @@ function showNoticeBrdMngContent(){
     noticeBrdMngContentDivHtml += "<p>내용 : " + noticeBrdMngContent['BRD_CONTENT'] + "</p>"
     
     $("#noticeBrdMngContentDiv").empty().append(noticeBrdMngContentDivHtml);
+
+    initNoticeBrdMngContentBtnEvent();
+}
+
+// 게시판 글 쓰기 화면 보여주기
+function showNoticeBrdMngWrite(param, mode) {
+    $('#noticeBrdMngTableDiv').css('display', 'none');
+    $('#noticeBrdMngShowContentDiv').css('display', 'none');
+    $('#noticeBrdMngWriteDiv').css('display', 'block');
+
+    let noticeBrdMngWriteHtml = '';
+
+    // 글 작성 시
+    if(mode === 'write') {
+        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteContentBtn">작성</button>';
+    }
+    // 글 수정 시
+    else {
+        $('#noticeBrdMngWriteTitle').val(param['title']);
+        $('#noticeBrdMngWriteContent').val(param['content']);
+        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn">수정</button>';
+    }
+
+    noticeBrdMngWriteHtml += '<button class="noticeBrdMngWriteBackBtn">뒤로</button>';
     
-    // 목록 버튼 클릭 시(뒤로가기)
-    $("#noticeBrdMngContentBackBtn").off("click").on("click", function(){
-        showNoticeBrdMng();
-    });
+    $('#noticeBrdMngWriteBtnDiv').empty().append(noticeBrdMngWriteHtml);
+
+    initNoticeBrdMngWriteEvent();
 }
 
 // 공지사항 리스트 이벤트
 function initNoticeBrdMngListEvent() {
+    // 공지사항 리스트 클릭 시
     $('.noticeBrdListTr').off('click').on('click', function(){
         let id = this.id.substr(15);
+        selectedId = id;
         getNoticeBrdMngContent(id);
+    });
+
+    // 글 쓰기 클릭 시
+    $('#noticeBrdMngWriteBtn').off('click').on('click', function(){
+        showNoticeBrdMngWrite('write');
+    });
+}
+
+// 공지사항 작성 이벤트
+function initNoticeBrdMngWriteEvent() {
+    // 작성 버튼 클릭 시
+    $('#noticeBrdMngWriteContentBtn').off('click').on('click', function(){
+        let title = $('#noticeBrdMngWriteTitle').val();
+        let content = $('#noticeBrdMngWriteContent').val();
+        let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
+
+        if(confirm('작성 하시겠습니까?')) {
+            let param = "writer=ADMIN" + "&title=" + title + "&content=" + content + "&date=" + date;
+            setNoticeBrdMngContent(param);
+        }
+        else {
+            alert('취소 되었습니다.');
+        }
+    });
+
+    // 수정 버튼 클릭 시
+    $('#noticeBrdMngWriteUpdateContentBtn').off('click').on('click', function(){
+        let title = $('#noticeBrdMngWriteTitle').val();
+        let content = $('#noticeBrdMngWriteContent').val();
+        let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
+
+        if(confirm('수정 하시겠습니까?')) {
+            let param = 'id=' + selectedId + '&writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date;
+            updateNoticeBrdMngContent(param);
+        }
+        else {
+            alert('취소 되었습니다.');
+        }
+    });
+
+    // 뒤로 버튼 클릭 시
+    $('#noticeBrdMngWriteBackBtn').off('click').on('click', function(){
+        showNoticeBrdMng();
+    });
+}
+
+// 공지사항 내용 이벤트
+function initNoticeBrdMngContentBtnEvent() {
+    // 수정 버튼 클릭 시
+    $('#noticeBrdMngContentUpdateBtn').off('click').on('click', function(){
+        let param = [];
+        param['title'] = noticeBrdMngContent['BRD_TITLE'];
+        param['content'] = noticeBrdMngContent['BRD_CONTENT'];
+        showNoticeBrdMngWrite(param, 'update');
+    });
+
+    // 삭제 버튼 클릭 시
+    $('#noticeBrdMngContentDeleteBtn').off('click').on('click', function(){
+        if(confirm('삭제 하시겠습니까?')) {
+            let param = 'id=' + selectedId;
+            delNoticeBrdMngContent(param);
+        }
+        else {
+            alert('취소 되었습니다.');
+        }
+    });
+
+    // 뒤로 버튼 클릭 시
+    $('#noticeBrdMngContentBackBtn').off('click').on('click', function(){
+        showNoticeBrdMng();
     });
 }
 
 /*
     TODO
     1. 코드 리펙토링(전역변수 줄이고 파라미터 사용하기)
-    2. 테이블은 html로 그리기
-    3. "" -> ''로 수정  
+    2. "" -> ''로 수정  
 */
