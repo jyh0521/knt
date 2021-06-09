@@ -2,23 +2,23 @@
 <html>
 <body> 
     <div id="formWrite">
-        <div id='formWriteTableDiv' style="display: block;">
-            <table border='1'>
-                <thead>
-                    <tr>
-                        <td>번호</td>
-                        <td>지원서 제목</td>
-                        <td>선택</td>
-                    </tr>
-                </thead>
-                <tbody id='formWriteListTbody'></tbody>
-            </table>
-            <div id='formWritePagingDiv'></div>
-            <div id='formWriteBtnDiv'>
-                <button id="formSelectBtn">확인</button>
-            </div>
+        <!-- 지원서 제목 -->
+        <div id="formWriteContentTitle"></div>
+        <!-- 앞에서 작성한 정보 -->
+        <div id="formWriteInfoDiv">
+            <p id="subUserName"></p>
+            <p id="subUserNum"></p>
+            <p id="subUserBirth"></p>
+            <p id="subUserSex"></p>
+            <p id="subUserPhone"></p>
         </div>
-        <div id='formWriteContentDiv' style="display: none;"></div>
+        <!-- 지원서 내용 -->
+        <div id="formWriteContentQuestionDiv"></div>
+        <div id="formWriteBtnDiv">
+            <button id="formWriteTempSaveBtn">임시저장</button>
+            <button id="formWriteSubmitBtn">제출하기</button>
+            <button id="formWriteCancelBtn">취소</button>
+        </div>
     </div>
 </body>
 </html>

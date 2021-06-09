@@ -23,9 +23,8 @@ function showNoticeBrd(){
     }
     else{ //전체 리스트 불러오기
         getNoticeBrdListCount();
-    }
-    
-};
+    }    
+}
 
 //목록 전체 데이터 수 불러오기 
 function getNoticeBrdListCount(){
@@ -401,9 +400,12 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
     kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
     kntNoticeBrdContentDomainHtml += "</div>";
-    kntNoticeBrdContentDomainHtml += '<div>';
-    kntNoticeBrdContentDomainHtml +=    '<button class="writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '">지원서 작성하기</button>';
-    kntNoticeBrdContentDomainHtml += '</div>';
+
+    if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
+        kntNoticeBrdContentDomainHtml += '<div>';
+        kntNoticeBrdContentDomainHtml +=    '<button class="writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '">지원하기</button>';
+        kntNoticeBrdContentDomainHtml += '</div>';
+    }
 
     // 수정, 삭제는 관리자 페이지에서만 가능
     // if(sessionStorage.getItem("loginUser")=='ADMIN'){

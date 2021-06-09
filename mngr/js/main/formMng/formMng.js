@@ -1,6 +1,11 @@
 // 변수
 let maxQueSize = 5;
 
+/*
+    TODO
+    1. 사용중인 지원서 활성화 못끄게 수정할 것
+*/
+
 // 함수
 // 초기화
 function initFormMng() {

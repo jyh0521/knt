@@ -125,7 +125,7 @@ function showNoticeBrdMngContent(){
     
     $("#noticeBrdMngContentDiv").empty().append(noticeBrdMngContentDivHtml);
 
-    initNoticeBrdMngContentBtnEvent();
+    initNoticeBrdMngContentEvent();
 }
 
 // 게시판 글 쓰기 화면 보여주기
@@ -241,7 +241,7 @@ function initNoticeBrdMngWriteEvent() {
 }
 
 // 공지사항 내용 이벤트
-function initNoticeBrdMngContentBtnEvent() {
+function initNoticeBrdMngContentEvent() {
     // 수정 버튼 클릭 시
     $('#noticeBrdMngContentUpdateBtn').off('click').on('click', function(){
         let param = [];
