@@ -22,9 +22,6 @@ function getFormWriteContent(id) {
 function drawFormWriteInfo(param) {
     $('#subUserName').empty().append('이름: ' + param['name']);
     $('#subUserNum').empty().append('학번: ' + param['num']);
-    $('#subUserBirth').empty().append('생년월일: ' + param['birth']);
-    $('#subUserSex').empty().append('성별: ' + param['sex']);
-    $('#subUserPhone').empty().append('연락처: ' + param['phone']);
 }
 
 function drawFormWriteContent(param) {
@@ -39,7 +36,7 @@ function drawFormWriteContent(param) {
         if(param['FORM_QUE' + i] != 'empty') {
             formWriteContentHtml += '<li>';
             formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
-            formWriteContentHtml += '<textarea></textarea>';
+            formWriteContentHtml += '<textarea id="formQueTextArea' + i + '"></textarea>';
             formWriteContentHtml += '</li>';
         }
     }
@@ -52,7 +49,7 @@ function drawFormWriteContent(param) {
 function initFormWriteEvent(param) {
     // 임시저장 버튼 클릭 시
     $('#formWriteTempSaveBtn').off('click').on('click', function() {
-
+        
     });
 
     // 제출하기 버튼 클릭 시
@@ -75,7 +72,9 @@ function initFormWriteEvent(param) {
 
 
 
-
+       // param['birth'] = $('#userBirth').val();
+        // param['sex'] = $('#userSex').val();
+        // param['phone'] = $('#userPhone').val();
 
 
 
