@@ -17,6 +17,10 @@ function initFormInfoWriteEvent(id) {
         
         if(infoValidationCheck(param, pwdChk)) {
             if(confirm('등록하시겠습니까?')) {
+                // 이미 작성된 지원서가 있는지 확인
+
+
+
                 $("#menuFuncDiv").load("formWrite/formWrite.html", function () {
                     // 함수경로: /knt/user/js/main/formWrite/formWrite.js
                     initFormWrite(param);
