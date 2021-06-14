@@ -109,6 +109,11 @@ function initFormWriteEvent(param) {
         }
     });
 
+    /*
+        TODO
+        1. 임시저장된 지원서를 제출할 때 기존에 저장된 지원서가 업데이트 되는 형식으로 바꾸기
+    */
+
     // 제출하기 버튼 클릭 시
     $('#formWriteSubmitBtn').off('click').on('click', function() {
         param['birth'] = $('#userBirth').val();
