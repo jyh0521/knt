@@ -85,6 +85,11 @@ $("#noticeBtn").off("click").on("click", function () {
     });
 });
 
+// 내 지원서 클릭 시
+$('#myFormBtn').off('click').on('click', function(){
+    initMyForm();
+});
+
 // 지원서 작성하기 클릭 시
 // $('#formWriteBtn').off('click').on('click', function(){
 //     $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
@@ -118,4 +123,5 @@ $("#noticeBtn").off("click").on("click", function () {
     1. 로그인한 상태가 아니라면 학술국 소개 버튼 이외의 버튼을 눌렀을 때 로그인 해달라는 문구 표시.
     2. 1에서 로그인한 후 권한이 Undefined인 경우 마찬가지로 권한이 없습니다 문구 표시
     -> 현재는 로그인 하지 않고 권한이 없는 상태에서 학술국 공지사항, 정보공유 등등 다 볼 수 있음.
+    3. init 함수 안에 .load 넣기
 */
