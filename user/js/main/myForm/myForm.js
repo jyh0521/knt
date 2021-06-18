@@ -18,6 +18,20 @@ function getSavedMyForm(name, num, pwd) {
     });
 }
 
+function getMySelectedForm(id) {
+    let param = 'id=' + id;
+
+    requestData('/knt/user/php/main/myForm/getMySelectedForm.php', param).done(function(myForm){
+        param = 'id=' + myForm[0]['FORM_ID'];
+
+        requestData('/knt/user/php/main/formWrite/getFormWriteContent.php', param).done(function(formContent){
+            $('#menuFuncDiv').load('myForm/myFormChk.html', function(){
+                drawMySelectedForm(myForm[0], formContent[0]);
+            });
+        });
+    });
+}
+
 function delSavedMyForm(id) {
     let param = 'id=' + id;
 
@@ -54,6 +68,34 @@ function drawMyFormList(formList) {
     initMyFormListEvent();
 }
 
+/*
+    TODO
+    1. 다이얼로그로 조회할 수 있게 수정
+*/
+function drawMySelectedForm(myForm, formContent) {
+    let mySelectedFormInfoHtml = '';
+
+    mySelectedFormInfoHtml += '<p>' + formContent['FORM_TITLE'] + '</p>';
+    mySelectedFormInfoHtml += '<p>이름: ' + myForm['SUB_FORM_NAME'] + '</p>';
+    mySelectedFormInfoHtml += '<p>학번: ' + myForm['SUB_FORM_NUM'] + '</p>';
+    mySelectedFormInfoHtml += '<p>생년월일: ' + myForm['SUB_FORM_BIRTH'] + '</p>';
+    mySelectedFormInfoHtml += '<p>성별: ' + myForm['SUB_FORM_SEX'] + '</p>';
+
+    $('#myFormChkInfoDiv').empty().append(mySelectedFormInfoHtml);
+
+    let mySelectedFormQusHtml = '';
+
+    for(let i = 1; i <= 5; i++) {
+        if(formContent['FORM_QUE' + i] != 'empty') {
+            mySelectedFormQusHtml += '<p>질문' + i + '</p>';
+            mySelectedFormQusHtml += '<p>' + formContent['FORM_QUE' + i] + '</p>';
+            mySelectedFormQusHtml += '<p>' + myForm['SUB_FORM_ANS' + i] + '</p>';
+        } 
+    }
+
+    $('#myFormChkQusDiv').empty().append(mySelectedFormQusHtml);
+}
+
 function initMyFormBtnEvent() {
     // 조회하기 버튼 클릭 시
     $('#myFormFindBtn').off('click').on('click', function() {
@@ -88,7 +130,12 @@ function initMyFormListEvent() {
 
         // 조회 버튼
         $('.myFormListChkBtn').off('click').on('click', function(){
-            
+            if(confirm('해당 지원서를 조회하시겠습니까?')) {
+                getMySelectedForm(selectedId);
+            }
+            else {
+                alert('취소되었습니다.');
+            }
         });
 
         // 수정 버튼
