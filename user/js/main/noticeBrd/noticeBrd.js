@@ -214,10 +214,14 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml += "</div>";
 
     if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
-        kntNoticeBrdContentDomainHtml += '<div>';
-        kntNoticeBrdContentDomainHtml +=    '<button class="writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '">지원하기</button>';
+        kntNoticeBrdContentDomainHtml += '<div class="ui primary submit labeled icon button writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '" style="background-color: #585c5f;">';
+        kntNoticeBrdContentDomainHtml +=    '<i class="icon edit"></i>지원하기';
         kntNoticeBrdContentDomainHtml += '</div>';
     }
+
+//         kntNoticeBrdCommentDomainHtml += "<div class='ui primary submit labeled icon button' id = 'noticeBrdcommentWriteBtn' style = 'background-color: #585c5f;'>"
+//         kntNoticeBrdCommentDomainHtml += "<i class='icon edit'></i> Add Comment"
+//         kntNoticeBrdCommentDomainHtml += "</div>"
 
     // 수정, 삭제는 관리자 페이지에서만 가능
     // if(sessionStorage.getItem("loginUser")=='ADMIN'){
