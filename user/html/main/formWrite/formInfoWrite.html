@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
 <body> 
-    <div id="formInfo">
+    <div class="formInfoTitle">
+        <h3>지원서 등록</h3>
+    </div>
+    <div id="formInfo" class="ui large form">
         <div id="formInfoWrite">
-            <ul>
-                <li><input id="userName" placeholder="이름"/></li>
-                <li><input id="userNum" placeholder="학번"/></li>
-                <li><input type="password" id="userPwd" placeholder="비밀번호"/></li>
-                <li><input type="password" id="userPwdChk" placeholder="비밀번호 확인"/></li>
-            </ul>
+            <div class="field">
+                <label>이름</label>
+                <input id="userName" class="formInfoField" type="text"/>
+            </div>
+            <div class="field">
+                <label>학번</label>
+                <input id="userNum" class="formInfoField" type="text"/>
+            </div>
+            <div class="field">
+                <label>비밀번호</label>
+                <input input type="password" id="userPwd" class="formInfoField" type="text"/>
+            </div>
+            <div class="field">
+                <label>비밀번호 확인</label>
+                <input type="password" id="userPwdChk" class="formInfoField" type="text"/>
+            </div>
         </div>
         <div id="formInfoBtn">
-            <button id="formInfoSubmitBtn">등록하기</button>
+            <button id="formInfoSubmitBtn" class="ui grey button">등록</button>
         </div>
     </div>
 </body>

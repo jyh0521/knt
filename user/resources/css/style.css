@@ -83,3 +83,15 @@
 
 /* 지원하기 버튼 */
 #kntNoticeSubmitBtnDiv { margin-top: 5%; text-align: center; }
+
+/* 지원서 등록 제목 */
+.formInfoTitle { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
+
+/* 지원서 등록 작성 부분 */
+#formInfoWrite {padding-top: 2%;}
+
+/* 지원서 정보 작성 공간 */
+.ui.large.form .formInfoField {width: 40%;}
+
+/* 지원서 정보 등록하기 버튼 */
+#formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
