@@ -199,9 +199,11 @@ function showNoticeBrdContent(){
     kntNoticeBrdContentDomainHtml += "</div>";
 
     if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
-        kntNoticeBrdContentDomainHtml += '<div class="ui primary submit labeled icon button writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '" style="background-color: #585c5f;">';
-        kntNoticeBrdContentDomainHtml +=    '<i class="icon edit"></i>지원하기';
-        kntNoticeBrdContentDomainHtml += '</div>';
+        let submitBtnHtml = '';
+        submitBtnHtml += '<div class="ui primary submit labeled icon button writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '" style="background-color: #585c5f;">';
+        submitBtnHtml +=    '<i class="icon edit"></i>지원하기';
+        submitBtnHtml += '</div>';
+        $('#kntNoticeSubmitBtnDiv').empty().append(submitBtnHtml);
     }
 
     $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
