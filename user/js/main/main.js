@@ -5,9 +5,7 @@ window.onload = function () {
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
-    $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
-        showNoticeBrd();
-    });
+    showNoticeBrd();
 });
 
 // 내 지원서 클릭 시

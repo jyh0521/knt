@@ -12,18 +12,20 @@ let searchOrAll = "";//검색한 리스트 or 전체 리스트
 let noticeBrdCommentListCount = "";
 
 function showNoticeBrd(){
-    $("#kntNoticeBrd").css("display", "block");
-    $("#kntNoticeBrdWrite").css("display", "none");
-    $("#kntNoticeBrdContent").css("display", "none");
-    $("#UpdatekntNoticeBrdContent").css("display", "none");
-    $("#kntNoticeBrdComment").css("display", "none");
-
-    if(searchOrAll == "search"){ //검색 관련 리스트 불러오기
-        getNoticeSearchListCount();
-    }
-    else{ //전체 리스트 불러오기
-        getNoticeBrdListCount();
-    }    
+    $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
+        $("#kntNoticeBrd").css("display", "block");
+        $("#kntNoticeBrdWrite").css("display", "none");
+        $("#kntNoticeBrdContent").css("display", "none");
+        $("#UpdatekntNoticeBrdContent").css("display", "none");
+        $("#kntNoticeBrdComment").css("display", "none");
+    
+        if(searchOrAll == "search"){ //검색 관련 리스트 불러오기
+            getNoticeSearchListCount();
+        }
+        else{ //전체 리스트 불러오기
+            getNoticeBrdListCount();
+        }   
+    });  
 }
 
 //목록 전체 데이터 수 불러오기 
