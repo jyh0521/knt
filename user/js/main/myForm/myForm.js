@@ -34,12 +34,7 @@ function getMySelectedForm(id, mode) {
                 $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
                     drawFormWriteContent(formContent[0]);
                     setMyFormAnswer(myForm[0], formContent[0]);
-
-                    /*
-                        TODO
-                        1. 이벤트 모드 2개로 설정해서 함수 만들기 or 새로 함수 만들기
-                    */
-                    initFormWriteEvent()
+                    initMyFormWriteBtnEvent(formContent[0], id);
                 });
             }
         });
@@ -56,6 +51,46 @@ function delSavedMyForm(id) {
         }
         else{
             alert('삭제 실패하였습니다.');
+        }
+    });
+}
+
+/*
+    TODO
+    1. paramerter 만들어주는 함수 있으면 좋을듯
+*/
+
+// 이미 저장된 지원서 임시저장(update) 함수
+function uptSavedMyForm(content) {
+    let param = 'id=' + content['id'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] +
+    '&ans1=' + content['ans1'] + '&ans2=' + content['ans2'] + '&ans3=' + content['ans3'] +
+    '&ans4=' + content['ans4'] + '&ans5=' + content['ans5'];
+
+    requestData('/knt/user/php/main/myForm/uptSavedMyForm.php', param).done(function(result){
+        if(result){
+            alert('저장되었습니다');
+        }
+        else{
+            alert('저장 실패하였습니다.');
+        }
+    });
+}
+
+// 이미 저장된 지원서 제출(update) 함수
+function submitSavedMyForm(content) {
+    let param = 'id=' + content['id'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] +
+    '&ans1=' + content['ans1'] + '&ans2=' + content['ans2'] + '&ans3=' + content['ans3'] +
+    '&ans4=' + content['ans4'] + '&ans5=' + content['ans5'];
+
+    requestData('/knt/user/php/main/myForm/submitSavedMyForm.php', param).done(function(result){
+        if(result){
+            alert('제출되었습니다.');
+
+            // 제출 후 내 지원서 처음으로 이동
+            getSavedMyForm(name, num, pwd);
+        }
+        else{
+            alert('제출 실패하였습니다.');
         }
     });
 }
@@ -188,6 +223,39 @@ function initMyFormListEvent() {
     });
 }
 
+// 내 지원서 수정 시 이벤트
+function initMyFormWriteBtnEvent(formContent, id) {
+    // 임시저장 버튼 클릭 시
+    $('#formWriteTempSaveBtn').off('click').on('click', function() {
+        if(confirm('지원서를 임시 저장하시겠습니까? 반드시 제출하셔야 지원이 완료됩니다.')) {
+            let content = getNowFormContent(formContent);
+            content['id'] = id;
+            uptSavedMyForm(content);
+        }
+        else {
+            alert('취소되었습니다.');
+        }
+    });
+
+    // 제출 버튼 클릭 시
+    $('#formWriteSubmitBtn').off('click').on('click', function() {
+        if(confirm('지원서를 제출하시겠습니까? 제출 후에는 수정이 불가능합니다.')) {
+            let content = getNowFormContent(formContent);
+            content['id'] = id;
+            submitSavedMyForm(content);
+        }
+        else {
+            alert('취소되었습니다.');
+        }
+    });
+
+    // 취소 버튼 클릭 시
+    $('#formWriteCancelBtn').off('click').on('click', function() {
+        // 내 지원서 처음으로 이동
+        getSavedMyForm(name, num, pwd);
+    });
+}
+
 function myFormValidate(name, num, pwd) {
     if(name.trim() === '') {
         alert('이름을 입력해주세요.');
@@ -204,3 +272,22 @@ function myFormValidate(name, num, pwd) {
 
     return true;
 }
+
+ function getNowFormContent(formContent) {
+     let content = [];
+
+     content['birth'] = $('#userBirth').val();
+     content['sex'] = $('#userSex').val();
+     content['phone'] = $('#userPhone').val();
+
+     for (let i = 1; i <= 5; i++) {
+        if(formContent['FORM_QUE' + i] != 'empty') {
+            content['ans' + i] = $('#formAnsTextArea' + i).val();
+        }
+        else {
+            content['ans' + i] = 'empty';
+        }
+     }
+
+     return content;
+ }
