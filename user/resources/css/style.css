@@ -103,13 +103,13 @@
 #formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
 
 /* 내 지원서 배경  */
-#myForm {margin-top: 8%; margin-left: 18%; margin-right: 18%; background-color: rgb(255, 255, 255)}
+#myForm { text-align: center; margin-top: 8%; margin-left: 18%; margin-right: 18%; background-color: rgb(255, 255, 255)}
 
 /* 내 지원서 제목 부분 */
 .myFormTitleDiv { padding-top: 1%;}
 
 /* 내 지원서 제목 */
-.myFormTitleDiv .myFormTitle { text-align:center; margin-bottom: 1%; }
+.myFormTitleDiv .myFormTitle { margin-bottom: 1%; }
 
 /* 내 지원서 작성 공간 */
 .ui.large.form .field .myFormInfoField {width: 40%;}
