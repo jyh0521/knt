@@ -91,25 +91,32 @@
 .formInfoTitleDi.myFormTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
 
 /* 지원서 등록 제목 */
-.formInfoTitleDiv .formInfoTitle {margin-bottom: 1%;}
+.formInfoTitleDiv .formInfoTitle { margin-bottom: 1%;}
 
 /* 지원서 등록 작성 부분 */
-#formInfoWrite {padding-top: 2%;}
+#formInfoWrite { padding-top: 2%;}
 
 /* 지원서 정보 작성 공간 */
-.ui.large.form .formInfoField {width: 40%;}
+.ui.large.form .formInfoField { width: 40%;}
 
 /* 지원서 정보 등록하기 버튼 */
 #formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
 
 /* 내 지원서 배경  */
-#myForm { text-align: center; margin-top: 8%; margin-left: 18%; margin-right: 18%; background-color: rgb(255, 255, 255)}
+#myForm { text-align: center; margin-top: 8%; margin-left: 21%; margin-right: 21%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd;}
 
 /* 내 지원서 제목 부분 */
-.myFormTitleDiv { padding-top: 1%;}
+.myFormTitleDiv { padding-top: 8%; padding-bottom: 6%;}
 
-/* 내 지원서 제목 */
-.myFormTitleDiv .myFormTitle { margin-bottom: 1%; }
+/* 내 지원서 작성 div */
+#myFormInfoWriteDiv { padding-left: 19%; padding-right: 19%;}
+.myFormInfoWrite { padding-bottom: 13%; border-bottom: 1px solid #dadada;}
 
 /* 내 지원서 작성 공간 */
-.ui.large.form .field .myFormInfoField {width: 40%;}
+.ui.large.form .field .myFormInfoField { width: 80%; height: 50px; border: 1px solid #979797;}
+
+/* 내 지원서 조회하기 버튼 div */
+#myFormBtnDiv { padding-top: 8%; padding-bottom: 10%;}
+
+/* 내 지원서 조회하기 버튼 */
+#myFormFindBtn { width: 40%; height: 50px; background-color:#585c5f}
