@@ -6,8 +6,11 @@
 #mainKNTLogo { width: 35%;height: 85%;padding-right: 5%;margin-right: 12%; }
 
 /* 상단 메뉴바 */
-#mainMenuContainer { padding-bottom: 0.4%; border-bottom: 1px solid #313031; }
+#mainMenuContainer { padding-bottom: 0.4%; margin-bottom: 0px;}
 #mainMenuBtnDiv { margin-left: 20%; margin-right: 20%; width: 100%; }
+
+/* 배경 색 */
+.mainMenuBackground { background-color: rgb(248, 248, 248);}
 
 /* 메뉴 컨테이너 */
 #menuContainer { margin-left: 20%; margin-right: 20%; }
@@ -84,11 +87,11 @@
 /* 지원하기 버튼 */
 #kntNoticeSubmitBtnDiv { margin-top: 5%; text-align: center; }
 
-/* 지원서 등록 제목 부분 */
-.formInfoTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
+/* 지원서 등록 , 조회하기 제목 부분 */
+.formInfoTitleDi.myFormTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
 
 /* 지원서 등록 제목 */
-.formInfoTitleDiv .formInfoTitle { margin-bottom: 1%;}
+.formInfoTitleDiv .formInfoTitle {margin-bottom: 1%;}
 
 /* 지원서 등록 작성 부분 */
 #formInfoWrite {padding-top: 2%;}
@@ -98,3 +101,12 @@
 
 /* 지원서 정보 등록하기 버튼 */
 #formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
+
+/* 내 지원서 제목 부분 */
+.myFormTitleDiv { padding-top: 1%;}
+
+/* 내 지원서 제목 */
+.myFormTitleDiv .myFormTitle { text-align:center; margin-bottom: 1%; }
+
+/* 내 지원서 작성 공간 */
+.ui.large.form .field .myFormInfoField {width: 40%;}

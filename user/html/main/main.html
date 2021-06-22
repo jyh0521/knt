@@ -12,28 +12,29 @@
     <!-- 상단 -->
     <div class="ui borderless main menu" id="mainTop"></div>
     <!-- 상단 메뉴바 -->
-    <div class="ui borderless main menu" id="mainMenuContainer">
-        <div class="text container" id="mainMenuBtnDiv">
+    <div class="mainMenuBackground">
+      <div class="ui borderless main menu" id="mainMenuContainer">
+          <div class="text container" id="mainMenuBtnDiv">
             <img src="/knt/user/resources/images/KNTLogo.png" id="mainKNTLogo">
-            <div class="item">
-                <a type="button" id='introduceBtn' class="item"><h3>학술국 소개</h3></a>
-            </div>
-            <div class="item">
-                <a type="button" id='noticeBtn' class="item"><h3>공지사항</h3></a>
-            </div>
-            <div class="item">
-                <a type="button" id='myFormBtn' class="item"><h3>내 지원서</h3></a>
-            </div>
+              <div class="item">
+                  <a type="button" id='introduceBtn' class="item"><h3>학술국 소개</h3></a>
+              </div>
+              <div class="item">
+                  <a type="button" id='noticeBtn' class="item"><h3>공지사항</h3></a>
+              </div>
+              <div class="item">
+                  <a type="button" id='myFormBtn' class="item"><h3>내 지원서</h3></a>
+              </div>
+          </div>
+      </div>
+    <!-- 메인콘텐츠 -->
+    <div class="container" id="menuContainer">
+      <div class="content" id="menuFuncDiv">
+        <!-- 학술국 소개 -->
+        <!-- 공지사항 -->
+        <!-- 내 지원서 -->
         </div>
     </div>
-    <!-- 메인콘텐츠 -->
-        <div class="container" id="menuContainer">
-            <div class="content" id="menuFuncDiv">
-            <!-- 학술국 소개 -->
-            <!-- 공지사항 -->
-            <!-- 내 지원서 -->
-            </div>
-        </div>
     <!-- footer -->
     <div class="ui inverted vertical footer segment" style='margin-top: 10%;'>
         <div class="ui center aligned container">
@@ -70,6 +71,7 @@
             </div>
         </div>
     </div>
+  </div>
 </body>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

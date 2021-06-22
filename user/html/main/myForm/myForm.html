@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
 <body> 
-    <div id="myForm">
-        <div id="myFormInfoWrite">
-            <ul>
-                <li><input id="userName" placeholder="이름"/></li>
-                <li><input id="userNum" placeholder="학번"/></li>
-                <li><input type="password" id="userPwd" placeholder="비밀번호"/></li>
-            </ul>
+    <div id="myForm" style="background-color: rgb(255, 255, 255)">
+        <div class="myFormTitleDiv">
+            <h2 class="myFormTitle">내 지원서</h2>
+        </div>
+        <div id="myFormInfoWrite" class="ui large form"> 
+            <div class="field">
+                <input id="userName" class="myFormInfoField" type="text" placeholder="이름"/>
+            </div>
+            <div class="field">
+                <input id="userNum" class="myFormInfoField" type="text" placeholder="학번"/>
+            </div>
+            <div class="field">
+                <input input type="password" id="userPwd" class="myFormInfoField" type="text" placeholder="비밀번호"/>
+            </div>
         </div>
         <div id="myFormBtnDiv">
             <button id="myFormFindBtn">조회하기</button>
