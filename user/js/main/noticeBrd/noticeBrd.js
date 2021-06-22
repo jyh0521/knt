@@ -7,7 +7,7 @@ let noticeBrdCommentListId = "";
 let CommentWriteOrUpdate = "";
 let ContentWriteOrUpdate = "";
 
-let noticeBrdListCount="";//전체 데이터 수
+let noticeBrdListCount="";//전체 데이터 수!
 let searchOrAll = "";//검색한 리스트 or 전체 리스트
 let noticeBrdCommentListCount = "";
 
