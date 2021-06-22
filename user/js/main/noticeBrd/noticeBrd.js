@@ -13,7 +13,6 @@ let noticeBrdCommentListCount = "";
 
 function showNoticeBrd(){
     $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
-        $("#kntNoticeBrd").css("display", "block");
         $("#kntNoticeBrdWrite").css("display", "none");
         $("#kntNoticeBrdContent").css("display", "none");
         $("#UpdatekntNoticeBrdContent").css("display", "none");
@@ -145,6 +144,9 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml += "</table>";
 
     $("#kntNoticeBrdDomain").empty().append(kntNoticeBrdContentDomainHtml);
+
+    // 화면을 다 그린 후 보여주기
+    $("#kntNoticeBrd").css("display", "block");
 
     //검색 버튼 클릭 시
     $("#noticeSearchBtn").off("click").on("click", function(){
