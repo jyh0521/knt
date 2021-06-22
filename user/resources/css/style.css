@@ -1,16 +1,19 @@
+/* 1. main 페이지 */
+/* 최상단 부분 */
+#mainTop { border-radius: 0;height: 3%; padding-left: 63%; background-color: #3f3f40; }
+
 /* 로고 */
-/* #kntLogoDiv {  } */
+#mainKNTLogo { width: 35%;height: 85%;padding-right: 5%;margin-right: 12%; }
 
-/* 메뉴 버튼 & 기능 div */
-/* #mainFuncDiv { width: 100%; height: 500px; } */
-.mainFuncDiv {display: inline-block !important; } 
+/* 상단 메뉴바 */
+#mainMenuContainer { padding-bottom: 0.4%; margin-bottom: 0px;}
+#mainMenuBtnDiv { margin-left: 20%; margin-right: 20%; width: 100%; }
 
-/* 메뉴 버튼 */
-/* .menu { float: left; width: 10%; border: 1px solid black; height: 100% }
-.menu button { display: block; } */
+/* 배경 색 */
+.mainMenuBackground { background-color: #eff0f2;}
 
-/* 메뉴 기능 */
-/* #menuFuncDiv { float: left; width: 75%; border: 1px solid black; height: 100% } */
+/* 메뉴 컨테이너 */
+#menuContainer { margin-left: 20%; margin-right: 20%; }
 
 .ui.main.menu { border: none; }
 
@@ -19,6 +22,16 @@
     padding: 5em 0em;
 } 
 
+/* 2. 학술국 소개 페이지 */
+
+
+
+
+
+
+
+
+/* 3. 공지사항 페이지*/
 /* 공지사항 게시판 제목 작성 공간 */
 .noticeTextArea .titleTextareaInput {
     display: block;
@@ -71,23 +84,32 @@
     color: #79021f; font-size: 20px; cursor: pointer;
 }
 
-/*login 버튼*/
-#loginBtn { color: #ffffff;}
-/*logout 버튼*/
-#logoutBtn { color: #ffffff;}
-/*joinBtn 버튼*/
-#joinBtn { color: #ffffff;}
-/*mngrBtn 버튼*/
-#mngrBtn { color: #ffffff;}
-/*home 버튼*/
-#homeBtn { color: #ffffff; }
-/*myGroup 버튼*/
-#myGroup { color: #ffffff; }
-/*myInfo 버튼*/
-#myInfo { color: #ffffff; }
+/* 지원하기 버튼 */
+#kntNoticeSubmitBtnDiv { margin-top: 5%; text-align: center; }
 
-/* 글 작성 */
-#infoShareWriteContentTitleDiv { margin-top: 1%; }
-#infoShareWriteContentDiv { margin-top: 1%; }
-#infoShareWriteContentLabel { top: -108px; position: relative; }
-#infoShareWriteContentBtnDiv { margin-top: 1%; }
+/* 지원서 등록 , 조회하기 제목 부분 */
+.formInfoTitleDi.myFormTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
+
+/* 지원서 등록 제목 */
+.formInfoTitleDiv .formInfoTitle {margin-bottom: 1%;}
+
+/* 지원서 등록 작성 부분 */
+#formInfoWrite {padding-top: 2%;}
+
+/* 지원서 정보 작성 공간 */
+.ui.large.form .formInfoField {width: 40%;}
+
+/* 지원서 정보 등록하기 버튼 */
+#formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
+
+/* 내 지원서 배경  */
+#myForm {margin-top: 8%; margin-left: 18%; margin-right: 18%; background-color: rgb(255, 255, 255)}
+
+/* 내 지원서 제목 부분 */
+.myFormTitleDiv { padding-top: 1%;}
+
+/* 내 지원서 제목 */
+.myFormTitleDiv .myFormTitle { text-align:center; margin-bottom: 1%; }
+
+/* 내 지원서 작성 공간 */
+.ui.large.form .field .myFormInfoField {width: 40%;}
