@@ -134,7 +134,6 @@ function showNoticeBrdTable(){
     kntNoticeBrdContentDomainHtml +=         "<tr>";
     kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
     kntNoticeBrdContentDomainHtml +=             "<th style = 'width:50%; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
-    kntNoticeBrdContentDomainHtml +=             "<th style='width:14%; background: #f2f0f06b; color: rgb(56 56 56);'>작성자</th>";
     kntNoticeBrdContentDomainHtml +=             "<th style='width:16%; background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
     kntNoticeBrdContentDomainHtml +=             "<th style='width:10%; background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
     kntNoticeBrdContentDomainHtml +=         "</tr>";
@@ -172,7 +171,6 @@ function showNoticeBrdList(currentPage) {
         noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px; cursor: pointer;'>";
         noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + (i + noticeBrdStartNum) + "</td>";
         noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
-        noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_WRITER"] + "</td>";
         noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
         noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_HIT"] + "</td>";
         noticeBrdListTbodyHtml += "</tr>";
@@ -193,7 +191,6 @@ function showNoticeBrdContent(){
     let kntNoticeBrdContentDomainHtml = "";
     kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%; margin-top: 14px;'>";
     kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
-    kntNoticeBrdContentDomainHtml +=    "<p style='height: 5px; color: #979797; font-size: 12px;'>작성자 " + noticeBrdContent[0]['BRD_WRITER'] + "</p>";
     kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
     kntNoticeBrdContentDomainHtml +=    " 조회수 " + noticeBrdContent[0]['BRD_HIT']+ "</p>";
     kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
