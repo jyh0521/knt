@@ -102,6 +102,9 @@
 /* 지원서 정보 등록하기 버튼 */
 #formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
 
+/* 내 지원서 배경  */
+#myForm {background-color: rgb(255, 255, 255)}
+
 /* 내 지원서 제목 부분 */
 .myFormTitleDiv { padding-top: 1%;}
 
