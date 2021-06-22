@@ -57,6 +57,7 @@
 }
 
 /* 공지사항 게시판 내용 작성 공간 */
+#kntNoticeBrdContent { margin-top: 3%; padding-top: 4%;padding-left: 4%;padding-right: 4%;padding-bottom: 4%;}
 .noticeTextArea .contentTextareaInput {
     display: block;
     width: 100%;
