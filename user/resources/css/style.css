@@ -32,6 +32,12 @@
 
 
 /* 3. 공지사항 페이지*/
+
+/* 공지사항 게시판 보여주는 부분 */
+.noticeBrdHeaderTitle { font-size: 30px; margin-top: 30px; padding-top: 4%;}
+#kntNotice { background-color: rgb(255, 255, 255);}
+#kntNoticeBrd {margin-left: 4%; margin-right: 4%; padding-bottom: 5%;}
+
 /* 공지사항 게시판 제목 작성 공간 */
 .noticeTextArea .titleTextareaInput {
     display: block;
