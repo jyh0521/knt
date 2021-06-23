@@ -98,25 +98,23 @@
 
 /* 4. 지원서 등록 페이지 */
 
-.formInfoDiv { padding-top: 5%; padding-bottom: 5%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd; margin-top: 7%; margin-left: 10%; margin-right: 10%;}
-.formInfoLeftDiv { display: inline-block; width: 50%; text-align: center;}
+.formInfoDiv { padding-top: 7%; padding-bottom: 7%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd; margin-top: 7%; margin-left: 10%; margin-right: 10%;}
+.formInfoLeftDiv { display: inline-block; width: 50%; text-align: center; border-right: 1px solid #dadada;}
 .formInfoRightDiv {display: inline-block; text-align: center; }
-
-/* 지원서 등록 , 조회하기 제목 부분 */
-.formInfoTitleDi.myFormTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
 
 /* 지원서 등록 제목 */
 .formInfoTitleDiv .formInfoTitle { margin-bottom: 1%;}
+.formInfoDiv .formInfoLeftDiv .formInfoTitleDiv {padding-bottom: 3%;}
 
 /* 지원서 등록 작성 부분 */
 #formInfoWrite { padding-top: 2%;}
 
 /* 지원서 정보 작성 공간 */
-.ui.large.form .formInfoField { width: 40%;}
+.ui.large.form .formInfoField { width: 55%; height: 50px; border: 1px solid #979797;}
 
 /* 지원서 정보 등록하기 버튼 */
-#formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
-
+#formInfoBtn { padding-top: 3%; padding-bottom: 3%;}
+#formInfoSubmitBtn { width: 55%; height: 50px; background-color: #585c5f; margin-top: 2%; font-size: 12pt;}
 
 
 /* 5. 내 지원서 페이지 */
