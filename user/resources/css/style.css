@@ -34,8 +34,9 @@
 /* 3. 공지사항 페이지*/
 
 /* 공지사항 게시판 보여주는 부분 */
+#noticeHeader { position: relative; border-bottom: 1px solid #cccccc;}
 .noticeBrdHeaderTitle { font-size: 30px; margin-top: 30px; padding-top: 4%;}
-#kntNotice { background-color: rgb(255, 255, 255);}
+#kntNotice { margin-top: 7%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd;}
 #kntNoticeBrd {margin-left: 4%; margin-right: 4%; padding-bottom: 5%;}
 
 /* 공지사항 게시판 제목 작성 공간 */
@@ -57,7 +58,7 @@
 }
 
 /* 공지사항 게시판 내용 작성 공간 */
-#kntNoticeBrdContent { margin-top: 3%; padding-top: 4%;padding-left: 4%;padding-right: 4%;padding-bottom: 4%;}
+#kntNoticeBrdContent { padding-top: 4%;padding-left: 4%;padding-right: 4%;padding-bottom: 4%;}
 .noticeTextArea .contentTextareaInput {
     display: block;
     width: 100%;
@@ -94,6 +95,13 @@
 /* 지원하기 버튼 */
 #kntNoticeSubmitBtnDiv { margin-top: 5%; text-align: center; }
 
+
+/* 4. 지원서 등록 페이지 */
+
+.formInfoDiv { padding-top: 5%; padding-bottom: 5%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd; margin-top: 7%; margin-left: 10%; margin-right: 10%;}
+.formInfoLeftDiv { display: inline-block; width: 50%; text-align: center;}
+.formInfoRightDiv {display: inline-block; text-align: center; }
+
 /* 지원서 등록 , 조회하기 제목 부분 */
 .formInfoTitleDi.myFormTitleDiv { padding-top: 1%; border-bottom: 1px solid rgb(199, 199, 199);}
 
@@ -108,6 +116,10 @@
 
 /* 지원서 정보 등록하기 버튼 */
 #formInfoSubmitBtn { background-color: #585c5f; margin-top: 2%;}
+
+
+
+/* 5. 내 지원서 페이지 */
 
 /* 내 지원서 배경  */
 #myForm { text-align: center; margin-top: 8%; margin-left: 26%; margin-right: 26%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd;}
