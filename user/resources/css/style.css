@@ -39,6 +39,8 @@
 #kntNotice { margin-top: 7%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd;}
 #kntNoticeBrd {margin-left: 4%; margin-right: 4%; padding-bottom: 5%;}
 
+.ui.primary.submit.labeled.icon.button.writeRegistedFormBtn{background-color: #585c5f; width: 20%; height: 50px; padding-top: 15px; font-size: 13pt;}
+
 /* 공지사항 게시판 제목 작성 공간 */
 .noticeTextArea .titleTextareaInput {
     display: block;

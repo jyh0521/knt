@@ -200,7 +200,7 @@ let noticeBrd = (function() {
 
         if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
             let submitBtnHtml = '';
-            submitBtnHtml += '<div class="ui primary submit labeled icon button writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '" style="background-color: #585c5f;">';
+            submitBtnHtml += '<div class="ui primary submit labeled icon button writeRegistedFormBtn" id="writeRegisterdForm' + noticeBrdContent[0]['BRD_FORM'] + '"">';
             submitBtnHtml +=    '<i class="icon edit"></i>지원하기';
             submitBtnHtml += '</div>';
             $('#kntNoticeSubmitBtnDiv').empty().append(submitBtnHtml);
