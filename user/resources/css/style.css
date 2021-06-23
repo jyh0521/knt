@@ -140,3 +140,7 @@
 
 /* 내 지원서 조회하기 버튼 */
 #myFormFindBtn { width: 40%; height: 50px; background-color:#585c5f}
+
+/* 지원서 게시판 목록 */
+#myFormListTableDiv { margin-top: 7%;margin-left: 10%;margin-right: 10%;}
+.ui.selectable.celled.table { text-align:center; border-top: 4px solid #79021f;}
