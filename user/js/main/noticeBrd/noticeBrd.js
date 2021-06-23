@@ -7,6 +7,12 @@ let noticeBrd = (function() {
     let searchOrAll = "";//검색한 리스트 or 전체 리스트
 
     function showNoticeBrd(){
+        if(nowPage != 'noticeBrd') {
+            let state = {'page_id' : 'noticeBrd' };
+            history.pushState(state, null, null);
+            nowPage = 'noticeBrd';
+        }
+
         $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
             $("#kntNoticeBrdWrite").css("display", "none");
             $("#kntNoticeBrdContent").css("display", "none");
