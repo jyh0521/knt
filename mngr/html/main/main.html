@@ -4,27 +4,28 @@
     <meta charset="utf-8">
     <title>KNT 관리자 페이지</title>
     <link rel="shortcut icon" type="image/x-icon" href="/knt/user/resources/images/KNT_icon.png">
-    <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/knt/mngr/resources/css/style.css">
 </head>
 <body>
      <!-- 상단+상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
-    <div class="ui borderless main menu" id="mngrMainTop"></div>
-        <div class="item" id = 'menuBar'>
-            <button id='homeBtn' class="item">User Page</button>
-        </div>
+    <div class="ui borderless main menu" id="mngrMainTop">
+      <div class="item" id = 'menuBar'>
+        <button id='homeBtn' class="item">User Page</button>
+      </div>
+    </div>
     <!-- 상단 메뉴바 -->
     <div class="mainMenuBackground">
         <div class="ui borderless main menu" id="mainMenuContainer">
             <div class="text container" id="mainMenuBtnDiv">
               <img src="/knt/mngr/resources/images/KNTLogo_mngr.png" id="kntLogoDiv">
                 <div class="item">
-                    <a type="button" id='memberMngBtn' class="item"><h3>회원 관리</h3></a>
+                    <a type="button" id='memberMngBtn' class="item"style='width:130px;'><h3>회원 관리</h3></a>
                 </div>
                 <div class="item">
-                    <a type="button" id='noticeBrdMngBtn' class="item"><h3>공지사항 관리</h3></a>
+                    <a type="button" id='noticeBrdMngBtn' class="item" style='width:130px;' ><h3>공지사항 관리</h3></a>
                 </div>
                 <div class="item">
-                    <a type="button" id='formMngBtn' class="item"><h3>지원서 관리</h3></a>
+                    <a type="button" id='formMngBtn' class="item" style='width:130px;'><h3>지원서 관리</h3></a>
                 </div>
             </div>
         </div>
@@ -52,48 +53,12 @@
     <div>
     </div>
     <!-- footer -->
-    <div class="ui inverted vertical footer segment" style='margin-top: 10%;'>
-        <div class="ui center aligned container">
-            <div class="ui stackable inverted divided grid">
-              <div class="four wide column">
-                <h4 class="ui inverted header">Design</h4>
-                <div class="ui inverted link list">
-                  <a class="item">전용후</a>
-                  <a class="item">이슬</a>
-                  <a class="item">황예준</a>
-                  <a class="item">문창집</a>
-                  <a class="item">지수민</a>
-                </div>
-              </div>
-              <div class="four wide column">
-                <h4 class="ui inverted header">Developers</h4>
-                <div class="ui inverted link list">
-                    <a class="item">전용후</a>
-                    <a class="item">이슬</a>
-                    <a class="item">황예준</a>
-                    <a class="item">문창집</a>
-                    <a class="item">지수민</a>
-                </div>
-              </div>
-              <div class="eight wide column">
-                <h4 class="ui inverted header">고려대학교 세종캠퍼스 학술국</h4>
-                <p>학술국장 짱짱</p>
-              </div>
-            </div>
-            <div class="ui inverted section divider"></div>
-            <div class="ui horizontal inverted small divided link list">
-              <a class="item">Site Map</a>
-              <a class="item">Contact Us</a>
-              <a class="item">Terms and Conditions</a>
-              <a class="item">Privacy Policy</a>
-            </div>
-        </div>
-    </div>
-  </div>
+    <div class="ui inverted vertical footer segment" style='margin-bottom: 10%;background:#000000;'></div>
 </body>
 </body>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/knt/mngr/resources/css/semantic.min.js"></script>
 <script type="text/javascript" src="/knt/lib/js/lib.js"></script>
 <script type="text/javascript" src="/knt/mngr/js/main/main.js"></script>
 <script type="text/javascript" src="/knt/mngr/js/main/memberMng/memberMng.js"></script>
