@@ -154,10 +154,12 @@ let myForm = (function(){
     }
 
     function setMyFormAnswer(myForm, formContent) {
-        $('#subUserName').empty().append('이름: ' +  myForm['SUB_FORM_NAME']);
-        $('#subUserNum').empty().append('학번: ' + myForm['SUB_FORM_NUM']);
+        // $('#subUserName').empty().append('이름: ' +  myForm['SUB_FORM_NAME']);
+        // $('#subUserNum').empty().append('학번: ' + myForm['SUB_FORM_NUM']); 인풋 박스 써서 잠깐 바꿀게용..
+        $('#subUserName').val(myForm['SUB_FORM_NAME']);
+        $('#subUserNum').val(myForm['SUB_FORM_NUM']);
         $('#userBirth').val(myForm['SUB_FORM_BIRTH']);
-        $('#userSex').val(myForm['SUB_FORM_SEX']);
+        $('#userSex').val(myForm['SUB_FORM_SEX']); //셀렉트 박스로 바꿔서 이 부분 나중에 수정해야함!
         $('#userPhone').val(myForm['SUB_FORM_PHONE']);
 
         for(let i = 1; i <= 5; i++) {

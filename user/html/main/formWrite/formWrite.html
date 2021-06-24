@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
 <body> 
-    <h2>지원서 작성하기</h2>
+    <h2 class="formWriteTxt">지원서 작성하기</h2>
     <div id="formWrite">
-        <div class="formWriteContentTitleArea"> 
-            <!-- 지원서 제목 -->
-            <div id="formWriteContentTitle"></div>
-        </div>
-        <div class='formWriteInfoDivArea'> 
-            <h3>기본 인적사항</h3>
+        <!-- 지원서 제목 -->
+        <div id="formWriteContentTitle"></div>
+
+        <div class="formWriteInfoDivArea"> 
+            <h5 class="formWriteaInfoTitle">기본 인적사항 <a class="txt">필수</a></h5>
             <!-- 앞에서 작성한 정보 -->
             <div id="formWriteInfoDiv">
-                <div>
-                    <input id="subUserName" readonly/>
-                    <input id="subUserNum" readonly/>
+                <div class="formWriteInfoSubDiv1">
+                    <input id="subUserName" class="field" readonly/>
+                    <input id="subUserNum" class="field" readonly/>
                 </div>
-                <div>
-                    <input id="userBirth" placeholder="생년월일"/>
-                    <input id="userSex" placeholder="성별"/>
-                    <input id="userPhone" placeholder="연락처"/>  
+                <div class="formWriteInfoSubDiv2">
+                    <input id="userBirth" class="field" placeholder="생년월일"/>
+                    <!-- <input id="userSex" class="field" placeholder="성별"/> -->
+                    <select id="userSex">
+                        <option value="남성">남성</option>
+                        <option value="여성">여성</option>
+                    </select>
+                    <input id="userPhone"class="field" placeholder="연락처"/>  
                 </div>              
             </div>
             <!-- 지원서 내용 -->
-            <h3>질문</h3>
+            <h5 class="formWriteaInfoTitle">질문 <a class="txt">필수</a></h5>
             <div id="formWriteContentQuestionDiv"></div>
             <div id="formWriteBtnDiv">
-                <button id="formWriteTempSaveBtn">임시저장</button>
-                <button id="formWriteSubmitBtn">제출하기</button>
-                <button id="formWriteCancelBtn">취소</button>
+                <button id="formWriteTempSaveBtn" class="ui black basic button">임시저장</button>
+                <button id="formWriteSubmitBtn" class="ui black basic button">제출하기</button>
+                <button id="formWriteCancelBtn" class="ui black basic button">취소</button>
             </div>
         </div>
     </div>
