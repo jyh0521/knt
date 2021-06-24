@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
 <body> 
+    <h2>지원서 작성하기</h2>
     <div id="formWrite">
-        <!-- 지원서 제목 -->
-        <div id="formWriteContentTitle"></div>
-        <!-- 앞에서 작성한 정보 -->
-        <div id="formWriteInfoDiv">
-            <p id="subUserName"></p>
-            <p id="subUserNum"></p>
-            <input id="userBirth" placeholder="생년월일"/>
-            <input id="userSex" placeholder="성별"/>
-            <input id="userPhone" placeholder="연락처"/>
-            
+        <div class="formWriteContentTitleArea"> 
+            <!-- 지원서 제목 -->
+            <div id="formWriteContentTitle"></div>
         </div>
-        <!-- 지원서 내용 -->
-        <div id="formWriteContentQuestionDiv"></div>
-        <div id="formWriteBtnDiv">
-            <button id="formWriteTempSaveBtn">임시저장</button>
-            <button id="formWriteSubmitBtn">제출하기</button>
-            <button id="formWriteCancelBtn">취소</button>
+        <div class='formWriteInfoDivArea'> 
+            <h3>기본 인적사항</h3>
+            <!-- 앞에서 작성한 정보 -->
+            <div id="formWriteInfoDiv">
+                <div>
+                    <input id="subUserName" readonly/>
+                    <input id="subUserNum" readonly/>
+                </div>
+                <div>
+                    <input id="userBirth" placeholder="생년월일"/>
+                    <input id="userSex" placeholder="성별"/>
+                    <input id="userPhone" placeholder="연락처"/>  
+                </div>              
+            </div>
+            <!-- 지원서 내용 -->
+            <h3>질문</h3>
+            <div id="formWriteContentQuestionDiv"></div>
+            <div id="formWriteBtnDiv">
+                <button id="formWriteTempSaveBtn">임시저장</button>
+                <button id="formWriteSubmitBtn">제출하기</button>
+                <button id="formWriteCancelBtn">취소</button>
+            </div>
         </div>
     </div>
 </body>

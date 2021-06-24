@@ -60,8 +60,10 @@ let formWrite = (function(){
 
     // 지원서 정보를 그리는 함수
     function drawFormWriteInfo(param) {
-        $('#subUserName').empty().append('이름: ' + param['name']);
-        $('#subUserNum').empty().append('학번: ' + param['num']);
+        //$('#subUserName').empty().append('이름: ' + param['name']);
+        //$('#subUserNum').empty().append('학번: ' + param['num']);
+        $('#subUserName').val(param['name']);
+        $('#subUserNum').val(param['num']);
     }
 
     function drawFormWriteContent(param) {
@@ -71,16 +73,14 @@ let formWrite = (function(){
         // 질문
         let formWriteContentHtml = '';
 
-        formWriteContentHtml += '<ul>';
         for(let i = 1; i <= maxQueSize; i++) {
             if(param['FORM_QUE' + i] != 'empty') {
-                formWriteContentHtml += '<li>';
+                formWriteContentHtml += '<div>';
                 formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
                 formWriteContentHtml += '<textarea id="formAnsTextArea' + i + '"></textarea>';
-                formWriteContentHtml += '</li>';
+                formWriteContentHtml += '</div>';
             }
         }
-        formWriteContentHtml += '</ul>';
 
         $('#formWriteContentQuestionDiv').empty().append(formWriteContentHtml);
     }   
