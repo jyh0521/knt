@@ -1,6 +1,6 @@
 /* 관리자 페이지 */
 /* 최상단 부분 */
-#menuBar { border-radius: 0;height: 3%; padding-left: 63%; background-color: #3f3f40; }
+#mngrMainTop { border-radius: 0;height: 3%; padding-left: 63%; background-color: #3f3f40; }
 
 /* 로고 */
 #kntLogoDiv { width: 35%;height: 85%;padding-right: 5%;margin-right: 12%; }
