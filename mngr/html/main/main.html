@@ -12,20 +12,33 @@
         <button id='homeBtn'>User Page</button>
     </div>
     <!-- 로고 -->
-    <div id="kntLogoDiv">
-        --------- 로고 ---------
+    <div class="mainMenuBackground">
+        <div class="ui borderless main menu" id="mainMenuContainer">
+            <div class="text container" id="mainMenuBtnDiv">
+              <img src="/knt/mngr/resources/images/KNTLogo_mngr.png" id="kntLogoDiv">
+                <div class="item">
+                    <a type="button" id='memberMngBtn' class="item"><h3>회원 관리</h3></a>
+                </div>
+                <div class="item">
+                    <a type="button" id='noticeBrdMngBtn' class="item"><h3>공지사항 관리</h3></a>
+                </div>
+                <div class="item">
+                    <a type="button" id='formMngBtn' class="item"><h3>지원서 관리</h3></a>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- 개인정보 간단 출력 -->
     <div>
         --------- 개인정보 ---------
     </div>
     <div id="mainFuncDiv">
-        <!-- 좌측 메뉴 -->
-        <div class='menu'>
+        <!-- 좌측 메뉴(삭제) -->
+        /*<div class='menu'>
             <button id='memberMngBtn'>회원 관리</button>
             <button id='noticeBrdMngBtn'>공지사항 관리</button>
             <button id='formMngBtn'>지원서 관리</button>
-        </div>
+        </div>*/
         <!-- 메뉴 기능 -->
         <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
         <div id="menuFuncDiv">
