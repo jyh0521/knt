@@ -32,11 +32,7 @@ let formInfoWrite = (function(){
                             // 지원서가 임시저장된 경우
                             else {
                                 if(confirm('임시저장된 지원서가 있습니다. 내 지원서로 이동하시겠습니까?')) {
-                                    /*
-                                        TODO
-                                        1. 내 지원서로 이동하기 
-                                    */
-                                    alert('이동되었습니다.');
+                                    myForm.initMyForm();
                                 }
                                 else {
                                     alert('취소되었습니다.');
