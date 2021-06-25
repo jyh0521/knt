@@ -166,12 +166,6 @@ let formWrite = (function(){
     }
 
     function initFormWriteContentEvent(queCnt) {
-        // formWriteContentHtml += '<div>';
-        // formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
-        // formWriteContentHtml += '<textarea id="formAnsTextArea' + i + '"class="formAnsText"></textarea>';
-        // formWriteContentHtml += '</div>';   
-        // <p id="formAnsTextAreaCharCnt' + i + '"></p>';
-
         for(let i = 1; i <= queCnt; i++) {
             $('#formAnsTextArea' + i).keyup(function(){
                 $('#formAnsTextAreaCharCnt' + i).empty().append(this.value.length);
