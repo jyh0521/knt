@@ -40,7 +40,7 @@ let myForm = (function(){
                 }
                 else if(mode ==='update') {
                     $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
-                        drawFormWriteContent(formContent[0]);
+                        formWrite.drawFormWriteContent(formContent[0]);
                         setMyFormAnswer(myForm[0], formContent[0]);
                         initMyFormWriteBtnEvent(formContent[0], id);
                     });

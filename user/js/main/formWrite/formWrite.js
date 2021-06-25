@@ -177,7 +177,8 @@ let formWrite = (function(){
     }
 
     return {
-        initFormWrite : initFormWrite
+        initFormWrite : initFormWrite,
+        drawFormWriteContent : drawFormWriteContent
     };
 
 })();
