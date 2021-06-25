@@ -156,6 +156,13 @@ let formWrite = (function(){
                 });
             }
         });
+
+        //성별 셀렉트 박스 특정 옵션 선택 시
+        $(document).ready(function() {
+            $('#userSex').change(function() {
+                $(this).attr("selected");
+            }); 
+        }); 
     }
 
     // 지원서 작성 내용 유효성 검사

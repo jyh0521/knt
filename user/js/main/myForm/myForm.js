@@ -159,7 +159,7 @@ let myForm = (function(){
         $('#subUserName').val(myForm['SUB_FORM_NAME']);
         $('#subUserNum').val(myForm['SUB_FORM_NUM']);
         $('#userBirth').val(myForm['SUB_FORM_BIRTH']);
-        $('#userSex').val(myForm['SUB_FORM_SEX']); //셀렉트 박스로 바꿔서 이 부분 나중에 수정해야함!
+        $('#userSex').val(myForm['SUB_FORM_SEX']);
         $('#userPhone').val(myForm['SUB_FORM_PHONE']);
 
         for(let i = 1; i <= 5; i++) {
