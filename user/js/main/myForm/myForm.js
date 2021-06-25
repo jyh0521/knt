@@ -63,16 +63,9 @@ let myForm = (function(){
         });
     }
 
-    /*
-        TODO
-        1. paramerter 만들어주는 함수 있으면 좋을듯
-    */
-
     // 이미 저장된 지원서 임시저장(update) 함수
     function uptSavedMyForm(content) {
-        let param = 'id=' + content['id'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] +
-        '&ans1=' + content['ans1'] + '&ans2=' + content['ans2'] + '&ans3=' + content['ans3'] +
-        '&ans4=' + content['ans4'] + '&ans5=' + content['ans5'];
+        let param = makeParam(content);
 
         requestData('/knt/user/php/main/myForm/uptSavedMyForm.php', param).done(function(result){
             if(result){
@@ -86,9 +79,7 @@ let myForm = (function(){
 
     // 이미 저장된 지원서 제출(update) 함수
     function submitSavedMyForm(content) {
-        let param = 'id=' + content['id'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] +
-        '&ans1=' + content['ans1'] + '&ans2=' + content['ans2'] + '&ans3=' + content['ans3'] +
-        '&ans4=' + content['ans4'] + '&ans5=' + content['ans5'];
+        let param = makeParam(content);
 
         requestData('/knt/user/php/main/myForm/submitSavedMyForm.php', param).done(function(result){
             if(result){
@@ -125,10 +116,6 @@ let myForm = (function(){
         initMyFormListEvent();
     }
 
-    /*
-        TODO
-        1. 다이얼로그로 조회할 수 있게 수정
-    */
     function drawMySelectedForm(myForm, formContent) {
         let mySelectedFormInfoHtml = '';
 
