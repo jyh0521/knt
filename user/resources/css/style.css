@@ -150,7 +150,7 @@
 #formWriteContentQuestionDiv { border-bottom: 1px solid #dadada; padding-bottom: 70px; }
 
 /* 지원서 질문 답 작성 부분 */
-.formAnsText { width: 818px; height: 120px; padding: 10px; margin-top: 8px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300;}
+.formAnsText { width: 818px; height: 120px; padding: 10px; margin-top: 8px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize:none;}
 
 /* 지원서 임시저장, 제출하기, 취소 버튼 */
 #formWriteBtnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px;}
