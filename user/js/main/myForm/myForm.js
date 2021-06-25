@@ -165,6 +165,7 @@ let myForm = (function(){
         for(let i = 1; i <= 5; i++) {
             if(formContent['FORM_QUE' + i] != 'empty') {
                 $('#formAnsTextArea' + i).val(myForm['SUB_FORM_ANS' + i]);
+                $('#formAnsTextAreaCharCnt' + i).empty().append($('#formAnsTextArea' + i).val().length);
             }
         }
     }

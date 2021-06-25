@@ -73,17 +73,22 @@ let formWrite = (function(){
         
         // 질문
         let formWriteContentHtml = '';
+        let queCnt = 0;
 
         for(let i = 1; i <= maxQueSize; i++) {
             if(param['FORM_QUE' + i] != 'empty') {
+                queCnt++;
                 formWriteContentHtml += '<div>';
                 formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
                 formWriteContentHtml += '<textarea id="formAnsTextArea' + i + '"class="formAnsText"></textarea>';
+                formWriteContentHtml += '<p id="formAnsTextAreaCharCnt' + i + '">0</p>';
                 formWriteContentHtml += '</div>';
             }
         }
 
         $('#formWriteContentQuestionDiv').empty().append(formWriteContentHtml);
+
+        initFormWriteContentEvent(queCnt);
     }   
 
     // 지원서 작성 이벤트
@@ -156,6 +161,20 @@ let formWrite = (function(){
                 });
             }
         });
+    }
+
+    function initFormWriteContentEvent(queCnt) {
+        // formWriteContentHtml += '<div>';
+        // formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
+        // formWriteContentHtml += '<textarea id="formAnsTextArea' + i + '"class="formAnsText"></textarea>';
+        // formWriteContentHtml += '</div>';   
+        // <p id="formAnsTextAreaCharCnt' + i + '"></p>';
+
+        for(let i = 1; i <= queCnt; i++) {
+            $('#formAnsTextArea' + i).keyup(function(){
+                $('#formAnsTextAreaCharCnt' + i).empty().append(this.value.length);
+            });
+        }
     }
 
     // 지원서 작성 내용 유효성 검사
