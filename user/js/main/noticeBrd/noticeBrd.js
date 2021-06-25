@@ -156,7 +156,7 @@ let noticeBrd = (function() {
             }
             else{
                 searchOrAll = "search"
-                showNoticeBrd();
+                getNoticeSearchListCount();
             }
         });
     };
