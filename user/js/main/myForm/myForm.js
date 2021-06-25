@@ -295,3 +295,8 @@ let myForm = (function(){
         initMyForm : initMyForm
     };
 })();
+
+/*
+    TODO
+    1. 내 지원서 -> 제출 시 지원서 내용 빈칸 검사
+*/
