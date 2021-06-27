@@ -5,11 +5,7 @@ let myForm = (function(){
     let pwd = '';
 
     function initMyForm() {
-        if(nowPage != 'myForm') {
-            let state = {'page_id' : 'myForm' };
-            history.pushState(state, null, null);
-            nowPage = 'myForm';
-        }
+        makeBackEvent('myForm');
 
         $("#menuFuncDiv").load("myForm/myForm.html", function() {
             initMyFormBtnEvent();

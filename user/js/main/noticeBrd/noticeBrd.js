@@ -7,11 +7,7 @@ let noticeBrd = (function() {
     let searchOrAll = "";//검색한 리스트 or 전체 리스트
 
     function showNoticeBrd(){
-        if(nowPage != 'noticeBrd') {
-            let state = {'page_id' : 'noticeBrd' };
-            history.pushState(state, null, null);
-            nowPage = 'noticeBrd';
-        }
+        makeBackEvent('noticeBrd');
 
         $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
             $("#kntNoticeBrdWrite").css("display", "none");
@@ -79,12 +75,7 @@ let noticeBrd = (function() {
             $("#kntNoticeBrdComment").css("display", "block");
             noticeBrdContent = result;
 
-            if(nowPage != 'noticBrdContent') {
-                let state = {'page_id' : 'noticBrdContent' };
-                history.pushState(state, null, null);
-                nowPage = 'noticBrdContent';
-            }
-
+            makeBackEvent('noticeBrdContent');
             showNoticeBrdContent();//공지사항 내용 보여주기
         });
     }
