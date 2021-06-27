@@ -113,13 +113,20 @@ let myForm = (function(){
     }
 
     function drawMySelectedForm(myForm, formContent) {
+
+        let myFormChkTitleHtml = '';
+
+        myFormChkTitleHtml += '<h4 class="title">' + formContent['FORM_TITLE'] + '</h4>';
+        
+        $('#myFormChkTitle').empty().append(myFormChkTitleHtml);
+
         let mySelectedFormInfoHtml = '';
 
-        mySelectedFormInfoHtml += '<p>' + formContent['FORM_TITLE'] + '</p>';
-        mySelectedFormInfoHtml += '<p>이름: ' + myForm['SUB_FORM_NAME'] + '</p>';
-        mySelectedFormInfoHtml += '<p>학번: ' + myForm['SUB_FORM_NUM'] + '</p>';
-        mySelectedFormInfoHtml += '<p>생년월일: ' + myForm['SUB_FORM_BIRTH'] + '</p>';
-        mySelectedFormInfoHtml += '<p>성별: ' + myForm['SUB_FORM_SEX'] + '</p>';
+        mySelectedFormInfoHtml += '<h3 class="infoTitle">기본 인적사항</h3>';
+        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_NAME'] + '</p>';
+        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_NUM'] + '</p>';
+        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_BIRTH'] + '</p>';
+        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_SEX'] + '</p>';
 
         $('#myFormChkInfoDiv').empty().append(mySelectedFormInfoHtml);
 
@@ -127,18 +134,17 @@ let myForm = (function(){
 
         for(let i = 1; i <= 5; i++) {
             if(formContent['FORM_QUE' + i] != 'empty') {
-                mySelectedFormQusHtml += '<p>질문' + i + '</p>';
-                mySelectedFormQusHtml += '<p>' + formContent['FORM_QUE' + i] + '</p>';
+                mySelectedFormQusHtml += '<div class="qusAns">'
+                mySelectedFormQusHtml += '<p class="qus">' + i +'. ' + formContent['FORM_QUE' + i] + '</p>';
                 mySelectedFormQusHtml += '<p>' + myForm['SUB_FORM_ANS' + i] + '</p>';
+                mySelectedFormQusHtml += '</div>'
             } 
         }
 
-        $('#myFormChkQusDiv').empty().append(mySelectedFormQusHtml);
+        $('#myFormChkQusSubDiv').empty().append(mySelectedFormQusHtml);
     }
 
     function setMyFormAnswer(myForm, formContent) {
-        // $('#subUserName').empty().append('이름: ' +  myForm['SUB_FORM_NAME']);
-        // $('#subUserNum').empty().append('학번: ' + myForm['SUB_FORM_NUM']); 인풋 박스 써서 잠깐 바꿀게용..
         $('#subUserName').val(myForm['SUB_FORM_NAME']);
         $('#subUserNum').val(myForm['SUB_FORM_NUM']);
         $('#userBirth').val(myForm['SUB_FORM_BIRTH']);

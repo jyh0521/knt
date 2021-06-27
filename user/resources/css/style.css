@@ -190,5 +190,31 @@
 #myFormListBtnDiv { padding-top: 6%; padding-bottom: 20%;}
 .ui.black.basic.button{ font-size: 13pt;width: 31%; height: 45px; font-weight: 600;}
 
+
+
+
+/* 7. 내 지원서 조회 페이지 */
+
+/* 내 지원서 조회 배경*/
+#myFormChk .myFormChkDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
+
+/* 지원서 조회 제목 */
+.myFormChkTitleTxt { padding-top: 20px; font-size: 20pt; font-weight: 540;}
+#myFormChkTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff;}
+#myFormChkTitle h4 { text-align: center; font-size: 20px; font-weight: normal;}
+
+/* 지원서 개인정보, 질문 DIV */
+#myFormChk .infoDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
+#myFormChk .QusDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
+
+/* 지원서 개인정보*/
+#myFormChkInfoDiv .infoTitle{ margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
+#myFormChkInfoDiv .info { font-size: 16px; font-weight: normal;}
+
+/* 지원서 질문 */
+#myFormChkQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
+#myFormChkQusSubDiv .qusAns {  font-size: 16px; margin-bottom: 27px; font-family: sans-serif;}
+#myFormChkQusSubDiv .qus{margin: 0 0 28px; font-weight: normal;}
+
 /* 폰트 */
 /* 'NanumSquareR', 'Nanum Gothic', 'Malgun Gothic', '돋움', 'dotum', 'AppleGothic', Helvetica, Arial, sans-serif */

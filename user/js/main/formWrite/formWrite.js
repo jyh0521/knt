@@ -60,16 +60,13 @@ let formWrite = (function(){
 
     // 지원서 정보를 그리는 함수
     function drawFormWriteInfo(param) {
-        // $('#subUserName').empty().append('이름: ' + param['name']);
-        // $('#subUserNum').empty().append('학번: ' + param['num']); 인풋 박스 써서 잠깐 바꿀게용.. 
         $('#subUserName').val(param['name']);
         $('#subUserNum').val(param['num']);
     }
 
     function drawFormWriteContent(param) {
         // 제목
-        //$('#formWriteContentTitle').empty().append('<p>' + param['FORM_TITLE'] + '</p>');
-        $('#formWriteContentTitle').empty().append('<h4>' + param['FORM_TITLE'] + '</h4>'); //p태그에서 h4태그로 바꿈
+        $('#formWriteContentTitle').empty().append('<h4>' + param['FORM_TITLE'] + '</h4>'); 
         
         // 질문
         let formWriteContentHtml = '';
