@@ -5,7 +5,11 @@ let myForm = (function(){
     let pwd = '';
 
     function initMyForm() {
-        makeBackEvent('myForm');
+        if(nowPage != 'myForm') {
+            let state = {'page_id' : 'myForm' };
+            history.pushState(state, null, null);
+            nowPage = 'myForm';
+        }
 
         $("#menuFuncDiv").load("myForm/myForm.html", function() {
             initMyFormBtnEvent();
@@ -36,7 +40,7 @@ let myForm = (function(){
                 }
                 else if(mode ==='update') {
                     $('#menuFuncDiv').load('formWrite/formWrite.html', function(){
-                        formWrite.drawFormWriteContent(formContent[0]);
+                        drawFormWriteContent(formContent[0]);
                         setMyFormAnswer(myForm[0], formContent[0]);
                         initMyFormWriteBtnEvent(formContent[0], id);
                     });
@@ -62,7 +66,6 @@ let myForm = (function(){
     // 이미 저장된 지원서 임시저장(update) 함수
     function uptSavedMyForm(content) {
         let param = makeParam(content);
-
         requestData('/knt/user/php/main/myForm/uptSavedMyForm.php', param).done(function(result){
             if(result){
                 alert('저장되었습니다');
@@ -75,7 +78,9 @@ let myForm = (function(){
 
     // 이미 저장된 지원서 제출(update) 함수
     function submitSavedMyForm(content) {
-        let param = makeParam(content);
+        let param = 'id=' + content['id'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] +
+        '&ans1=' + content['ans1'] + '&ans2=' + content['ans2'] + '&ans3=' + content['ans3'] +
+        '&ans4=' + content['ans4'] + '&ans5=' + content['ans5'];
 
         requestData('/knt/user/php/main/myForm/submitSavedMyForm.php', param).done(function(result){
             if(result){
@@ -112,21 +117,18 @@ let myForm = (function(){
         initMyFormListEvent();
     }
 
+    /*
+        TODO
+        1. 다이얼로그로 조회할 수 있게 수정
+    */
     function drawMySelectedForm(myForm, formContent) {
-
-        let myFormChkTitleHtml = '';
-
-        myFormChkTitleHtml += '<h4 class="title">' + formContent['FORM_TITLE'] + '</h4>';
-        
-        $('#myFormChkTitle').empty().append(myFormChkTitleHtml);
-
         let mySelectedFormInfoHtml = '';
 
-        mySelectedFormInfoHtml += '<h3 class="infoTitle">기본 인적사항</h3>';
-        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_NAME'] + '</p>';
-        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_NUM'] + '</p>';
-        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_BIRTH'] + '</p>';
-        mySelectedFormInfoHtml += '<p class="info">' + myForm['SUB_FORM_SEX'] + '</p>';
+        mySelectedFormInfoHtml += '<p>' + formContent['FORM_TITLE'] + '</p>';
+        mySelectedFormInfoHtml += '<p>이름: ' + myForm['SUB_FORM_NAME'] + '</p>';
+        mySelectedFormInfoHtml += '<p>학번: ' + myForm['SUB_FORM_NUM'] + '</p>';
+        mySelectedFormInfoHtml += '<p>생년월일: ' + myForm['SUB_FORM_BIRTH'] + '</p>';
+        mySelectedFormInfoHtml += '<p>성별: ' + myForm['SUB_FORM_SEX'] + '</p>';
 
         $('#myFormChkInfoDiv').empty().append(mySelectedFormInfoHtml);
 
@@ -134,19 +136,18 @@ let myForm = (function(){
 
         for(let i = 1; i <= 5; i++) {
             if(formContent['FORM_QUE' + i] != 'empty') {
-                mySelectedFormQusHtml += '<div class="qusAns">'
-                mySelectedFormQusHtml += '<p class="qus">' + i +'. ' + formContent['FORM_QUE' + i] + '</p>';
+                mySelectedFormQusHtml += '<p>질문' + i + '</p>';
+                mySelectedFormQusHtml += '<p>' + formContent['FORM_QUE' + i] + '</p>';
                 mySelectedFormQusHtml += '<p>' + myForm['SUB_FORM_ANS' + i] + '</p>';
-                mySelectedFormQusHtml += '</div>'
             } 
         }
 
-        $('#myFormChkQusSubDiv').empty().append(mySelectedFormQusHtml);
+        $('#myFormChkQusDiv').empty().append(mySelectedFormQusHtml);
     }
 
     function setMyFormAnswer(myForm, formContent) {
-        $('#subUserName').val(myForm['SUB_FORM_NAME']);
-        $('#subUserNum').val(myForm['SUB_FORM_NUM']);
+        $('#subUserName').empty().append('이름: ' +  myForm['SUB_FORM_NAME']);
+        $('#subUserNum').empty().append('학번: ' + myForm['SUB_FORM_NUM']);
         $('#userBirth').val(myForm['SUB_FORM_BIRTH']);
         $('#userSex').val(myForm['SUB_FORM_SEX']);
         $('#userPhone').val(myForm['SUB_FORM_PHONE']);
@@ -154,7 +155,6 @@ let myForm = (function(){
         for(let i = 1; i <= 5; i++) {
             if(formContent['FORM_QUE' + i] != 'empty') {
                 $('#formAnsTextArea' + i).val(myForm['SUB_FORM_ANS' + i]);
-                $('#formAnsTextAreaCharCnt' + i).empty().append($('#formAnsTextArea' + i).val().length);
             }
         }
     }
@@ -297,8 +297,3 @@ let myForm = (function(){
         initMyForm : initMyForm
     };
 })();
-
-/*
-    TODO
-    1. 내 지원서 -> 제출 시 지원서 내용 빈칸 검사
-*/
