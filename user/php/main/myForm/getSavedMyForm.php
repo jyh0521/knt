@@ -10,7 +10,7 @@
               FROM USR_SUB_FORM usf, USR_FORM uf
              WHERE SUB_FORM_NAME = '$name' 
                AND SUB_FORM_NUM = '$num' 
-               AND SUB_FORM_PWD = '$pwd' 
+               AND SUB_FORM_PWD = MD5('$pwd')
                AND SUB_FORM_DISABLE = 'Y'
                AND usf.FORM_ID = uf.FORM_ID";
     

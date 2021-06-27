@@ -17,7 +17,7 @@
     $sql = "INSERT 
               INTO USR_SUB_FORM (SUB_FORM_NAME, SUB_FORM_NUM, SUB_FORM_BIRTH, SUB_FORM_SEX, SUB_FORM_PHONE, SUB_FORM_PWD, FORM_ID, 
                                  SUB_FORM_ANS1, SUB_FORM_ANS2, SUB_FORM_ANS3, SUB_FORM_ANS4, SUB_FORM_ANS5, SUB_FORM_ISSUBMIT) 
-            VALUES ('$name', '$num', '$birth', '$sex', '$phone', '$pwd', '$form', '$ans1', '$ans2', '$ans3', '$ans4', '$ans5', 'N')";
+            VALUES ('$name', '$num', '$birth', '$sex', '$phone', MD5('$pwd'), '$form', '$ans1', '$ans2', '$ans3', '$ans4', '$ans5', 'N')";
 
     $result = mysql_query($sql, $connect);
 
