@@ -79,6 +79,12 @@ let noticeBrd = (function() {
             $("#kntNoticeBrdComment").css("display", "block");
             noticeBrdContent = result;
 
+            if(nowPage != 'noticBrdContent') {
+                let state = {'page_id' : 'noticBrdContent' };
+                history.pushState(state, null, null);
+                nowPage = 'noticBrdContent';
+            }
+
             showNoticeBrdContent();//공지사항 내용 보여주기
         });
     }
@@ -207,11 +213,6 @@ let noticeBrd = (function() {
         }
 
         $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
-        
-        //목록 버튼 클릭 시(뒤로가기)
-        $("#noticeContentBackBtn").off("click").on("click", function(){
-            showNoticeBrd();
-        });
 
         // 지원서 작성하기 버튼 클릭 시
         $('.writeRegistedFormBtn').off('click').on('click', function(){
