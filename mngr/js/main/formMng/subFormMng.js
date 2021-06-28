@@ -52,6 +52,8 @@ let subFormMng = (function(){
 
         $("#subFormListTbody").empty().append(subFormListHtml);
 
+        $('#subFormMngDiv').css('display', 'block');
+
         initSubFormListEvent();
     }
 
