@@ -46,29 +46,6 @@
 #SelectNoticeSearchOption { padding-top: 8px;padding-bottom: 8px;height: 40px;width: 94px;padding-right: 10px; border-radius: 0px;}
 #noticeSearchBtn { cursor: pointer; background-color: rgb(95, 95, 95);color: #fff;margin-left: 10px;padding-bottom: 13px;padding-top: 13px; border-radius: 0px;}
 
-.ui.primary.submit.labeled.icon.button.writeRegistedFormBtn{background-color: #585c5f; width: 20%; height: 50px; padding-top: 15px; font-size: 13pt;}
-
-/* 공지사항 게시판 제목 작성 공간 */
-.noticeTextArea .titleTextareaInput {
-    display: block;
-    width: 100%;
-    min-height: 40px;
-    padding: 11px 12px 10px;
-    border: 1px solid #ebecef;
-    box-sizing: border-box;
-    overflow: hidden;
-    resize: none;
-    word-break: break-all;
-    font-size: 15px;
-    letter-spacing: -.23px;
-    line-height: 17px;
-    outline: none;
-    margin-top: 30px;
-}
-
-/* 공지사항 게시판 내용 작성 공간 */
-#kntNoticeBrdContent { padding-top: 4%;padding-left: 4%;padding-right: 4%;padding-bottom: 4%;}
-
 /* 공지사항 테이블 */
 #kntNoticeBrdDomain { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 30px;}
 #kntNoticeBrdDomain .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed;}
@@ -78,41 +55,23 @@
 #kntNoticeBrdDomain table tbody tr{ cursor: pointer;}
 #kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR'}
 
+/* 공지사항 내용 배경 */
+#kntNoticeBrdContent { margin: 40px 0 102px; border: 1px solid #e6e6e6; background-color: #fff;}
 
+/* 공지사항 내용 제목 부분 */
+#kntNoticeBrdContent .titleDiv { position: relative; height: 128px; border-bottom: 1px solid #e6e6e6;}
+#kntNoticeBrdContentTitleDomain { padding: 49px 120px 0 120px; }
+#kntNoticeBrdContentTitleDomain .title { font-size: 28px; font-weight: normal; text-align: center;}
 
+/* 공지사항 내용 부분 */
+#kntNoticeBrdContent .contentDiv { padding: 60px 120px 0;}
 
-.noticeTextArea .contentTextareaInput {
-    display: block;
-    width: 100%;
-    min-height: 300px;
-    padding: 11px 12px 10px;
-    border: 1px solid #ebecef;
-    box-sizing: border-box;
-    overflow: hidden;
-    resize: none;
-    word-break: break-all;
-    font-size: 15px;
-    letter-spacing: -.23px;
-    line-height: 17px;
-    outline: none;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-/* 공지사항 글 작성, 취소 버튼 */
-.noticeTextArea .kntNoticeBrdWriteBtnDomain {
-    margin-left: 950px;
-}
-
-
-/* 공지사항 목록으로 이동 */
-.noticeContentBackBtn{
-    color: #79021f; font-size: 20px; cursor: pointer;
-}
+/* 공지사항 내용 등록일 부분 */
+#kntNoticeBrdContentDateDomain { display: block; margin-top: 72px; font-family: 'Noto Sans KR'; color: #b2b2b2; font-size: 9pt;}
 
 /* 지원하기 버튼 */
-#kntNoticeSubmitBtnDiv { margin-top: 5%; text-align: center; }
-
+#kntNoticeSubmitBtnDiv { padding: 60px 0 80px; text-align: center; }
+.ui.primary.submit.labeled.icon.button.writeRegistedFormBtn { background-color: #585c5f; width: 230px; height: 65px; font-size: 14pt; padding-top: 24px;}
 
 
 

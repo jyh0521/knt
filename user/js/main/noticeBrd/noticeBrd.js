@@ -185,14 +185,21 @@ let noticeBrd = (function() {
 
     //공지사항 내용 보여주기
     function showNoticeBrdContent(){
+
+        let kntNoticeBrdContentTitleDomainHtml = "";
+        kntNoticeBrdContentTitleDomainHtml += '<p class="title">' + noticeBrdContent[0]['BRD_TITLE'] + '</p>';
+
+        $("#kntNoticeBrdContentTitleDomain").empty().append(kntNoticeBrdContentTitleDomainHtml);
+
         let kntNoticeBrdContentDomainHtml = "";
-        kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%; margin-top: 14px;'>";
-        kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
-        kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
-        kntNoticeBrdContentDomainHtml +=    " 조회수 " + noticeBrdContent[0]['BRD_HIT']+ "</p>";
-        kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
-        kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
-        kntNoticeBrdContentDomainHtml += "</div>";
+        kntNoticeBrdContentDomainHtml +=    "<p>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
+
+        $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
+
+        let kntNoticeBrdContentDateDomainHtml = ""
+        kntNoticeBrdContentDateDomainHtml += "<p>등록일 " + noticeBrdContent[0]['BRD_DATE']; + "</p>"
+
+        $("#kntNoticeBrdContentDateDomain").empty().append(kntNoticeBrdContentDateDomainHtml);
 
         if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
             let submitBtnHtml = '';
@@ -202,7 +209,6 @@ let noticeBrd = (function() {
             $('#kntNoticeSubmitBtnDiv').empty().append(submitBtnHtml);
         }
 
-        $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
         // 지원서 작성하기 버튼 클릭 시
         $('.writeRegistedFormBtn').off('click').on('click', function(){
