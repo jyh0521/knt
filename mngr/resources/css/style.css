@@ -28,3 +28,25 @@ ui.main.menu { border: none; }
     padding: 5em 0em;
 } 
 
+/* 7. 지원서 조회 페이지 */
+
+/* 지원서 조회 배경*/
+#subFormDiv .subFormContentDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
+
+/* 지원서 조회 제목 */
+.subFormChkTitleTxt { padding-top: 20px; font-size: 20pt; font-weight: 540;}
+#subFormTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff;}
+#subFormTitle h4 { text-align: center; font-size: 20px; font-weight: normal;}
+
+/* 지원서 조회 개인정보, 질문 DIV */
+#subFormContentDiv .infoDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
+#subFormContentDiv .QusDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
+
+/* 지원서 조회 개인정보*/
+#subFormInfoDiv .infoTitle{ margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
+#subFormInfoDiv .info { font-size: 16px; font-weight: normal;}
+
+/* 지원서 조회 질문 */
+#subFormQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
+#subFormQusSubDiv .qusAns {  font-size: 16px; margin-bottom: 27px; font-family: sans-serif;}
+#subFormQusSubDiv .qus{margin: 0 0 28px; font-weight: normal;}
