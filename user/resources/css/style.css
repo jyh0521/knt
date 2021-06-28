@@ -13,7 +13,7 @@
 .mainMenuBackground { background-color: #eff0f2;}
 
 /* 메뉴 컨테이너 */
-#menuContainer { margin-left: 20%; margin-right: 20%; }
+#menuContainer { margin-left: 18%; margin-right: 18%; }
 
 .ui.main.menu { border: none; }
 
@@ -33,16 +33,18 @@
 
 /* 3. 공지사항 페이지*/
 
+/* 공지사항 글씨  */
+.noticeBrdHeaderTitle { text-align: center; padding-top: 40px; font-size: 23pt; font-weight: 540; padding-bottom: 40px;}
+
 /* 공지사항 게시판 보여주는 부분 */
-.noticeBrdHeaderTitle { padding-top: 20px; font-size: 20pt; font-weight: 540; padding-bottom: 14px;}
-#kntNoticeBrd .noticeContentDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
+#kntNoticeBrd .noticeContentDiv { margin: 40px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
 
 /* 공지사항 검색 div */
-.noticeBrdSearchDiv .ui.action.input { height: 45px;}
+.noticeBrdSearchDiv .ui.action.input { height: 40px; width: 45%;}
 #noticeSearchText { border-radius: 0px;}
-.noticeBrdSearchDiv { text-align: center; height: 45px; padding: 24px 0 64px 25px; border: 1px solid #e6e6e6; background-color: #fff;}
-#SelectNoticeSearchOption { padding-top: 8px;padding-bottom: 8px;height: 45px;width: 94px;padding-right: 10px; border-radius: 0px;}
-#noticeSearchBtn { background-color: rgb(95, 95, 95);color: #fff;margin-left: 10px;padding-bottom: 15px;padding-top: 15px; border-radius: 0px; cursor: pointer;}
+.noticeBrdSearchDiv { text-align: center; height: 45px; padding: 20px 0 60px 25px; background: #f6f6f6; border-top: 1px solid #000000;}
+#SelectNoticeSearchOption { padding-top: 8px;padding-bottom: 8px;height: 40px;width: 94px;padding-right: 10px; border-radius: 0px;}
+#noticeSearchBtn { cursor: pointer; background-color: rgb(95, 95, 95);color: #fff;margin-left: 10px;padding-bottom: 13px;padding-top: 13px; border-radius: 0px;}
 
 .ui.primary.submit.labeled.icon.button.writeRegistedFormBtn{background-color: #585c5f; width: 20%; height: 50px; padding-top: 15px; font-size: 13pt;}
 
@@ -68,13 +70,13 @@
 #kntNoticeBrdContent { padding-top: 4%;padding-left: 4%;padding-right: 4%;padding-bottom: 4%;}
 
 /* 공지사항 테이블 */
-#kntNoticeBrdDomain { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; }
-#kntNoticeBrdDomain .tableDiv { width: 100%; table-layout: fixed;}
+#kntNoticeBrdDomain { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 30px;}
+#kntNoticeBrdDomain .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed;}
 #kntNoticeBrdDomain table thead tr th{ position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0}
 
 /* 공지사항 목록 */
 #kntNoticeBrdDomain table tbody tr{ cursor: pointer;}
-#kntNoticeBrdDomain table tbody td { position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR'}
+#kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR'}
 
 
 

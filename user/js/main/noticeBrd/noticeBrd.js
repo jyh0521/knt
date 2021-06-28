@@ -118,7 +118,7 @@ let noticeBrd = (function() {
 
     function showNoticeHeader(){
         let noticeBrdTitleTxTHtml = "";
-        noticeBrdTitleTxTHtml+='<h3 class="noticeBrdHeaderTitle">공지사항</h3>';
+        noticeBrdTitleTxTHtml+='<h2 class="noticeBrdHeaderTitle">공 지 사 항</h2>';
 
         $("#noticeBrdTitleTxT").empty().append(noticeBrdTitleTxTHtml);
     }
