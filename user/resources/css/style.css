@@ -225,12 +225,13 @@
 
 /* 지원서 개인정보*/
 #myFormChkInfoDiv .infoTitle{ margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
-#myFormChkInfoDiv .info { font-size: 16px; font-weight: normal;}
+#myFormChkInfoDiv .info { font-size: 12pt; font-weight: 300; font-family: 'Noto Sans KR';}
 
 /* 지원서 질문 */
 #myFormChkQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
-#myFormChkQusSubDiv .qusAns {  font-size: 16px; margin-bottom: 27px; font-family: sans-serif;}
-#myFormChkQusSubDiv .qus{margin: 0 0 28px; font-weight: normal;}
+#myFormChkQusSubDiv .qusAns { margin-bottom: 27px;}
+#myFormChkQusSubDiv .qus{ margin: 0 0 28px; font-size: 12pt; font-weight: 500; font-family: 'Noto Sans KR';}
+#myFormChkQusSubDiv .ans{ font-weight: 300; font-family: 'Noto Sans KR';}
 
 /* 폰트 */
 /* 'NanumSquareR', 'Nanum Gothic', 'Malgun Gothic', '돋움', 'dotum', 'AppleGothic', Helvetica, Arial, sans-serif */

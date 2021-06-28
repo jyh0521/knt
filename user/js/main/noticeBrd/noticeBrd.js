@@ -126,7 +126,6 @@ let noticeBrd = (function() {
     function showNoticeBrdTable(){
         let kntNoticeBrdContentDomainHtml= "";
         
-        //kntNoticeBrdContentDomainHtml += "<h4>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
         kntNoticeBrdContentDomainHtml += '<table class="tableDiv">';
         kntNoticeBrdContentDomainHtml +=     "<thead>";
         kntNoticeBrdContentDomainHtml +=         "<tr>";
