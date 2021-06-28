@@ -193,3 +193,9 @@ let formWrite = (function(){
         drawFormWriteContent : drawFormWriteContent
     };
 })();
+
+/*
+    TODO
+    1. 지원서 작성일자 추가
+    2. 지원서 정해진 기간에만 제출할 수 있게 구현
+*/

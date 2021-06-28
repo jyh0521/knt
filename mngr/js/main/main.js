@@ -18,16 +18,19 @@ $("#noticeBrdMngBtn").off("click").on("click", function () {
     });
 });
 
-// 지원서 등록 버튼 클릭 시
+// 지원서 양식 버튼 클릭 시
 $('#formMngBtn').off('click').on('click', function(){
     $('#menuFuncDiv').load('formMng/formMng.html', function(){
         initFormMng();
     });
 });
 
+// 지원서 관리 버튼 클릭 시
+$('#subFormMngBtn').off('click').on('click', function(){
+    subFormMng.initSubFormMng();
+});
+
 /*
     TODO
-    1. 관리자 페이지 로그인 만들기
-    2. 공지사항 작성 시 지원서를 연결
-    3. 화면을 다 그린 후 보여주는 방식으로 수정 -> 현재는 나눠서 그려진다.
+    1. 화면을 다 그린 후 보여주는 방식으로 수정 -> 현재는 나눠서 그려진다.
 */
