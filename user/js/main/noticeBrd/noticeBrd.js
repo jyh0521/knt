@@ -117,23 +117,23 @@ let noticeBrd = (function() {
     }
 
     function showNoticeHeader(){
-        let noticeHeaderHtml = "";
-        noticeHeaderHtml+='<h3 class="noticeBrdHeaderTitle">공지사항</h3>';
-        noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 93%;'>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
+        let noticeBrdTitleTxTHtml = "";
+        noticeBrdTitleTxTHtml+='<h3 class="noticeBrdHeaderTitle">공지사항</h3>';
 
-        $("#noticeHeader").empty().append(noticeHeaderHtml);
+        $("#noticeBrdTitleTxT").empty().append(noticeBrdTitleTxTHtml);
     }
 
     function showNoticeBrdTable(){
         let kntNoticeBrdContentDomainHtml= "";
         
-        kntNoticeBrdContentDomainHtml += "<table table class='ui selectable celled table' style = 'text-align:center; border-top: 4px solid #79021f;'>";
+        //kntNoticeBrdContentDomainHtml += "<h4>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
+        kntNoticeBrdContentDomainHtml += '<table class="tableDiv">';
         kntNoticeBrdContentDomainHtml +=     "<thead>";
         kntNoticeBrdContentDomainHtml +=         "<tr>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style = 'width:50%; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='width:16%; background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='width:10%; background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th style='width: 110px;'>번호</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th style='width: 490px;'>제목</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th>작성일</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th>조회수</th>";
         kntNoticeBrdContentDomainHtml +=         "</tr>";
         kntNoticeBrdContentDomainHtml +=     "</thead>";
         kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
@@ -166,7 +166,7 @@ let noticeBrd = (function() {
         let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
 
         for(let i = 0; i < noticeBrdListSize; i++) {
-            noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px; cursor: pointer;'>";
+            noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' '>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + (i + noticeBrdStartNum) + "</td>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
