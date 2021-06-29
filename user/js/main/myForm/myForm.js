@@ -136,7 +136,7 @@ let myForm = (function(){
             if(formContent['FORM_QUE' + i] != 'empty') {
                 mySelectedFormQusHtml += '<div class="qusAns">'
                 mySelectedFormQusHtml += '<p class="qus">' + i +'. ' + formContent['FORM_QUE' + i] + '</p>';
-                mySelectedFormQusHtml += '<p class="ans">' + myForm['SUB_FORM_ANS' + i] + '</p>';
+                mySelectedFormQusHtml += '<p class="ans">' + makeEnter(myForm['SUB_FORM_ANS' + i]) + '</p>';
                 mySelectedFormQusHtml += '</div>'
             } 
         }
