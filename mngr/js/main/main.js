@@ -1,8 +1,9 @@
 // 관리자 권한이 아니면 전부 사용자 페이지로 이동 -> 일단 비활성화
-if (sessionStorage.getItem("loginUser") === null) {
-    alert("로그인 해주세요.");
-    location.replace('/knt/mngr/html/login/login.html');
-}
+// if (sessionStorage.getItem("loginUser") === null) {
+//     alert("로그인 해주세요.");
+//     location.replace('/knt/mngr/html/login/login.html');
+// }
+//디자인하는 중! 잠깐 주석처리!
 
 //회원 관리 버튼 클릭 시
 $("#memberMngBtn").off("click").on("click", function () {
