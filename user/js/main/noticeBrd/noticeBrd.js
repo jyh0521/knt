@@ -192,7 +192,10 @@ let noticeBrd = (function() {
         $("#kntNoticeBrdContentTitleDomain").empty().append(kntNoticeBrdContentTitleDomainHtml);
 
         let kntNoticeBrdContentDomainHtml = "";
-        kntNoticeBrdContentDomainHtml +=    "<p>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
+
+        let content = makeBrTag(noticeBrdContent[0]['BRD_CONTENT']);
+
+        kntNoticeBrdContentDomainHtml +=    "<p>" + content + "</p>";
 
         $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
