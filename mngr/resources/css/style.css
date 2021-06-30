@@ -20,7 +20,7 @@
 .ui.footer.segment { margin: 5em 0em 0em; padding: 5em 0em; } 
 
 
-/* 지원서 관리 드롭다운 */
+/* 2. 지원서 관리 드롭다운 */
 
 .dropbtn { background-color: #ffffff; padding: 16px; font-size: 16px; border: none; } 
 
@@ -38,12 +38,12 @@
 
 
 
-/* 회원관리 */
+/* 3. 회원관리 */
 
 #memberMngList { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
 #memberMngDiv {text-align: center;}
 
-/* 공지사항 글씨 */
+/* 회원관리 글씨 */
 .memberMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
 
 /* 회원관리 게시판 */
@@ -59,17 +59,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* 4. 공지사항 관리 */
 
 /* 공지사항 글씨 */
 .noticeBrdMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
@@ -94,7 +84,7 @@
 
 
 
-
+/* 5. 공지사항 작성 부분 */
 
 /* 공지사항 작성 부분 */
 #noticeBrdMngWriteDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
@@ -113,7 +103,7 @@
 
 
 
-/* 공지사항 내용 부분 */
+/* 6. 공지사항 내용 부분 */
 
 #noticeBrdMngShowContentDiv { margin: 40px 0 102px; border: 1px solid #e6e6e6; background-color: #fff; } 
 /* 공지사항 내용 제목 부분 */
@@ -129,6 +119,28 @@
 
 #noticeBrdMngContentBtnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px; } 
 
+
+
+
+
+/* 7. 지원서 관리 */
+
+#subFormMngDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
+#subFormMngDiv {text-align: center;}
+
+/* 지원서 관리 글씨 */
+.subFormMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
+
+/* 회원관리 게시판 */
+#subFormMngTableDiv { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
+#subFormMngTableDiv .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
+#subFormMngTableDiv table thead tr td { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
+/* 회원관리 목록 */
+#subFormMngTableDiv table tbody tr { cursor: pointer; } 
+#subFormMngTableDiv table tbody tr:hover { background-color: rgb(245, 245, 245); } 
+#subFormMngTableDiv table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
+/* 페이징 */
+#subFormMngPagingDiv { text-align:center; padding-top: 4%; padding-bottom: 3%; } 
 
 
 
