@@ -122,29 +122,57 @@
 
 
 
+/* 7. 지원서 양식 */
 
-/* 7. 지원서 관리 */
+#formMngTableDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
+
+/* 지원서 양식 글씨 */
+.formMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
+
+/* 지원서 양식 게시판 */
+#formMngTableDiv .table{ clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
+#formMngTableDiv .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
+#formMngTableDiv table thead tr td { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
+
+/* 지원서 양식 목록 */
+#formMngTableDiv table tbody tr { cursor: pointer; } 
+#formMngTableDiv table tbody tr:hover { background-color: rgb(245, 245, 245); } 
+#formMngTableDiv table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
+
+/* 페이징 */
+#formMngPagingDiv { text-align:center; padding-top: 4%; padding-bottom: 3%; } 
+
+/* 추가 버튼 */
+#formMngBtnDiv { text-align: right; margin-top: 20px } 
+#formMngAddBtn { background-color: #585c5f; } 
+
+
+
+
+
+
+
+
+/* 8. 지원서 조회 */
 
 #subFormMngDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
 #subFormMngDiv {text-align: center;}
 
-/* 지원서 관리 글씨 */
+/* 지원서 조회 글씨 */
 .subFormMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
 
-/* 회원관리 게시판 */
+/* 지원서 조회 게시판 */
 #subFormMngTableDiv { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
 #subFormMngTableDiv .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
 #subFormMngTableDiv table thead tr td { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
-/* 회원관리 목록 */
+
+/* 지원서 조회 목록 */
 #subFormMngTableDiv table tbody tr { cursor: pointer; } 
 #subFormMngTableDiv table tbody tr:hover { background-color: rgb(245, 245, 245); } 
 #subFormMngTableDiv table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
+
 /* 페이징 */
 #subFormMngPagingDiv { text-align:center; padding-top: 4%; padding-bottom: 3%; } 
-
-
-
-/* 7. 지원서 조회 페이지 */
 
 /* 지원서 조회 배경*/
 #subFormDiv .subFormContentDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff; } 

@@ -3,20 +3,28 @@
 <body> 
     <div id='formMngDiv'>
         <div id='formMngTableDiv' style="display: block;">
-            <table border='1'>
-                <thead>
-                    <tr>
-                        <td>번호</td>
-                        <td>지원서 제목</td>
-                        <td>활성화</td>
-                    </tr>
-                </thead>
-                <tbody id='formListTbody'></tbody>
-            </table>
-            <div id='formMngPagingDiv'></div>
-            <div id='formMngBtnDiv'>
-                <button id="formMngAddBtn">추가</button>
+            <div id = "formMngTitleTxT">
+                <h2 class="formMngHeaderTitle">지원서 양식</h2>
             </div>
+            <div id='formMngBtnDiv'>
+                <div id="formMngAddBtn" class="ui primary submit labeled icon button">
+                    <i class="icon edit"></i>
+                    추가
+                </div>
+            </div>
+            <div class="table">
+                <table class="tableDiv">
+                    <thead>
+                        <tr>
+                            <td>번호</td>
+                            <td>지원서 제목</td>
+                            <td>활성화</td>
+                        </tr>
+                    </thead>
+                    <tbody id='formListTbody'></tbody>
+                </table>
+            </div>
+            <div id='formMngPagingDiv'></div>
         </div>
         <div id='formMngContentDiv' style="display: none;"></div>
         <div id='formMngAddDiv' style="display: none;"></div>
