@@ -53,6 +53,7 @@
 
 /* 공지사항 목록 */
 #kntNoticeBrdDomain table tbody tr{ cursor: pointer;}
+#kntNoticeBrdDomain table tbody tr:hover { background-color: rgb(245, 245, 245); }
 #kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR'}
 
 /* 공지사항 내용 배경 */
