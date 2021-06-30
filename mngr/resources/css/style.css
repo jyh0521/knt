@@ -30,11 +30,45 @@
 
 .dropdown-content a { color: black; padding: 20px 30px; text-decoration: none; display: block; font-size: 12pt; } 
 
-.dropdown-content a:hover { background-color: rgb(238, 238, 238); color: #000;} 
+.dropdown-content a:hover { background-color: rgb(238, 238, 238); color: #000; } 
 
-.dropdown:hover .dropdown-content { display: block;} 
+.dropdown:hover .dropdown-content { display: block; } 
 
 .dropdown:hover .dropbtn { background-color: #f8f8f8; } 
+
+
+
+/* 회원관리 */
+
+#memberMngList { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
+#memberMngDiv {text-align: center;}
+
+/* 공지사항 글씨 */
+.memberMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
+
+/* 회원관리 게시판 */
+#memberMngDiv { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
+#memberMngDiv .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
+#memberMngDiv table thead tr td { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
+#memberMngDiv table tbody td { position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
+
+/* 페이징 */
+#memberMngPagingDiv { text-align:center; padding-top: 4%; padding-bottom: 3%; } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 공지사항 글씨 */
@@ -48,7 +82,7 @@
 
 /* 공지사항 목록 */
 #kntNoticeBrdDomain table tbody tr { cursor: pointer; } 
-#kntNoticeBrdDomain table tbody tr:hover { background-color: rgb(245, 245, 245); }
+#kntNoticeBrdDomain table tbody tr:hover { background-color: rgb(245, 245, 245); } 
 #kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
 
 /* 글쓰기 버튼 */

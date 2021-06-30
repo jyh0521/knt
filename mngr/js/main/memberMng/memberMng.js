@@ -62,7 +62,7 @@ function updateMemberStudy(){
 function showMemberMngTable(){
     let memberMngDivHtml= "";
 
-    memberMngDivHtml += "<table border='1'>";
+    memberMngDivHtml += '<table class="tableDiv">';
     memberMngDivHtml +=     "<thead>";
     memberMngDivHtml +=         "<tr>";
     memberMngDivHtml +=             "<td>ID</td>";
