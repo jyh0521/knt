@@ -73,7 +73,8 @@
 #kntNoticeSubmitBtnDiv { padding: 60px 0 80px; text-align: center; }
 .ui.primary.submit.labeled.icon.button.writeRegistedFormBtn { background-color: #585c5f; width: 230px; height: 65px; font-size: 14pt; padding-top: 24px;}
 
-
+/* 페이징 */
+#kntNoticeBrdPagingArea {text-align:center;padding-top: 4%;padding-bottom: 3%;}
 
 
 

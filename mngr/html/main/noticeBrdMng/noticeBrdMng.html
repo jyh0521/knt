@@ -4,40 +4,58 @@
     <div id="noticeBrdMngDiv">
         <!-- 공지사항 목록 -->
         <div id="noticeBrdMngTableDiv" style="display: block;">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <td>번호</td>
-                        <td>제목</td>
-                        <td>작성일</td>
-                    </tr>
-                </thead>
-                <tbody id="noticeBrdMngListTbody"></tbody>
-            </table>
-            <div id="noticeBrdMngPagingDiv"></div>
-            <div id="noticeBrdMngBtnDiv">
-                <button id="noticeBrdMngWriteBtn">글 쓰기</button>
+            <div id = "noticeBrdMngTitleTxT">
+                <h2 class="noticeBrdMngHeaderTitle">공지사항 관리</h2>
             </div>
+            <div id="noticeBrdMngBtnDiv">
+                <div id="noticeBrdMngWriteBtn" class="ui primary submit labeled icon button">
+                    <i class="icon edit"></i>
+                    글 쓰기
+                </div>
+            </div>
+            <div id = "kntNoticeBrdDomain">   
+                <table class="tableDiv">
+                    <thead>
+                        <tr>
+                            <td>번호</td>
+                            <td>제목</td>
+                            <td>작성일</td>
+                        </tr>
+                    </thead>
+                    <tbody id="noticeBrdMngListTbody"></tbody>
+                </table>
+            </div>
+            <div id="noticeBrdMngPagingDiv"></div>
         </div>
         <!-- 공지사항 내용 -->
         <div id="noticeBrdMngShowContentDiv" style="display: none;">
-            <div id="noticeBrdMngContentDiv"></div>
-            <div id="noticeBrdMngContentBtnDiv">
-                <button id="noticeBrdMngContentUpdateBtn">수정</button>
-                <button id="noticeBrdMngContentDeleteBtn">삭제</button>
-                <button id="noticeBrdMngContentBackBtn">뒤로</button>
+            <div id="noticeBrdMngContentDiv">
+                <div class="titleDiv">
+                    <div id="kntNoticeBrdMngContentTitleDomain"></div>
+                </div>
+                <div class="contentDiv">
+                    <div id="kntNoticeBrdMngContentDomain"></div>
+                    <div id="kntNoticeBrdMngContentDateWriterFormDomain"></div>
+                    <div id="noticeBrdMngContentBtnDiv">
+                        <button id="noticeBrdMngContentUpdateBtn" class="ui black basic button">수정</button>
+                        <button id="noticeBrdMngContentDeleteBtn" class="ui black basic button">삭제</button>
+                        <button id="noticeBrdMngContentBackBtn" class="ui black basic button">뒤로</button>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- 공지사항 작성 -->
         <div id="noticeBrdMngWriteDiv" style="display: none;">
-            <div class="WritingHeader" style ="position: relative; margin-top: 20px; border-bottom: 1px solid #323232;">
-                <h2 class="title" style="margin-bottom: 16px; font-size: 22px; color: var(--skinTextColor);">
+            <div class="WritingHeader">
+                <h2 class="title">
                 공지사항 작성
                 </h2>
             </div>
-            <select name="formName" id="formName"></select>
-            <textarea placeholder="제목을 입력해 주세요." class="titleTextareaInput"  id="noticeBrdMngWriteTitle" style="height: 40px;"></textarea>
-            <textarea placeholder="내용을 입력하세요." class="contentTextareaInput"  id="noticeBrdMngWriteContent" style="height: 40px;"></textarea>
+            <div class="selectDiv"><select name="formName" id="formName"></select></div>
+            <div class="textDiv">
+                <textarea placeholder="제목을 입력해 주세요." class="titleTextareaInput"  id="noticeBrdMngWriteTitle" style="height: 40px;"></textarea>
+                <textarea placeholder="내용을 입력하세요." class="contentTextareaInput"  id="noticeBrdMngWriteContent" style="height: 40px;"></textarea>
+            </div>
             <div class="noticeBrdMngWriteBtnDiv" id="noticeBrdMngWriteBtnDiv"></div>
         </div>
     </div>
