@@ -81,9 +81,9 @@ let subFormMng = (function(){
             if(formContent['FORM_QUE' + i] != 'empty') {
                 subFormQusHtml += '<div class="qusAns">'
                 subFormQusHtml += '<p class="qus">' + i +'. ' + formContent['FORM_QUE' + i] + '</p>';
-                subFormQusHtml += '<p>' + subForm['SUB_FORM_ANS' + i] + '</p>';
+                subFormQusHtml += '<p>' + makeEnter(subForm['SUB_FORM_ANS' + i]) + '</p>';
                 subFormQusHtml += '</div>'
-            } 
+            }
         }
 
         $('#subFormQusSubDiv').empty().append(subFormQusHtml);
