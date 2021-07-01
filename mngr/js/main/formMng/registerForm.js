@@ -22,6 +22,7 @@ function initRegisterFormEvent() {
             newFormContentInput.setAttribute("type", "text");
             newFormContentInput.setAttribute("id", "formContentInput" + formContentCnt);
             newFormContentInput.setAttribute("name", "formContentInput" + formContentCnt );
+            newFormContentInput.setAttribute("class", "queDiv");
             newFormContentInput.setAttribute("placeholder", "질문을 입력해주세요.");
 
             document.getElementById("formContentLi" + formContentCnt).appendChild(newFormContentInput);

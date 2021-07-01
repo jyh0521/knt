@@ -163,11 +163,14 @@
 /* 지원서 양식 확인, 삭제, 뒤로 버튼 */
 #formMngContentDiv .btnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px; } 
 
+#formMain { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
+#formTitle { width: 600px;height: 43px;padding: 10px;border: 1px solid #c8c8c8;font-size: 12px;line-height: 21px;font-weight: 300;resize: none; } 
 
+#formContentPlus { width: 72px;}
+#formContentMinus{ width: 72px;}
+#formRegisterBtn{width: 120px;}
 
-
-
-
+#formMainContentList .queDiv {width: 600px;height: 43px;padding: 10px;border: 1px solid #c8c8c8;font-size: 12px;line-height: 21px;font-weight: 300;resize: none;}
 
 /* 8. 지원서 조회 */
 
