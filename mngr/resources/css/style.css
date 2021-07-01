@@ -1,19 +1,31 @@
 /* 0. 로그인 페이지 */
 /*로그인창*/
-body{margin:0px;}
+body{margin:0px;height:737px; background-color:#eff0f2;}
+
+/* 상단 헤더 */
 #head {width:100%; height:52px; background-color:#8b0029;}
-#mainwrap {height:600px; background-color:#eff0f2;}
+/* 로고 이미지 파일로 변경 예정.. */
 #logo {
     position: relative;
     text-align: center;
     font-size: 35px;
-    letter-spacing: 4px;
+    letter-spacing: 9px;
     color: #222;
     word-break: keep-all;
     word-wrap: break-word;
     margin-left:47.5%;
 }
 
+/* 배경색(중앙+바닥) */
+#mainwrap {
+    width: 426px;
+    margin: 59px auto 351px;
+    padding: 48px 60px 50px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+}
+
+/* 메인 로그인창 */
 h1 {height:100px;}
 .title {
     position: relative;
@@ -27,6 +39,8 @@ h1 {height:100px;}
     word-break: keep-all;
     word-wrap: break-word;
 }
+.loginlist {padding-left: 19%;padding-right: 19%;}
+#field {padding-bottom: 10px;text-align: center;}
 
 /* 1. main 페이지 */
 /* 최상단 부분 */
