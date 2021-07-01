@@ -5,22 +5,27 @@
     <title>KNT 관리자 페이지</title>
     <link rel="shortcut icon" type="image/x-icon" href="/knt/user/resources/images/KNT_icon.png">
     <link rel="stylesheet" type="text/css" href="/knt/user/resources/css/semantic.min.css">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="/knt/mngr/resources/css/style.css">
+=======
+    <link rel="stylesheet" type="text/css" href="/knt/mngr/resources/css/style.css">  
+>>>>>>> e84883b02847c32012e43884cf3fb508a5caaf5f
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 </head>
 <body>
      <!-- 상단+상단 버튼 (홈버튼, 그룹명, 마이페이지, 로그아웃) -->
-    <div class="ui borderless main menu" id="mngrMainTop">
-      <div class="item" id = 'menuBar'>
-        <button id='homeBtn' class="item">User Page</button>
-      </div>
+    <div class="ui borderless main menu" id="mainTop"></div>
+        <!-- <div class="item" id = 'menuBar'>
+            <button id='homeBtn' class="item">User Page</button>
+        </div> --> 
     </div>
     <!-- 상단 메뉴바 -->
     <div class="mainMenuBackground">
         <div class="ui borderless main menu" id="mainMenuContainer">
             <div class="text container" id="mainMenuBtnDiv">
-              <img src="/knt/mngr/resources/images/KNTLogo_mngr.png" id="kntLogoDiv">
+              <img src="/knt/mngr/resources/images/KNTLogo_mngr.png" id="mainKNTLogo">
                 <div class="item">
+<<<<<<< HEAD
                     <a type="button" id='memberMngBtn' class="item"style="width:180px;margin-top:50%;"><h3>회원 관리</h3></a>
                 </div>
                 <div class="item">
@@ -39,11 +44,32 @@
         <!-- 메인콘텐츠 -->
     <div class="container" id="menuContainer">
         <div class="content" id="menuFuncDiv">
+=======
+                    <a type="button" id='memberMngBtn' class="item"><h3>회원 관리</h3></a>
+                </div>
+                <div class="item">
+                    <a type="button" id='noticeBrdMngBtn' class="item"><h3>공지사항 관리</h3></a>
+                </div>
+                <div class="item">
+                    <div class="dropdown">
+                      <button class="dropbtn"><h3>지원서 관리</h3></button>
+                      <div class="dropdown-content">
+                        <a href="#" id='formMngBtn'>지원서 양식</a>
+                        <a href="#" id='subFormMngBtn'>지원서 조회</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="container" id="menuContainer">
+          <div id="menuFuncDiv">
+>>>>>>> e84883b02847c32012e43884cf3fb508a5caaf5f
           <!-- 회원 관리 -->
-          <!-- 공지사항 관리 -->
+          <!-- 게시판 관리 -->
           <!-- 지원서 관리 -->
           </div>
       </div>
+<<<<<<< HEAD
         <!-- 각각 기능에 맞춰서 껐다 키는 식으로 구현 -->
         <div id="menuFuncDiv">
             <!-- 회원 관리 -->
@@ -67,11 +93,21 @@
               <div class="four wide column">
                 <h4 class="ui inverted header">Developers</h4>
                 <div class="ui inverted link list">
+=======
+      <!-- footer -->
+      <div class="ui inverted vertical footer segment" style='margin-top: 10%;'>
+          <div class="ui center aligned container">
+              <div class="ui stackable inverted divided grid">
+                <div class="four wide column">
+                  <h4 class="ui inverted header">Design</h4>
+                  <div class="ui inverted link list">
+>>>>>>> e84883b02847c32012e43884cf3fb508a5caaf5f
                     <a class="item">전용후</a>
                     <a class="item">이슬</a>
                     <a class="item">황예준</a>
                     <a class="item">문창집</a>
                     <a class="item">지수민</a>
+<<<<<<< HEAD
                 </div>
               </div>
               <div class="eight wide column">
@@ -89,6 +125,37 @@
         </div>
     </div>
   </div>
+=======
+                  </div>
+                </div>
+                <div class="four wide column">
+                  <h4 class="ui inverted header">Developers</h4>
+                  <div class="ui inverted link list">
+                      <a class="item">전용후</a>
+                      <a class="item">이슬</a>
+                      <a class="item">황예준</a>
+                      <a class="item">문창집</a>
+                      <a class="item">지수민</a>
+                  </div>
+                </div>
+                <div class="eight wide column">
+                  <h4 class="ui inverted header">고려대학교 세종캠퍼스 학술국</h4>
+                  <p>학술국장 짱짱</p>
+                </div>
+              </div>
+              <div class="ui inverted section divider"></div>
+              <div class="ui horizontal inverted small divided link list">
+                <a class="item">Site Map</a>
+                <a class="item">Contact Us</a>
+                <a class="item">Terms and Conditions</a>
+                <a class="item">Privacy Policy</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+>>>>>>> e84883b02847c32012e43884cf3fb508a5caaf5f
 </body>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -99,4 +166,5 @@
 <script type="text/javascript" src="/knt/mngr/js/main/noticeBrdMng/noticeBrdMng.js"></script>
 <script type="text/javascript" src="/knt/mngr/js/main/formMng/registerForm.js"></script>
 <script type="text/javascript" src="/knt/mngr/js/main/formMng/formMng.js"></script>
+<script type="text/javascript" src="/knt/mngr/js/main/formMng/subFormMng.js"></script>
 </html>

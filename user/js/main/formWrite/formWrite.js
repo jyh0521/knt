@@ -60,30 +60,32 @@ let formWrite = (function(){
 
     // 지원서 정보를 그리는 함수
     function drawFormWriteInfo(param) {
-        // $('#subUserName').empty().append('이름: ' + param['name']);
-        // $('#subUserNum').empty().append('학번: ' + param['num']); 인풋 박스 써서 잠깐 바꿀게용.. 
         $('#subUserName').val(param['name']);
         $('#subUserNum').val(param['num']);
     }
 
     function drawFormWriteContent(param) {
         // 제목
-        //$('#formWriteContentTitle').empty().append('<p>' + param['FORM_TITLE'] + '</p>');
-        $('#formWriteContentTitle').empty().append('<h4>' + param['FORM_TITLE'] + '</h4>'); //p태그에서 h4태그로 바꿈
+        $('#formWriteContentTitle').empty().append('<h4>' + param['FORM_TITLE'] + '</h4>'); 
         
         // 질문
         let formWriteContentHtml = '';
+        let queCnt = 0;
 
         for(let i = 1; i <= maxQueSize; i++) {
             if(param['FORM_QUE' + i] != 'empty') {
+                queCnt++;
                 formWriteContentHtml += '<div>';
                 formWriteContentHtml += '<p>' + i + '. ' + param['FORM_QUE' + i] + '</p>';
                 formWriteContentHtml += '<textarea id="formAnsTextArea' + i + '"class="formAnsText"></textarea>';
+                formWriteContentHtml += '<p id="formAnsTextAreaCharCnt' + i + '">0</p>';
                 formWriteContentHtml += '</div>';
             }
         }
 
         $('#formWriteContentQuestionDiv').empty().append(formWriteContentHtml);
+
+        initFormWriteContentEvent(queCnt);
     }   
 
     // 지원서 작성 이벤트
@@ -110,11 +112,6 @@ let formWrite = (function(){
                 alert('취소되었습니다.');
             }
         });
-
-        /*
-            TODO
-            1. 임시저장된 지원서를 제출할 때 기존에 저장된 지원서가 업데이트 되는 형식으로 바꾸기
-        */
 
         // 제출하기 버튼 클릭 시
         $('#formWriteSubmitBtn').off('click').on('click', function() {
@@ -156,6 +153,21 @@ let formWrite = (function(){
                 });
             }
         });
+
+        //성별 셀렉트 박스 특정 옵션 선택 시
+        $(document).ready(function() {
+            $('#userSex').change(function() {
+                $(this).attr("selected");
+            }); 
+        }); 
+    }
+
+    function initFormWriteContentEvent(queCnt) {
+        for(let i = 1; i <= queCnt; i++) {
+            $('#formAnsTextArea' + i).keyup(function(){
+                $('#formAnsTextAreaCharCnt' + i).empty().append(this.value.length);
+            });
+        }
     }
 
     // 지원서 작성 내용 유효성 검사
@@ -177,7 +189,13 @@ let formWrite = (function(){
     }
 
     return {
-        initFormWrite : initFormWrite
+        initFormWrite : initFormWrite,
+        drawFormWriteContent : drawFormWriteContent
     };
-
 })();
+
+/*
+    TODO
+    1. 지원서 작성일자 추가
+    2. 지원서 정해진 기간에만 제출할 수 있게 구현
+*/

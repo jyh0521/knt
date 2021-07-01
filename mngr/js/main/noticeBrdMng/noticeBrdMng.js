@@ -107,23 +107,27 @@ function showNoticeBrdMngContent(){
     $('#noticeBrdMngShowContentDiv').css('display', 'block');
     $('#noticeBrdMngWriteDiv').css('display', 'none');
 
-    let noticeBrdMngContentDivHtml = "";
+    let kntNoticeBrdMngContentTitleDomainHtml = "";
+    kntNoticeBrdMngContentTitleDomainHtml += '<p class="title">' + noticeBrdMngContent['BRD_TITLE'] + '</p>';
 
-    noticeBrdMngContentDivHtml += "<p>제목 : " + noticeBrdMngContent['BRD_TITLE'] + "</p>";
-    noticeBrdMngContentDivHtml += "<p>작성자 : " + noticeBrdMngContent['BRD_WRITER'] + "</p>";
-    noticeBrdMngContentDivHtml += "<p>작성일 : " + noticeBrdMngContent['BRD_DATE'] + "</p>";
-    noticeBrdMngContentDivHtml += "<p>조회수 : " + noticeBrdMngContent['BRD_HIT'] + "</p>";
-   
+    $("#kntNoticeBrdMngContentTitleDomain").empty().append(kntNoticeBrdMngContentTitleDomainHtml);
+
+    let kntNoticeBrdMngContentDomainHtml = "";
+    kntNoticeBrdMngContentDomainHtml +=    "<p>" + makeEnter(noticeBrdMngContent['BRD_CONTENT']) + "</p>";
+
+    $("#kntNoticeBrdMngContentDomain").empty().append(kntNoticeBrdMngContentDomainHtml);
+
+    let kntNoticeBrdMngContentDateWriterFormDomainHtml = ""
+    kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록일 " + noticeBrdMngContent['BRD_DATE']; + "</p>"
+    kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>작성자 " + noticeBrdMngContent['BRD_WRITER'] + "</p>";
     if(noticeBrdMngContent['BRD_FORM'] === 'empty') {
-        noticeBrdMngContentDivHtml += "<p>등록된 지원서 : 없음</p>";
+        kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록된 지원서 : 없음</p>";
     }
     else {
-        noticeBrdMngContentDivHtml += "<p>등록된 지원서 : " + noticeBrdMngContent['BRD_FORM'] + "</p>";
+        kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록된 지원서 : " + noticeBrdMngContent['BRD_FORM'] + "</p>";
     }
 
-    noticeBrdMngContentDivHtml += "<p>내용 : " + noticeBrdMngContent['BRD_CONTENT'] + "</p>";
-    
-    $("#noticeBrdMngContentDiv").empty().append(noticeBrdMngContentDivHtml);
+    $("#kntNoticeBrdMngContentDateWriterFormDomain").empty().append(kntNoticeBrdMngContentDateWriterFormDomainHtml);
 
     initNoticeBrdMngContentEvent();
 }
@@ -150,7 +154,7 @@ function showNoticeBrdMngWrite(param, mode) {
 
         // 글 작성 시
         if(mode === 'write') {
-            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteContentBtn">작성</button>';
+            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteContentBtn" class="ui black basic button">작성</button>';
         }
         // 글 수정 시
         else {
@@ -166,10 +170,10 @@ function showNoticeBrdMngWrite(param, mode) {
                 $('#formName').val('formSelect' + param['form']);
             }
 
-            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn">수정</button>';
+            noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn" class="ui black basic button">수정</button>';
         }
 
-        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteBackBtn">뒤로</button>';
+        noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteBackBtn" class="ui black basic button">뒤로</button>';
         
         $('#noticeBrdMngWriteBtnDiv').empty().append(noticeBrdMngWriteHtml);
 

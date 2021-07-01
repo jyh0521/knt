@@ -1,12 +1,9 @@
 <?
-    include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
-
-    $brdId = $_POST['brdId'];
+   include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
     $sql = "SELECT COUNT(*) AS COUNT
-              FROM USR_BRD_CMT
-             WHERE BRD_ID = '$brdId'
-               AND CMT_DISABLE = 'Y'"; 
+              FROM USR_SUB_FORM
+             WHERE SUB_FORM_DISABLE = 'Y'"; 
 
     $result = mysql_query($sql, $connect);
 
@@ -17,6 +14,6 @@
     );
 
     echo json_encode($value);
-
+    
     mysql_close($connect);
 ?>

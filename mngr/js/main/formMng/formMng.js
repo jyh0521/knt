@@ -74,33 +74,38 @@ function drawFormContent(id, result) {
     $('#formMngAddDiv').css('display', 'none');
 
     let formContentHtml = '';
-    formContentHtml += '<label for="formContTitle">제목 </label>';
-    formContentHtml += '<input id="formContTitle" value="' + result['FORM_TITLE'] + '"/>';
-    
+    formContentHtml += '<div class="titleDiv">'
+    formContentHtml +=  '<h5 class=titleTxt>제목 </h5>';
+    formContentHtml +=  '<textarea id="formContTitle">' + result['FORM_TITLE'] + '</textarea>';
+
     // 활성화 여부
-    formContentHtml += '<label for="formContAct">활성화 </label>';
+    formContentHtml += '<div class="ui checkbox">'
     if(result['FORM_ACT'] === 'Y') {
         formContentHtml +=     '<td><input type="checkbox" id="formContActBox" checked/></td>';
     }
     else {
         formContentHtml +=     '<td><input type="checkbox" id="formContActBox" /></td>';
     }
+    formContentHtml += '<label for="formContAct">활성화</label>';
+    formContentHtml += '</div>'
+    formContentHtml += '</div>'
 
-    formContentHtml += '<ul>';
-
+    formContentHtml += '<div class="queDiv">'
     for(let i = 1; i <= maxQueSize; i++) {
         if(result['FORM_QUE' + i] != 'empty') {
-            formContentHtml += '<li>';
-            formContentHtml += '<label for="formContQue'+ i +'">질문' + i + ' </label>';
-            formContentHtml += '<input id="formContQue'+ i +'" value="' + result['FORM_QUE' + i] + '"/>';
-            formContentHtml += '</li>';
+            formContentHtml += '<div class="queSubDiv">';
+            formContentHtml += '<h5 class=titleTxt>질문' + i + ' </h5>';
+            formContentHtml += '<textarea id="formContQue'+ i +'"class="formContQue">' + result['FORM_QUE' + i] + '</textarea>';
+            formContentHtml += '</div>';
         }
     }
+    formContentHtml += '</div>'
 
-    formContentHtml += '</ul>';
-    formContentHtml += '<button id="formContUpdateBtn">확인</button>';
-    formContentHtml += '<button id="formContDelBtn">삭제</button>';
-    formContentHtml += '<button id="formContBackBtn">뒤로</button>';
+    formContentHtml += '<div class="btnDiv">'
+    formContentHtml +=  '<button id="formContUpdateBtn" class="ui black basic button">확인</button>';
+    formContentHtml +=  '<button id="formContDelBtn" class="ui black basic button">삭제</button>';
+    formContentHtml +=  '<button id="formContBackBtn" class="ui black basic button">뒤로</button>';
+    formContentHtml += '</div>'
 
     $('#formMngContentDiv').empty().append(formContentHtml);
 

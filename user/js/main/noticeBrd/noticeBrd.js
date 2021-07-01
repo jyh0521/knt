@@ -7,11 +7,7 @@ let noticeBrd = (function() {
     let searchOrAll = "";//검색한 리스트 or 전체 리스트
 
     function showNoticeBrd(){
-        if(nowPage != 'noticeBrd') {
-            let state = {'page_id' : 'noticeBrd' };
-            history.pushState(state, null, null);
-            nowPage = 'noticeBrd';
-        }
+        makeBackEvent('noticeBrd');
 
         $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
             $("#kntNoticeBrdWrite").css("display", "none");
@@ -79,6 +75,7 @@ let noticeBrd = (function() {
             $("#kntNoticeBrdComment").css("display", "block");
             noticeBrdContent = result;
 
+            makeBackEvent('noticeBrdContent');
             showNoticeBrdContent();//공지사항 내용 보여주기
         });
     }
@@ -120,23 +117,22 @@ let noticeBrd = (function() {
     }
 
     function showNoticeHeader(){
-        let noticeHeaderHtml = "";
-        noticeHeaderHtml+='<h3 class="noticeBrdHeaderTitle">공지사항</h3>';
-        noticeHeaderHtml+="<h4 style='margin-top: 0px;margin-left: 93%;'>총 "+"<a style = 'color:#79021f;'>"+noticeBrdListCount+"</a>"+"건</h4>";
+        let noticeBrdTitleTxTHtml = "";
+        noticeBrdTitleTxTHtml+='<h2 class="noticeBrdHeaderTitle">공 지 사 항</h2>';
 
-        $("#noticeHeader").empty().append(noticeHeaderHtml);
+        $("#noticeBrdTitleTxT").empty().append(noticeBrdTitleTxTHtml);
     }
 
     function showNoticeBrdTable(){
         let kntNoticeBrdContentDomainHtml= "";
         
-        kntNoticeBrdContentDomainHtml += "<table table class='ui selectable celled table' style = 'text-align:center; border-top: 4px solid #79021f;'>";
+        kntNoticeBrdContentDomainHtml += '<table class="tableDiv">';
         kntNoticeBrdContentDomainHtml +=     "<thead>";
         kntNoticeBrdContentDomainHtml +=         "<tr>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='background: #f2f0f06b; color: rgb(56 56 56);'>번호</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style = 'width:50%; background: #f2f0f06b; color: rgb(56 56 56);'>제목</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='width:16%; background: #f2f0f06b; color: rgb(56 56 56);'>작성일</th>";
-        kntNoticeBrdContentDomainHtml +=             "<th style='width:10%; background: #f2f0f06b; color: rgb(56 56 56);'>조회수</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th style='width: 110px;'>번호</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th style='width: 490px;'>제목</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th>작성일</th>";
+        kntNoticeBrdContentDomainHtml +=             "<th>조회수</th>";
         kntNoticeBrdContentDomainHtml +=         "</tr>";
         kntNoticeBrdContentDomainHtml +=     "</thead>";
         kntNoticeBrdContentDomainHtml +=     "<tbody id='noticeBrdListTbody'>";
@@ -156,7 +152,7 @@ let noticeBrd = (function() {
             }
             else{
                 searchOrAll = "search"
-                showNoticeBrd();
+                getNoticeSearchListCount();
             }
         });
     };
@@ -169,7 +165,7 @@ let noticeBrd = (function() {
         let noticeBrdStartNum = (currentPage - 1) * 10 + 1; //페이지마다의 첫번째 목록의 번호 
 
         for(let i = 0; i < noticeBrdListSize; i++) {
-            noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' style='height: 60px; cursor: pointer;'>";
+            noticeBrdListTbodyHtml += "<tr class = 'kntNoticeBrdTitle' id = 'noticeBrdContentListId" + noticeBrdList[i]['BRD_ID']/* 아이디 중복 대비 */ + "' '>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + (i + noticeBrdStartNum) + "</td>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + noticeBrdList[i]["BRD_TITLE"] + "</td>";
             noticeBrdListTbodyHtml +=     "<td class = 'noticeBrdList'>" + cmpTimeStamp(noticeBrdList[i]["BRD_DATE"]) + "</td>";
@@ -189,14 +185,22 @@ let noticeBrd = (function() {
 
     //공지사항 내용 보여주기
     function showNoticeBrdContent(){
+
+        let kntNoticeBrdContentTitleDomainHtml = "";
+        kntNoticeBrdContentTitleDomainHtml += '<p class="title">' + noticeBrdContent[0]['BRD_TITLE'] + '</p>';
+
+        $("#kntNoticeBrdContentTitleDomain").empty().append(kntNoticeBrdContentTitleDomainHtml);
+
         let kntNoticeBrdContentDomainHtml = "";
-        kntNoticeBrdContentDomainHtml += "<div class='ui segment' style='height: 72.917%; margin-top: 14px;'>";
-        kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 30px; margin-bottom: 5px;'>" + noticeBrdContent[0]['BRD_TITLE'] + "</p>";
-        kntNoticeBrdContentDomainHtml +=    "<p style='hegith: 10px; color: #979797; font-size: 12px; word-spacing: 5px;'>" + noticeBrdContent[0]['BRD_DATE'];
-        kntNoticeBrdContentDomainHtml +=    " 조회수 " + noticeBrdContent[0]['BRD_HIT']+ "</p>";
-        kntNoticeBrdContentDomainHtml +=        "<div class='ui fitted divider'></div>"
-        kntNoticeBrdContentDomainHtml +=    "<p style='font-size: 20px; padding-top: 20px; height: 300px'>" +  noticeBrdContent[0]['BRD_CONTENT'] + "</p>";
-        kntNoticeBrdContentDomainHtml += "</div>";
+
+        kntNoticeBrdContentDomainHtml +=    "<p>" + makeEnter(noticeBrdContent[0]['BRD_CONTENT']) + "</p>";
+
+        $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
+
+        let kntNoticeBrdContentDateDomainHtml = ""
+        kntNoticeBrdContentDateDomainHtml += "<p>등록일 " + noticeBrdContent[0]['BRD_DATE']; + "</p>"
+
+        $("#kntNoticeBrdContentDateDomain").empty().append(kntNoticeBrdContentDateDomainHtml);
 
         if(noticeBrdContent[0]['BRD_FORM'] != 'empty') {
             let submitBtnHtml = '';
@@ -206,12 +210,6 @@ let noticeBrd = (function() {
             $('#kntNoticeSubmitBtnDiv').empty().append(submitBtnHtml);
         }
 
-        $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
-        
-        //목록 버튼 클릭 시(뒤로가기)
-        $("#noticeContentBackBtn").off("click").on("click", function(){
-            showNoticeBrd();
-        });
 
         // 지원서 작성하기 버튼 클릭 시
         $('.writeRegistedFormBtn').off('click').on('click', function(){
