@@ -41,7 +41,7 @@
 /* 3. 회원관리 */
 
 #memberMngList { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
-#memberMngDiv {text-align: center;}
+#memberMngDiv { text-align: center; } 
 
 /* 회원관리 글씨 */
 .memberMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
@@ -130,7 +130,7 @@
 .formMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
 
 /* 지원서 양식 게시판 */
-#formMngTableDiv .table{ clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
+#formMngTableDiv .table { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 15px; } 
 #formMngTableDiv .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
 #formMngTableDiv table thead tr td { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
 
@@ -146,6 +146,22 @@
 #formMngBtnDiv { text-align: right; margin-top: 20px } 
 #formMngAddBtn { background-color: #585c5f; } 
 
+#formMngContentDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 40px 0; padding-bottom: 70px; } 
+
+#formMngContentDiv .titleDiv { border-bottom: 1px solid #dadada; padding-bottom: 30px; margin-bottom: 30px; } 
+/* 지원서 양식 제목, 질문 글씨 */
+#formMngContentDiv .titleTxt { margin-left: 30px; margin-top: 12px; margin-bottom: 10px; margin-right: 30px; float:left; font-size: 18px; font-weight: normal; } 
+
+/* 지원서 양식 제목 작성 공간 */
+#formContTitle { width: 600px; height: 43px; padding: 10px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize: none; } 
+
+#formMngContentDiv .queDiv { border-bottom: 1px solid #dadada; padding-bottom: 70px; } 
+#formMngContentDiv .queSubDiv { padding-bottom: 30px; } 
+/* 지원서 양식 질문 작성 공간 */
+.formContQue { width: 600px; height: 43px; padding: 10px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize: none; } 
+
+/* 지원서 양식 확인, 삭제, 뒤로 버튼 */
+#formMngContentDiv .btnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px; } 
 
 
 
@@ -156,7 +172,7 @@
 /* 8. 지원서 조회 */
 
 #subFormMngDiv { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
-#subFormMngDiv {text-align: center;}
+#subFormMngDiv { text-align: center; } 
 
 /* 지원서 조회 글씨 */
 .subFormMngHeaderTitle { text-align: center; padding-top: 30px; font-size: 23pt; font-weight: 540; padding-bottom: 20px; border-bottom: 1px solid #ddd; } 
