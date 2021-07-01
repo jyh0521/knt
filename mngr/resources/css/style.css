@@ -1,3 +1,31 @@
+/* 0. 로그인 페이지 */
+/*로그인창*/
+body{margin:0px;}
+#head {width:100%; height:52px; background-color:#8b0029;}
+#mainwrap {height:600px; background-color:#eff0f2;}
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+#logo{
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+    background-position: -1px -1px;
+    font-size: 15px;
+    background-image: src="/knt/mngr/resources/images/KNTLogo_mngr.png";
+    height:60px;
+    width:300px;
+    background-size: 300px;
+    background-repeat: no-repeat;
+    padding-bottom: 10px;
+}
+
 /* 1. main 페이지 */
 /* 최상단 부분 */
 #mainTop { border-radius: 0; height: 3%; padding-left: 63%; background-color: #3f3f40; } 
