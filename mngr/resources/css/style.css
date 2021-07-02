@@ -7,15 +7,15 @@ body{margin:0px;height:737px; background-color:#eff0f2;}
 /* 로고 이미지 파일로 변경 예정.. */
 #logo {
     position: relative;
-    margin-top: 20px;
+    margin-top: 7.4px;
     vertical-align: top;
     width: 70px;
-    height: 26px;
     background-position: 0 -166px;
     overflow: hidden;
     display: inline-block;
     text-indent: -999px;
     background-repeat: no-repeat;
+    margin-left:47.7%;
 }
 
 /* 배경색(중앙+바닥) */
@@ -40,7 +40,6 @@ h1 {height:100px;}
     line-height: 1.2;
     word-break: keep-all;
     word-wrap: break-word;
-    margin-top:200px;
 }
 .loginlist {padding-left: 19%;padding-right: 19%;}
 #field {padding-bottom: 10px;text-align: center;}
