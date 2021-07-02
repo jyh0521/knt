@@ -6,11 +6,10 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 #head {width:100%; height:52px; background-color:#3f3f40;}
 
 
-
 /* 배경색(중앙+바닥) */
 #mainwrap {
     width: 426px;
-    margin: 59px auto 351px;
+    margin: 130px auto 351px;
     padding: 48px 60px 50px;
     border: 2px solid #e6e6e6;
     background-color: #fff;
@@ -30,11 +29,12 @@ h1 {height:100px;}
     word-break: keep-all;
     word-wrap: break-word;
 }
-.loginlist {padding-left: 19%;padding-right: 19%;}
-#field {padding-bottom: 10px;text-align: center;}
-#userId {width: 200px;height:30px;}
-#userPwd {width: 200px;height:30px;}
-#loginBtn {margin-top:60px;}
+
+.loginlist {padding-left: 10%;padding-right: 19%;}
+#field {padding-bottom: 15px;text-align: center; }
+#userId {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
+#userPwd {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
+#loginBtn {margin-top:40px;width: 60%;height: 50px;background-color: #585c5f; margin-left: 13%;}
 
 
 
