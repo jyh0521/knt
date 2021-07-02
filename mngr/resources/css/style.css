@@ -43,7 +43,9 @@ h1 {height:100px;}
 }
 .loginlist {padding-left: 19%;padding-right: 19%;}
 #field {padding-bottom: 10px;text-align: center;}
-
+#userId {width: 200px;height:30px;}
+#userPwd {width: 200px;height:30px;}
+#loginBtn {margin-top:60px;}
 /* 1. main 페이지 */
 /* 최상단 부분 */
 #mainTop { border-radius: 0; height: 3%; padding-left: 63%; background-color: #3f3f40; } 
