@@ -4,7 +4,9 @@
 
     $id = $_POST['id'];
 
-    $sql = "UPDATE USR_BRD SET BRD_DISABLE = 'N' WHERE BRD_ID = '$id'";
+    $sql = "UPDATE USR_BRD 
+               SET BRD_DISABLE = 'N' 
+             WHERE BRD_ID = '$id'";
 
     $result = mysql_query($sql, $connect);
 

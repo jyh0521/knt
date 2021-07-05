@@ -3,7 +3,15 @@
 
     $startrow = $_POST['startrow'];
 
-    $sql = "SELECT * FROM USR_BRD WHERE BRD_CDE = 'BRD_002' AND BRD_DISABLE = 'Y' ORDER BY BRD_DATE DESC LIMIT $startrow,10";
+    $sql = "SELECT R1.*
+              FROM (
+                SELECT BRD_ID, BRD_TITLE, BRD_DATE, BRD_HIT
+                  FROM USR_BRD
+                 WHERE BRD_CDE = 'BRD_002'
+                   AND BRD_DISABLE = 'Y'
+                 ORDER BY BRD_DATE DESC
+              ) R1
+              LIMIT 10 OFFSET $startrow";
        
     $result = mysql_query($sql, $connect);
 
@@ -13,7 +21,6 @@
         $tmp = array(
             'BRD_ID' => $row['BRD_ID'],
             'BRD_TITLE' => $row['BRD_TITLE'],
-            'BRD_WRITER' => $row['BRD_WRITER'],
             'BRD_DATE' => $row['BRD_DATE'],
             'BRD_HIT' => $row['BRD_HIT']
         );

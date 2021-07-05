@@ -1,12 +1,12 @@
 <?
     include $_SERVER["DOCUMENT_ROOT"]."/knt/lib/php/connectDB.php";
 
-    $writer = $_POST['writer'];
     $title = $_POST['title'];
     $content = $_POST['content'];
     $date = $_POST['date'];
 
-    $sql = "INSERT INTO USR_BRD(BRD_TITLE, BRD_CONTENT, BRD_WRITER, BRD_CDE, BRD_DATE) VALUES ('$title','$content','$writer','BRD_002','$date')";//일단
+    $sql = "INSERT INTO USR_BRD(BRD_TITLE, BRD_CONTENT, BRD_CDE, BRD_DATE) 
+                 VALUES ('$title','$content','BRD_002','$date')";
 
     $result = mysql_query($sql, $connect);
 
