@@ -5,12 +5,12 @@ window.onload = function () {
     $('.ui .dropdown').dropdown();
     
     // 학술국 공지사항 먼저 실행
-    noticeBrd.initNoticeBrd();
+    noticeBrdList.initNoticeBrd();
 };
 
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
-    noticeBrd.initNoticeBrd();
+    noticeBrdList.initNoticeBrd();
 });
 
 // 내 지원서 클릭 시
@@ -30,7 +30,7 @@ window.onpopstate = function(event) {
 function loadStateContent(state) {
     if(state != null) {
         if(state.page_id === 'noticeBrd') {
-            noticeBrd.initNoticeBrd();
+            noticeBrdList.initNoticeBrd();
         }
         else if(state.page_id === 'myForm') {
             myForm.initMyForm();

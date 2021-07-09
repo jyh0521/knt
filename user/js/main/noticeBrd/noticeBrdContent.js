@@ -8,22 +8,22 @@ let noticeBrdContent = (function() {
     function showNoticeBrdContent(content){
 
         //제목
-        let kntNoticeBrdContentTitleDomainHtml = "";
+        let kntNoticeBrdContentTitleDomainHtml = '';
         kntNoticeBrdContentTitleDomainHtml += '<p class="title">' + content['BRD_TITLE'] + '</p>';
 
-        $("#kntNoticeBrdContentTitleDomain").empty().append(kntNoticeBrdContentTitleDomainHtml);
+        $('#kntNoticeBrdContentTitleDomain').empty().append(kntNoticeBrdContentTitleDomainHtml);
 
         //내용
-        let kntNoticeBrdContentDomainHtml = "";
-        kntNoticeBrdContentDomainHtml +=    "<p>" + makeEnter(content['BRD_CONTENT']) + "</p>";
+        let kntNoticeBrdContentDomainHtml = '';
+        kntNoticeBrdContentDomainHtml +=    '<p>' + makeEnter(content['BRD_CONTENT']) + '</p>';
 
         $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
 
         //등록일
-        let kntNoticeBrdContentDateDomainHtml = ""
-        kntNoticeBrdContentDateDomainHtml += "<p>등록일 " + content['BRD_DATE']; + "</p>"
+        let kntNoticeBrdContentDateDomainHtml = ''
+        kntNoticeBrdContentDateDomainHtml += '<p>등록일 ' + content['BRD_DATE']; + '</p>';
 
-        $("#kntNoticeBrdContentDateDomain").empty().append(kntNoticeBrdContentDateDomainHtml);
+        $('#kntNoticeBrdContentDateDomain').empty().append(kntNoticeBrdContentDateDomainHtml);
 
         //지원하기 버튼
         if(content['BRD_FORM'] != 'empty') {
@@ -44,7 +44,6 @@ let noticeBrdContent = (function() {
 
             if(confirm('지원서를 작성하시겠습니까?')) {
                 $("#menuFuncDiv").load("formWrite/formInfoWrite.html", function () {
-                    // 함수경로: /knt/user/js/main/formWrite/formInfoWrite.js
                     formInfoWrite.initFormInfoWrite(id);
                 });
             }

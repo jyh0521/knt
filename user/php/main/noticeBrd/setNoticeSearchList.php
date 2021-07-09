@@ -7,7 +7,7 @@
        
     $sql = "SELECT R1.*
               FROM (
-                SELECT BRD_ID, BRD_TITLE, BRD_DATE, BRD_HIT
+                SELECT BRD_ID, BRD_TITLE, BRD_DATE
                   FROM USR_BRD
                  WHERE BRD_CDE = 'BRD_002'
                    AND BRD_DISABLE = 'Y'
@@ -26,7 +26,6 @@
             'BRD_ID' => $row['BRD_ID'],
             'BRD_TITLE' => $row['BRD_TITLE'],
             'BRD_DATE' => $row['BRD_DATE'],
-            'BRD_HIT' => $row['BRD_HIT']
         );
 
         array_push($value, $tmp);

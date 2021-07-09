@@ -42,7 +42,6 @@ let formInfoWrite = (function(){
                         // 저장된 지원서가 없는 경우
                         else {
                             $('#menuFuncDiv').load('formWrite/formWrite.html', function () {
-                                // 함수경로: /knt/user/js/main/formWrite/formWrite.js
                                 formWrite.initFormWrite(param);
                             });
                         }

@@ -3,7 +3,7 @@
 
     $id = $_POST['id'];
 
-    $sql = "SELECT BRD_TITLE, BRD_CONTENT, BRD_DATE, BRD_HIT, BRD_FORM
+    $sql = "SELECT BRD_TITLE, BRD_CONTENT, BRD_DATE, BRD_FORM
               FROM USR_BRD
              WHERE BRD_ID = '$id'";
 
@@ -15,7 +15,6 @@
         'BRD_TITLE' => $row['BRD_TITLE'],
         'BRD_CONTENT' => $row['BRD_CONTENT'],
         'BRD_DATE' => $row['BRD_DATE'],
-        'BRD_HIT' => $row['BRD_HIT'],
         'BRD_FORM' => $row['BRD_FORM']
     );
     echo json_encode($value);
