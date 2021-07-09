@@ -1,13 +1,5 @@
 let nowPage = '';
 
-//ui 드롭다운 안먹힐때
-window.onload = function () {
-    $('.ui .dropdown').dropdown();
-    
-    // 학술국 공지사항 먼저 실행
-    noticeBrdList.initNoticeBrd();
-};
-
 //학술국 공지사항 클릭 시
 $("#noticeBtn").off("click").on("click", function () {
     noticeBrdList.initNoticeBrd();

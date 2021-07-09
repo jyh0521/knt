@@ -18,28 +18,23 @@ let noticeBrdList = (function() {
     // 공지사항 목록 데이터 불러오기
     function getNoticeBrdList(currentPage){
         let startrow = (currentPage - 1) * 10;
-        let info =  {
-            startrow : startrow
-        };
-        let param = makeParam(info);
+        let param = "startrow=" + startrow;
 
         requestData('/knt/user/php/main/noticeBrd/getNoticeList.php', param).done(function(result){
-            showNoticeBrdTable();
-            showNoticeBrdList(currentPage,result);
+            $("#kntNoticeBrdDomain").load("noticeBrd/noticeBrdTable.html", function () {
+                showNoticeBrdList(currentPage,result);
+            });
         });
     }
 
     // 공지사항 내용 데이터 불러오기
-    function getNoticeBrdContent(info){
-        let param = makeParam(info);
+    function getNoticeBrdContent(param){
 
         requestData('/knt/user/php/main/noticeBrd/getNoticeContent.php', param).done(function(result){
-            let content = result;
-
             makeBackEvent('noticeBrdContent');
 
             $('#menuFuncDiv').load('noticeBrd/noticeBrdContent.html', function () {
-                noticeBrdContent.initnoticeBrdContent(content);
+                noticeBrdContent.initnoticeBrdContent(result);
             });
         });
     }
@@ -62,50 +57,25 @@ let noticeBrdList = (function() {
 
     // 공지사항 검색된 리스트 불러오기
     function setNoticeSearchList(currentPage){
-        let text = $('#noticeSearchText').val();//검색 input text값
-        let option = $('#SelectNoticeSearchOption').val();//선택된 select option
+        let text = $('#noticeSearchText').val();
+        let option = $('#SelectNoticeSearchOption').val();
         let startrow = (currentPage - 1) * 10;
         let info = {
-            text : text,
+            text : text, 
             option : option,
             startrow : startrow
         };
         let param = makeParam(info);
 
         requestData('/knt/user/php/main/noticeBrd/setNoticeSearchList.php', param).done(function(result){   
-            showNoticeBrdTable();
-            showNoticeBrdList(currentPage,result);
+            $("#kntNoticeBrdDomain").load("noticeBrd/noticeBrdTable.html", function () {
+                showNoticeBrdList(currentPage,result);
+            });
         });
 
     }
 
-    /*
-        TODO    
-        1. .load 써서 html에 미리 그려놓기
-        2. 화면 그려주기 정정
-    */
-    function showNoticeBrdTable(){
-        let kntNoticeBrdContentDomainHtml= '';
-        
-        kntNoticeBrdContentDomainHtml += '<table class="tableDiv">';
-        kntNoticeBrdContentDomainHtml +=     '<thead>';
-        kntNoticeBrdContentDomainHtml +=         '<tr>';
-        kntNoticeBrdContentDomainHtml +=             '<th style="width: 110px;">번호</th>';
-        kntNoticeBrdContentDomainHtml +=             '<th style="width: 490px;">제목</th>';
-        kntNoticeBrdContentDomainHtml +=             '<th>작성일</th>';
-        kntNoticeBrdContentDomainHtml +=         '</tr>';
-        kntNoticeBrdContentDomainHtml +=     '</thead>';
-        kntNoticeBrdContentDomainHtml +=     '<tbody id="noticeBrdListTbody">';
-        kntNoticeBrdContentDomainHtml +=     '</tbody>';
-        kntNoticeBrdContentDomainHtml += '</table>';
-
-        $('#kntNoticeBrdDomain').empty().append(kntNoticeBrdContentDomainHtml);
-
-        // 화면을 다 그린 후 보여주기
-        $('#kntNoticeBrd').css('display', 'block');
-    };
-
-    //공지사항 목록 보여주기
+    // 공지사항 목록 보여주기
     function showNoticeBrdList(currentPage,list) {
 
         let noticeBrdListTbodyHtml = '';
@@ -121,6 +91,9 @@ let noticeBrdList = (function() {
         }
 
         $('#noticeBrdListTbody').empty().append(noticeBrdListTbodyHtml);
+
+        // 화면을 다 그린 후 보여주기
+        $('#kntNoticeBrd').css('display', 'block');
 
         initNoticeBrdEvent();
     }
@@ -145,10 +118,8 @@ let noticeBrdList = (function() {
 
         // 공지사항 목록 중 제목 클릭 시 
         $('.kntNoticeBrdTitle').off('click').on('click', function(){
-            let id = this.id.substr(22);
-            let param = {
-                id : id
-            };
+            let param = "id=" + this.id.substr(22);
+            
             getNoticeBrdContent(param);
         });
     }
