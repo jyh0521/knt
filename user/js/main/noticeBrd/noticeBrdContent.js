@@ -17,7 +17,7 @@ let noticeBrdContent = (function() {
         let kntNoticeBrdContentDomainHtml = '';
         kntNoticeBrdContentDomainHtml +=    '<p>' + makeEnter(content['BRD_CONTENT']) + '</p>';
 
-        $("#kntNoticeBrdContentDomain").empty().append(kntNoticeBrdContentDomainHtml);
+        $('#kntNoticeBrdContentDomain').empty().append(kntNoticeBrdContentDomainHtml);
 
         //등록일
         let kntNoticeBrdContentDateDomainHtml = ''
