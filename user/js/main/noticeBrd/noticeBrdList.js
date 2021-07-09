@@ -1,34 +1,21 @@
 let noticeBrdList = (function() {
-    let searchOrAll = '';//검색한 리스트 or 전체 리스트
-
     function showNoticeBrd(){
         makeBackEvent('noticeBrd');
 
         $('#menuFuncDiv').load('noticeBrd/noticeBrd.html', function () {
-            if(searchOrAll == 'search'){ //검색 관련 리스트 불러오기
-                let text = $('#noticeSearchText').val();//검색 input text값
-                let option = $('#SelectNoticeSearchOption').val();//선택된 select option
-                let param = {
-                    text : text,
-                    option : option
-                }
-
-                getNoticeSearchListCount(param);
-            }
-            else{ //전체 리스트 불러오기
-                getNoticeBrdListCount();
-            }   
-        });  
+            // 전체 리스트 불러오기
+            getNoticeBrdListCount();
+        });
     }
 
-    //목록 전체 데이터 수 불러오기 
+    // 목록 전체 데이터 수 불러오기
     function getNoticeBrdListCount(){
         requestData('/knt/user/php/main/noticeBrd/getNoticeBrdListCount.php').done(function(result){
             DrawPaging(result['COUNT'], 10, 1, 'kntNoticeBrdPagingArea',  getNoticeBrdList);
         });
     }
 
-    //공지사항 목록 데이터 불러오기
+    // 공지사항 목록 데이터 불러오기
     function getNoticeBrdList(currentPage){
         let startrow = (currentPage - 1) * 10;
         let info =  {
@@ -42,7 +29,7 @@ let noticeBrdList = (function() {
         });
     }
 
-    //공지사항 내용 데이터 불러오기
+    // 공지사항 내용 데이터 불러오기
     function getNoticeBrdContent(info){
         let param = makeParam(info);
 
@@ -57,7 +44,7 @@ let noticeBrdList = (function() {
         });
     }
 
-    //검색된 리스트 수 불러오기
+    // 검색된 리스트 수 불러오기
     function getNoticeSearchListCount(info){
         let param = makeParam(info);
 
@@ -73,7 +60,7 @@ let noticeBrdList = (function() {
         });
     }
 
-    //공지사항 검색된 리스트 불러오기
+    // 공지사항 검색된 리스트 불러오기
     function setNoticeSearchList(currentPage){
         let text = $('#noticeSearchText').val();//검색 input text값
         let option = $('#SelectNoticeSearchOption').val();//선택된 select option
@@ -92,6 +79,11 @@ let noticeBrdList = (function() {
 
     }
 
+    /*
+        TODO    
+        1. .load 써서 html에 미리 그려놓기
+        2. 화면 그려주기 정정
+    */
     function showNoticeBrdTable(){
         let kntNoticeBrdContentDomainHtml= '';
         
@@ -133,28 +125,25 @@ let noticeBrdList = (function() {
         initNoticeBrdEvent();
     }
 
-    //공지사항 이벤트
+    // 공지사항 이벤트
     function initNoticeBrdEvent(){
-        //검색 버튼 클릭 시
+        // 검색 버튼 클릭 시
         $('#noticeSearchBtn').off('click').on('click', function(){
-            let noticeSearchText = $('#noticeSearchText').val();//검색 input text값
+            let noticeSearchText = $('#noticeSearchText').val();// 검색 input text값
             if(!noticeSearchText){
                 alert('검색어를 입력하세요.');
             }
             else{
-                searchOrAll = 'search';
-                let text = $('#noticeSearchText').val();//검색 input text값
-                let option = $('#SelectNoticeSearchOption').val();//선택된 select option
                 let param = {
-                    text : text,
-                    option : option
+                    text : $('#noticeSearchText').val(), // 검색 input text값
+                    option : $('#SelectNoticeSearchOption').val() // 선택된 select option
                 }
 
                 getNoticeSearchListCount(param);
             }
         });
 
-        //공지사항 목록 중 제목 클릭 시 
+        // 공지사항 목록 중 제목 클릭 시 
         $('.kntNoticeBrdTitle').off('click').on('click', function(){
             let id = this.id.substr(22);
             let param = {
