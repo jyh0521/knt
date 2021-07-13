@@ -82,17 +82,21 @@ let noticeBrdMngWrite = (function() {
         function initNoticeBrdMngWriteEvent() {
             // 작성 버튼 클릭 시
             $('#noticeBrdMngWriteContentBtn').off('click').on('click', function(){
-                let title = $('#noticeBrdMngWriteTitle').val();
-                let content = $('#noticeBrdMngWriteContent').val();
-                let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
-                let form = $('#formName').val()
+                let form = $('#formName').val();
+                let info = {
+                    title : $('#noticeBrdMngWriteTitle').val(),
+                    content : $('#noticeBrdMngWriteContent').val(),
+                    date : getTimeStamp(new Date()),
+                    form : form,
+                    writer : 'ADMIN'
+                };
 
                 if(form != 'empty') {
                     form = form.substr(10);
                 }
 
                 if(confirm('작성 하시겠습니까?')) {
-                    let param = 'writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date + '&form=' + form;
+                    let param = makeParam(info);
                     setNoticeBrdMngContent(param);
                 }
                 else {
@@ -102,18 +106,22 @@ let noticeBrdMngWrite = (function() {
 
             // 수정 버튼 클릭 시
             $('#noticeBrdMngWriteUpdateContentBtn').off('click').on('click', function(){
-                let title = $('#noticeBrdMngWriteTitle').val();
-                let content = $('#noticeBrdMngWriteContent').val();
-                let date = getTimeStamp(new Date()); // 날짜 getTimeStamp() : YYYY-MM-DD hh:mm:ss형식으로 저장
                 let form = $('#formName').val();
-                let id = param['id'];
+                let info = {
+                    title : $('#noticeBrdMngWriteTitle').val(),
+                    content : $('#noticeBrdMngWriteContent').val(),
+                    date : getTimeStamp(new Date()),
+                    form : form,
+                    id : param['id'],
+                    writer : 'ADMIN'
+                };
 
                 if(form != 'empty') {
                     form = form.substr(10);
                 }
 
                 if(confirm('수정 하시겠습니까?')) {
-                    let param = 'id=' + id + '&writer=ADMIN' + '&title=' + title + '&content=' + content + '&date=' + date + '&form=' + form;
+                    let param = makeParam(info);
                     updateNoticeBrdMngContent(param);
                 }
                 else {
