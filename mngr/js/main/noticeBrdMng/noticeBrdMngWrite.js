@@ -9,7 +9,7 @@ let noticeBrdMngWrite = (function() {
         requestData('/knt/mngr/php/main/noticeBrdMng/setNoticeBrdMngContent.php', param).done(function(result){
             if(result){
                 alert('작성 되었습니다.');
-                $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngList.html", function () {
+                $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngList.html', function () {
                     noticeBrdMngList.initNoticeBrdMng();
                 });
             }
@@ -24,7 +24,7 @@ let noticeBrdMngWrite = (function() {
         requestData('/knt/mngr/php/main/noticeBrdMng/updateNoticeBrdMngContent.php', param).done(function(result){
             if(result){
                 alert('수정 되었습니다.');
-                $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngList.html", function () {
+                $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngList.html', function () {
                     noticeBrdMngList.initNoticeBrdMng();
                 });
             }
@@ -123,7 +123,7 @@ let noticeBrdMngWrite = (function() {
 
             // 뒤로 버튼 클릭 시
             $('#noticeBrdMngWriteBackBtn').off('click').on('click', function(){
-                $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngList.html", function () {
+                $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngList.html', function () {
                     noticeBrdMngList.initNoticeBrdMng();
                 });
             });

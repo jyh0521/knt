@@ -29,9 +29,9 @@ let noticeBrdMngList = (function() {
 
     // 게시판 내용 데이터 불러오기
     function getNoticeBrdMngContent(id){
-        let param = "id=" + id; 
+        let param = 'id=' + id; 
 
-        requestData("/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngContent.php",param).done(function(result){
+        requestData('/knt/mngr/php/main/noticeBrdMng/getNoticeBrdMngContent.php',param).done(function(result){
             $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngContent.html', function () {
                 noticeBrdMngContent.initnoticeBrdMngContent(result,id);
             });

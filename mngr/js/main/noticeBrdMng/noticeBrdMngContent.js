@@ -9,7 +9,7 @@ let noticeBrdMngContent = (function() {
         requestData('/knt/mngr/php/main/noticeBrdMng/delNoticeBrdMngContent.php', param).done(function(result){
             if(result){
                 alert('삭제 되었습니다.');
-                $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngList.html", function () {
+                $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngList.html', function () {
                     noticeBrdMngList.initNoticeBrdMng();
                 });
             }
@@ -22,29 +22,29 @@ let noticeBrdMngContent = (function() {
     // 게시판 내용 보여주기
     function showNoticeBrdMngContent(Content,id){
         // 제목
-        let kntNoticeBrdMngContentTitleDomainHtml = "";
+        let kntNoticeBrdMngContentTitleDomainHtml = '';
         kntNoticeBrdMngContentTitleDomainHtml += '<p class="title">' + Content['BRD_TITLE'] + '</p>';
 
-        $("#kntNoticeBrdMngContentTitleDomain").empty().append(kntNoticeBrdMngContentTitleDomainHtml);
+        $('#kntNoticeBrdMngContentTitleDomain').empty().append(kntNoticeBrdMngContentTitleDomainHtml);
 
         // 내용
-        let kntNoticeBrdMngContentDomainHtml = "";
-        kntNoticeBrdMngContentDomainHtml +=    "<p>" + makeEnter(Content['BRD_CONTENT']) + "</p>";
+        let kntNoticeBrdMngContentDomainHtml = '';
+        kntNoticeBrdMngContentDomainHtml +=    '<p>' + makeEnter(Content['BRD_CONTENT']) + '</p>';
 
-        $("#kntNoticeBrdMngContentDomain").empty().append(kntNoticeBrdMngContentDomainHtml);
+        $('#kntNoticeBrdMngContentDomain').empty().append(kntNoticeBrdMngContentDomainHtml);
 
         // 등록일, 작성자, 등록된 지원서
-        let kntNoticeBrdMngContentDateWriterFormDomainHtml = ""
-        kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록일 " + Content['BRD_DATE']; + "</p>"
-        kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>작성자 " + Content['BRD_WRITER'] + "</p>";
+        let kntNoticeBrdMngContentDateWriterFormDomainHtml = ''
+        kntNoticeBrdMngContentDateWriterFormDomainHtml += '<p>등록일 ' + Content['BRD_DATE']; + '</p>'
+        kntNoticeBrdMngContentDateWriterFormDomainHtml += '<p>작성자 ' + Content['BRD_WRITER'] + '</p>';
         if(noticeBrdMngContent['BRD_FORM'] === 'empty') {
-            kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록된 지원서 : 없음</p>";
+            kntNoticeBrdMngContentDateWriterFormDomainHtml += '<p>등록된 지원서 : 없음</p>';
         }
         else {
-            kntNoticeBrdMngContentDateWriterFormDomainHtml += "<p>등록된 지원서 : " + Content['BRD_FORM'] + "</p>";
+            kntNoticeBrdMngContentDateWriterFormDomainHtml += '<p>등록된 지원서 : ' + Content['BRD_FORM'] + '</p>';
         }
 
-        $("#kntNoticeBrdMngContentDateWriterFormDomain").empty().append(kntNoticeBrdMngContentDateWriterFormDomainHtml);
+        $('#kntNoticeBrdMngContentDateWriterFormDomain').empty().append(kntNoticeBrdMngContentDateWriterFormDomainHtml);
 
         initNoticeBrdMngContentEvent(Content,id);
     }
@@ -59,7 +59,7 @@ let noticeBrdMngContent = (function() {
             param['form'] = Content['BRD_FORM'];
             param['id'] = id;
 
-            $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngWrite.html", function () {
+            $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngWrite.html', function () {
                 noticeBrdMngWrite.initnoticeBrdMngWrite(param,'update');
             });
         });
@@ -77,7 +77,7 @@ let noticeBrdMngContent = (function() {
 
         // 뒤로 버튼 클릭 시
         $('#noticeBrdMngContentBackBtn').off('click').on('click', function(){
-            $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMngList.html", function () {
+            $('#menuFuncDiv').load('noticeBrdMng/noticeBrdMngList.html', function () {
                 noticeBrdMngList.initNoticeBrdMng();
             });
         });
