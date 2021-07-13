@@ -1,9 +1,8 @@
 let noticeBrdList = (function() {
     function showNoticeBrd(){
-        makeBackEvent('noticeBrd');
+        makeBackEvent('noticeBrdList');
 
-        $('#menuFuncDiv').load('noticeBrd/noticeBrd.html', function () {
-            // 전체 리스트 불러오기
+        $('#menuFuncDiv').load('noticeBrd/noticeBrdList.html', function () {
             getNoticeBrdListCount();
         });
     }

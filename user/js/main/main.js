@@ -21,7 +21,7 @@ window.onpopstate = function(event) {
 
 function loadStateContent(state) {
     if(state != null) {
-        if(state.page_id === 'noticeBrd') {
+        if(state.page_id === 'noticeBrdList') {
             noticeBrdList.initNoticeBrd();
         }
         else if(state.page_id === 'myForm') {

@@ -14,9 +14,7 @@ $("#memberMngBtn").off("click").on("click", function () {
 
 //게시판 관리 버튼 클릭 시 
 $("#noticeBrdMngBtn").off("click").on("click", function () {
-    $("#menuFuncDiv").load("noticeBrdMng/noticeBrdMng.html", function () {
-        showNoticeBrdMng();
-    });
+    noticeBrdMngList.initNoticeBrdMng();
 });
 
 // 지원서 양식 버튼 클릭 시
