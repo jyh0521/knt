@@ -1,26 +1,23 @@
 /* 1. main 페이지 */
 /* 최상단 부분 */
-#mainTop { border-radius: 0;height: 3%; padding-left: 63%; background-color: #3f3f40; }
+#mainTop { border-radius: 0; height: 3%; padding-left: 63%; background-color: #3f3f40; } 
 
 /* 로고 */
-#mainKNTLogo { width: 35%;height: 85%;padding-right: 5%;margin-right: 12%; }
+#mainKNTLogo { width: 35%; height: 85%; padding-right: 5%; margin-right: 12%; } 
 
 /* 상단 메뉴바 */
-#mainMenuContainer { padding-bottom: 0.4%; margin-bottom: 0px;}
-#mainMenuBtnDiv { margin-left: 20%; margin-right: 20%; width: 100%; }
+#mainMenuContainer { padding-bottom: 0.4%; margin-bottom: 0px; } 
+#mainMenuBtnDiv { margin-left: 20%; margin-right: 20%; width: 100%; } 
 
 /* 배경 색 */
-.mainMenuBackground { background-color: #eff0f2;}
+.mainMenuBackground { background-color: #eff0f2; } 
 
 /* 메뉴 컨테이너 */
-#menuContainer { margin-left: 18%; margin-right: 18%; }
+#menuContainer { margin-left: 18%; margin-right: 18%; } 
 
-.ui.main.menu { border: none; }
+.ui.main.menu { border: none; } 
 
-.ui.footer.segment {
-    margin: 5em 0em 0em;
-    padding: 5em 0em;
-} 
+.ui.footer.segment { margin: 5em 0em 0em; padding: 5em 0em; } 
 
 /* 2. 학술국 소개 페이지 */
 
@@ -33,71 +30,74 @@
 
 /* 3. 공지사항 페이지*/
 
-/* 공지사항 글씨  */
-.noticeBrdHeaderTitle { text-align: center; padding-top: 40px; font-size: 23pt; font-weight: 540; padding-bottom: 40px;}
+/* 공지사항 글씨 */
+.noticeBrdHeaderTitle { text-align: center; padding-top: 40px; font-size: 23pt; font-weight: 540; padding-bottom: 40px; } 
 
 /* 공지사항 게시판 보여주는 부분 */
-#kntNoticeBrd .noticeContentDiv { margin: 40px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
+#kntNoticeBrd .noticeContentDiv { margin: 40px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff; } 
 
 /* 공지사항 검색 div */
-.noticeBrdSearchDiv .ui.action.input { height: 40px; width: 45%;}
-#noticeSearchText { border-radius: 0px;}
-.noticeBrdSearchDiv { text-align: center; height: 45px; padding: 20px 0 60px 25px; background: #f6f6f6; border-top: 1px solid #000000;}
-#SelectNoticeSearchOption { padding-top: 8px;padding-bottom: 8px;height: 40px;width: 94px;padding-right: 10px; border-radius: 0px;}
-#noticeSearchBtn { cursor: pointer; background-color: rgb(95, 95, 95);color: #fff;margin-left: 10px;padding-bottom: 13px;padding-top: 13px; border-radius: 0px;}
+.noticeBrdSearchDiv .ui.action.input { height: 40px; width: 45%; } 
+#noticeSearchText { border-radius: 0px; } 
+.noticeBrdSearchDiv { text-align: center; height: 45px; padding: 20px 0 60px 25px; background: #f6f6f6; border-top: 1px solid #000000; } 
+#SelectNoticeSearchOption { padding-top: 8px; padding-bottom: 8px; height: 40px; width: 94px; padding-right: 10px; border-radius: 0px; } 
+#noticeSearchBtn { cursor: pointer; background-color: rgb(95, 95, 95); color: #fff; margin-left: 10px; padding-bottom: 13px; padding-top: 13px; border-radius: 0px; } 
 
 /* 공지사항 테이블 */
-#kntNoticeBrdDomain { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 30px;}
-#kntNoticeBrdDomain .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed;}
-#kntNoticeBrdDomain table thead tr th{ position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0}
+#kntNoticeBrdDomain { clear: both; overflow: hidden; width: 100%; border-top: 1px solid #000000; margin-top: 30px; } 
+#kntNoticeBrdDomain .tableDiv { border-collapse: collapse; width: 100%; table-layout: fixed; } 
+#kntNoticeBrdDomain table thead tr th { position: relative; padding: 0 5px; height: 80px; font-weight: 600; text-align: center; background: #f6f6f6; border-bottom: 1px solid #d0d0d0 } 
 
 /* 공지사항 목록 */
-#kntNoticeBrdDomain table tbody tr{ cursor: pointer;}
-#kntNoticeBrdDomain table tbody tr:hover { background-color: rgb(245, 245, 245); }
-#kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR'}
+#kntNoticeBrdDomain table tbody tr { cursor: pointer; } 
+#kntNoticeBrdDomain table tbody tr:hover { background-color: rgb(245, 245, 245); } 
+#kntNoticeBrdDomain table tbody td { cursor: pointer; position: relative; padding: 6px 5px; height: 80px; text-align: center; border-bottom: 1px solid #ddd; font-weight: 300; font-family: 'Noto Sans KR' } 
 
 /* 공지사항 내용 배경 */
-#kntNoticeBrdContent { margin: 40px 0 102px; border: 1px solid #e6e6e6; background-color: #fff;}
+#kntNoticeBrdContent { margin: 40px 0 102px; border: 1px solid #e6e6e6; background-color: #fff; } 
 
 /* 공지사항 내용 제목 부분 */
-#kntNoticeBrdContent .titleDiv { position: relative; height: 128px; border-bottom: 1px solid #e6e6e6;}
-#kntNoticeBrdContentTitleDomain { padding: 49px 120px 0 120px; }
-#kntNoticeBrdContentTitleDomain .title { font-size: 28px; font-weight: normal; text-align: center;}
+#kntNoticeBrdContent .titleDiv { position: relative; height: 128px; border-bottom: 1px solid #e6e6e6; } 
+#kntNoticeBrdContentTitleDomain { padding: 49px 120px 0 120px; } 
+#kntNoticeBrdContentTitleDomain .title { font-size: 28px; font-weight: normal; text-align: center; } 
 
 /* 공지사항 내용 부분 */
-#kntNoticeBrdContent .contentDiv { padding: 60px 120px 0;}
+#kntNoticeBrdContent .contentDiv { padding: 60px 120px 0; } 
 
 /* 공지사항 내용 등록일 부분 */
-#kntNoticeBrdContentDateDomain { display: block; margin-top: 72px; font-family: 'Noto Sans KR'; color: #b2b2b2; font-size: 9pt;}
+#kntNoticeBrdContentDateDomain { display: block; margin-top: 72px; font-family: 'Noto Sans KR'; color: #b2b2b2; font-size: 9pt; } 
 
 /* 지원하기 버튼 */
-#kntNoticeSubmitBtnDiv { padding: 60px 0 80px; text-align: center; }
-.ui.primary.submit.labeled.icon.button.writeRegistedFormBtn { background-color: #585c5f; width: 230px; height: 65px; font-size: 14pt; padding-top: 24px;}
+#kntNoticeSubmitBtnDiv { padding: 60px 0 80px; text-align: center; } 
+.ui.primary.submit.labeled.icon.button.writeRegistedFormBtn { background-color: #585c5f; width: 230px; height: 65px; font-size: 14pt; padding-top: 24px; } 
 
 /* 페이징 */
-#kntNoticeBrdPagingArea {text-align:center;padding-top: 4%;padding-bottom: 3%;}
+#kntNoticeBrdPagingArea { text-align:center; padding-top: 4%; padding-bottom: 3%; } 
 
 
 
 /* 4. 지원서 등록 페이지 */
 
-.formInfoDiv { padding-top: 7%; padding-bottom: 7%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd; margin-top: 7%; margin-left: 10%; margin-right: 10%;}
-.formInfoLeftDiv { display: inline-block; width: 50%; text-align: center; border-right: 1px solid #dadada;}
-.formInfoRightDiv {display: inline-block; text-align: center; }
+.formInfoDiv { padding-top: 7%; padding-bottom: 7%; background-color: rgb(255, 255, 255); border: 1px solid #cfcdcd; margin-top: 7%; margin-left: 10%; margin-right: 10%; } 
+.formInfoLeftDiv { display: inline-block; width: 50%; text-align: center; border-right: 1px solid #dadada; } 
+.formInfoRightDiv { display: inline-block; text-align: center; } 
 
 /* 지원서 등록 제목 */
-.formInfoTitleDiv .formInfoTitle { margin-bottom: 1%;}
-.formInfoDiv .formInfoLeftDiv .formInfoTitleDiv {padding-bottom: 3%;}
+.formInfoTitleDiv .formInfoTitle { margin-bottom: 1%; } 
+.formInfoDiv .formInfoLeftDiv .formInfoTitleDiv { padding-bottom: 3%; } 
 
 /* 지원서 등록 작성 부분 */
-#formInfoWrite { padding-top: 2%;}
+#formInfoWrite { padding-top: 2%; } 
+
+/* 지원서 등록 비밀번호 정규식 */
+#formInfoWrite .infoTxt { font-family: NanumBarunGothicLight; font-size: 12px; margin-left: 82px; margin-right: 82px; } 
 
 /* 지원서 정보 작성 공간 */
-.ui.large.form .formInfoField { width: 55%; height: 50px; border: 1px solid #979797;}
+.ui.large.form .formInfoField { width: 55%; height: 50px; border: 1px solid #979797; } 
 
 /* 지원서 정보 등록하기 버튼 */
-#formInfoBtn { padding-top: 3%; padding-bottom: 3%;}
-#formInfoSubmitBtn { width: 55%; height: 50px; background-color: #585c5f; margin-top: 2%; font-size: 12pt;}
+#formInfoBtn { padding-top: 3%; padding-bottom: 3%; } 
+#formInfoSubmitBtn { width: 55%; height: 50px; background-color: #585c5f; margin-top: 2%; font-size: 12pt; } 
 
 
 
@@ -107,66 +107,66 @@
 /* 5. 지원서 작성하기 페이지 */
 
 /* 지원서 작성하기 제목 부분 */
-.formWriteTxt { padding-top: 20px; font-size: 20pt; font-weight: 540;}
-#formWriteContentTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff;}
-#formWriteContentTitle h4 {  text-align: center; font-size: 20px; font-weight: normal;}
+.formWriteTxt { padding-top: 20px; font-size: 20pt; font-weight: 540; } 
+#formWriteContentTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff; } 
+#formWriteContentTitle h4 { text-align: center; font-size: 20px; font-weight: normal; } 
 
 /* 지원서 작성하기 내용 부분 */
-.formWriteInfoSubDiv1 .field {cursor: not-allowed;}
-.formWriteInfoDivArea { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
-.formWriteInfoDivArea .txt{ padding-left: 5px; color: #79021f;}
-.formWriteInfoDivArea .formWriteaInfoTitle{ margin: 44px 0 12px; font-size: 18px; font-weight: normal;}
-#formWriteInfoDiv .field { width: 178px; height: 38px; margin-right: 10px; font-size: 14px; color: #888888; padding: 0 10px; border: 1px solid #c8c8c8;}
-.formWriteInfoSubDiv1 {padding-bottom: 10px;}
-.formWriteInfoSubDiv1 .field{background-color: #ececec;}
+.formWriteInfoSubDiv1 .field { cursor: not-allowed; } 
+.formWriteInfoDivArea { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff; } 
+.formWriteInfoDivArea .txt { padding-left: 5px; color: #79021f; } 
+.formWriteInfoDivArea .formWriteaInfoTitle { margin: 44px 0 12px; font-size: 18px; font-weight: normal; } 
+#formWriteInfoDiv .field { width: 178px; height: 38px; margin-right: 10px; font-size: 14px; color: #888888; padding: 0 10px; border: 1px solid #c8c8c8; } 
+.formWriteInfoSubDiv1 { padding-bottom: 10px; } 
+.formWriteInfoSubDiv1 .field { background-color: #ececec; } 
 
 /* 성별 셀렉트 박스 */
-.formWriteInfoSubDiv2 #userSex {width: 100px; height: 38px; margin-right: 10px; font-size: 14px; padding: 0 10px; border: 1px solid #c8c8c8;}
+.formWriteInfoSubDiv2 #userSex { width: 100px; height: 38px; margin-right: 10px; font-size: 14px; padding: 0 10px; border: 1px solid #c8c8c8; } 
 
 /* 지원서 질문 텍스트 */
-#formWriteContentQuestionDiv p{ margin-bottom: 0px; margin-top: 20px; font-size: 17px; font-family: sans-serif;}
-#formWriteContentQuestionDiv { border-bottom: 1px solid #dadada; padding-bottom: 70px; }
+#formWriteContentQuestionDiv p { margin-bottom: 0px; margin-top: 20px; font-size: 17px; font-family: sans-serif; } 
+#formWriteContentQuestionDiv { border-bottom: 1px solid #dadada; padding-bottom: 70px; } 
 
 /* 지원서 질문 답 작성 부분 */
-.formAnsText { width: 818px; height: 120px; padding: 10px; margin-top: 8px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize:none;}
+.formAnsText { width: 818px; height: 120px; padding: 10px; margin-top: 8px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize:none; } 
 
 /* 지원서 임시저장, 제출하기, 취소 버튼 */
-#formWriteBtnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px;}
+#formWriteBtnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px; } 
 
 
 /* 6. 내 지원서 페이지 */
 
-/* 내 지원서 배경  */
-#myForm { text-align: center; margin-top: 8%; margin-left: 26%; margin-right: 26%; background-color: rgb(255, 255, 255); border: 1px solid #e9e9e9;}
+/* 내 지원서 배경 */
+#myForm { text-align: center; margin-top: 8%; margin-left: 26%; margin-right: 26%; background-color: rgb(255, 255, 255); border: 1px solid #e9e9e9; } 
 
 /* 내 지원서 제목 부분 */
-.myFormTitleDiv { padding-top: 8%; padding-bottom: 6%;}
-.myFormTxt { margin-top: 20px;}
+.myFormTitleDiv { padding-top: 8%; padding-bottom: 6%; } 
+.myFormTxt { margin-top: 20px; } 
 
 /* 내 지원서 작성 div */
-#myFormInfoWriteDiv { padding-left: 19%; padding-right: 19%;}
-.myFormInfoWrite { padding-bottom: 13%; border-bottom: 1px solid #dadada;}
+#myFormInfoWriteDiv { padding-left: 19%; padding-right: 19%; } 
+.myFormInfoWrite { padding-bottom: 13%; border-bottom: 1px solid #dadada; } 
 
 /* 내 지원서 작성 공간 */
-.ui.large.form .field .myFormInfoField { width: 80%; height: 50px; border: 1px solid #979797;}
+.ui.large.form .field .myFormInfoField { width: 80%; height: 50px; border: 1px solid #979797; } 
 
 /* 내 지원서 조회하기 버튼 div */
-#myFormBtnDiv { padding-top: 8%; padding-bottom: 10%;}
+#myFormBtnDiv { padding-top: 8%; padding-bottom: 10%; } 
 
 /* 내 지원서 조회하기 버튼 */
-#myFormFindBtn { width: 40%; height: 50px; background-color:#585c5f}
+#myFormFindBtn { width: 40%; height: 50px; background-color:#585c5f } 
 
 /* 지원서 게시판 목록 */
-#myFormListDiv { margin-left: 17%; margin-right: 17%; margin-top: 10%; background-color: rgb(255, 255, 255);  border: 1px solid #e9e9e9;}
-#myFormListDiv #myFormListDiv2{ padding-top: 10%; padding-left: 16%; padding-right: 16%;}
-#myFormListDiv h3{ font-size: 25px; margin-bottom: 10%; font-weight: normal; font-weight: 600;}
-.ui.selectable.celled.table { cursor: pointer; text-align:center;}
-#myFormListTableDiv { text-align:center; }
-#myFormListTbody {font-size: 12pt;}
+#myFormListDiv { margin-left: 17%; margin-right: 17%; margin-top: 10%; background-color: rgb(255, 255, 255); border: 1px solid #e9e9e9; } 
+#myFormListDiv #myFormListDiv2 { padding-top: 10%; padding-left: 16%; padding-right: 16%; } 
+#myFormListDiv h3 { font-size: 25px; margin-bottom: 10%; font-weight: normal; font-weight: 600; } 
+.ui.selectable.celled.table { cursor: pointer; text-align:center; } 
+#myFormListTableDiv { text-align:center; } 
+#myFormListTbody { font-size: 12pt; } 
 
 /* 내 지원서 조회, 수정, 삭제 버튼 */
-#myFormListBtnDiv { padding-top: 6%; padding-bottom: 20%;}
-.ui.black.basic.button{ font-size: 13pt;width: 31%; height: 45px; font-weight: 600;}
+#myFormListBtnDiv { padding-top: 6%; padding-bottom: 20%; } 
+.ui.black.basic.button { font-size: 13pt; width: 31%; height: 45px; font-weight: 600; } 
 
 
 
@@ -174,26 +174,26 @@
 /* 7. 내 지원서 조회 페이지 */
 
 /* 내 지원서 조회 배경*/
-#myFormChk .myFormChkDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff;}
+#myFormChk .myFormChkDiv { margin: 12px 0 102px; padding: 15px 25px 50px; border: 1px solid #e6e6e6; background-color: #fff; } 
 
 /* 지원서 조회 제목 */
-.myFormChkTitleTxt { padding-top: 20px; font-size: 20pt; font-weight: 540;}
-#myFormChkTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff;}
-#myFormChkTitle h4 { text-align: center; font-size: 20px; font-weight: normal;}
+.myFormChkTitleTxt { padding-top: 20px; font-size: 20pt; font-weight: 540; } 
+#myFormChkTitle { height: 45px; padding: 25px 0 50px 25px; border: 1px solid #e6e6e6; background-color: #fff; } 
+#myFormChkTitle h4 { text-align: center; font-size: 20px; font-weight: normal; } 
 
 /* 지원서 개인정보, 질문 DIV */
-#myFormChk .infoDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
-#myFormChk .QusDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; }
+#myFormChk .infoDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; } 
+#myFormChk .QusDiv { border-bottom: 1px solid #dadada; padding-bottom: 25px; margin: 0 0 25px; } 
 
 /* 지원서 개인정보*/
-#myFormChkInfoDiv .infoTitle{ margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
-#myFormChkInfoDiv .info { font-size: 12pt; font-weight: 300; font-family: 'Noto Sans KR';}
+#myFormChkInfoDiv .infoTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal; } 
+#myFormChkInfoDiv .info { font-size: 12pt; font-weight: 300; font-family: 'Noto Sans KR'; } 
 
 /* 지원서 질문 */
-#myFormChkQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal;}
-#myFormChkQusSubDiv .qusAns { margin-bottom: 27px;}
-#myFormChkQusSubDiv .qus{ margin: 0 0 28px; font-size: 12pt; font-weight: 500; font-family: 'Noto Sans KR';}
-#myFormChkQusSubDiv .ans{ font-weight: 300; font-family: 'Noto Sans KR';}
+#myFormChkQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal; } 
+#myFormChkQusSubDiv .qusAns { margin-bottom: 27px; } 
+#myFormChkQusSubDiv .qus { margin: 0 0 28px; font-size: 12pt; font-weight: 500; font-family: 'Noto Sans KR'; } 
+#myFormChkQusSubDiv .ans { font-weight: 300; font-family: 'Noto Sans KR'; } 
 
 /* 폰트 */
 /* 'NanumSquareR', 'Nanum Gothic', 'Malgun Gothic', '돋움', 'dotum', 'AppleGothic', Helvetica, Arial, sans-serif */

@@ -69,6 +69,8 @@ let formInfoWrite = (function(){
 
     // 정보 입력 창 유효성 검사
     function infoValidationCheck(param, pwdChk) {
+        var regPwd = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
+
         if(param['name'].trim() === '') {
             alert('이름을 입력하세요.');
             return false;
@@ -86,6 +88,10 @@ let formInfoWrite = (function(){
             return false;
         }
 
+        if(!regPwd.test(param['pwd'])){
+            alert("비밀번호는 대/소문자, 특수문자, 숫자를 사용해 8자 이상 입력해주세요.");
+            return false;
+        }
         // 비밀번호와 비밀번호 확인이 다른 경우
         if(param['pwd'] != pwdChk) {
             alert('비밀번호 확인이 다릅니다.');
