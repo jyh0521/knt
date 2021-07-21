@@ -18,7 +18,7 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 /* 메인 로그인창 */
 #loginTypo { width: 35%; height: 85%; padding-right: 5%; margin-right: 12%; }
 
-.loginlist {padding-top:20%; padding-left: 8%; padding-right: 21%;}
+.loginlist {padding-top:8%; padding-left: 8%; padding-right: 21%;}
 #field {padding-bottom: 15px;text-align: center; }
 #userId {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
 #userPwd {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
