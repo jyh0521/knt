@@ -16,7 +16,7 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 }
 
 /* 메인 로그인창 */
-#loginTypo {padding-left: 8%;}
+#loginTypo {padding-left:11.3%;}
 
 .loginlist {padding-top:5%; padding-left: 8%; padding-right: 22%;}
 #field {padding-bottom: 15px;text-align: center; }
