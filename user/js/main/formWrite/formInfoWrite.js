@@ -110,8 +110,3 @@ let formInfoWrite = (function(){
         initFormInfoWrite : initFormInfoWrite
     };
 })();
-
-/*
-    TODO
-    1. 비밀번호 유효성 검사: 대소문자, 특수문자, 숫자 넣을 수 있게
-*/
