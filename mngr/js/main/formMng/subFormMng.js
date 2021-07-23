@@ -47,6 +47,7 @@ let subFormMng = (function(){
             subFormListHtml +=      '<td class="subFormListNum">' + (startDataIndex + i) + '</td>';
             subFormListHtml +=      '<td class="subFormListTitle">' + list[i]['FORM_TITLE'] + '</td>';
             subFormListHtml +=      '<td>' + list[i]['SUB_FORM_NAME'] + '</td>';
+            subFormListHtml +=      '<td>' + list[i]['SUB_FORM_DATE'] + '</td>';
             subFormListHtml += '</tr>';
         }
 
