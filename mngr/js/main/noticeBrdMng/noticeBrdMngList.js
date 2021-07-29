@@ -48,8 +48,9 @@ let noticeBrdMngList = (function() {
             noticeBrdMngListTbodyHtml += '<tr class="noticeBrdListTr" id="noticeBrdListId' + noticeBrdMngList[i]['BRD_ID'] + '">';
             noticeBrdMngListTbodyHtml +=     '<td class="noticeBrdListNum">' + (startDataIndex + i) + '</td>';
             noticeBrdMngListTbodyHtml +=     '<td class="noticeBrdListTitle">' + noticeBrdMngList[i]['BRD_TITLE'] + '</td>';
-            noticeBrdMngListTbodyHtml +=     "<td>" + cmpTimeStamp(noticeBrdMngList[i]["BRD_DATE"]) + "</td>";
-            noticeBrdMngListTbodyHtml += "</tr>";
+            noticeBrdMngListTbodyHtml +=     '<td>' +  getDataDate(noticeBrdMngList[i]['BRD_DATE_START']) + '~' + getDataDate(noticeBrdMngList[i]['BRD_DATE_END'])+ '</td>';
+            noticeBrdMngListTbodyHtml +=     '<td>' + cmpTimeStamp(noticeBrdMngList[i]['BRD_DATE']) + '</td>';
+            noticeBrdMngListTbodyHtml += '</tr>';
         }
 
         $('#noticeBrdMngListTbody').empty().append(noticeBrdMngListTbodyHtml);

@@ -1,28 +1,22 @@
 /* 0. 로그인 페이지 */
 /*로그인창*/
-body{margin:0px; height:537px; background-color:#eff0f2;}
+body { margin:0px; height:537px; background-color:#eff0f2; } 
 
 /* 상단 헤더 */
-#head {width:100%; height:52px; background-color:#3f3f40;}
+#head { width:100%; height:52px; background-color:#3f3f40; } 
 
 
 /* 배경색(중앙+바닥) */
-#mainwrap {
-    width: 426px;
-    margin: 130px auto 351px;
-    padding: 48px 60px 50px;
-    border: 2px solid #e6e6e6;
-    background-color: #fff;
-}
+#mainwrap { width: 426px; margin: 130px auto 351px; padding: 48px 60px 50px; border: 2px solid #e6e6e6; background-color: #fff; } 
 
 /* 메인 로그인창 */
-#loginTypo {padding-left:11.3%;}
+#loginTypo { padding-left:11.3%; } 
 
-.loginlist {padding-top:5%; padding-left: 8%; padding-right: 22%;}
-#field {padding-bottom: 15px;text-align: center; }
-#userId {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
-#userPwd {width: 120%;height: 55px;border: 1px solid #979797; border-radius:0.5em;}
-#loginBtn {margin-top:20px; width: 60%;height: 50px;background-color: #585c5f; margin-left: 19%;}
+.loginlist { padding-top:5%; padding-left: 8%; padding-right: 22%; } 
+#field { padding-bottom: 15px; text-align: center; } 
+#userId { width: 120%; height: 55px; border: 1px solid #979797; border-radius:0.5em; } 
+#userPwd { width: 120%; height: 55px; border: 1px solid #979797; border-radius:0.5em; } 
+#loginBtn { margin-top:20px; width: 60%; height: 50px; background-color: #585c5f; margin-left: 19%; } 
 
 
 
@@ -122,7 +116,7 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 #noticeBrdMngWriteTitle { height: 40px; display: block; width: 100%; min-height: 40px; padding: 11px 12px 10px; border: 1px solid #c8c8c8; box-sizing: border-box; resize: none; word-break: break-all; font-size: 15px; letter-spacing: -.23px; line-height: 17px; outline: none; } 
 #noticeBrdMngWriteContent { height: 40px; display: block; width: 100%; min-height: 300px; padding: 11px 12px 10px; border: 1px solid #c8c8c8; box-sizing: border-box; resize: none; word-break: break-all; font-size: 15px; letter-spacing: -.23px; line-height: 17px; outline: none; margin-top: 30px; margin-bottom: 20px; } 
 #noticeBrdMngWriteDiv .selectDiv { float: left; width: 630px; } 
-#noticeBrdMngWriteDiv .textDiv { border-bottom: 1px solid #dadada; padding-bottom: 70px; } 
+#noticeBrdMngWriteDiv .dateDiv .dateInputDiv{ display: block; float: left; height: 38px; margin-right: 5px; padding: 0 10px; border: 1px solid #c8c8c8; line-height: 38px; font-weight: 300; } 
 
 /* 작성, 수정, 뒤로 버튼 */
 .noticeBrdMngWriteBtnDiv { text-align:center; padding-top: 70px; } 
@@ -137,7 +131,7 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 /* 공지사항 내용 제목 부분 */
 #noticeBrdMngContentDiv .titleDiv { position: relative; height: 128px; border-bottom: 1px solid #e6e6e6; } 
 #kntNoticeBrdMngContentTitleDomain { padding: 49px 120px 0 120px; } 
-#kntNoticeBrdMngContentTitleDomain .title { font-size: 28px; font-weight: normal; text-align: center; } 
+#kntNoticeBrdMngContentTitleDomain .title .dateInputDiv{ font-size: 28px; font-weight: normal; text-align: center; } 
 
 /* 공지사항 내용 부분 */
 #noticeBrdMngContentDiv .contentDiv { padding: 60px 120px 60px; } 
@@ -192,13 +186,13 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 #formMngContentDiv .btnDiv { padding-top: 70px; text-align: center; padding-left: 140px; padding-right: 140px; } 
 
 #formMain { margin: 40px 0 102px; border: 1px solid #c8c8c8; background-color: #fff; padding: 60px 120px 0; padding-bottom: 70px; } 
-#formTitle { width: 600px;height: 43px;padding: 10px;border: 1px solid #c8c8c8;font-size: 12px;line-height: 21px;font-weight: 300;resize: none; } 
+#formTitle { width: 600px; height: 43px; padding: 10px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize: none; } 
 
-#formContentPlus { width: 72px;}
-#formContentMinus{ width: 72px;}
-#formRegisterBtn{width: 120px;}
+#formContentPlus { width: 72px; } 
+#formContentMinus { width: 72px; } 
+#formRegisterBtn { width: 120px; } 
 
-#formMainContentList .queDiv {width: 600px;height: 43px;padding: 10px;border: 1px solid #c8c8c8;font-size: 12px;line-height: 21px;font-weight: 300;resize: none;}
+#formMainContentList .queDiv { width: 600px; height: 43px; padding: 10px; border: 1px solid #c8c8c8; font-size: 12px; line-height: 21px; font-weight: 300; resize: none; } 
 
 /* 8. 지원서 조회 */
 
@@ -241,3 +235,5 @@ body{margin:0px; height:537px; background-color:#eff0f2;}
 #subFormQusDiv .qusTitle { margin: 39px 0 24px; font-size: 19px; font-weight: normal; } 
 #subFormQusSubDiv .qusAns { font-size: 16px; margin-bottom: 27px; font-family: sans-serif; } 
 #subFormQusSubDiv .qus { margin: 0 0 28px; font-weight: normal; } 
+
+/* alt + shift + f */

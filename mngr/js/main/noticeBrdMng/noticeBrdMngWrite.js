@@ -88,7 +88,9 @@ let noticeBrdMngWrite = (function() {
                     content : $('#noticeBrdMngWriteContent').val(),
                     date : getTimeStamp(new Date()),
                     form : form,
-                    writer : 'ADMIN'
+                    writer : 'ADMIN',
+                    startDate : $('#noticeBrdMngDateStart').val(),
+                    endDate : $('#noticeBrdMngDateEnd').val(),
                 };
 
                 if(form != 'empty') {
