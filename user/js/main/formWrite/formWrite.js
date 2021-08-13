@@ -3,6 +3,7 @@ let formWrite = (function(){
     let maxQueSize = 5;
     let formContent = [];
 
+    
     // 함수
     // 지원서 작성하기 초기화 함수
     function initFormWrite(param) {
