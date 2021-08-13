@@ -3,7 +3,7 @@
 
     $startrow = $_POST['startrow'];
 
-    $sql = "SELECT SUB_FORM_ID, uf.FORM_TITLE, SUB_FORM_NAME
+    $sql = "SELECT SUB_FORM_ID, uf.FORM_TITLE, SUB_FORM_NAME, SUB_FORM_DATE
               FROM USR_SUB_FORM usf, USR_FORM uf
              WHERE usf.FORM_ID = uf.FORM_ID
                AND SUB_FORM_DISABLE = 'Y'
@@ -17,7 +17,8 @@
         $tmp = array(
             'SUB_FORM_ID' => $row['SUB_FORM_ID'],
             'FORM_TITLE' => $row['FORM_TITLE'],
-            'SUB_FORM_NAME' => $row['SUB_FORM_NAME']
+            'SUB_FORM_NAME' => $row['SUB_FORM_NAME'],
+            'SUB_FORM_DATE' => $row['SUB_FORM_DATE']
         );
 
         array_push($value, $tmp);

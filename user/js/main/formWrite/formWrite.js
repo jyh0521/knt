@@ -26,14 +26,14 @@ let formWrite = (function(){
     */
     // 지원서 내용을 제출하는 함수
     function submitUserForm(content) {
-        let param = 'name=' + content['name'] + '&num=' + content['num'] + '&birth=' + content['birth'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] + 
+        let param = 'name=' + content['name'] + '&num=' + content['num'] + '&birth=' + content['birth'] + '&date=' + content['date'] + '&sex=' + content['sex'] + '&phone=' + content['phone'] + 
                     '&pwd=' + content['pwd'] + '&form=' + content['id'] + '&ans1=' + content['FORM_ANS1'] + '&ans2=' + content['FORM_ANS2'] + 
                     '&ans3=' + content['FORM_ANS3'] + '&ans4=' + content['FORM_ANS4'] + '&ans5=' + content['FORM_ANS5'];
 
         requestData('/knt/user/php/main/formWrite/submitUserForm.php', param).done(function(result){
             if(result) {
                 alert('제출되었습니다.');
-                $("#menuFuncDiv").load("noticeBrd/noticeBrd.html", function () {
+                $("#menuFuncDiv").load("noticeBrd/noticeBrdList.html", function () {
                     showNoticeBrd();
                 });
             }
@@ -119,6 +119,7 @@ let formWrite = (function(){
             param['birth'] = $('#userBirth').val();
             param['sex'] = $('#userSex').val();
             param['phone'] = $('#userPhone').val();
+            param['date'] = getTimeStamp(new Date());
             
             if(formContentValidationCheck(param)) {
                 // 지원서 질문의 답변이 다 쓰였는지 검사
@@ -173,6 +174,8 @@ let formWrite = (function(){
 
     // 지원서 작성 내용 유효성 검사
     function formContentValidationCheck(param) {
+        let regBirth=/^(19[0-9][0-9]|20\d{2}).(0[0-9]|1[0-2]).(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
         if(param['birth'].trim() === '') {
             alert('생년월일을 입력하세요.');
             return false;
@@ -186,6 +189,10 @@ let formWrite = (function(){
             return false;
         }
 
+        if(!regBirth.test(param['birth'])){
+            alert('생년월일을 다시 입력해주세요.');
+            return false;
+        }
         return true;
     }
 

@@ -241,6 +241,7 @@ let myForm = (function(){
         $('#formWriteSubmitBtn').off('click').on('click', function() {
             if(confirm('지원서를 제출하시겠습니까? 제출 후에는 수정이 불가능합니다.')) {
                 let content = getNowFormContent(formContent);
+                content['date'] = getTimeStamp(new Date());
                 content['id'] = id;
                 submitSavedMyForm(content);
             }

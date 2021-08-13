@@ -82,11 +82,17 @@ let noticeBrdList = (function() {
         let noticeBrdStartNum = (currentPage - 1) * 10 + 1;
 
         for(let i = 0; i < noticeBrdListSize; i++) {
+            if(!(getDataDate(list[i]['BRD_DATE_START']) <= getTodayDate() && getTodayDate() <= getDataDate(list[i]['BRD_DATE_END']))){
+                continue;
+            }
+            else{
             noticeBrdListTbodyHtml += '<tr class = "kntNoticeBrdTitle" id = "noticeBrdContentListId' + list[i]['BRD_ID'] + '" ">';
             noticeBrdListTbodyHtml +=     '<td class = "noticeBrdList">' + (i + noticeBrdStartNum) + '</td>';
             noticeBrdListTbodyHtml +=     '<td class = "noticeBrdList">' + list[i]['BRD_TITLE'] + '</td>';
+            noticeBrdListTbodyHtml +=     '<td>' +  getDataDate(list[i]['BRD_DATE_START']) + '~' + getDataDate(list[i]['BRD_DATE_END'])+ '</td>';
             noticeBrdListTbodyHtml +=     '<td class = "noticeBrdList">' + cmpTimeStamp(list[i]['BRD_DATE']) + '</td>';
             noticeBrdListTbodyHtml += '</tr>';
+            }
         }
 
         $('#noticeBrdListTbody').empty().append(noticeBrdListTbodyHtml);
