@@ -40,7 +40,7 @@ let noticeBrdContent = (function() {
     //공지사항 내용 이벤트
     function initNoticeBrdContentEvent(){
         $('.writeRegistedFormBtn').off('click').on('click', function(){
-            let id = this.id.substr(18);
+            let id = this.id.substr(28);
 
             if(confirm('지원서를 작성하시겠습니까?')) {
                 $("#menuFuncDiv").load("formWrite/formInfoWrite.html", function () {
