@@ -65,7 +65,7 @@ let noticeBrdMngWrite = (function() {
                 }
                 // 지원서가 등록되있는 경우
                 else {
-                    $('#formName').val('formSelect' + param['form']);
+                    $('#formName').val(param['form']);
                 }
 
                 noticeBrdMngWriteHtml += '<button id="noticeBrdMngWriteUpdateContentBtn" class="ui black basic button">수정</button>';

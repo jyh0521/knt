@@ -102,7 +102,7 @@ function drawFormContent(id, result) {
     formContentHtml += '</div>'
 
     formContentHtml += '<div class="btnDiv">'
-    formContentHtml +=  '<button id="formContUpdateBtn" class="ui black basic button">확인</button>';
+    formContentHtml +=  '<button id="formContUpdateBtn" class="ui black basic button">수정</button>';
     formContentHtml +=  '<button id="formContDelBtn" class="ui black basic button">삭제</button>';
     formContentHtml +=  '<button id="formContBackBtn" class="ui black basic button">뒤로</button>';
     formContentHtml += '</div>'
